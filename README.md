@@ -1,3 +1,5 @@
+Maybe it is deprecated, it seems that there are a new version at  https://github.com/lmarquezMS/Doppler_WP_plugin
+
 # Doppler Form
 
 Feed your Doppler’s Subscribers Lists automatically from your WordPress site or blog. Add a simple widget and let your visitors increase your Lists!  
