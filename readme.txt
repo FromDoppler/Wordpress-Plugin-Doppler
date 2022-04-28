@@ -1,107 +1,161 @@
-﻿=== Doppler Form ===
+﻿=== Doppler Forms ===
 Contributors: fromdoppler
 Donate link: --
-Tags: Doppler, Wordpress, integration, subscription, form 
-Requires al least: 3.9
-Tested up to: 4.2.2
-Stable tag: 1.0.0
-License: GPLv2
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tags: Doppler, Email marketing, integration, subscription, form, automation
+Requires at least: 4.9
+Tested up to: 5.9.2
+Requires PHP: 5.6.4
+Stable tag: 2.2.8
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-
-Feed your Doppler’s Subscribers Lists automatically from your WordPress site or blog. Add a simple widget and let your visitors increase your Lists!  
-
+Crea Formularios con la misma estética de tu web o blog. Conéctalos con Doppler y envía a tus contactos automáticamente a Listas de Suscriptores.
 
 == Description ==
 
+Este plugin te permite crear Formularios de Suscripción totalmente personalizados que puedes agregar a tu sitio web o blog.
 
-This plugin lets you create a customizable sign-up form which you can display anywhere in your site or blog. All you need is to choose a title, the Subscriptions’ Lists you want to feed and that’s it. All your visitors will be able to introduce their Emails and you will increase your contact Lists fast and simply! Remember you can feed more than one List using the same Form.
+Lo único que tienes que hacer es ingresar un título, elegir los Campos que deseas mostrar, 
+la Lista a la que quieres enviar tus nuevos Suscriptores y el lugar donde aparecerá tu Formulario. ¡Eso es todo!
 
+¿Aún no tienes cuenta en Doppler? [CREA UNA GRATIS](https://app.fromdoppler.com/#/signup?lang=es&id=es&origin=wordpress) y prueba el poder del Email & Automation Marketing. No necesitas contratos ni tarjetas de crédito.
 
-Wait! Don’t you have a Doppler account yet? [Click here](https://app2.fromdoppler.com/Registration/Register/StartRegistration/?id=en&origin=wordpress) and try it for free.
+== Funcionalidades ==
 
+*Conexión rápida y sencilla con tu cuenta de Doppler.
 
-Highlights:
-* A simple way to feed your Doppler’s Subscriptions Lists.
-* Friendly customization.
-* Designed to automatically adapt to the theme you have settled for your site or blog.
-* All you need is an [API Key](http://help.fromdoppler.com/en/api-interfaz-de-programacion-de-aplicaciones/). Available in English and Spanish.
+*Fácil personalización del Formulario.
 
+*Puedes asociar tu Lista de Suscriptores a Campañas automatizadas de Emails para que cada contacto reciba un Email de Bienvenida al suscribirse.
+
+*Disponible en Español e Inglés
 
 == Installation ==
 
+1- Dirígete al panel de control de WordPress y selecciona la pestaña "Plugins" > Nuevo Plugin.
 
-1. Go to your WordPress admin panel and select “Plugins” > “New Plugin”.
-2.   Choose Doppler Form and click “Install now”.
-3.   Once it is successfully installed, select “Activate Plugin”.
-4.   It will be added to your Plugins List.
-5.   Go to your WordPress admin panel and click “Settings” > “Doppler Form”    
-6.   Introduce the [API Key](http://help.fromdoppler.com/en/api-interfaz-de-programacion-de-aplicaciones/) and press “Connect”
+2- Elige el plugin llamado "Formularios Doppler" y haz clic en "Instalar ahora".
 
-== Screenshots ==
+3- Elige la opción "Activar Plugin". Este se agregará a tu lista de Plugins.
 
-1. Go to your WordPress admin panel and select “Plugins” > “Add new”.
-2. Then, choose Doppler Form and click “Install now”.
-3. When it’s successfully installed, click on “Activate Plugin”. 
-4. Go to your WordPress admin panel and click “Settings” > “Doppler Form”. 
-5. Remember you have to get your  [API Key](http://help.fromdoppler.com/en/api-interfaz-de-programacion-de-aplicaciones/) from Doppler’s control pannel. Just paste it in the textbox, hit on connect and continue.
-6. This window means you are very, very close to get your Widget ready to add it to your Blog or Website. Your API Key was successfully connected! Congratulations!
-7. It’s time to customize your Widget. It’s a very simple task. Just go to “Appearance” in the admin panel and choose Doppler Form from the available Widgets.
-8. Drag the Doppler Form Widget into the Widget Area and choose the place you would like it to be displayed. Remember this is the way your visitors will see it in your Blog or Website!
-9. Last step! Choose a title and add the Doppler Lists you want to feed. Remember you can feed multiple Lists with just one Form! Ready? Click “Save” and go to your Blog or Website in order to see your new Doppler Form.
-10. You’re done! You’ve never thought feeding your Subscribers Lists could be so easy, have you? Doppler is the best tool to do Email Marketing. Add a Form into your Blog or Website, increase your Lists and optimize your results!
- 
-== Set your Widget ==
+4- Vuelve al panel de control y haz clic en la pestaña "Formularios de Doppler".
 
+5- Ingresa tu Email de usuario y el [API Key](https://help.fromdoppler.com/es/api-interfaz-de-programacion-de-aplicaciones?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress) de tu cuenta de Doppler. Presiona "Conectar".
 
-1. Go to “Appearance” and choose Doppler Form from the available Widgets.
-2. Drag it to the Widget Area and choose the place you would like it to be displayed.
-3. Click the new Widget and complete it with the Title you want your visitors to see and the Lists you want to feed. Save changes.
-4. Your Doppler form has been added to your site.
-      
-= Need help? =
+== Configuración ==
 
+1. Dirígete a "Apariencia" y haz clic en el Widget "Formularios de Doppler".
 
-Please visit the plugin FAQ questions. If you have doubts don’t hesitate to write us to soporte@fromdoppler.com  and The Doppler Team will be pleased to help you with any issue. 
+2. Arrástralo al área de Widgets y elige el lugar de tu sitio web donde quieras que se muestre.
 
+3. Ya podrás visualizar el Formulario en tu sitio web.
 
 == Frequently Asked Questions ==
 
+= He instalado la versión 2.0 del plugin y mi Formulario no se muestra, ¿a qué se debe? =
 
-= Can a visitor be added to more than one List? =
+Esta versión requiere que ingreses tu Email de Usuario además de tu API Key. Si aún no lo has hecho, ese puede ser el motivo.
 
+= ¿Un Suscriptor puede suscribirse a más de una Lista de una vez? =
 
-Yes, there are no limits in the amount of Lists you can feed with one Form.
+No, el Formulario puede ser asociado a una única Lista.
 
+= ¿Hay un límite máximo de Suscriptores que pueden ser importados al mismo momento? =
 
-= Is there any limit to the amount of Subscribers completing the form at the same time?
+No, no hay un límite.
 
+= ¿Puedo cambiar el API Key que he utilizado para realizar la conexión? =
 
-No, there is no limit.
+Sí, si tienes más de una cuenta de Doppler, y por ende, más de una API Key, puedes cambiarla. Presta atención a qué cuenta pertenece cada una para evitar enviar Suscriptores a una cuenta equivocada.
 
+= ¿Los Formularios traen un diseño por defecto? =
 
-= Can I change the API Key I have registered? =
+No, puedes elegir que tenga el mismo diseño que tu sitio o blog, o bien, personalizarlo a tu gusto.
 
+= ¿Dónde puedo encontrar la API Key de mi cuenta de Doppler? =
 
-Yes, if you have more than one API Key or, for some reason, you have changed the one you had, you can register a new one.
+En [este artículo](https://help.fromdoppler.com/es/api-interfaz-de-programacion-de-aplicaciones?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress) te lo explicamos.
 
+== Screenshots ==
 
-= Do Doppler Forms have a default design? =
-
-
-No, Doppler Form’s design fits to the theme you have activated for your site or blog.
-
-
-= Where can I find my Doppler API Key? =
-
-
-You can learn how to find your Doppler API Key [here](http://help.fromdoppler.com/en/api-interfaz-de-programacion-de-aplicaciones/).
-
+1. Conecta tus Formularios a Doppler.
+2. Pantalla de conexión exitosa.
+3. Listado de Formularios.
+4. Creación de Formulario.
+5. Creación de Formulario.
+6. Creación de Formulario.
+7. Doppler Widget.
+8. Formulario de Suscripción.
 
 == Changelog ==
 
+= 2.2.7 =
+* update: doppler form in front-end doesn't show when doppler account is disconnected
+
+= 2.2.6 =
+* added new feature to change form layout (display it horizontally or vertically)
+
+= 2.2.5 =
+* added new feature to use a doppler form with a shortcut tag
+
+= 2.2.4 =
+* fix re-connection issue account
+* fix label showing version user ui
+
+= 2.2.3 =
+* fix friendly message curl timeout 
+* add curl conection test case
+
+= 2.2.2 =
+* fix readme.txt
+
+= 2.2.0 =
+* add section for inserting datahub script
+
+= 2.1.9 =
+* Fix warnings 
+* Added phone custom field support.
+
+= 2.1.8 =
+* Change Ajax js var for a less generic name to avoid conflicts.
+
+= 2.1.7 =
+* Fix typo in lists crud
+* Visual changes to extensions page
+* Visual changes to disconnect screen
+
+= 2.1.6 =
+* Changed colorpicker to WordPress default (Iris).
+* Better visuals for Extensions page.
+* Added remove icon to custom fields in forms.
+
+= 2.1.5 =
+* Check if a List is in use by a form or extension before delete it.
+* Support for WooCommerce extension
+
+= 2.1.4 =
+* Publish extensions section
+
+= 2.1.3 =
+* Optimized requests to api
+
+= 2.1.1 =  
+* Fix fatal error with new extension class
+
+= 2.1.0 =
+* Added Manage Lists section.
+* Added capacity for future extensions.
+* New visuals, new menu.
+
+= 2.0.2 =
+* Form can be configured to redirect user to a page after subscription.
+
+= 2.0.1 =
+* Fix: Cuantity of queries to API reduced to avoid possible blocking.
+
+= 2.0.0 =
+* Added support for new API.
+* It's possible to add Doppler custom fields to the form.
 
 = 1.0.0 =
-
-
-* First Release
+* Initial release.
