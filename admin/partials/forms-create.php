@@ -25,7 +25,6 @@
               ?>
             </select>
           </div>
-        </div>
       </div>
     </div>
     
@@ -110,19 +109,124 @@
             </div>
           </div>
           <div class="dplr_input_section">
-              <label for="settings[form_orientation]"><?php _e('Orientacion del formulario', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
+            <label for="settings[form_orientation]"><?php _e('Form orientation', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
+            <div class="form_orientation">
               <div style="display: flex; align-items: center;">
+                <label for="vertical"><?php _e('Vertical','doppler-form')?></label>
                 <input type="radio" name="settings[form_orientation]" value="vertical" checked/>
-                <label for="vertical">Vertical</label>
               </div>
               <div style="display: flex; align-items: center;">
+                <label for="horizontal"><?php _e('Horizontal','doppler-form')?></label>
                 <input type="radio" name="settings[form_orientation]" value="horizontal"/>
-                <label for="horizontal">Horizontal</label>
               </div>
             </div>
+          </div>
+          <div class="dplr_input_section" id ="doble_optin_section">
+            <label for="settings[form_doble_optin]"><?php _e('Choose Opt-In type:', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
+            <select name="settings[form_doble_optin]" id="settings[form_doble_optin]">
+                <option selected value="no">Simple Opt-in</option>
+                <option value="yes">Doble Opt-in</option>
+            </select>
+          </div>
+          <p>
+            ¡Psst! Necesitas seleccionar la Lista a la que serán enviados tus nuevos Suscriptores y también configurar los Emails de confirmación y bienvenida.
+          </p>
+          <p>
+            ¿Quieres saber la diferencia entre Simple y Doble Opt-In? Presiona <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in">HELP</a>.
+          </p>
+
+          
         </div>
       </div>
     </div>
+
+
+
+    <div class="grid" id="dplr_doble_opt_in_section" <?= ($form->settings['use_consent_field']==='yes')? 'style="display:block"' : 'style="display:none"'; ?>>
+      <div class="col-4-5 panel nopd">
+        <div class="panel-header">
+          <h2><?php _e('Doble Opt-In settings', 'doppler-form')?></h2>
+        </div>
+        <div class="panel-body grid">
+          <div class="dplr_input_section" id="section_email_confirmacion">
+            <h2>Email de confirmacion</h2>
+            <label for="settings[form_email_confirmacion_asunto]"><?php _e('Asunto', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
+            <input type="text" name="settings[form_email_confirmacion_asunto]" value="<?php echo $form->settings["form_email_confirmacion_asunto"] ?>" placeholder="<?php _e('Asunto', 'doppler-form')?>" maxlength="40" required/>
+
+            <label for="settings[form_email_confirmacion_pre_encabezado]"><?php _e('Pre encabezado', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
+            <input type="text" name="settings[form_email_confirmacion_pre_encabezado]" value="<?php echo $form->settings["form_email_confirmacion_pre_encabezado"] ?>" placeholder="<?php _e('Pre encabezado', 'doppler-form')?>" maxlength="40" required/>
+
+            <label for="settings[form_email_confirmacion_email_remitente]"><?php _e('Email del remitente', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
+            <input type="email" name="settings[form_email_confirmacion_email_remitente]" value="<?php echo $form->settings["form_email_confirmacion_email_remitente"] ?>" placeholder="<?php _e('Email del remitente', 'doppler-form')?>" maxlength="40" required/>
+
+            <label for="settings[form_email_confirmacion_nombre_remitente]"><?php _e('Nombre del remitente', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
+            <input type="text" name="settings[form_email_confirmacion_nombre_remitente]" value="<?php echo $form->settings["form_email_confirmacion_nombre_remitente"] ?>" placeholder="<?php _e('Nombre del remitente', 'doppler-form')?>" maxlength="40" required/>
+
+            <label for="settings[form_email_confirmacion_email_contenido]"><?php _e('Contenido del email. Tiene que tener, obligatoriamente, un anchor element con: href=[[[ConfirmationLink]]]', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
+            <textarea 
+              name="settings[form_email_confirmacion_email_contenido]" 
+              id="settings[form_email_confirmacion_email_contenido]" 
+              placeholder="<?php _e('Contenido del email (HTML). Tiene que tener, obligatoriamente, un anchor element con: href=[[[ConfirmationLink]]]', 'doppler-form')?>" 
+              rows="25" 
+              cols="50"
+              required
+            ><?php echo $form->settings["form_email_confirmacion_email_contenido"] ?></textarea>
+          </div>
+
+          <div class="dplr_input_section" id="section_pagina_confirmacion">
+            <h2>Pagina de confirmacion</h2>
+
+            <label for="settings[form_pagina_confirmacion]"><?php _e('Elija la opcion:', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
+            <div style="display: flex; align-items: center;">
+            <input 
+              type="radio" 
+              id="mostrar_landing" 
+              name="settings[form_pagina_confirmacion]" 
+              value="landing" 
+              <?php if($form->settings['form_pagina_confirmacion']==='landing') echo 'checked'?> />
+              <label for="yes">Mostrar landing page</label>
+            </div>
+            <div style="display: flex; align-items: center;">
+              <input type="radio" name="settings[form_pagina_confirmacion]" value="url" <?php if($form->settings['form_pagina_confirmacion']==='url') echo 'checked'?> />
+              <label for="no">Enviar a URL (obligatoriamente con el prefijo https)</label>
+            </div>
+
+            <div id="div_url_destino">
+              <label for="settings[form_pagina_confirmacion_url]"><?php _e('URL de destino', 'doppler-form')?> <span class="req"></span></label>
+              <input type="text" name="settings[form_pagina_confirmacion_url]" value="<?php echo $form->settings["form_pagina_confirmacion_url"] ?>" placeholder="<?php _e('Example: https://www.fromdoppler.com', 'doppler-form')?>" maxlength="40"/>
+            </div>
+            
+            <div id="div_landing_page">
+              <label for="settings[form_pagina_confirmacion_select_landing]"><?php _e('Mostrar landing page', 'doppler-form')?> <span class="req"></span></label>
+              <select name="settings[form_pagina_confirmacion_select_landing]" id="settings[form_pagina_confirmacion_url]">
+                <?php
+                  $pages = get_pages();
+                  foreach($pages as $page):
+                      if($form->settings["form_pagina_confirmacion_select_landing"] == $page->ID){
+                      ?>
+                        <option selected value="<?php echo $page->ID ?>"><?php echo $page->post_title ?></option>
+                      <?
+                      }
+                      else{
+                      ?>
+                        <option value="<?php echo $page->ID ?>"><?php echo $page->post_title ?></option>
+                      <?
+                      }
+                    ?>
+                    <?
+                  endforeach;
+                ?>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
     
     <div class="grid" id="dplr_consent_section">
       <div class="col-4-5 panel nopd">
@@ -144,12 +248,79 @@
       </div>
     </div>
     
-    <input type="submit" name="form-create" value="<?php _e('Save', 'doppler-form')?>" class="dp-button primary-green button-medium"/> <a href="<?php echo admin_url('admin.php?page=doppler_forms_main')?>"  class="dp-button primary-grey button-medium"><?php _e('Cancel', 'doppler-form')?></a>
+    <p id="error-message" class="error-message">
+        Error! Recuerde que el contenido del email tiene que tener, obligatoriamente, un anchor element con: href=[[[ConfirmationLink]]]
+      </p>
+    <input id="submit_button" type="submit" name="form-create" value="<?php _e('Save', 'doppler-form')?>" class="dp-button primary-green button-medium"/> <a href="<?php echo admin_url('admin.php?page=doppler_forms_main')?>"  class="dp-button primary-grey button-medium"><?php _e('Cancel', 'doppler-form')?></a>
   
   </form>
 
 </div>
 <script type="text/javascript">
+
+function hideShowConfigDobleOptIn(){
+  if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
+    document.getElementById("dplr_doble_opt_in_section").style.display = "block";
+  }
+  else{
+    document.getElementById("dplr_doble_opt_in_section").style.display = "none";
+  }
+}
+
+function hideShowConfigLandingOrURL(){
+  if(document.getElementById("mostrar_landing").checked){
+    document.getElementById("div_landing_page").style.display = "block";
+    document.getElementById("div_url_destino").style.display = "none";
+  }
+  else{
+    document.getElementById("div_landing_page").style.display = "none";
+    document.getElementById("div_url_destino").style.display = "block";
+  }
+}
+
+function validateEmailContent(e){
+  if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
+    if(!document.getElementById("settings[form_email_confirmacion_email_contenido]").value.includes("href=[[[ConfirmationLink]]]")){
+      // display div con mensaje de error
+      document.getElementById("error-message").style.display = "block";
+      // cancelar el submit del formulario
+      e.preventDefault();
+    }
+    else{
+      document.getElementById("error-message").style.display = "none";
+    }
+  }
+  if(document.getElementById("settings[form_doble_optin]").value !== 'yes'){
+    document.getElementById("error-message").style.display = 'none';
+  }
+}
+
+window.onload = function(){
+  hideShowConfigDobleOptIn();
+  hideShowConfigLandingOrURL();
+}
+
+document.getElementById("submit_button").addEventListener("click", function(){
+  if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
+    validateEmailContent(event);
+  }
+});
+
+document.getElementById("doble_optin_section").addEventListener("click", function(){
+  hideShowConfigDobleOptIn();
+  if(document.getElementById("settings[form_doble_optin]").value !== 'yes'){
+    document.getElementById("error-message").style.display = 'none';
+  }
+});
+
+document.getElementById("settings[form_email_confirmacion_email_contenido]").addEventListener("blur", function(){
+  validateEmailContent(event);
+});
+
+document.getElementById("section_pagina_confirmacion").addEventListener("click", function(){
+  hideShowConfigLandingOrURL();
+});
+
 var all_fields = <?php echo json_encode($dplr_fields); ?>;
 all_fields = jQuery.grep(all_fields, function(el, idx) {return el.type == "consent"}, true)
 var form_fields = [];
