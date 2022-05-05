@@ -124,16 +124,29 @@
               <label for="settings[form_orientation]"><?php _e('Orientacion del formulario', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
               <div class="form_orientation">
                 <div style="display: flex; align-items: center;">
-                  <input type="radio" name="settings[form_orientation]" value="vertical" <?php if($form->settings['form_orientation']==='vertical') echo 'checked'?> />
                   <label for="vertical">Vertical</label>
+                  <input type="radio" name="settings[form_orientation]" value="vertical" <?php if($form->settings['form_orientation']==='vertical') echo 'checked'?> />
                 </div>
                 <div style="display: flex; align-items: center;">
-                  <input type="radio" name="settings[form_orientation]" value="horizontal" <?php if($form->settings['form_orientation']==='horizontal') echo 'checked'?> />
                   <label for="horizontal">Horizontal</label>
+                  <input type="radio" name="settings[form_orientation]" value="horizontal" <?php if($form->settings['form_orientation']==='horizontal') echo 'checked'?> />
                 </div>
               </div>
             </div>
 
+            
+
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="grid" id="dplr_doble_opt_in_section" <?= ($form->settings['use_consent_field']==='yes')? 'style="display:block"' : 'style="display:none"'; ?>>
+        <div class="col-4-5 panel nopd">
+          <div class="panel-header">
+            <h2><?php _e('Tipo de suscripción', 'doppler-form')?></h2>
+          </div>
+          <div class="panel-body grid">
             <div class="dplr_input_section" id ="doble_optin_section">
               <label for="settings[form_doble_optin]"><?php _e('Choose Opt-In type:', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
               <select name="settings[form_doble_optin]" id="settings[form_doble_optin]">
@@ -151,25 +164,13 @@
                 endif;
                 ?>
               </select>
-            </div>
-            <p>
+              <p>
               ¡Psst! Necesitas seleccionar la Lista a la que serán enviados tus nuevos Suscriptores y también configurar los Emails de confirmación y bienvenida.
-            </p>
-            <p>
-              ¿Quieres saber la diferencia entre Simple y Doble Opt-In? Presiona <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in">HELP</a>.
-            </p>
-
-            
-          </div>
-        </div>
-      </div>
-
-      <div class="grid" id="dplr_doble_opt_in_section" <?= ($form->settings['use_consent_field']==='yes')? 'style="display:block"' : 'style="display:none"'; ?>>
-        <div class="col-4-5 panel nopd">
-          <div class="panel-header">
-            <h2><?php _e('Doble Opt-In settings', 'doppler-form')?></h2>
-          </div>
-          <div class="panel-body grid">
+              </p>
+              <p>
+                ¿Quieres saber la diferencia entre Simple y Doble Opt-In? Presiona <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in">HELP</a>.
+              </p>
+            </div>
             <div class="dplr_input_section" id="section_email_confirmacion">
               <h2>Email de confirmacion</h2>
 
@@ -202,18 +203,20 @@
               <h2>Pagina de confirmacion</h2>
 
               <label for="settings[form_pagina_confirmacion]"><?php _e('Elija la opcion:', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
-              <div style="display: flex; align-items: center;">
-                <input 
-                type="radio" 
-                id="mostrar_landing" 
-                name="settings[form_pagina_confirmacion]" 
-                value="landing" 
-                <?php if($form->settings['form_pagina_confirmacion']==='landing') echo 'checked'?> />
-                <label for="yes">Mostrar landing page</label>
-              </div>
-              <div style="display: flex; align-items: center;">
-                <input type="radio" name="settings[form_pagina_confirmacion]" value="url" <?php if($form->settings['form_pagina_confirmacion']==='url') echo 'checked'?> />
-                <label for="no">Enviar a URL (obligatoriamente con el prefijo https)</label>
+              <div class="radio-inputs-landing-or-url">
+                <div style="display: flex; align-items: center;">
+                  <label for="yes">Mostrar landing page</label>
+                  <input 
+                  type="radio" 
+                  id="mostrar_landing" 
+                  name="settings[form_pagina_confirmacion]" 
+                  value="landing" 
+                  <?php if($form->settings['form_pagina_confirmacion']==='landing') echo 'checked'?> />
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <label for="no">Enviar a URL (obligatoriamente con el prefijo https)</label>
+                  <input type="radio" name="settings[form_pagina_confirmacion]" value="url" <?php if($form->settings['form_pagina_confirmacion']==='url') echo 'checked'?> />
+                </div>
               </div>
 
               <div id="div_url_destino">
@@ -224,7 +227,7 @@
               
               
               <div id="div_landing_page">
-                <label for="settings[form_pagina_confirmacion_select_landing]"><?php _e('Mostrar landing page', 'doppler-form')?> <span class="req"></span></label>
+                <label for="settings[form_pagina_confirmacion_select_landing]"><?php _e('Landing page a mostrar:', 'doppler-form')?> <span class="req"></span></label>
                 <select name="settings[form_pagina_confirmacion_select_landing]" id="settings[form_pagina_confirmacion_url]">
                   <?php
                     $pages = get_pages();
@@ -284,10 +287,12 @@
 
 function hideShowConfigDobleOptIn(){
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
-    document.getElementById("dplr_doble_opt_in_section").style.display = "block";
+    document.getElementById("section_email_confirmacion").style.display = "block";
+    document.getElementById("section_pagina_confirmacion").style.display = "block";
   }
   else{
-    document.getElementById("dplr_doble_opt_in_section").style.display = "none";
+    document.getElementById("section_email_confirmacion").style.display = "none";
+    document.getElementById("section_pagina_confirmacion").style.display = "none";
   }
 }
 
