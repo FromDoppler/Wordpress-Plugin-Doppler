@@ -41,6 +41,7 @@ class DPLR_Form_helper
 		endif;
 		?>
 		<input type="hidden" name="list_id" value="<?php echo $form->list_id; ?>">
+		<input type="hidden" name="form_id" value="<?php echo $form->id; ?>">
 			<?php 
 			foreach ($fields as $field) {
 				$label = isset($field->settings['label']) ? $field->settings['label'] : $field->name;

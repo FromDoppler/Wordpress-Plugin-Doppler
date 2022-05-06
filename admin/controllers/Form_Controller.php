@@ -21,6 +21,39 @@ class DPLR_Form_Controller
       DPLR_Form_Model::insert(['name'=>$form['name'], 'title' => $form['title'], 'list_id' => $form['list_id']]);
       $form_id =  DPLR_Form_Model::insert_id();
 
+      // saco de $form la config necesaria para hacer el POST.
+      if($form["settings"]["form_doble_optin"] === "yes"){
+        $form_data["fromName"] = $form["settings"]["form_email_confirmacion_nombre_remitente"];
+        $form_data["fromEmail"] = $form["settings"]["form_email_confirmacion_email_remitente"];
+        $form_data["subject"] = $form["settings"]["form_email_confirmacion_asunto"];
+        $form_data["preheader"] = $form["settings"]["form_email_confirmacion_pre_encabezado"];
+        $form_data["urlLanding"] = $form["settings"]["form_pagina_confirmacion_url"];
+        $form_data["replyTo"] = "reply-to-hardcodeado@hotmail.com";
+        $form_data["name"] = "namee";
+
+
+        $method["route"] = "DobleOptinTemplate";
+        $method["httpMethod"] = "post";
+        // aca creo la plantilla y la asocio a este form_id.
+        // plugins/doppler-form/includes/DopplerAPIClient/DopplerService.php
+        $response = $this->doppler_service->call($method, '', $form_data);
+
+        if($response["response"]["code"] === 201){
+          $body = json_decode($response["body"]);
+          $form_to_update["settings"]["form_plantilla_id"] = $body->createdResourceId;
+          $form["settings"]["form_plantilla_id"] = $body->createdResourceId;
+
+          // // hay que hacer otra llamada a la API, con el endpoint /plantilla_id/content.
+          // // para poder setear el contenido html del template.
+          $method["route"] = "DobleOptinTemplate/" . $form_to_update["settings"]["form_plantilla_id"] . '/content';
+          $method["httpMethod"] = "put";
+          unset($form_data);
+          $form_data = $form["settings"]["form_email_confirmacion_email_contenido"];
+
+          $response2 = $this->doppler_service->call($method, '', $form_data);
+        }
+      }
+
       DPLR_Form_Model::setSettings($form_id, $form["settings"]);
 
       $field_position_counter = 1;
@@ -48,8 +81,39 @@ class DPLR_Form_Controller
   function update($form_id, $form_to_update = NULL) {
 
     if (isset($form_to_update) && count($form_to_update) > 0) {
+      // $form_to_update["settings"]["message_success"] = 'success message hardcodeado';
 
       DPLR_Form_Model::update($form_id, ['name'=>$form_to_update['name'], 'title' => $form_to_update['title'], 'list_id' => $form_to_update['list_id'], 'form_orientation' => $form_to_update['form_orientation'] ]);
+
+      if($form_to_update["settings"]["form_doble_optin"] === "yes"){
+        $form_data["fromName"] = $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"];
+        $form_data["fromEmail"] = $form_to_update["settings"]["form_email_confirmacion_email_remitente"];
+        $form_data["subject"] = $form_to_update["settings"]["form_email_confirmacion_asunto"];
+        $form_data["preheader"] = $form_to_update["settings"]["form_email_confirmacion_pre_encabezado"];
+        $form_data["urlLanding"] = $form_to_update["settings"]["form_pagina_confirmacion_url"];
+        $form_data["replyTo"] = "reply-to-hardcodeado@hotmail.com";
+        $form_data["name"] = "namee";
+
+        $method["route"] = "DobleOptinTemplate";
+        $method["httpMethod"] = "post";
+        // aca creo la plantilla y la asocio a este form_id.
+        // plugins/doppler-form/includes/DopplerAPIClient/DopplerService.php
+        $response = $this->doppler_service->call($method, '', $form_data);
+
+        if($response["response"]["code"] === 201){
+          $body = json_decode($response["body"]);
+          $form_to_update["settings"]["form_plantilla_id"] = $body->createdResourceId;
+
+          // hay que hacer otra llamada a la API, con el endpoint /plantilla_id/content.
+          // para poder setear el contenido html del template.
+          $method["route"] = "DobleOptinTemplate/" . $form_to_update["settings"]["form_plantilla_id"] . '/content';
+          $method["httpMethod"] = "put";
+          unset($form_data);
+          $form_data = $form_to_update["settings"]["form_email_confirmacion_email_contenido"];
+
+          $response2 = $this->doppler_service->call($method, '', $form_data);
+        }
+      }
 
       DPLR_Form_Model::setSettings($form_id, $form_to_update["settings"]);
 
