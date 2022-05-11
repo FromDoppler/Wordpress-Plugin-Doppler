@@ -54,6 +54,7 @@ class DPLR_Form_Controller
         }
       }
 
+      $form["settings"]["form_email_confirmacion_email_contenido"] = $form["content"]; 
       DPLR_Form_Model::setSettings($form_id, $form["settings"]);
 
       $field_position_counter = 1;
@@ -79,8 +80,6 @@ class DPLR_Form_Controller
   }
 
   function update($form_id, $form_to_update = NULL) {
-    // print_r($form_to_update);
-    // die();
     if (isset($form_to_update) && count($form_to_update) > 0) {
       // $form_to_update["settings"]["message_success"] = 'success message hardcodeado';
 
@@ -104,9 +103,6 @@ class DPLR_Form_Controller
 
         $form_data = $form_to_update["content"];
         $form_to_update["settings"]["form_email_confirmacion_email_contenido"] = $form_data; 
-        // echo var_dump($form_to_update);
-        // die();
-
 
         if($response["response"]["code"] === 201){
           $body = json_decode($response["body"]);
