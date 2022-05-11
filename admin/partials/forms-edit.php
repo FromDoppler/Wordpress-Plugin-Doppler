@@ -200,8 +200,6 @@
                   'textarea_name' => 'content',
                   'media_buttons' => true
                 );
-                echo var_dump($form);
-                die();
                 wp_editor( $form->settings["form_email_confirmacion_email_contenido"], 'content', $settings );
               ?>
             </div>
