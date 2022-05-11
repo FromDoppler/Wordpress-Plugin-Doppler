@@ -193,15 +193,18 @@
               <label for="settings[form_email_confirmacion_nombre_remitente]"><?php _e('Email sender name', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
               <input type="text" name="settings[form_email_confirmacion_nombre_remitente]" value="<?php echo $form->settings["form_email_confirmacion_nombre_remitente"] ?>" placeholder="<?php _e('Email sender name', 'doppler-form')?>" maxlength="40" required/>
 
-              <label for="settings[form_email_confirmacion_email_contenido]"><?php _e('Email content. Must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-              <textarea 
-                name="settings[form_email_confirmacion_email_contenido]" 
-                id="settings[form_email_confirmacion_email_contenido]" 
-                placeholder="<?php _e('Email content (HTML). Must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form')?>" 
-                rows="25" 
-                cols="50"
-                required
-              ><?php echo $form->settings["form_email_confirmacion_email_contenido"] ?></textarea>
+              <label for="settings_form_email_confirmacion_email_contenido"><?php _e('Email content. Must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
+              <?php 
+                // wp_tiny_mce($form->settings["form_email_confirmacion_email_contenido"], 'settings_form_email_confirmacion_email_contenidotings[form_email_confirmacion_email_contenido]');
+                // the_editor(); 
+                $settings = array(
+                  'textarea_name' => 'content',
+                  'media_buttons' => true
+                );
+                // echo var_dump($form);
+                // die();
+                wp_editor( $form->settings["form_email_confirmacion_email_contenido"], 'content', $settings );
+              ?>
             </div>
 
             <div class="dplr_input_section" id="section_pagina_confirmacion">
@@ -316,7 +319,7 @@ function hideShowConfigLandingOrURL(){
 
 function validateEmailContent(e){
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
-    if(!document.getElementById("settings[form_email_confirmacion_email_contenido]").value.includes("href=[[[ConfirmationLink]]]")){
+    if(!document.getElementById("settings_form_email_confirmacion_email_contenido").value.includes("href=[[[ConfirmationLink]]]")){
       // display div con mensaje de error
       document.getElementById("error-message").style.display = "block";
       // cancelar el submit del formulario
@@ -345,7 +348,7 @@ document.getElementById("doble_optin_section").addEventListener("click", functio
   }
 });
 
-document.getElementById("settings[form_email_confirmacion_email_contenido]").addEventListener("blur", function(){
+document.getElementById("settings_form_email_confirmacion_email_contenido").addEventListener("blur", function(){
   validateEmailContent(event);
 });
 

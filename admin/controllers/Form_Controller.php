@@ -79,7 +79,8 @@ class DPLR_Form_Controller
   }
 
   function update($form_id, $form_to_update = NULL) {
-
+    // print_r($form_to_update);
+    // die();
     if (isset($form_to_update) && count($form_to_update) > 0) {
       // $form_to_update["settings"]["message_success"] = 'success message hardcodeado';
 
@@ -100,6 +101,13 @@ class DPLR_Form_Controller
         // plugins/doppler-form/includes/DopplerAPIClient/DopplerService.php
         $response = $this->doppler_service->call($method, '', $form_data);
 
+
+        $form_data = $form_to_update["content"];
+        $form_to_update["settings"]["form_email_confirmacion_email_contenido"] = $form_data; 
+        // echo var_dump($form_to_update);
+        // die();
+
+
         if($response["response"]["code"] === 201){
           $body = json_decode($response["body"]);
           $form_to_update["settings"]["form_plantilla_id"] = $body->createdResourceId;
@@ -109,7 +117,10 @@ class DPLR_Form_Controller
           $method["route"] = "DobleOptinTemplate/" . $form_to_update["settings"]["form_plantilla_id"] . '/content';
           $method["httpMethod"] = "put";
           unset($form_data);
-          $form_data = $form_to_update["settings"]["form_email_confirmacion_email_contenido"];
+          // $form_data = $form_to_update["settings"]["form_email_confirmacion_email_contenido"];
+          $form_data = $form_to_update["content"];
+          $form_to_update["settings"]["form_email_confirmacion_email_contenido"] = $form_data; 
+         
 
           $response2 = $this->doppler_service->call($method, '', $form_data);
         }
