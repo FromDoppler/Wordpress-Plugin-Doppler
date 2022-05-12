@@ -27,9 +27,17 @@ class DPLR_Form_Controller
         $form_data["fromEmail"] = $form["settings"]["form_email_confirmacion_email_remitente"];
         $form_data["subject"] = $form["settings"]["form_email_confirmacion_asunto"];
         $form_data["preheader"] = $form["settings"]["form_email_confirmacion_pre_encabezado"];
-        $form_data["urlLanding"] = $form["settings"]["form_pagina_confirmacion_url"];
-        $form_data["replyTo"] = "reply-to-hardcodeado@hotmail.com";
-        $form_data["name"] = "namee";
+        if($form["settings"]["form_pagina_confirmacion"] == 'url'){
+          $form_data["urlLanding"] = $form["settings"]["form_pagina_confirmacion_url"];
+        }
+        else{
+          $landing_url = get_page($form["settings"]["form_pagina_confirmacion_select_landing"])->guid;
+          $form_data["urlLanding"] = $landing_url;
+        }
+
+        
+        $form_data["replyTo"] = $form["settings"]["form_email_reply_to"];
+        $form_data["name"] = $form["settings"]["form_name"];
 
 
         $method["route"] = "DobleOptinTemplate";
@@ -48,7 +56,7 @@ class DPLR_Form_Controller
           $method["route"] = "DobleOptinTemplate/" . $form_to_update["settings"]["form_plantilla_id"] . '/content';
           $method["httpMethod"] = "put";
           unset($form_data);
-          $form_data = $form["settings"]["form_email_confirmacion_email_contenido"];
+          $form_data = $form["content"];
 
           $response2 = $this->doppler_service->call($method, '', $form_data);
         }
@@ -90,9 +98,15 @@ class DPLR_Form_Controller
         $form_data["fromEmail"] = $form_to_update["settings"]["form_email_confirmacion_email_remitente"];
         $form_data["subject"] = $form_to_update["settings"]["form_email_confirmacion_asunto"];
         $form_data["preheader"] = $form_to_update["settings"]["form_email_confirmacion_pre_encabezado"];
-        $form_data["urlLanding"] = $form_to_update["settings"]["form_pagina_confirmacion_url"];
-        $form_data["replyTo"] = "reply-to-hardcodeado@hotmail.com";
-        $form_data["name"] = "namee";
+        if($form_to_update["settings"]["form_pagina_confirmacion"] == 'url'){
+          $form_data["urlLanding"] = $form_to_update["settings"]["form_pagina_confirmacion_url"];
+        }
+        else{
+          $landing_url = get_page($form_to_update["settings"]["form_pagina_confirmacion_select_landing"])->guid;
+          $form_data["urlLanding"] = $landing_url;
+        }
+        $form_data["replyTo"] = $form_to_update["settings"]["form_email_reply_to"];
+        $form_data["name"] = $form_to_update["settings"]["form_name"];
 
         $method["route"] = "DobleOptinTemplate";
         $method["httpMethod"] = "post";

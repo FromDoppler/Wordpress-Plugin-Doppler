@@ -513,12 +513,6 @@
   max-width: 100%;
 }
 
-.radio-inputs-landing-or-url{
-  display: flex;
-  flex-direction: row;
-  gap: 22px;
-}
-
 .dplr_settings form .dplr_input_section {
   width: 100%;
   margin-top: 10px;
@@ -528,7 +522,7 @@
 
 .dplr_settings form .dplr_input_section label {
   color: #333;
-  padding-right: 5px;
+  padding-right: 10px;
 }
 
 .dplr_settings form .dplr_input_section label span.req, .dplr_settings form .dplr_input_section label span.hlp {
