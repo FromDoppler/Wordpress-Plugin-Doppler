@@ -133,7 +133,9 @@
               </div>
             </div>
 
-            
+            <p id="doble-opt-in-msg">
+                <?php _e('¡Psst! You have to select the Doppler List where your new subscribers will be sent. You also need to configure both the welcoming email and the confirmation email.', 'doppler-form')?>
+              </p>
 
             
           </div>
@@ -163,9 +165,7 @@
                 endif;
                 ?>
               </select>
-              <p id="doble-opt-in-msg">
-                <?php _e('¡Psst! You have to select the Doppler List where your new subscribers will be sent. You also need to configure both the welcoming email and the confirmation email.', 'doppler-form')?>
-              </p>
+              
               <p>
                 <?php _e('If you\'d like to know the difference between Simple Opt-In and Double Opt-In, click: .', 'doppler-form')?>
                 <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in"><?php _e('HELP', 'doppler-form') ?></a>.
