@@ -223,9 +223,7 @@
                   name="settings[form_pagina_confirmacion]" 
                   value="landing" 
                   <?php if($form->settings['form_pagina_confirmacion']==='landing') echo 'checked'?> />
-                </div>
-                <div style="display: flex; align-items: center;">
-                  <label for="no"><?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?></label>
+                  <label for="no" class="ml-1"><?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?></label>
                   <input type="radio" id="mostrar_url" name="settings[form_pagina_confirmacion]" value="url" <?php if($form->settings['form_pagina_confirmacion']==='url') echo 'checked'?> />
                 </div>
               </div>

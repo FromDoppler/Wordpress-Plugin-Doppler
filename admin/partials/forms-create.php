@@ -188,22 +188,20 @@
           <div class="dplr_input_section" id="section_pagina_confirmacion">
             <h2><?php _e('Confirmation page', 'doppler-form');?></h2>
 
-            <label for="settings[form_pagina_confirmacion]"><?php _e('Choose an option:', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-            <div class="radio-inputs-landing-or-url">
-              <div style="display: flex; align-items: center;">
-                <label for="yes"><?php _e('Redirect to landing page', 'doppler-form');?></label>
-                <input 
-                type="radio" 
-                id="mostrar_landing" 
-                name="settings[form_pagina_confirmacion]" 
-                value="landing" 
-                <?php if($form->settings['form_pagina_confirmacion']==='landing') echo 'checked'?> />
+              <label for="settings[form_pagina_confirmacion]"><?php _e('Choose an option:', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
+              <div class="radio-inputs-landing-or-url">
+                <div style="display: flex; align-items: center;">
+                  <label for="yes"><?php _e('Redirect to landing page', 'doppler-form');?></label>
+                  <input 
+                  type="radio" 
+                  id="mostrar_landing" 
+                  name="settings[form_pagina_confirmacion]" 
+                  value="landing" 
+                  <?php if($form->settings['form_pagina_confirmacion']==='landing') echo 'checked'?> />
+                  <label for="no" class="ml-1"><?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?></label>
+                  <input type="radio" id="mostrar_url" name="settings[form_pagina_confirmacion]" value="url" <?php if($form->settings['form_pagina_confirmacion']==='url') echo 'checked'?> />
+                </div>
               </div>
-              <div style="display: flex; align-items: center;">
-                <label for="no"><?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?></label>
-                <input type="radio" id="mostrar_url" name="settings[form_pagina_confirmacion]" value="url" <?php if($form->settings['form_pagina_confirmacion']==='url') echo 'checked'?> />
-              </div>
-            </div>
 
               <div id="div_url_destino">
                 <label for="settings[form_pagina_confirmacion_url]"><?php _e('Target URL', 'doppler-form')?> <span class="req"></span></label>
