@@ -298,6 +298,10 @@ function hideShowConfigLandingOrURL(){
 }
 
 function validateEmailContent(e){
+
+  document.getElementById("content").value = document.getElementById("content").value.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
+  document.getElementById("content").value = document.getElementById("content").value.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
+
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     if(
       !document.getElementById("content").innerHTML.includes("href=[[[ConfirmationLink]]]") &&
