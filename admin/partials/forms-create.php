@@ -122,9 +122,9 @@
             </div>
           </div>
 
-          <p>
-            ¡Psst! Necesitas seleccionar la Lista a la que serán enviados tus nuevos Suscriptores y también configurar los Emails de confirmación y bienvenida.
-          </p>
+          <p id="doble-opt-in-msg">
+                <?php _e('¡Psst! You have to select the Doppler List where your new subscribers will be sent. You also need to configure both the welcoming email and the confirmation email.', 'doppler-form')?>
+              </p>
           
         </div>
       </div>
@@ -171,7 +171,7 @@
               <input type="text" name="settings[form_name]" value="<?php echo $form->settings["form_name"] ?>" placeholder="<?php _e('Example: Josh', 'doppler-form')?>" maxlength="40" required/>
 
               <label for="settings[form_email_reply_to]"><?php _e('Email reply-to', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-              <input type="text" name="settings[form_email_reply_to]" value="<?php echo $form->settings["form_email_reply_to"] ?>" placeholder="<?php _e('Example: something-no-reply-to@hotmail.com', 'doppler-form')?>" maxlength="40" required/>
+              <input type="text" name="settings[form_email_reply_to]" value="<?php echo $form->settings["form_email_reply_to"] ?>" placeholder="<?php _e('Example: something-reply-to@hotmail.com', 'doppler-form')?>" maxlength="40" required/>
               
             <label for="settings_form_email_confirmacion_email_contenido"><?php _e('Email content. Must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
               <?php 
@@ -274,9 +274,11 @@
 function hideShowConfigDobleOptIn(){
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     document.getElementById("dplr_doble_opt_in_section").style.display = "block";
+    document.getElementById("doble-opt-in-msg").style.display = "block";
   }
   else{
     document.getElementById("dplr_doble_opt_in_section").style.display = "none";
+    document.getElementById("doble-opt-in-msg").style.display = "none";
   }
 }
 

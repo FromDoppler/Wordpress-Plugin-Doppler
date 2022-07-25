@@ -5,24 +5,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2022-07-21 11:58-0300\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
-"Language-Team: Hernán Galván\n"
+"Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
-"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;"
-"esc_html\n"
-"X-Poedit-Basepath: ..\n"
 "X-Generator: Poedit 3.1\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: admin/doppler-admin.php:114 admin/partials/forms-list.php:34
 msgid "Delete"
@@ -362,7 +353,7 @@ msgstr ""
 #: admin/partials/forms-edit.php:44 admin/partials/forms-edit.php:114
 #: admin/partials/forms-edit.php:171
 msgid "HELP"
-msgstr "HELP"
+msgstr "AYUDA"
 
 #: admin/partials/api-connection.php:161
 msgid "Connect"
@@ -645,6 +636,15 @@ msgstr "Vertical"
 msgid "Horizontal"
 msgstr "Horizontal"
 
+#: admin/partials/forms-create.php:126 admin/partials/forms-edit.php:137
+msgid ""
+"¡Psst! You have to select the Doppler List where your new subscribers will "
+"be sent. You also need to configure both the welcoming email and the "
+"confirmation email."
+msgstr ""
+"¡Psst! Necesitas seleccionar la Lista a la que serán enviados tus nuevos "
+"Suscriptores y también configurar los Emails de confirmación y bienvenida."
+
 #: admin/partials/forms-create.php:138 admin/partials/forms-edit.php:148
 msgid "Subscription Type"
 msgstr "Tipo de subscripción"
@@ -699,6 +699,9 @@ msgid "Email reply-to"
 msgstr "Reply-to del Email"
 
 #: admin/partials/forms-create.php:174 admin/partials/forms-edit.php:199
+msgid "Example: something-reply-to@hotmail.com"
+msgstr "Ejemplo: algo-reply-to@hotmail.com"
+
 msgid "Example: something-no-reply-to@hotmail.com"
 msgstr "Ejemplo: algo-no-reply-to@hotmail.com"
 
@@ -767,15 +770,6 @@ msgstr ""
 msgid ""
 "Select the destination List where your your new Subscribers will be sent"
 msgstr "Selecciona la Lista a la que quieres enviar tus nuevos Suscriptores"
-
-#: admin/partials/forms-edit.php:137
-msgid ""
-"¡Psst! You have to select the Doppler List where your new subscribers will "
-"be sent. You also need to configure both the welcoming email and the "
-"confirmation email."
-msgstr ""
-"¡Psst! Necesitas seleccionar la Lista a la que serán enviados tus nuevos "
-"Suscriptores y también configurar los Emails de confirmación y bienvenida."
 
 #: admin/partials/forms-edit.php:157 admin/partials/forms-edit.php:162
 msgid "Simple Opt-In:"

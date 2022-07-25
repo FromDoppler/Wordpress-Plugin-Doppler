@@ -196,7 +196,7 @@
               <input type="text" name="settings[form_name]" value="<?php echo $form->settings["form_name"] ?>" placeholder="<?php _e('Example: Josh', 'doppler-form')?>" maxlength="40" required/>
 
               <label for="settings[form_email_reply_to]"><?php _e('Email reply-to', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-              <input type="text" name="settings[form_email_reply_to]" value="<?php echo $form->settings["form_email_reply_to"] ?>" placeholder="<?php _e('Example: something-no-reply-to@hotmail.com', 'doppler-form')?>" maxlength="40" required/>
+              <input type="text" name="settings[form_email_reply_to]" value="<?php echo $form->settings["form_email_reply_to"] ?>" placeholder="<?php _e('Example: something-reply-to@hotmail.com', 'doppler-form')?>" maxlength="40" required/>
 
               <label for="settings_form_email_confirmacion_email_contenido"><?php _e('Email content. Must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
               <?php 
