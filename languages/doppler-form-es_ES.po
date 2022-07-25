@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2022-05-12 13:42-0300\n"
+"POT-Creation-Date: 2022-07-21 11:58-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Hernán Galván\n"
@@ -21,15 +21,15 @@ msgstr ""
 "_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;"
 "esc_html\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/doppler-admin.php:114 admin/partials/forms-list.php:34
 msgid "Delete"
 msgstr "Eliminar"
 
-#: admin/doppler-admin.php:115 admin/partials/forms-create.php:263
-#: admin/partials/forms-edit.php:288
+#: admin/doppler-admin.php:115 admin/partials/forms-create.php:267
+#: admin/partials/forms-edit.php:286
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -398,8 +398,8 @@ msgstr ""
 msgid "Paste tracking code here."
 msgstr "Pegue aquí el código de Seguimiento en Sitio."
 
-#: admin/partials/data-hub.php:23 admin/partials/forms-create.php:263
-#: admin/partials/forms-edit.php:288
+#: admin/partials/data-hub.php:23 admin/partials/forms-create.php:267
+#: admin/partials/forms-edit.php:286
 msgid "Save"
 msgstr "Guardar"
 
@@ -478,13 +478,13 @@ msgid "Name"
 msgstr "Nombre"
 
 #: admin/partials/forms-create.php:14 admin/partials/forms-create.php:18
-#: admin/partials/forms-create.php:112 admin/partials/forms-create.php:153
-#: admin/partials/forms-create.php:156 admin/partials/forms-create.php:159
-#: admin/partials/forms-create.php:162 admin/partials/forms-create.php:165
-#: admin/partials/forms-create.php:168 admin/partials/forms-create.php:171
-#: admin/partials/forms-create.php:186 admin/partials/forms-edit.php:15
+#: admin/partials/forms-create.php:112 admin/partials/forms-create.php:158
+#: admin/partials/forms-create.php:161 admin/partials/forms-create.php:164
+#: admin/partials/forms-create.php:167 admin/partials/forms-create.php:170
+#: admin/partials/forms-create.php:173 admin/partials/forms-create.php:176
+#: admin/partials/forms-create.php:191 admin/partials/forms-edit.php:15
 #: admin/partials/forms-edit.php:19 admin/partials/forms-edit.php:123
-#: admin/partials/forms-edit.php:150 admin/partials/forms-edit.php:183
+#: admin/partials/forms-edit.php:152 admin/partials/forms-edit.php:183
 #: admin/partials/forms-edit.php:186 admin/partials/forms-edit.php:189
 #: admin/partials/forms-edit.php:192 admin/partials/forms-edit.php:195
 #: admin/partials/forms-edit.php:198 admin/partials/forms-edit.php:201
@@ -645,117 +645,116 @@ msgstr "Vertical"
 msgid "Horizontal"
 msgstr "Horizontal"
 
-#: admin/partials/forms-create.php:125 admin/partials/forms-edit.php:150
-msgid "Choose Opt-In type:"
-msgstr "Elija el tipo de Opt-In:"
-
-#: admin/partials/forms-create.php:148 admin/partials/forms-edit.php:146
+#: admin/partials/forms-create.php:138 admin/partials/forms-edit.php:148
 msgid "Subscription Type"
 msgstr "Tipo de subscripción"
 
-#: admin/partials/forms-create.php:152 admin/partials/forms-edit.php:175
+#: admin/partials/forms-create.php:143 admin/partials/forms-edit.php:152
+msgid "Choose Opt-In type:"
+msgstr "Elija el tipo de Opt-In:"
+
+#: admin/partials/forms-create.php:157 admin/partials/forms-edit.php:175
 msgid "Confirmation email"
 msgstr "Email de confirmación"
 
-#: admin/partials/forms-create.php:153 admin/partials/forms-edit.php:183
+#: admin/partials/forms-create.php:158 admin/partials/forms-edit.php:183
 msgid "Subject"
 msgstr "Asunto"
 
-#: admin/partials/forms-create.php:154 admin/partials/forms-edit.php:184
+#: admin/partials/forms-create.php:159 admin/partials/forms-edit.php:184
 msgid "This is the subject of the email."
 msgstr "Este es el asunto del email"
 
-#: admin/partials/forms-create.php:156 admin/partials/forms-edit.php:186
+#: admin/partials/forms-create.php:161 admin/partials/forms-edit.php:186
 msgid "Pre header"
-msgstr "Pre encabezado"
+msgstr "Pre Encabezado"
 
-#: admin/partials/forms-create.php:157 admin/partials/forms-edit.php:187
+#: admin/partials/forms-create.php:162 admin/partials/forms-edit.php:187
 msgid "This is the email's pre header"
 msgstr "Este es el pre encabezado del email."
 
-#: admin/partials/forms-create.php:159 admin/partials/forms-edit.php:189
+#: admin/partials/forms-create.php:164 admin/partials/forms-edit.php:189
 msgid "Email sender"
-msgstr "Remitente del email"
+msgstr "Email del Remitente"
 
-#: admin/partials/forms-create.php:160 admin/partials/forms-edit.php:190
+#: admin/partials/forms-create.php:165 admin/partials/forms-edit.php:190
 msgid "Example: some_direction@hotmail.com"
 msgstr "Por ejemplo: alguna_direccion@hotmail.com"
 
-#: admin/partials/forms-create.php:162 admin/partials/forms-edit.php:192
+#: admin/partials/forms-create.php:167 admin/partials/forms-edit.php:192
 msgid "Email sender name"
-msgstr "Nombre del remitente del email"
+msgstr "Nombre del Remitente"
 
-#: admin/partials/forms-create.php:163 admin/partials/forms-create.php:166
+#: admin/partials/forms-create.php:168 admin/partials/forms-create.php:171
 #: admin/partials/forms-edit.php:193 admin/partials/forms-edit.php:196
 msgid "Example: Josh"
 msgstr "Ejemplo: Juan"
 
-#: admin/partials/forms-create.php:165 admin/partials/forms-edit.php:195
+#: admin/partials/forms-create.php:170 admin/partials/forms-edit.php:195
 msgid "Email name"
-msgstr "Nombre del mail"
+msgstr "Nombre del Email"
 
-#: admin/partials/forms-create.php:168 admin/partials/forms-edit.php:198
+#: admin/partials/forms-create.php:173 admin/partials/forms-edit.php:198
 msgid "Email reply-to"
-msgstr "Reply-to del email"
+msgstr "Reply-to del Email"
 
-#: admin/partials/forms-create.php:169 admin/partials/forms-edit.php:199
+#: admin/partials/forms-create.php:174 admin/partials/forms-edit.php:199
 msgid "Example: something-no-reply-to@hotmail.com"
 msgstr "Ejemplo: algo-no-reply-to@hotmail.com"
 
-#: admin/partials/forms-create.php:171 admin/partials/forms-edit.php:201
+#: admin/partials/forms-create.php:176 admin/partials/forms-edit.php:201
 msgid ""
 "Email content. Must obligatorily have an anchor element with the attribute: "
 "href=[[[ConfirmationLink]]]"
 msgstr ""
-"Contenido del email. Tiene que tener obligatoriamente un elemento anchor "
-"(<a></a>) con: href=[[[ConfirmationLink]]]"
+"Define el contenido del Email. ¡Psst! No olvides incluir un elemento anchor "
+"(&lt;a&gt;&lt;/a&gt;) con: href=[[[ConfirmationLink]]]"
 
-#: admin/partials/forms-create.php:184 admin/partials/forms-edit.php:214
+#: admin/partials/forms-create.php:189 admin/partials/forms-edit.php:214
 msgid "Confirmation page"
 msgstr "Pagina de confirmación"
 
-#: admin/partials/forms-create.php:186 admin/partials/forms-edit.php:216
+#: admin/partials/forms-create.php:191 admin/partials/forms-edit.php:216
 msgid "Choose an option:"
-msgstr "Elija una opción:"
+msgstr "Selecciona que deseas mostrar una vez confirmada la suscripción:"
 
-#: admin/partials/forms-create.php:189 admin/partials/forms-edit.php:219
+#: admin/partials/forms-create.php:194 admin/partials/forms-edit.php:219
 msgid "Redirect to landing page"
 msgstr "Redirecciona a cualquiera de tus páginas"
 
-#: admin/partials/forms-create.php:198 admin/partials/forms-edit.php:228
+#: admin/partials/forms-create.php:201 admin/partials/forms-edit.php:226
 msgid "Redirect to URL (must have https:// prefix!)."
 msgstr "Enviar a URL (obligatoriamente con el prefijo https)"
 
-#: admin/partials/forms-create.php:204 admin/partials/forms-edit.php:234
+#: admin/partials/forms-create.php:207 admin/partials/forms-edit.php:232
 msgid "Target URL"
 msgstr "URL de destino"
 
-#: admin/partials/forms-create.php:205 admin/partials/forms-edit.php:235
+#: admin/partials/forms-create.php:208 admin/partials/forms-edit.php:233
 msgid "Example: https://www.fromdoppler.com"
 msgstr "Ejemplo: https://www.fromdoppler.com"
 
-#: admin/partials/forms-create.php:209 admin/partials/forms-edit.php:239
+#: admin/partials/forms-create.php:212 admin/partials/forms-edit.php:237
 msgid "Choose the page:"
 msgstr "Elija la página:"
 
-#: admin/partials/forms-create.php:243 admin/partials/forms-edit.php:268
+#: admin/partials/forms-create.php:247 admin/partials/forms-edit.php:266
 msgid "Consent Field settings"
 msgstr "Ajustes del Campo Consentimiento"
 
-#: admin/partials/forms-create.php:247 admin/partials/forms-edit.php:272
+#: admin/partials/forms-create.php:251 admin/partials/forms-edit.php:270
 msgid "Checkbox label"
 msgstr "Texto para el checkbox"
 
-#: admin/partials/forms-create.php:248 admin/partials/forms-edit.php:273
-#, fuzzy
+#: admin/partials/forms-create.php:252 admin/partials/forms-edit.php:271
 msgid "I've read and accept the privacy policy"
 msgstr "He leído y acepto la política de privacidad"
 
-#: admin/partials/forms-create.php:252 admin/partials/forms-edit.php:277
+#: admin/partials/forms-create.php:256 admin/partials/forms-edit.php:275
 msgid "Enter the URL of your privacy policy"
 msgstr "URL de tu política de privacidad"
 
-#: admin/partials/forms-create.php:261 admin/partials/forms-edit.php:286
+#: admin/partials/forms-create.php:265 admin/partials/forms-edit.php:284
 msgid ""
 "Error! Remember that the email's content must obligatorily have an anchor "
 "element with the attribute: href=[[[ConfirmationLink]]]"
@@ -769,15 +768,7 @@ msgid ""
 "Select the destination List where your your new Subscribers will be sent"
 msgstr "Selecciona la Lista a la que quieres enviar tus nuevos Suscriptores"
 
-#: admin/partials/forms-edit.php:155 admin/partials/forms-edit.php:160
-msgid "Simple Opt-In:"
-msgstr "Opt-In simple"
-
-#: admin/partials/forms-edit.php:156 admin/partials/forms-edit.php:161
-msgid "Double Opt-In:"
-msgstr "Opt-In doble"
-
-#: admin/partials/forms-edit.php:167
+#: admin/partials/forms-edit.php:137
 msgid ""
 "¡Psst! You have to select the Doppler List where your new subscribers will "
 "be sent. You also need to configure both the welcoming email and the "
@@ -785,6 +776,14 @@ msgid ""
 msgstr ""
 "¡Psst! Necesitas seleccionar la Lista a la que serán enviados tus nuevos "
 "Suscriptores y también configurar los Emails de confirmación y bienvenida."
+
+#: admin/partials/forms-edit.php:157 admin/partials/forms-edit.php:162
+msgid "Simple Opt-In:"
+msgstr "Opt-In simple"
+
+#: admin/partials/forms-edit.php:158 admin/partials/forms-edit.php:163
+msgid "Double Opt-In:"
+msgstr "Opt-In doble"
 
 #: admin/partials/forms-edit.php:170
 msgid ""
