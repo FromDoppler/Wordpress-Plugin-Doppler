@@ -321,6 +321,10 @@ function hideShowConfigLandingOrURL(){
 }
 
 function validateEmailContent(e){
+
+  document.getElementById("content").value = document.getElementById("content").value.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
+  document.getElementById("content").value = document.getElementById("content").value.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
+  
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     if(
       !document.getElementById("content").innerHTML.includes("href=[[[ConfirmationLink]]]") &&
@@ -365,6 +369,7 @@ document.getElementById('wp-content-wrap').addEventListener("click", function(){
 });
 
 document.getElementById("submit_button").addEventListener("click", function(){
+
   document.getElementById('content').value = document.getElementById('content').value.replaceHtmlEntites();
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     validateEmailContent(event);

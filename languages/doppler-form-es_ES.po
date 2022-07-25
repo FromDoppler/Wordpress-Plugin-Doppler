@@ -5,24 +5,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2022-07-25 17:13-0300\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
-"Language-Team: Hernán Galván\n"
+"Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
-"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;"
-"esc_html\n"
-"X-Poedit-Basepath: ..\n"
 "X-Generator: Poedit 3.1\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: admin/doppler-admin.php:114 admin/partials/forms-list.php:34
 msgid "Delete"
@@ -676,7 +667,7 @@ msgstr "Este es el asunto del email"
 
 #: admin/partials/forms-create.php:161 admin/partials/forms-edit.php:186
 msgid "Pre header"
-msgstr "Pre encabezado"
+msgstr "Pre Encabezado"
 
 #: admin/partials/forms-create.php:162 admin/partials/forms-edit.php:187
 msgid "This is the email's pre header"
@@ -684,7 +675,7 @@ msgstr "Este es el pre encabezado del email."
 
 #: admin/partials/forms-create.php:164 admin/partials/forms-edit.php:189
 msgid "Email sender"
-msgstr "Remitente del email"
+msgstr "Email del Remitente"
 
 #: admin/partials/forms-create.php:165 admin/partials/forms-edit.php:190
 msgid "Example: some_direction@hotmail.com"
@@ -692,7 +683,7 @@ msgstr "Por ejemplo: alguna_direccion@hotmail.com"
 
 #: admin/partials/forms-create.php:167 admin/partials/forms-edit.php:192
 msgid "Email sender name"
-msgstr "Nombre del remitente del email"
+msgstr "Nombre del Remitente"
 
 #: admin/partials/forms-create.php:168 admin/partials/forms-create.php:171
 #: admin/partials/forms-edit.php:193 admin/partials/forms-edit.php:196
@@ -701,23 +692,26 @@ msgstr "Ejemplo: Juan"
 
 #: admin/partials/forms-create.php:170 admin/partials/forms-edit.php:195
 msgid "Email name"
-msgstr "Nombre del mail"
+msgstr "Nombre del Email"
 
 #: admin/partials/forms-create.php:173 admin/partials/forms-edit.php:198
 msgid "Email reply-to"
-msgstr "Reply-to del email"
+msgstr "Reply-to del Email"
 
 #: admin/partials/forms-create.php:174 admin/partials/forms-edit.php:199
 msgid "Example: something-reply-to@hotmail.com"
 msgstr "Ejemplo: algo-reply-to@hotmail.com"
+
+msgid "Example: something-no-reply-to@hotmail.com"
+msgstr "Ejemplo: algo-no-reply-to@hotmail.com"
 
 #: admin/partials/forms-create.php:176 admin/partials/forms-edit.php:201
 msgid ""
 "Email content. Must obligatorily have an anchor element with the attribute: "
 "href=[[[ConfirmationLink]]]"
 msgstr ""
-"Contenido del email. Tiene que tener obligatoriamente un elemento anchor "
-"(<a></a>) con: href=[[[ConfirmationLink]]]"
+"Define el contenido del Email. ¡Psst! No olvides incluir un elemento anchor "
+"(&lt;a&gt;&lt;/a&gt;) con: href=[[[ConfirmationLink]]]"
 
 #: admin/partials/forms-create.php:189 admin/partials/forms-edit.php:214
 msgid "Confirmation page"
@@ -725,7 +719,7 @@ msgstr "Pagina de confirmación"
 
 #: admin/partials/forms-create.php:191 admin/partials/forms-edit.php:216
 msgid "Choose an option:"
-msgstr "Elija una opción:"
+msgstr "Selecciona que deseas mostrar una vez confirmada la suscripción:"
 
 #: admin/partials/forms-create.php:194 admin/partials/forms-edit.php:219
 msgid "Redirect to landing page"
@@ -756,7 +750,6 @@ msgid "Checkbox label"
 msgstr "Texto para el checkbox"
 
 #: admin/partials/forms-create.php:252 admin/partials/forms-edit.php:271
-#, fuzzy
 msgid "I've read and accept the privacy policy"
 msgstr "He leído y acepto la política de privacidad"
 
