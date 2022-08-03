@@ -185,8 +185,8 @@
                 <input type="text" name="settings[form_email_confirmacion_asunto]" value="<?php echo $form->settings["form_email_confirmacion_asunto"] ?>" placeholder="<?php _e('This is the subject of the email.', 'doppler-form')?>" maxlength="40" required/>
               </div>
               <div class="dplr_input_section">
-                <label for="settings[form_email_confirmacion_pre_encabezado]"><?php _e('Pre header', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-                <input type="text" name="settings[form_email_confirmacion_pre_encabezado]" value="<?php echo $form->settings["form_email_confirmacion_pre_encabezado"] ?>" placeholder="<?php _e('This is the email\'s pre header', 'doppler-form')?>" maxlength="40" required/>
+                <label for="settings[form_email_confirmacion_pre_encabezado]"><?php _e('Pre header', 'doppler-form')?></label>
+                <input type="text" name="settings[form_email_confirmacion_pre_encabezado]" value="<?php echo $form->settings["form_email_confirmacion_pre_encabezado"] ?>" placeholder="<?php _e('This is the email\'s pre header', 'doppler-form')?>" maxlength="40"/>
               </div>
               <div class="dplr_input_section">
                 <label for="settings[form_email_confirmacion_email_remitente]"><?php _e('Email sender', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
@@ -201,8 +201,8 @@
                 <input type="text" name="settings[form_name]" value="<?php echo $form->settings["form_name"] ?>" placeholder="<?php _e('Example: Josh', 'doppler-form')?>" maxlength="40" required/>
               </div>
               <div class="dplr_input_section">
-                <label for="settings[form_email_reply_to]"><?php _e('Email reply-to', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-                <input type="text" name="settings[form_email_reply_to]" value="<?php echo $form->settings["form_email_reply_to"] ?>" placeholder="<?php _e('Example: something-reply-to@hotmail.com', 'doppler-form')?>" maxlength="40" required/>
+                <label for="settings[form_email_reply_to]"><?php _e('Email reply-to', 'doppler-form')?></label>
+                <input type="text" name="settings[form_email_reply_to]" value="<?php echo $form->settings["form_email_reply_to"] ?>" placeholder="<?php _e('Example: something-reply-to@hotmail.com', 'doppler-form')?>" maxlength="40"/>
               </div>
               <div class="dplr_input_section">
                 <label for="settings_form_email_confirmacion_email_contenido"><?php _e('Email content. Must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
@@ -332,10 +332,8 @@ function validateEmailContent(e){
 
   document.getElementById("content").value = document.getElementById("content").value.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
   document.getElementById("content").value = document.getElementById("content").value.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
-  
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     if(
-      !document.getElementById("content").innerHTML.includes("href=[[[ConfirmationLink]]]") &&
       !document.getElementById("content").value.includes("href=[[[ConfirmationLink]]]")
     ){
       // display div con mensaje de error
