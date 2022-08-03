@@ -503,3 +503,48 @@ function generateErrorMsg(body){
 		typeof errors[status][code] === 'undefined'? err= '<strong>'+title+'</strong> '+detail : err = errors[status][code];
 	return err;
 }
+
+function validateEmailContent(e){
+
+  document.getElementById("content").value = document.getElementById("content").value.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
+  document.getElementById("content").value = document.getElementById("content").value.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
+  
+  if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
+    if(
+      !document.getElementById("content").innerHTML.includes("href=[[[ConfirmationLink]]]") &&
+      !document.getElementById("content").value.includes("href=[[[ConfirmationLink]]]")
+    ){
+      // display div con mensaje de error
+      document.getElementById("error-message").style.display = "block";
+      // cancelar el submit del formulario
+      e.preventDefault();
+    }
+    else{
+      document.getElementById("error-message").style.display = "none";
+    }
+  }
+}
+
+function hideShowConfigLandingOrURL(){
+  if(document.getElementById("mostrar_landing").checked){
+    document.getElementById("div_landing_page").style.display = "block";
+    document.getElementById("div_url_destino").style.display = "none";
+  }
+  else{
+    if(!document.getElementById("mostrar_url").checked){
+      document.getElementById("div_landing_page").style.display = "none";
+      document.getElementById("div_url_destino").style.display = "none";
+    }
+    else{
+      document.getElementById("div_landing_page").style.display = "none";
+      document.getElementById("div_url_destino").style.display = "block";
+    }
+  }
+}
+
+// remove quote marks from ConfirmationLink href.
+function removeQuoteMarksFromConfirmationLink(){
+  if(document.getElementById('content').value.includes("href=\"[[[ConfirmationLink]]]\"")){
+    document.getElementById('content').value = document.getElementById('content').value.replace("href=\"[[[ConfirmationLink]]]\"", "href=[[[ConfirmationLink]]]");
+  }
+}
