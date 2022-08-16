@@ -35,8 +35,9 @@ class DPLR_Form_Controller
           $form_data["urlLanding"] = $landing_url;
         }
 
-        
-        $form_data["replyTo"] = $form["settings"]["form_email_reply_to"];
+        if(isset($form["settings"]["form_email_reply_to"]) && !empty($form["settings"]["form_email_reply_to"])) {
+          $form_data["replyTo"] = $form["settings"]["form_email_reply_to"];
+        }
         $form_data["name"] = $form["settings"]["form_name"];
 
 
@@ -45,6 +46,9 @@ class DPLR_Form_Controller
         // aca creo la plantilla y la asocio a este form_id.
         // plugins/doppler-form/includes/DopplerAPIClient/DopplerService.php
         $response = $this->doppler_service->call($method, '', $form_data);
+
+        $logger = wc_get_logger();
+        $logger->info( wc_print_r( $response, true ), array( 'source' => 'form_create' ) );
 
         if($response["response"]["code"] === 201){
           $body = json_decode($response["body"]);
@@ -105,7 +109,11 @@ class DPLR_Form_Controller
           $landing_url = get_page($form_to_update["settings"]["form_pagina_confirmacion_select_landing"])->guid;
           $form_data["urlLanding"] = $landing_url;
         }
-        $form_data["replyTo"] = $form_to_update["settings"]["form_email_reply_to"];
+
+        if(isset($form["settings"]["form_email_reply_to"]) && !empty($form["settings"]["form_email_reply_to"])) {
+          $form_data["replyTo"] = $form_to_update["settings"]["form_email_reply_to"];
+        }
+
         $form_data["name"] = $form_to_update["settings"]["form_name"];
 
         $method["route"] = "DobleOptinTemplate";
