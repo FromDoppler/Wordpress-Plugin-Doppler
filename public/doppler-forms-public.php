@@ -104,29 +104,42 @@ class DPLR_Doppler_Form_Public {
 	}
 
 	public function submit_form() {
-		$options = get_option('dplr_settings');
-		$this->doppler_service->setCredentials(['api_key' => $options['dplr_option_apikey'], 'user_account' => $options['dplr_option_useraccount']]); 
-		
-		$subscriber_resource = $this->doppler_service->getResource('subscribers');
 
-		$subscriber = $_POST['subscriber'];
-		$form_id = $_POST['form_id'];
+		$logger = wc_get_logger();
+		$logger->info( wc_print_r( array( 'action' => 'init submit_form', 'data' => $_POST), true ), array( 'source' => 'submit_form' ) );
 
-		// traer la plantilla a utilizar en el mail.
-		$form = DPLR_Form_Model::get($form_id, true);
-		$subscriber["form_doble_optin"] = $form->settings["form_doble_optin"];
-		// $form->settings["form_plantilla_id"] cuando se crea el formulario es NULL. Por ende hasta que no se actualiza con algun cambio luego de haberlo creado, no funciona el envio de email, porque al ser null el template, el endpoint tira error porque le falta ese parametro obligatorio.
-		$subscriber["form_plantilla_id"] = $form->settings["form_plantilla_id"];
+		try
+		{
 
+			$options = get_option('dplr_settings');
+			$this->doppler_service->setCredentials(['api_key' => $options['dplr_option_apikey'], 'user_account' => $options['dplr_option_useraccount']]); 
+			
+			$subscriber_resource = $this->doppler_service->getResource('subscribers');
 
-		if(isset($subscriber['hp']) && $subscriber['hp']==''){
-			unset($subscriber['hp']);
-			if($form->settings["form_doble_optin"] === "yes"){
-				$result = $subscriber_resource->addSubscriberDobleOptIn($_POST['list_id'], $subscriber);
+			$subscriber = $_POST['subscriber'];
+			$form_id = $_POST['form_id'];
+
+			// traer la plantilla a utilizar en el mail.
+			$form = DPLR_Form_Model::get($form_id, true);
+			$subscriber["form_doble_optin"] = $form->settings["form_doble_optin"];
+			// $form->settings["form_plantilla_id"] cuando se crea el formulario es NULL. Por ende hasta que no se actualiza con algun cambio luego de haberlo creado, no funciona el envio de email, porque al ser null el template, el endpoint tira error porque le falta ese parametro obligatorio.
+			$subscriber["form_plantilla_id"] = $form->settings["form_plantilla_id"];
+
+			if(isset($subscriber['hp']) && $subscriber['hp']==''){
+				unset($subscriber['hp']);
+				$a = 10/0;
+				if($form->settings["form_doble_optin"] === "yes"){
+					$result = $subscriber_resource->addSubscriberDobleOptIn($_POST['list_id'], $subscriber);
+				}
+				else{
+					$result = $subscriber_resource->addSubscriber($_POST['list_id'], $subscriber);
+				}
+				$logger->info( wc_print_r( array('action' => 'result submit_form', 'data' => $result), true ), array( 'source' => 'submit_form' ) );
 			}
-			else{
-				$result = $subscriber_resource->addSubscriber($_POST['list_id'], $subscriber);
-			}
+			$logger->info( wc_print_r( array( 'action' => 'finish submit_form'), true ), array( 'source' => 'submit_form' ) );
+		}
+		catch(\Exception $err) {
+			$logger->info( wc_print_r( array( 'action' => 'error submit_form', 'data' => $err), true ), array( 'source' => 'submit_form_error' ) );
 		}
 
 	}
