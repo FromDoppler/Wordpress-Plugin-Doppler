@@ -292,10 +292,21 @@ class Doppler_Admin {
 		if(!empty($_POST)){
 			if( isset($_POST['settings']) && $_POST['settings']['change_button_bg'] === 'no') $_POST['settings']['button_color'] = '';
 			if(isset($_POST['form-create'])){
-				if($this->form_controller->create($_POST) == 1){
+				$result_code = $this->form_controller->create($_POST);
+				if($result_code == 0){
 					$this->set_success_message(__('Pst! Go to', 'doppler-form') . ' <a href="' .  admin_url( 'widgets.php') . '">'. __('Appearance > Widgets', 'doppler-form') . '</a> '  . __('to choose the place on your Website where you want your Form to appear.','doppler-form'));
 				}else{
-					$this->set_error_message(__('Ouch! An error ocurred and the Form couldn\'t be created. Try again later.','doppler-form'));
+					switch($result_code) {
+						case 1:
+							$this->set_error_message(__('The urlLanding field is not a valid fully-qualified http, https, or ftp URL.','doppler-form'));
+						break;
+						case 45:
+							$this->set_error_message(__('You should validate the Email sender domain before using it. HELP: https://help.fromdoppler.com/en/from-email-domain-validation/','doppler-form'));
+						break;
+						default:
+							$this->set_error_message(__('Ouch! An error ocurred and the Form couldn\'t be created. Try again later.','doppler-form'));
+						break;
+					}
 				}
 			}
 			if(isset($_POST['form-edit'])){

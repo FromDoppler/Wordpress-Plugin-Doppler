@@ -20,9 +20,10 @@ class DPLR_Form_Controller
 
       DPLR_Form_Model::insert(['name'=>$form['name'], 'title' => $form['title'], 'list_id' => $form['list_id']]);
       $form_id =  DPLR_Form_Model::insert_id();
+      $result_code = 0;
 
       // saco de $form la config necesaria para hacer el POST.
-      if($form["settings"]["form_doble_optin"] === "yes"){
+      if($form["settings"]["form_doble_optin"] === "yes") {
         $form_data["fromName"] = $form["settings"]["form_email_confirmacion_nombre_remitente"];
         $form_data["fromEmail"] = $form["settings"]["form_email_confirmacion_email_remitente"];
         $form_data["subject"] = $form["settings"]["form_email_confirmacion_asunto"];
@@ -48,7 +49,7 @@ class DPLR_Form_Controller
         $response = $this->doppler_service->call($method, '', $form_data);
 
         $logger = wc_get_logger();
-        $logger->info( wc_print_r( $response, true ), array( 'source' => 'form_create' ) );
+        $logger->info( wc_print_r( array("form" => $form_data, "response" => $response), true ), array( 'source' => 'form_create' ) );
 
         if($response["response"]["code"] === 201){
           $body = json_decode($response["body"]);
@@ -63,6 +64,9 @@ class DPLR_Form_Controller
           $form_data = $form["content"];
 
           $response2 = $this->doppler_service->call($method, '', $form_data);
+        } else {
+          $body = json_decode($response["body"]);
+          $result_code = $body->errorCode;
         }
       }
 
@@ -85,7 +89,7 @@ class DPLR_Form_Controller
 
       }
 
-      return 1;
+      return $result_code;
 
     } 
   
