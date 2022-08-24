@@ -307,6 +307,7 @@ class Doppler_Admin {
 							$this->set_error_message(__('Ouch! An error ocurred and the Form couldn\'t be created. Try again later.','doppler-form'));
 						break;
 					}
+					$active_tab = 'new';
 				}
 			}
 			if(isset($_POST['form-edit'])){
