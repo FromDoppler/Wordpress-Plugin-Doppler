@@ -157,7 +157,7 @@
               <h2><?php _e('Confirmation email', 'doppler-form') ?></h2>
             <div class="dplr_input_section">
               <label for="settings[form_email_confirmacion_asunto]"><?php _e('Subject', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-              <input type="text" name="settings[form_email_confirmacion_asunto]" value="<?php echo $form['settings']["form_email_confirmacion_asunto"] ?>" placeholder="<?php _e('This is the subject of the email.', 'doppler-form')?>" maxlength="40" required/>
+              <input type="text" id="form_email_confirmacion_asunto" name="settings[form_email_confirmacion_asunto]" value="<?php echo $form['settings']["form_email_confirmacion_asunto"] ?>" placeholder="<?php _e('This is the subject of the email.', 'doppler-form')?>" maxlength="40"/>
             </div>
             <div class="dplr_input_section">
               <label for="settings[form_email_confirmacion_pre_encabezado]"><?php _e('Pre header', 'doppler-form')?></label>
@@ -165,15 +165,15 @@
             </div>
             <div class="dplr_input_section">
               <label for="settings[form_email_confirmacion_email_remitente]"><?php _e('Email sender', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-              <input type="email" name="settings[form_email_confirmacion_email_remitente]" value="<?php echo $form['settings']["form_email_confirmacion_email_remitente"] ?>" placeholder="<?php _e('Example: some_direction@hotmail.com', 'doppler-form')?>" maxlength="40" required/>
+              <input type="email" id="form_email_confirmacion_email_remitente" name="settings[form_email_confirmacion_email_remitente]" value="<?php echo $form['settings']["form_email_confirmacion_email_remitente"] ?>" placeholder="<?php _e('Example: some_direction@hotmail.com', 'doppler-form')?>" maxlength="40"/>
             </div>
             <div class="dplr_input_section">
               <label for="settings[form_email_confirmacion_nombre_remitente]"><?php _e('Email sender name', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-              <input type="text" name="settings[form_email_confirmacion_nombre_remitente]" value="<?php echo $form['settings']["form_email_confirmacion_nombre_remitente"] ?>" placeholder="<?php _e('Example: Josh', 'doppler-form')?>" maxlength="40" required/>
+              <input type="text" id="form_email_confirmacion_nombre_remitente" name="settings[form_email_confirmacion_nombre_remitente]" value="<?php echo $form['settings']["form_email_confirmacion_nombre_remitente"] ?>" placeholder="<?php _e('Example: Josh', 'doppler-form')?>" maxlength="40"/>
             </div>
             <div class="dplr_input_section">
               <label for="settings[form_name]"><?php _e('Email name', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-              <input type="text" name="settings[form_name]" value="<?php echo $form['settings']["form_name"] ?>" placeholder="<?php _e('Example: Josh', 'doppler-form')?>" maxlength="40" required/>
+              <input type="text" id="form_name" name="settings[form_name]" value="<?php echo $form['settings']["form_name"] ?>" placeholder="<?php _e('Example: Josh', 'doppler-form')?>" maxlength="40"/>
             </div>
             <div class="dplr_input_section">
               <label for="settings[form_email_reply_to]"><?php _e('Email reply-to', 'doppler-form')?></label>
@@ -283,10 +283,20 @@ function hideShowConfigDobleOptIn(){
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     document.getElementById("dplr_doble_opt_in_section").style.display = "block";
     document.getElementById("doble-opt-in-msg").style.display = "block";
+
+    document.getElementById("form_email_confirmacion_asunto").required = true;
+    document.getElementById("form_email_confirmacion_email_remitente").required = true;
+    document.getElementById("form_email_confirmacion_nombre_remitente").required = true;
+    document.getElementById("form_name").required = true;
   }
   else{
     document.getElementById("dplr_doble_opt_in_section").style.display = "none";
     document.getElementById("doble-opt-in-msg").style.display = "none";
+
+    document.getElementById("form_email_confirmacion_asunto").required = false;
+    document.getElementById("form_email_confirmacion_email_remitente").required = false;
+    document.getElementById("form_email_confirmacion_nombre_remitente").required = false;
+    document.getElementById("form_name").required = false;
   }
 }
 
