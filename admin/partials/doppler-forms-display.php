@@ -45,6 +45,7 @@ switch($active_tab){
         include plugin_dir_path( __FILE__ ) . "../partials/forms-list.php";
         break;
     case 'new':
+        $this->display_error_message();
         $this->form_controller->showCreateEditForm();
         break;
     case 'edit':

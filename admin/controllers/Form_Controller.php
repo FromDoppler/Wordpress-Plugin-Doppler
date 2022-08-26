@@ -17,12 +17,11 @@ class DPLR_Form_Controller
   function create( $form = null ) {
 
     if (isset($form) && count($form) > 0) {
-
-      DPLR_Form_Model::insert(['name'=>$form['name'], 'title' => $form['title'], 'list_id' => $form['list_id']]);
-      $form_id =  DPLR_Form_Model::insert_id();
+      
+      $result_code = 0;
 
       // saco de $form la config necesaria para hacer el POST.
-      if($form["settings"]["form_doble_optin"] === "yes"){
+      if($form["settings"]["form_doble_optin"] === "yes") {
         $form_data["fromName"] = $form["settings"]["form_email_confirmacion_nombre_remitente"];
         $form_data["fromEmail"] = $form["settings"]["form_email_confirmacion_email_remitente"];
         $form_data["subject"] = $form["settings"]["form_email_confirmacion_asunto"];
@@ -35,8 +34,9 @@ class DPLR_Form_Controller
           $form_data["urlLanding"] = $landing_url;
         }
 
-        
-        $form_data["replyTo"] = $form["settings"]["form_email_reply_to"];
+        if(isset($form["settings"]["form_email_reply_to"]) && !empty($form["settings"]["form_email_reply_to"])) {
+          $form_data["replyTo"] = $form["settings"]["form_email_reply_to"];
+        }
         $form_data["name"] = $form["settings"]["form_name"];
 
 
@@ -46,7 +46,10 @@ class DPLR_Form_Controller
         // plugins/doppler-form/includes/DopplerAPIClient/DopplerService.php
         $response = $this->doppler_service->call($method, '', $form_data);
 
-        if($response["response"]["code"] === 201){
+        $logger = wc_get_logger();
+        $logger->info( wc_print_r( array("form" => $form_data, "response" => $response), true ), array( 'source' => 'form_create' ) );
+
+        if($response["response"]["code"] === 201) {
           $body = json_decode($response["body"]);
           $form_to_update["settings"]["form_plantilla_id"] = $body->createdResourceId;
           $form["settings"]["form_plantilla_id"] = $body->createdResourceId;
@@ -59,29 +62,38 @@ class DPLR_Form_Controller
           $form_data = $form["content"];
 
           $response2 = $this->doppler_service->call($method, '', $form_data);
+        } else {
+          $body = json_decode($response["body"]);
+          $result_code = $body->errorCode;
         }
       }
 
-      $form["settings"]["form_email_confirmacion_email_contenido"] = $form["content"]; 
-      DPLR_Form_Model::setSettings($form_id, $form["settings"]);
+      if($result_code == 0) {
 
-      $field_position_counter = 1;
+        DPLR_Form_Model::insert(['name'=>$form['name'], 'title' => $form['title'], 'list_id' => $form['list_id']]);
+        $form_id =  DPLR_Form_Model::insert_id();
 
-      $form['fields'] = isset($form['fields']) ? $form['fields'] : [];
+        $form["settings"]["form_email_confirmacion_email_contenido"] = $form["content"]; 
+        DPLR_Form_Model::setSettings($form_id, $form["settings"]);
 
-      foreach ($form['fields'] as $key => $value) {
+        $field_position_counter = 1;
 
-        $mod = ['name' => $key, 'type' => $value['type'], 'form_id' => $form_id, 'sort_order' => $field_position_counter++];
-        DPLR_Field_Model::insert($mod);
+        $form['fields'] = isset($form['fields']) ? $form['fields'] : [];
 
-        $field_id =  DPLR_Field_Model::insert_id();
-        $field_settings = $value['settings'];
+        foreach ($form['fields'] as $key => $value) {
 
-        DPLR_Field_Model::setSettings($field_id, $field_settings);
+          $mod = ['name' => $key, 'type' => $value['type'], 'form_id' => $form_id, 'sort_order' => $field_position_counter++];
+          DPLR_Field_Model::insert($mod);
+
+          $field_id =  DPLR_Field_Model::insert_id();
+          $field_settings = $value['settings'];
+
+          DPLR_Field_Model::setSettings($field_id, $field_settings);
+        }
 
       }
 
-      return 1;
+      return $result_code;
 
     } 
   
@@ -105,7 +117,11 @@ class DPLR_Form_Controller
           $landing_url = get_page($form_to_update["settings"]["form_pagina_confirmacion_select_landing"])->guid;
           $form_data["urlLanding"] = $landing_url;
         }
-        $form_data["replyTo"] = $form_to_update["settings"]["form_email_reply_to"];
+
+        if(isset($form["settings"]["form_email_reply_to"]) && !empty($form["settings"]["form_email_reply_to"])) {
+          $form_data["replyTo"] = $form_to_update["settings"]["form_email_reply_to"];
+        }
+
         $form_data["name"] = $form_to_update["settings"]["form_name"];
 
         $method["route"] = "DobleOptinTemplate";
@@ -200,6 +216,16 @@ class DPLR_Form_Controller
       $fields = DPLR_Field_Model::getBy(['form_id' => $form_id],['sort_order'], true);
       include plugin_dir_path( __FILE__ ) . "../partials/forms-edit.php";
     } else {
+      $form = $_POST;
+
+      //get form fields
+      $field_position_counter = 1;
+      $form['fields'] = isset($form['fields']) ? $form['fields'] : [];
+      $fields = [];
+      foreach ($form['fields'] as $key => $value) {
+        array_push($fields, ['name' => $key, 'type' => $value['type'], 'form_id' => 0, 'sort_order' => $field_position_counter++, 'settings' => $value['settings']]);
+      }
+
       include plugin_dir_path( __FILE__ ) . "../partials/forms-create.php";
     }
 
