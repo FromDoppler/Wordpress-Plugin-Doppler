@@ -213,7 +213,7 @@
 
               <div id="div_url_destino">
                 <label for="settings[form_pagina_confirmacion_url]"><?php _e('Target URL', 'doppler-form')?> <span class="req"></span></label>
-                <input type="text" name="settings[form_pagina_confirmacion_url]" value="<?php echo $form['settings']["form_pagina_confirmacion_url"] ?>" placeholder="<?php _e('Example: https://www.fromdoppler.com', 'doppler-form')?>" maxlength="40"/>
+                <input type="text" id="form_pagina_confirmacion_url" name="settings[form_pagina_confirmacion_url]" value="<?php echo $form['settings']["form_pagina_confirmacion_url"] ?>" placeholder="<?php _e('Example: https://www.fromdoppler.com', 'doppler-form')?>" maxlength="40"/>
               </div>
               
               <div id="div_landing_page">
@@ -288,6 +288,8 @@ function hideShowConfigDobleOptIn(){
     document.getElementById("form_email_confirmacion_email_remitente").required = true;
     document.getElementById("form_email_confirmacion_nombre_remitente").required = true;
     document.getElementById("form_name").required = true;
+    document.getElementById("mostrar_landing").required = true;
+    document.getElementById("mostrar_url").required = true;
   }
   else{
     document.getElementById("dplr_doble_opt_in_section").style.display = "none";
@@ -297,6 +299,8 @@ function hideShowConfigDobleOptIn(){
     document.getElementById("form_email_confirmacion_email_remitente").required = false;
     document.getElementById("form_email_confirmacion_nombre_remitente").required = false;
     document.getElementById("form_name").required = false;
+    document.getElementById("mostrar_landing").required = false;
+    document.getElementById("mostrar_url").required = false;
   }
 }
 
