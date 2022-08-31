@@ -113,11 +113,11 @@
             <div class="form_orientation">
               <div style="display: flex; align-items: center;">
                 <label for="vertical"><?php _e('Vertical','doppler-form')?></label>
-                <input type="radio" name="settings[form_orientation]" value="vertical" <?php if($form['settings']['form_orientation']==='vertical') echo 'checked'?>/>
+                <input type="radio" name="settings[form_orientation]" value="vertical" required <?php if($form['settings']['form_orientation']==='vertical') echo 'checked'?>/>
               </div>
               <div style="display: flex; align-items: center;">
                 <label for="horizontal"><?php _e('Horizontal','doppler-form')?></label>
-                <input type="radio" name="settings[form_orientation]" value="horizontal" <?php if($form['settings']['form_orientation']==='horizontal') echo 'checked'?>/>
+                <input type="radio" name="settings[form_orientation]" value="horizontal" required <?php if($form['settings']['form_orientation']==='horizontal') echo 'checked'?>/>
               </div>
             </div>
           </div>
