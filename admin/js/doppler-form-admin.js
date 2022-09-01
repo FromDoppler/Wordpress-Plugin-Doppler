@@ -512,7 +512,6 @@ function validateEmailContent(e){
  
   document.getElementById("content").value = document.getElementById("content").value.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
   document.getElementById("content").value = document.getElementById("content").value.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
-  console.log(document.getElementById("content").value;
 
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     if(
