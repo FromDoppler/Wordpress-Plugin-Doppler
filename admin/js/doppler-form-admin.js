@@ -505,7 +505,11 @@ function generateErrorMsg(body){
 }
 
 function validateEmailContent(e){
-
+  
+  if(document.getElementById("content").value == '' && tinyMCE.activeEditor.getContent() != '') {
+  	document.getElementById("content").value = tinyMCE.activeEditor.getContent();
+  }
+ 
   document.getElementById("content").value = document.getElementById("content").value.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
   document.getElementById("content").value = document.getElementById("content").value.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
 
