@@ -67,7 +67,7 @@
             </div>
             <div class="dplr_input_section">
               <label for="submit_text"><?php _e('Button text', 'doppler-form')?></label>
-              <input type="text" name="settings[button_text]" value="<?php echo isset($form->settings["button_text"])?$form->settings["button_text"]:'' ?>" placeholder="<?php _e('Submit', 'doppler-form')?>" disabled maxlength="40"/>
+              <input type="text" name="settings[button_text]" value="<?php echo isset($form->settings["button_text"])?$form->settings["button_text"]:'' ?>" placeholder="<?php _e('Submit', 'doppler-form')?>"  maxlength="40"/>
             </div>
             <div class="dplr_input_section">
               <label for="settings[button_position]"><?php _e('Button alignment', 'doppler-form')?></label>
