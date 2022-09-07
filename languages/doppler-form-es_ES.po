@@ -763,7 +763,7 @@ msgid ""
 "element with the attribute: href=[[[ConfirmationLink]]]"
 msgstr ""
 "Error! Recuerde que el contenido del email tiene que tener, "
-"obligatoriamente, un elemento anchor (<a> </a>) con el atributo: "
+"obligatoriamente, un elemento anchor (&lt;a&gt; &lt;/a&gt;) con el atributo: "
 "href=[[[ConfirmationLink]]]"
 
 #: admin/partials/forms-edit.php:21
