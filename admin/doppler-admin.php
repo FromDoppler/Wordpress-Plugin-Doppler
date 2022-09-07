@@ -427,15 +427,18 @@ class Doppler_Admin {
 			$status = get_option('dplrwoo_api_connected');
 
 			if( !empty($status) || !empty($options) ) {
-				$dplr_app_connect = new Doppler_For_WooCommerce_App_Connect(
-					$options['dplr_option_useraccount'],
-					$options['dplr_option_apikey'],
-					DOPPLER_WOO_API_URL,
-					DOPPLER_FOR_WOOCOMMERCE_ORIGIN
-				);
 
-				// Disconnect from doppler
-				$dplr_app_connect->disconnect();
+				if(class_exists('Doppler_For_WooCommerce_App_Connect')){
+					$dplr_app_connect = new Doppler_For_WooCommerce_App_Connect(
+						$options['dplr_option_useraccount'],
+						$options['dplr_option_apikey'],
+						DOPPLER_WOO_API_URL,
+						DOPPLER_FOR_WOOCOMMERCE_ORIGIN
+					);
+
+					// Disconnect from doppler
+					$dplr_app_connect->disconnect();
+				}
 
 				// Delete dplrwoo_api_connected
 				$option_name = 'dplrwoo_api_connected';
