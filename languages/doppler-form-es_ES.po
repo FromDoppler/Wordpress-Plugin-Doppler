@@ -773,11 +773,11 @@ msgstr "Selecciona la Lista a la que quieres enviar tus nuevos Suscriptores"
 
 #: admin/partials/forms-edit.php:157 admin/partials/forms-edit.php:162
 msgid "Simple Opt-In:"
-msgstr "Opt-In simple"
+msgstr "Simple Opt-In"
 
 #: admin/partials/forms-edit.php:158 admin/partials/forms-edit.php:163
 msgid "Double Opt-In:"
-msgstr "Opt-In doble"
+msgstr "Doble Opt-In"
 
 #: admin/partials/forms-edit.php:170
 msgid ""
