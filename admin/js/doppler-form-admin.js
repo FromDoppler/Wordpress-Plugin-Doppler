@@ -505,17 +505,17 @@ function generateErrorMsg(body){
 }
 
 function validateEmailContent(e){
-  
-  if(document.getElementById("content").value == '' && tinyMCE.activeEditor.getContent() != '') {
-  	document.getElementById("content").value = tinyMCE.activeEditor.getContent();
-  }
- 
-  document.getElementById("content").value = document.getElementById("content").value.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
-  document.getElementById("content").value = document.getElementById("content").value.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
+
+  var content = tinyMCE.activeEditor.getContent();
+
+  content = content.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
+  content = content.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
+
+  tinyMCE.activeEditor.setContent(content);
 
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     if(
-      !document.getElementById("content").value.includes("href=[[[ConfirmationLink]]]")
+      !content.includes("href=[[[ConfirmationLink]]]")
     ){
       // display div con mensaje de error
       document.getElementById("error-message").style.display = "block";
@@ -547,7 +547,9 @@ function hideShowConfigLandingOrURL(){
 
 // remove quote marks from ConfirmationLink href.
 function removeQuoteMarksFromConfirmationLink(){
-  if(document.getElementById('content').value.includes("href=\"[[[ConfirmationLink]]]\"")){
-    document.getElementById('content').value = document.getElementById('content').value.replace("href=\"[[[ConfirmationLink]]]\"", "href=[[[ConfirmationLink]]]");
+  var content = tinyMCE.activeEditor.getContent();
+  if(content.includes("href=\"[[[ConfirmationLink]]]\"")){
+  	content = content.replace("href=\"[[[ConfirmationLink]]]\"", "href=[[[ConfirmationLink]]]");
+    tinyMCE.activeEditor.setContent(content);
   }
 }
