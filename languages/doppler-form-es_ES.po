@@ -643,7 +643,7 @@ msgid ""
 "confirmation email."
 msgstr ""
 "¡Psst! Necesitas seleccionar la Lista a la que serán enviados tus nuevos "
-"Suscriptores y también configurar los Emails de confirmación y bienvenida."
+"Suscriptores y también configurar los Emails de confirmación."
 
 #: admin/partials/forms-create.php:138 admin/partials/forms-edit.php:148
 msgid "Subscription Type"
@@ -651,7 +651,7 @@ msgstr "Tipo de subscripción"
 
 #: admin/partials/forms-create.php:143 admin/partials/forms-edit.php:152
 msgid "Choose Opt-In type:"
-msgstr "Elija el tipo de Opt-In:"
+msgstr "Selecciona el tipo de Opt-In:"
 
 #: admin/partials/forms-create.php:157 admin/partials/forms-edit.php:175
 msgid "Confirmation email"
