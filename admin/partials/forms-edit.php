@@ -186,7 +186,7 @@
               </div>
               <div class="dplr_input_section">
                 <label for="settings[form_email_confirmacion_pre_encabezado]"><?php _e('Pre header', 'doppler-form')?></label>
-                <input type="text" name="settings[form_email_confirmacion_pre_encabezado]" value="<?php echo isset($form->settings["form_email_confirmacion_pre_encabezado"])?$form->settings["form_email_confirmacion_pre_encabezado"]:'' ?>" placeholder="<?php _e('This is the email\'s pre header', 'doppler-form')?>" maxlength="40" disabled />
+                <input type="text" id="form_email_confirmacion_pre_encabezado" name="settings[form_email_confirmacion_pre_encabezado]" value="<?php echo isset($form->settings["form_email_confirmacion_pre_encabezado"])?$form->settings["form_email_confirmacion_pre_encabezado"]:'' ?>" placeholder="<?php _e('This is the email\'s pre header', 'doppler-form')?>" maxlength="40" disabled />
               </div>
               <div class="dplr_input_section">
                 <label for="settings[form_email_confirmacion_email_remitente]"><?php _e('Email sender', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
@@ -202,7 +202,7 @@
               </div>
               <div class="dplr_input_section">
                 <label for="settings[form_email_reply_to]"><?php _e('Email reply-to', 'doppler-form')?></label>
-                <input type="text" name="settings[form_email_reply_to]" value="<?php echo isset($form->settings["form_email_reply_to"])?$form->settings["form_email_reply_to"]:'' ?>" placeholder="<?php _e('Example: something-reply-to@hotmail.com', 'doppler-form')?>" maxlength="40" disabled />
+                <input type="text" id="form_email_reply_to" name="settings[form_email_reply_to]" value="<?php echo isset($form->settings["form_email_reply_to"])?$form->settings["form_email_reply_to"]:'' ?>" placeholder="<?php _e('Example: something-reply-to@hotmail.com', 'doppler-form')?>" maxlength="40" disabled />
               </div>
               <div class="dplr_input_section">
                 <label for="settings_form_email_confirmacion_email_contenido"><?php _e('Email content. Must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
@@ -308,6 +308,14 @@ function hideShowConfigDobleOptIn(){
     document.getElementById("form_email_confirmacion_email_remitente").required = true;
     document.getElementById("form_email_confirmacion_nombre_remitente").required = true;
     document.getElementById("form_name").required = true;
+
+    document.getElementById("form_email_confirmacion_asunto").disabled = false;
+    document.getElementById("form_email_confirmacion_pre_encabezado").disabled = false;
+    document.getElementById("form_email_confirmacion_email_remitente").disabled = false;
+    document.getElementById("form_email_confirmacion_nombre_remitente").disabled = false;
+    document.getElementById("form_name").disabled = false;
+    document.getElementById("form_email_reply_to").disabled = false;
+
   }
   else{
     document.getElementById("section_email_confirmacion").style.display = "none";
