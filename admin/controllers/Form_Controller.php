@@ -103,13 +103,29 @@ class DPLR_Form_Controller
     if (isset($form_to_update) && count($form_to_update) > 0) {
       // $form_to_update["settings"]["message_success"] = 'success message hardcodeado';
 
-      DPLR_Form_Model::update($form_id, ['name'=>$form_to_update['name'], 'title' => $form_to_update['title'], 'list_id' => $form_to_update['list_id'], 'form_orientation' => $form_to_update['form_orientation'] ]);
+      DPLR_Form_Model::update($form_id, ['name'=>$form_to_update['name'], 'title' => $form_to_update['title'], 'list_id' => $form_to_update['list_id'], 'form_orientation' => $form_to_update["settings"]['form_orientation'] ]);
 
       if($form_to_update["settings"]["form_doble_optin"] === "yes"){
+
+        $form = DPLR_Form_Model::get($form_id, true);
+        $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"] = $form->settings["form_email_confirmacion_nombre_remitente"];
+        $form_to_update["settings"]["form_email_confirmacion_email_remitente"] = $form->settings["form_email_confirmacion_email_remitente"];
+        $form_to_update["settings"]["form_email_confirmacion_asunto"] = $form->settings["form_email_confirmacion_asunto"];
+        $form_to_update["settings"]["form_email_confirmacion_pre_encabezado"] = $form->settings["form_email_confirmacion_pre_encabezado"];
+        $form_to_update["settings"]["form_email_reply_to"] = $form->settings["form_email_reply_to"];
+        $form_to_update["settings"]["form_name"] = $form->settings["form_name"];
+
         $form_data["fromName"] = $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"];
         $form_data["fromEmail"] = $form_to_update["settings"]["form_email_confirmacion_email_remitente"];
         $form_data["subject"] = $form_to_update["settings"]["form_email_confirmacion_asunto"];
         $form_data["preheader"] = $form_to_update["settings"]["form_email_confirmacion_pre_encabezado"];
+
+        //if(isset($form["settings"]["form_email_reply_to"]) && !empty($form["settings"]["form_email_reply_to"])) {
+          $form_data["replyTo"] = $form_to_update["settings"]["form_email_reply_to"];
+        //}
+
+        $form_data["name"] = $form_to_update["settings"]["form_name"];
+
         if($form_to_update["settings"]["form_pagina_confirmacion"] == 'url'){
           $form_data["urlLanding"] = $form_to_update["settings"]["form_pagina_confirmacion_url"];
         }
@@ -118,18 +134,14 @@ class DPLR_Form_Controller
           $form_data["urlLanding"] = $landing_url;
         }
 
-        if(isset($form["settings"]["form_email_reply_to"]) && !empty($form["settings"]["form_email_reply_to"])) {
-          $form_data["replyTo"] = $form_to_update["settings"]["form_email_reply_to"];
-        }
-
-        $form_data["name"] = $form_to_update["settings"]["form_name"];
-
         $method["route"] = "DobleOptinTemplate";
         $method["httpMethod"] = "post";
         // aca creo la plantilla y la asocio a este form_id.
         // plugins/doppler-form/includes/DopplerAPIClient/DopplerService.php
         $response = $this->doppler_service->call($method, '', $form_data);
 
+        $logger = wc_get_logger();
+        $logger->info( wc_print_r( array("form" => $form_data, "response" => $response), true ), array( 'source' => 'form_update' ) );
 
         $form_data = $form_to_update["content"];
         $form_to_update["settings"]["form_email_confirmacion_email_contenido"] = $form_data; 
