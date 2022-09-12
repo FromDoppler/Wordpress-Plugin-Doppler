@@ -119,10 +119,9 @@ class DPLR_Form_Controller
         $form_data["fromEmail"] = $form_to_update["settings"]["form_email_confirmacion_email_remitente"];
         $form_data["subject"] = $form_to_update["settings"]["form_email_confirmacion_asunto"];
         $form_data["preheader"] = $form_to_update["settings"]["form_email_confirmacion_pre_encabezado"];
-
-        //if(isset($form["settings"]["form_email_reply_to"]) && !empty($form["settings"]["form_email_reply_to"])) {
+        if(isset($form_to_update["settings"]["form_email_reply_to"]) && !empty($form_to_update["settings"]["form_email_reply_to"])) {
           $form_data["replyTo"] = $form_to_update["settings"]["form_email_reply_to"];
-        //}
+        }
 
         $form_data["name"] = $form_to_update["settings"]["form_name"];
 
