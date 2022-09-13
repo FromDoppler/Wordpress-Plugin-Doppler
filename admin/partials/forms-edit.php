@@ -173,12 +173,6 @@
             </div>
             <div class="dplr_input_section" id="section_email_confirmacion">
               <h2><?php _e('Confirmation email', 'doppler-form') ?></h2>
-
-              <p>(<?php 
-                    _e('Template ID:', 'doppler-form');
-                    echo isset($form->settings["form_plantilla_id"])?$form->settings["form_plantilla_id"]:''; 
-                  ?>)
-              </p>
               
               <div class="dplr_input_section">
                 <label for="settings[form_email_confirmacion_asunto]"><?php _e('Subject', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
