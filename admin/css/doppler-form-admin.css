@@ -476,10 +476,6 @@
   display: block !important;
 }
 
-.dplr_settings form #section_email_confirmacion h2, .dplr_settings form #section_email_confirmacion p {
-  padding-left: 10px;
-}
-
 .dplr_settings form #error-message {
   display: none;
   padding: 10px 20px;
