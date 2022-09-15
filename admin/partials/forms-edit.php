@@ -167,7 +167,7 @@
               </select>
               
               <p>
-                <?php _e('If you\'d like to know the difference between Simple Opt-In and Double Opt-In, click: .', 'doppler-form')?>
+                <?php _e('If you\'d like to know the difference between Simple Opt-In and Double Opt-In, click:', 'doppler-form')?>
                 <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in"><?php _e('HELP', 'doppler-form') ?></a>.
               </p>
             </div>
@@ -302,14 +302,6 @@ function hideShowConfigDobleOptIn(){
     document.getElementById("form_email_confirmacion_email_remitente").required = true;
     document.getElementById("form_email_confirmacion_nombre_remitente").required = true;
     document.getElementById("form_name").required = true;
-
-    document.getElementById("form_email_confirmacion_asunto").disabled = false;
-    document.getElementById("form_email_confirmacion_pre_encabezado").disabled = false;
-    document.getElementById("form_email_confirmacion_email_remitente").disabled = false;
-    document.getElementById("form_email_confirmacion_nombre_remitente").disabled = false;
-    document.getElementById("form_name").disabled = false;
-    document.getElementById("form_email_reply_to").disabled = false;
-
   }
   else{
     document.getElementById("section_email_confirmacion").style.display = "none";
@@ -355,6 +347,13 @@ document.getElementById("doble_optin_section").addEventListener("click", functio
   hideShowConfigDobleOptIn();
   if(document.getElementById("settings[form_doble_optin]").value !== 'yes'){
     document.getElementById("error-message").style.display = 'none';
+  } else {
+    document.getElementById("form_email_confirmacion_asunto").disabled = false;
+    document.getElementById("form_email_confirmacion_pre_encabezado").disabled = false;
+    document.getElementById("form_email_confirmacion_email_remitente").disabled = false;
+    document.getElementById("form_email_confirmacion_nombre_remitente").disabled = false;
+    document.getElementById("form_name").disabled = false;
+    document.getElementById("form_email_reply_to").disabled = false;
   }
 });
 

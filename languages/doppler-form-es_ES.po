@@ -781,7 +781,7 @@ msgstr "Doble Opt-In"
 #: admin/partials/forms-edit.php:170
 msgid ""
 "If you'd like to know the difference between Simple Opt-In and Double Opt-"
-"In, click: ."
+"In, click:"
 msgstr "¿Quieres saber la diferencia entre Simple y Doble Opt-In? Presiona:"
 
 #: admin/partials/forms-edit.php:178
