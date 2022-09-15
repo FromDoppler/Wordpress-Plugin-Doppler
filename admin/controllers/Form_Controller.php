@@ -103,7 +103,7 @@ class DPLR_Form_Controller
     if (isset($form_to_update) && count($form_to_update) > 0) {
       // $form_to_update["settings"]["message_success"] = 'success message hardcodeado';
 
-      DPLR_Form_Model::update($form_id, ['name'=>$form_to_update['name'], 'title' => $form_to_update['title'], 'list_id' => $form_to_update['list_id'], 'form_orientation' => $form_to_update['form_orientation'] ]);
+      DPLR_Form_Model::update($form_id, ['name'=>$form_to_update['name'], 'title' => $form_to_update['title'], 'list_id' => $form_to_update['list_id'] ]);
 
       if($form_to_update["settings"]["form_doble_optin"] === "yes"){
         $form_data["fromName"] = $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"];
