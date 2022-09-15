@@ -39,6 +39,8 @@ class DPLR_Form_Controller
         }
         $form_data["name"] = $form["settings"]["form_name"];
 
+        $form["content"] = str_replace('href=\"[[[ConfirmationLink]]]\"', "href=[[[ConfirmationLink]]]", $form["content"]);
+        $form["content"] = str_replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]", $form["content"]);
 
         $method["route"] = "DobleOptinTemplate";
         $method["httpMethod"] = "post";
@@ -141,6 +143,9 @@ class DPLR_Form_Controller
 
         $logger = wc_get_logger();
         $logger->info( wc_print_r( array("form" => $form_data, "response" => $response), true ), array( 'source' => 'form_update' ) );
+
+        $form_to_update["content"] = str_replace('href=\"[[[ConfirmationLink]]]\"', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
+        $form_to_update["content"] = str_replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
 
         $form_data = $form_to_update["content"];
         $form_to_update["settings"]["form_email_confirmacion_email_contenido"] = $form_data; 
