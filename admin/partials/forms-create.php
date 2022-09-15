@@ -142,7 +142,7 @@
           </div>
           
           <p>
-            <?php _e('If you\'d like to know the difference between Simple Opt-In and Double Opt-In, click: .', 'doppler-form')?>
+            <?php _e('If you\'d like to know the difference between Simple Opt-In and Double Opt-In, click:', 'doppler-form')?>
             <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in"><?php _e('HELP', 'doppler-form') ?></a>.
           </p>
 
