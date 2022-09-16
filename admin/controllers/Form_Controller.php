@@ -110,12 +110,18 @@ class DPLR_Form_Controller
       if($form_to_update["settings"]["form_doble_optin"] === "yes"){
 
         $form = DPLR_Form_Model::get($form_id, true);
-        $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"] = $form->settings["form_email_confirmacion_nombre_remitente"];
-        $form_to_update["settings"]["form_email_confirmacion_email_remitente"] = $form->settings["form_email_confirmacion_email_remitente"];
-        $form_to_update["settings"]["form_email_confirmacion_asunto"] = $form->settings["form_email_confirmacion_asunto"];
-        $form_to_update["settings"]["form_email_confirmacion_pre_encabezado"] = $form->settings["form_email_confirmacion_pre_encabezado"];
-        $form_to_update["settings"]["form_email_reply_to"] = $form->settings["form_email_reply_to"];
-        $form_to_update["settings"]["form_name"] = $form->settings["form_name"];
+        if(!isset($form_to_update["settings"]["form_email_confirmacion_nombre_remitente"]))
+          $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"] = $form->settings["form_email_confirmacion_nombre_remitente"];
+        if(!isset($form_to_update["settings"]["form_email_confirmacion_email_remitente"]))
+          $form_to_update["settings"]["form_email_confirmacion_email_remitente"] = $form->settings["form_email_confirmacion_email_remitente"];
+        if(!isset($form_to_update["settings"]["form_email_confirmacion_asunto"]))
+          $form_to_update["settings"]["form_email_confirmacion_asunto"] = $form->settings["form_email_confirmacion_asunto"];
+        if(!isset($form_to_update["settings"]["form_email_confirmacion_pre_encabezado"]))
+          $form_to_update["settings"]["form_email_confirmacion_pre_encabezado"] = $form->settings["form_email_confirmacion_pre_encabezado"];
+        if(!isset($form_to_update["settings"]["form_email_reply_to"]))
+          $form_to_update["settings"]["form_email_reply_to"] = $form->settings["form_email_reply_to"];
+        if(!isset($form_to_update["settings"]["form_name"]))
+          $form_to_update["settings"]["form_name"] = $form->settings["form_name"];
 
         $form_data["fromName"] = $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"];
         $form_data["fromEmail"] = $form_to_update["settings"]["form_email_confirmacion_email_remitente"];
