@@ -110,15 +110,9 @@
           </div>
           <div class="dplr_input_section">
             <label for="settings[form_orientation]"><?php _e('Form orientation', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-            <div class="form_orientation">
-              <div style="display: flex; align-items: center;">
-                <label for="vertical"><?php _e('Vertical','doppler-form')?></label>
-                <input type="radio" name="settings[form_orientation]" value="vertical" required <?php if(isset($form['settings']['form_orientation']) && $form['settings']['form_orientation']==='vertical') echo 'checked'?>/>
-              </div>
-              <div style="display: flex; align-items: center;">
-                <label for="horizontal"><?php _e('Horizontal','doppler-form')?></label>
-                <input type="radio" name="settings[form_orientation]" value="horizontal" required <?php if(isset($form['settings']['form_orientation']) && $form['settings']['form_orientation']==='horizontal') echo 'checked'?>/>
-              </div>
+            <div class="radio_section">
+              <?php _e('Vertical','doppler-form')?><input type="radio" name="settings[form_orientation]" value="vertical" required <?php if(isset($form['settings']['form_orientation']) && $form['settings']['form_orientation']==='vertical') echo 'checked'?>/>&nbsp; 
+              <?php _e('Horizontal','doppler-form')?><input type="radio" name="settings[form_orientation]" value="horizontal" required <?php if(isset($form['settings']['form_orientation']) && $form['settings']['form_orientation']==='horizontal') echo 'checked'?>/>
             </div>
           </div>
 
@@ -199,15 +193,14 @@
 
               <label for="settings[form_pagina_confirmacion]"><?php _e('Choose an option:', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
               <div class="radio-inputs-landing-or-url">
-                <div style="display: flex; align-items: center;">
-                  <label for="yes"><?php _e('Redirect to landing page', 'doppler-form');?></label>
-                  <input 
+                <div class="radio_section">
+                  <?php _e('Redirect to landing page', 'doppler-form');?><input 
                   type="radio" 
                   id="mostrar_landing" 
                   name="settings[form_pagina_confirmacion]" 
                   value="landing" 
-                  <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='landing') echo 'checked'?> />
-                  <label for="no" class="ml-1"><?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?></label>
+                  <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='landing') echo 'checked'?> />&nbsp; 
+                  <?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?>
                   <input type="radio" id="mostrar_url" name="settings[form_pagina_confirmacion]" value="url" <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='url') echo 'checked'?> />
                 </div>
               </div>
