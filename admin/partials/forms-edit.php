@@ -126,11 +126,6 @@
                 <?php _e('Horizontal','doppler-form')?><input type="radio" name="settings[form_orientation]" value="horizontal" <?php if(isset($form->settings['form_orientation']) && $form->settings['form_orientation']==='horizontal') echo 'checked'?> />
               </div>
             </div>
-
-            <p id="doble-opt-in-msg">
-                <?php _e('¡Psst! You have to select the Doppler List where your new subscribers will be sent. You also need to configure the confirmation email.', 'doppler-form')?>
-              </p>
-
             
           </div>
         </div>
@@ -289,7 +284,6 @@ function hideShowConfigDobleOptIn(){
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     document.getElementById("section_email_confirmacion").style.display = "block";
     document.getElementById("section_pagina_confirmacion").style.display = "block";
-    document.getElementById("doble-opt-in-msg").style.display = "block";
 
     document.getElementById("form_email_confirmacion_asunto").required = true;
     document.getElementById("form_email_confirmacion_email_remitente").required = true;
@@ -299,7 +293,6 @@ function hideShowConfigDobleOptIn(){
   else{
     document.getElementById("section_email_confirmacion").style.display = "none";
     document.getElementById("section_pagina_confirmacion").style.display = "none";
-    document.getElementById("doble-opt-in-msg").style.display = "none";
 
     document.getElementById("form_email_confirmacion_asunto").required = false;
     document.getElementById("form_email_confirmacion_email_remitente").required = false;
