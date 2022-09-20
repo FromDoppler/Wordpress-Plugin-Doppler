@@ -138,7 +138,8 @@
           </div>
           
           <p>
-            ¿Quieres saber la diferencia entre Simple y Doble Opt-In? Presiona <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in">HELP</a>.
+            <?php _e('If you\'d like to know the difference between Simple Opt-In and Double Opt-In, click:', 'doppler-form')?>
+            <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in"><?php _e('HELP', 'doppler-form') ?></a>.
           </p>
 
           <div id="dplr_doble_opt_in_section" <?= (isset($form->settings['use_consent_field']) && $form->settings['use_consent_field']==='yes')? 'style="display:block"' : 'style="display:none"'; ?>>
