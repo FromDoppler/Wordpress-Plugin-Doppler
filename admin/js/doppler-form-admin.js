@@ -506,12 +506,19 @@ function generateErrorMsg(body){
 
 function validateEmailContent(e){
 
-  var content = tinyMCE.activeEditor.getContent();
+  var content = '';
+  if(typeof tinyMCE != 'undefined') {
+  	content = tinyMCE.activeEditor.getContent();
+  } else {
+  	content = document.getElementById("content_ifr").contentDocument.body.innerHTML || document.getElementById("content_ifr").contentWindow.document.body.innerHTML;
+  }
 
   content = content.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
   content = content.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
 
-  tinyMCE.activeEditor.setContent(content);
+  if(typeof tinyMCE != 'undefined') {
+  	tinyMCE.activeEditor.setContent(content);
+  }
 
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
     if(
