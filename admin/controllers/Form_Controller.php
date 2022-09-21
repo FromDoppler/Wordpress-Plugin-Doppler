@@ -43,6 +43,7 @@ class DPLR_Form_Controller
         $form["content"] = str_replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]", $form["content"]);
         $form["content"] = str_replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]", $form["content"]);
         $form["content"] = str_replace('href="\"http://[[[ConfirmationLink]]]\""', "href=[[[ConfirmationLink]]]", $form["content"]);
+        $form["content"] = str_replace('href=\"http://[[[ConfirmationLink]]]\"', "href=[[[ConfirmationLink]]]", $form["content"]);
 
         $method["route"] = "DobleOptinTemplate";
         $method["httpMethod"] = "post";
@@ -163,6 +164,7 @@ class DPLR_Form_Controller
         $form_to_update["content"] = str_replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
         $form_to_update["content"] = str_replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
         $form_to_update["content"] = str_replace('href="\"http://[[[ConfirmationLink]]]\""', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
+        $form_to_update["content"] = str_replace('href=\"http://[[[ConfirmationLink]]]\"', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
 
         $form_data = $form_to_update["content"];
         $form_to_update["settings"]["form_email_confirmacion_email_contenido"] = $form_data; 
