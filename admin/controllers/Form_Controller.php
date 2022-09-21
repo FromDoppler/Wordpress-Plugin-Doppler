@@ -70,6 +70,13 @@ class DPLR_Form_Controller
           $body = json_decode($response["body"]);
           $result_code = $body->errorCode;
         }
+      } else {
+        unset($form["settings"]["form_email_confirmacion_nombre_remitente"]);
+        unset($form["settings"]["form_email_confirmacion_email_remitente"]);
+        unset($form["settings"]["form_email_confirmacion_asunto"]);
+        unset($form["settings"]["form_email_confirmacion_pre_encabezado"]);
+        unset($form["settings"]["form_email_reply_to"]);
+        unset($form["settings"]["form_name"]);
       }
 
       if($result_code == 0) {
@@ -176,6 +183,13 @@ class DPLR_Form_Controller
 
           $response2 = $this->doppler_service->call($method, '', $form_data);
         }
+      } else {
+        unset($form_to_update["settings"]["form_email_confirmacion_nombre_remitente"]);
+        unset($form_to_update["settings"]["form_email_confirmacion_email_remitente"]);
+        unset($form_to_update["settings"]["form_email_confirmacion_asunto"]);
+        unset($form_to_update["settings"]["form_email_confirmacion_pre_encabezado"]);
+        unset($form_to_update["settings"]["form_email_reply_to"]);
+        unset($form_to_update["settings"]["form_name"]);
       }
 
       DPLR_Form_Model::setSettings($form_id, $form_to_update["settings"]);
