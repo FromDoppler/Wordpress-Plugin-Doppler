@@ -507,17 +507,22 @@ function generateErrorMsg(body){
 function validateEmailContent(e){
 
   var content = '';
-  if(typeof tinyMCE != 'undefined') {
-  	content = tinyMCE.activeEditor.getContent();
+
+  if(!tinyMCE.activeEditor) jQuery('.wp-editor-wrap .switch-tmce').trigger('click');
+
+  if(!tinyMCE.activeEditor) {
+  	content = document.getElementById('content').value;
   } else {
-  	content = document.getElementById("content_ifr").contentDocument.body.innerHTML || document.getElementById("content_ifr").contentWindow.document.body.innerHTML;
+  	content = tinyMCE.activeEditor.getContent();
   }
 
   content = content.replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
   content = content.replace('href="http://[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]");
 
-  if(typeof tinyMCE != 'undefined') {
+  if(!tinyMCE.activeEditor) {
   	tinyMCE.activeEditor.setContent(content);
+  } else {
+  	document.getElementById('content').value = content;
   }
 
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
@@ -554,9 +559,20 @@ function hideShowConfigLandingOrURL(){
 
 // remove quote marks from ConfirmationLink href.
 function removeQuoteMarksFromConfirmationLink(){
-  var content = tinyMCE.activeEditor.getContent();
-  if(content.includes("href=\"[[[ConfirmationLink]]]\"")){
-  	content = content.replace("href=\"[[[ConfirmationLink]]]\"", "href=[[[ConfirmationLink]]]");
-    tinyMCE.activeEditor.setContent(content);
+
+  if(!tinyMCE.activeEditor) jQuery('.wp-editor-wrap .switch-tmce').trigger('click');
+
+  if(!tinyMCE.activeEditor) {
+  	var content = document.getElementById('content').value;
+  	if(content.includes("href=\"[[[ConfirmationLink]]]\"")){
+		content = content.replace("href=\"[[[ConfirmationLink]]]\"", "href=[[[ConfirmationLink]]]");
+		document.getElementById('content').value = content;
+	}
+  } else {
+	var content = tinyMCE.activeEditor.getContent();
+	if(content.includes("href=\"[[[ConfirmationLink]]]\"")){
+		content = content.replace("href=\"[[[ConfirmationLink]]]\"", "href=[[[ConfirmationLink]]]");
+		tinyMCE.activeEditor.setContent(content);
+	}
   }
 }
