@@ -39,6 +39,8 @@ class DPLR_Form_Controller
         }
         $form_data["name"] = $form["settings"]["form_name"];
 
+        $form["content"] = str_replace('href=\"[[[ConfirmationLink]]]\"', "href=[[[ConfirmationLink]]]", $form["content"]);
+        $form["content"] = str_replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]", $form["content"]);
 
         $method["route"] = "DobleOptinTemplate";
         $method["httpMethod"] = "post";
@@ -115,12 +117,18 @@ class DPLR_Form_Controller
       if($form_to_update["settings"]["form_doble_optin"] === "yes"){
 
         $form = DPLR_Form_Model::get($form_id, true);
-        $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"] = $form->settings["form_email_confirmacion_nombre_remitente"];
-        $form_to_update["settings"]["form_email_confirmacion_email_remitente"] = $form->settings["form_email_confirmacion_email_remitente"];
-        $form_to_update["settings"]["form_email_confirmacion_asunto"] = $form->settings["form_email_confirmacion_asunto"];
-        $form_to_update["settings"]["form_email_confirmacion_pre_encabezado"] = $form->settings["form_email_confirmacion_pre_encabezado"];
-        $form_to_update["settings"]["form_email_reply_to"] = $form->settings["form_email_reply_to"];
-        $form_to_update["settings"]["form_name"] = $form->settings["form_name"];
+        if(!isset($form_to_update["settings"]["form_email_confirmacion_nombre_remitente"]))
+          $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"] = $form->settings["form_email_confirmacion_nombre_remitente"];
+        if(!isset($form_to_update["settings"]["form_email_confirmacion_email_remitente"]))
+          $form_to_update["settings"]["form_email_confirmacion_email_remitente"] = $form->settings["form_email_confirmacion_email_remitente"];
+        if(!isset($form_to_update["settings"]["form_email_confirmacion_asunto"]))
+          $form_to_update["settings"]["form_email_confirmacion_asunto"] = $form->settings["form_email_confirmacion_asunto"];
+        if(!isset($form_to_update["settings"]["form_email_confirmacion_pre_encabezado"]))
+          $form_to_update["settings"]["form_email_confirmacion_pre_encabezado"] = $form->settings["form_email_confirmacion_pre_encabezado"];
+        if(!isset($form_to_update["settings"]["form_email_reply_to"]))
+          $form_to_update["settings"]["form_email_reply_to"] = $form->settings["form_email_reply_to"];
+        if(!isset($form_to_update["settings"]["form_name"]))
+          $form_to_update["settings"]["form_name"] = $form->settings["form_name"];
 
         $form_data["fromName"] = $form_to_update["settings"]["form_email_confirmacion_nombre_remitente"];
         $form_data["fromEmail"] = $form_to_update["settings"]["form_email_confirmacion_email_remitente"];
@@ -148,6 +156,9 @@ class DPLR_Form_Controller
 
         $logger = wc_get_logger();
         $logger->info( wc_print_r( array("form" => $form_data, "response" => $response), true ), array( 'source' => 'form_update' ) );
+
+        $form_to_update["content"] = str_replace('href=\"[[[ConfirmationLink]]]\"', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
+        $form_to_update["content"] = str_replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
 
         $form_data = $form_to_update["content"];
         $form_to_update["settings"]["form_email_confirmacion_email_contenido"] = $form_data; 
