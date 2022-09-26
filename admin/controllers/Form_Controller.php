@@ -78,6 +78,9 @@ class DPLR_Form_Controller
         unset($form["settings"]["form_email_confirmacion_pre_encabezado"]);
         unset($form["settings"]["form_email_reply_to"]);
         unset($form["settings"]["form_name"]);
+        unset($form["settings"]["form_pagina_confirmacion"]);
+        unset($form["settings"]["form_pagina_confirmacion_select_landing"]);
+        unset($form["settings"]["form_pagina_confirmacion_url"]);
       }
 
       if($result_code == 0) {
@@ -192,6 +195,9 @@ class DPLR_Form_Controller
         unset($form_to_update["settings"]["form_email_confirmacion_pre_encabezado"]);
         unset($form_to_update["settings"]["form_email_reply_to"]);
         unset($form_to_update["settings"]["form_name"]);
+        unset($form_to_update["settings"]["form_pagina_confirmacion"]);
+        unset($form_to_update["settings"]["form_pagina_confirmacion_select_landing"]);
+        unset($form_to_update["settings"]["form_pagina_confirmacion_url"]);
       }
 
       DPLR_Form_Model::setSettings($form_id, $form_to_update["settings"]);
