@@ -49,7 +49,9 @@ switch($active_tab){
         $this->form_controller->showCreateEditForm();
         break;
     case 'edit':
-        $this->form_controller->showCreateEditForm($_GET['form_id']);
+        $this->display_error_message();
+        $form_id = isset($_GET['form_id']) ? $_GET['form_id'] : $_POST['form_id'];
+        $this->form_controller->showCreateEditForm($form_id);
         break;
     case 'lists':
         include plugin_dir_path( __FILE__ ) . "../partials/lists-crud.php";

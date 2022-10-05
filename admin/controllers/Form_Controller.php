@@ -116,9 +116,8 @@ class DPLR_Form_Controller
 
   function update($form_id, $form_to_update = NULL) {
     if (isset($form_to_update) && count($form_to_update) > 0) {
-      // $form_to_update["settings"]["message_success"] = 'success message hardcodeado';
-
-      DPLR_Form_Model::update($form_id, ['name'=>$form_to_update['name'], 'title' => $form_to_update['title'], 'list_id' => $form_to_update['list_id'] ]);
+      
+      $result_code = 0;
 
       if($form_to_update["settings"]["form_doble_optin"] === "yes"){
 
@@ -187,6 +186,9 @@ class DPLR_Form_Controller
          
 
           $response2 = $this->doppler_service->call($method, '', $form_data);
+        } else {
+          $body = json_decode($response["body"]);
+          $result_code = $body->errorCode;
         }
       } else {
         unset($form_to_update["settings"]["form_email_confirmacion_nombre_remitente"]);
@@ -200,30 +202,34 @@ class DPLR_Form_Controller
         unset($form_to_update["settings"]["form_pagina_confirmacion_url"]);
       }
 
-      DPLR_Form_Model::setSettings($form_id, $form_to_update["settings"]);
+      if($result_code == 0) {
 
-      $field_position_counter = 1;
+      	  DPLR_Form_Model::update($form_id, ['name'=>$form_to_update['name'], 'title' => $form_to_update['title'], 'list_id' => $form_to_update['list_id'] ]);
 
-      $form_to_update['fields'] = isset($form_to_update['fields']) ? $form_to_update['fields'] : [];
+	      DPLR_Form_Model::setSettings($form_id, $form_to_update["settings"]);
 
-      DPLR_Field_Model::deleteWhere(['form_id' => $form_id]);
+	      $field_position_counter = 1;
 
-      foreach ($form_to_update['fields'] as $key => $value) {
-        
-        $mod = ['name' => $key, 'type' => $value['type'], 'form_id' => $form_id, 'sort_order' => $field_position_counter++];
+	      $form_to_update['fields'] = isset($form_to_update['fields']) ? $form_to_update['fields'] : [];
 
-        DPLR_Field_Model::insert($mod);
+	      DPLR_Field_Model::deleteWhere(['form_id' => $form_id]);
 
-        $field_id =  DPLR_Field_Model::insert_id();
+	      foreach ($form_to_update['fields'] as $key => $value) {
+	        
+	        $mod = ['name' => $key, 'type' => $value['type'], 'form_id' => $form_id, 'sort_order' => $field_position_counter++];
 
-        $field_settings = $value['settings'];
+	        DPLR_Field_Model::insert($mod);
 
-        $res = DPLR_Field_Model::setSettings($field_id, $field_settings);
+	        $field_id =  DPLR_Field_Model::insert_id();
 
-      }
+	        $field_settings = $value['settings'];
 
-      return 1;
-    
+	        $res = DPLR_Field_Model::setSettings($field_id, $field_settings);
+
+	      }
+	  }
+
+      return $result_code;    
     }
   }
 
@@ -261,7 +267,57 @@ class DPLR_Form_Controller
 
     if ($form_id != NULL) {
       $form = DPLR_Form_Model::get($form_id, true);
-      $fields = DPLR_Field_Model::getBy(['form_id' => $form_id],['sort_order'], true);
+
+      if($_POST) {
+      	if($form->settings["form_doble_optin"] == 'no' && $_POST['settings']['form_doble_optin'] == 'yes') {
+      		$form_doble_optin_enabled = true;
+      	}
+
+      	$form->name = $_POST['name'];
+      	$form->list_id = $_POST['list_id'];
+
+      	//get form fields
+		$field_position = 1;
+		$form_fields = isset($_POST['fields']) ? $_POST['fields'] : [];
+		$fields = [];
+		foreach ($form_fields as $k => $v) {
+			array_push($fields, ['name' => $k, 'type' => $v['type'], 'form_id' => 0, 'sort_order' => $field_position++, 'settings' => $v['settings']]);
+		}
+
+      	$form->title = $_POST['title'];
+      	$form->settings["button_text"] = isset($_POST['settings']['button_text']) ? $_POST['settings']['button_text'] : '';
+      	$form->settings["button_position"] = isset($_POST['settings']['button_position']) ? $_POST['settings']['button_position'] : '';
+      	$form->settings["change_button_bg"] = isset($_POST['settings']['change_button_bg']) ? $_POST['settings']['change_button_bg'] : '';
+      	$form->settings["button_color"] = isset($_POST['settings']['button_color']) ? $_POST['settings']['button_color'] : '';
+
+      	$form->settings["use_thankyou_page"] = isset($_POST['settings']['use_thankyou_page']) ? $_POST['settings']['use_thankyou_page'] : '';
+      	$form->settings["thankyou_page_url"] = isset($_POST['settings']['thankyou_page_url']) ? $_POST['settings']['thankyou_page_url'] : '';
+      	$form->settings["message_success"] = isset($_POST['settings']['message_success']) ? $_POST['settings']['message_success'] : '';
+
+      	$form->settings["use_consent_field"] = isset($_POST['settings']['use_consent_field']) ? $_POST['settings']['use_consent_field'] : '';
+      	$form->settings["form_orientation"] = isset($_POST['settings']['form_orientation']) ? $_POST['settings']['form_orientation'] : '';
+
+      	$form->settings["consent_field_text"] = isset($_POST['settings']['consent_field_text']) ? $_POST['settings']['consent_field_text'] : '';
+      	$form->settings["consent_field_url"] = isset($_POST['settings']['consent_field_url']) ? $_POST['settings']['consent_field_url'] : '';
+
+      	$form->settings["form_doble_optin"] = isset($_POST['settings']['form_doble_optin']) ? $_POST['settings']['form_doble_optin'] : '';
+
+      	$form->settings["form_email_confirmacion_asunto"] = isset($_POST['settings']['form_email_confirmacion_asunto']) ? $_POST['settings']['form_email_confirmacion_asunto'] : '';
+      	$form->settings["form_email_confirmacion_pre_encabezado"] = isset($_POST['settings']['form_email_confirmacion_pre_encabezado']) ? $_POST['settings']['form_email_confirmacion_pre_encabezado'] : '';
+      	$form->settings["form_email_confirmacion_email_remitente"] = isset($_POST['settings']['form_email_confirmacion_email_remitente']) ? $_POST['settings']['form_email_confirmacion_email_remitente'] : '';
+      	$form->settings["form_email_confirmacion_nombre_remitente"] = isset($_POST['settings']['form_email_confirmacion_nombre_remitente']) ? $_POST['settings']['form_email_confirmacion_nombre_remitente'] : '';
+      	$form->settings["form_name"] = isset($_POST['settings']['form_name']) ? $_POST['settings']['form_name'] : '';
+      	$form->settings["form_email_reply_to"] = isset($_POST['settings']['form_email_reply_to']) ? $_POST['settings']['form_email_reply_to'] : '';
+
+      	$form->settings["form_email_confirmacion_email_contenido"] = isset($_POST['content']) ? $_POST['content'] : '';
+
+      	$form->settings["form_pagina_confirmacion"] = isset($_POST['settings']['form_pagina_confirmacion']) ? $_POST['settings']['form_pagina_confirmacion'] : '';
+      	$form->settings["form_pagina_confirmacion_select_landing"] = isset($_POST['settings']['form_pagina_confirmacion_select_landing']) ? $_POST['settings']['form_pagina_confirmacion_select_landing'] : '';
+      	$form->settings["form_pagina_confirmacion_url"] = isset($_POST['settings']['form_pagina_confirmacion_url']) ? $_POST['settings']['form_pagina_confirmacion_url'] : '';
+      } else {
+    	$fields = DPLR_Field_Model::getBy(['form_id' => $form_id],['sort_order'], true);
+	  }
+      
       include plugin_dir_path( __FILE__ ) . "../partials/forms-edit.php";
     } else {
       $form = $_POST;

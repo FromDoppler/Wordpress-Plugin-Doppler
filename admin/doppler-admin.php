@@ -311,10 +311,22 @@ class Doppler_Admin {
 				}
 			}
 			if(isset($_POST['form-edit'])){
-				if($this->form_controller->update($_POST['form_id'], $_POST) == 1){
+				$result_code = $this->form_controller->update($_POST['form_id'], $_POST);
+				if($result_code == 0){
 					$this->set_success_message(__('The Form has been edited correctly.','doppler-form'));
 				}else{
-					$this->set_error_message(__('Ouch! An error ocurred and the Form couldn\'t be edited. Try again later.','doppler-form'));
+					switch($result_code) {
+						case 1:
+							$this->set_error_message(__('The urlLanding field is not a valid fully-qualified http, https, or ftp URL.','doppler-form'));
+						break;
+						case 45:
+							$this->set_error_message(__('You should validate the Email sender domain before using it. HELP: https://help.fromdoppler.com/en/from-email-domain-validation/','doppler-form'));
+						break;
+						default:
+							$this->set_error_message(__('Ouch! An error ocurred and the Form couldn\'t be edited. Try again later.','doppler-form'));
+						break;
+					}
+					$active_tab = 'edit';
 				}
 			}
 		}
