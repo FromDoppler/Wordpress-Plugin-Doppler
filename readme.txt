@@ -88,6 +88,9 @@ En [este artículo](https://help.fromdoppler.com/es/api-interfaz-de-programacion
 8. Formulario de Suscripción.
 
 == Changelog ==
+= 2.3.1 =
+* Fix error messages not showing when updating Double Opt-In forms.
+
 = 2.3.0 =
 * Added new feature to allow users to create Double Opt-In forms.
 
