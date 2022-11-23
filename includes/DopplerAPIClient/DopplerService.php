@@ -296,6 +296,24 @@ class Doppler_Service
     return $this->resources[ $resourceName ];
   }
 
+  function pluginLogger($data, $method) {
+    $upload_dir = wp_upload_dir();
+    $upload_dir = $upload_dir['basedir'];
+    if ( is_array( $data ) ) { 
+      $data = json_encode( $data );
+    } 
+    $file  = $upload_dir . '/logs/' . $method. date('_d_m_Y') . '.log';
+    $dirname = dirname($file);
+    if (!is_dir($dirname))
+    {
+        mkdir($dirname, 0755, true);
+    }
+    $file  = fopen( $file, 'a' );
+    $bytes = fwrite( $file, current_time( 'mysql' ) . " - " . $data . "\n\n" ); 
+    fclose( $file ); 
+    return $bytes;
+  }
+
   function throwConnectionErr($msg) {
     if( $this->error == 0 && is_admin() ){
       $error = [
