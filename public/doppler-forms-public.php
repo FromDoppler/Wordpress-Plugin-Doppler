@@ -104,14 +104,14 @@ class DPLR_Doppler_Form_Public {
 	}
 
 	public function submit_form() {
-		$logger = wc_get_logger();
-		$logger->info( wc_print_r( array( 'action' => 'init submit_form', 'data' => $_POST), true ), array( 'source' => 'submit_form' ) );
+
+		$this->doppler_service->pluginLogger(array( 'action' => 'init submit_form', 'data' => $_POST), 'submit_form');
 
 		try
 		{
 
 			$options = get_option('dplr_settings');
-			$this->doppler_service->setCredentials(['api_key' => $options['dplr_option_apikey'], 'user_account' => $options['dplr_option_useraccount']]); 
+			$this->doppler_service->setCredentials(['api_key' => $options['dplr_option_apikey'], 'user_account' => $options['dplr_option_useraccount']]);
 
 			$subscriber_resource = $this->doppler_service->getResource('subscribers');
 
@@ -133,12 +133,12 @@ class DPLR_Doppler_Form_Public {
 				else{
 					$result = $subscriber_resource->addSubscriber($_POST['list_id'], $subscriber);
 				}
-				$logger->info( wc_print_r( array('action' => 'result submit_form', 'data' => $result), true ), array( 'source' => 'submit_form' ) );
+				$this->doppler_service->pluginLogger(array('action' => 'result submit_form', 'data' => $result), 'submit_form');
 			}
-			$logger->info( wc_print_r( array( 'action' => 'finish submit_form'), true ), array( 'source' => 'submit_form' ) );
+			$this->doppler_service->pluginLogger(array( 'action' => 'finish submit_form'), 'submit_form');
 		}
 		catch(\Exception $err) {
-			$logger->info( wc_print_r( array( 'action' => 'error submit_form', 'data' => $err), true ), array( 'source' => 'submit_form_error' ) );
+			$this->doppler_service->pluginLogger(array( 'action' => 'error submit_form', 'data' => $err), 'submit_form_error');
 		}
 
 	}

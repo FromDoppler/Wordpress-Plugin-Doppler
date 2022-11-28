@@ -51,8 +51,7 @@ class DPLR_Form_Controller
         // plugins/doppler-form/includes/DopplerAPIClient/DopplerService.php
         $response = $this->doppler_service->call($method, '', $form_data);
 
-        $logger = wc_get_logger();
-        $logger->info( wc_print_r( array("form" => $form_data, "response" => $response), true ), array( 'source' => 'form_create' ) );
+        $this->doppler_service->pluginLogger(array("form" => $form_data, "response" => $response), 'form_create');
 
         if($response["response"]["code"] === 201) {
           $body = json_decode($response["body"]);
@@ -159,8 +158,7 @@ class DPLR_Form_Controller
         // plugins/doppler-form/includes/DopplerAPIClient/DopplerService.php
         $response = $this->doppler_service->call($method, '', $form_data);
 
-        $logger = wc_get_logger();
-        $logger->info( wc_print_r( array("form" => $form_data, "response" => $response), true ), array( 'source' => 'form_update' ) );
+        $this->doppler_service->pluginLogger(array("form" => $form_data, "response" => $response), 'form_update');
 
         $form_to_update["content"] = str_replace('href=\"[[[ConfirmationLink]]]\"', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
         $form_to_update["content"] = str_replace('href="[[[ConfirmationLink]]]"', "href=[[[ConfirmationLink]]]", $form_to_update["content"]);
