@@ -193,15 +193,11 @@ class DPLR_Form_helper
     	switch ($input->type) {
 		case 'string':
 			if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'single') {
-				if($form_orientation_horizontal):
-				?>
-					<input <?=$required?> type="text" name="fields-<?php echo $input->name; ?>" placeholder="<?php echo isset($input->name) ? $input->name : ''; ?>" maxlength="150"/>
-				<?php
-				else: 
+				
 				?>
 					<input <?=$required?> type="text" name="fields-<?php echo $input->name; ?>" placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" maxlength="150"/>
 				<?php
-				endif;
+
 			} 
 			else 
 			{?>
@@ -265,7 +261,7 @@ class DPLR_Form_helper
 				name="<?php echo $input->name; ?>"  oninput="this.setCustomValidity('')" 
 				value="" 
 				maxlength="150" 
-				placeholder="<?php echo $label ?>">
+				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>">
 			<?php
 			else:
 			?>
