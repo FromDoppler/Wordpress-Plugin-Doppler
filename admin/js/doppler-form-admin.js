@@ -360,6 +360,10 @@ $(document).ready(function(){
 		colorSelector.css('display', 'none').iris('hide');
 	}
 
+	//Autocomplete the hidden button with the form_name in the forms of Double Opt-In
+	$('input[name="name"]').on('change', function() {
+		$("#form_name").val($(this).val());
+	});
 });
 
 function listsLoading(){
@@ -578,3 +582,4 @@ function removeQuoteMarksFromConfirmationLink(){
 	}
   }
 }
+  

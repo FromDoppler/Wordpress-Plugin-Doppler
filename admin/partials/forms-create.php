@@ -162,10 +162,7 @@
               <label for="settings[form_email_confirmacion_nombre_remitente]"><?php _e('Email sender name', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
               <input type="text" id="form_email_confirmacion_nombre_remitente" name="settings[form_email_confirmacion_nombre_remitente]" value="<?php echo isset($form['settings']["form_email_confirmacion_nombre_remitente"])?$form['settings']["form_email_confirmacion_nombre_remitente"]:'' ?>" placeholder="<?php _e('Example: Josh', 'doppler-form')?>" maxlength="40"/>
             </div>
-            <div class="dplr_input_section">
-              <label for="settings[form_name]"><?php _e('Email name', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-              <input type="text" id="form_name" name="settings[form_name]" value="<?php echo isset($form['settings']["form_name"])?$form['settings']["form_name"]:'' ?>" placeholder="<?php _e('Example: Josh', 'doppler-form')?>" maxlength="40"/>
-            </div>
+            <input type="hidden" id="form_name" name="settings[form_name]" maxlength="40"/>
             <div class="dplr_input_section">
               <label for="settings[form_email_reply_to]"><?php _e('Email reply-to', 'doppler-form')?></label>
               <input type="text" name="settings[form_email_reply_to]" value="<?php echo isset($form['settings']["form_email_reply_to"])?$form['settings']["form_email_reply_to"]:'' ?>" placeholder="<?php _e('Example: something-reply-to@hotmail.com', 'doppler-form')?>" maxlength="40"/>
@@ -276,7 +273,7 @@ function hideShowConfigDobleOptIn(){
     document.getElementById("form_email_confirmacion_asunto").required = true;
     document.getElementById("form_email_confirmacion_email_remitente").required = true;
     document.getElementById("form_email_confirmacion_nombre_remitente").required = true;
-    document.getElementById("form_name").required = true;
+    document.getElementById("form_name").required = false;
     document.getElementById("mostrar_landing").required = true;
     document.getElementById("mostrar_url").required = true;
   }
