@@ -142,16 +142,6 @@ class DPLR_Doppler_Form_Public {
 
 	}
 
-	/**
-	 * THIS IS OLD --> Add tracking script to site's header.
-	 */
-	// public function add_tracking_script() {
-	// 	$script = get_option('dplr_hub_script');
-	// 	if(!empty($script)){
-	// 		echo stripslashes(html_entity_decode($script));
-	// 	}
-	// }
-
 	// Add tracking script to site's header.
 	public function add_tracking_script() {
 		$handle = "dhtrack.js";
