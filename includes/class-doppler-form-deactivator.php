@@ -31,6 +31,9 @@ class Doppler_Deactivator {
 	 */
 	public static function deactivate() {
 
+		//Delete the option script for the tracking
+		delete_option('dplr_hub_script');
+
 	}
 
 }
