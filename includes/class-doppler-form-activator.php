@@ -34,6 +34,10 @@ class Doppler_Activator {
 		DPLR_Form_Model::init();
 		DPLR_Field_Model::init();
 
+		//Activate the tracking
+		$script = '<script type="text/javascript" async="async" src="https://hub.fromdoppler.com/public/dhtrack.js" ></script>';
+		update_option( 'dplr_hub_script', sanitize_text_field(htmlentities(trim($script))));
+
 	}
 
 }
