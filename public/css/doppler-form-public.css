@@ -55,6 +55,48 @@ form.dplr_form {
         width: 20px;
         height: 20px; }
 
+  form.dplr_form .container {
+    display: flex;
+    justify-content: space-between;
+  }
+    form.dplr_form .flex-item {
+      flex: 1;
+      padding: 5px;
+    }
+    form.dplr_form .flex-item input[type="text"] {
+      width: 90%;
+      margin: 0;
+    }
+    form.dplr_form .flex-item input[type="email"] {
+      width: 90%;
+      margin: 0;
+    }
+    form.dplr_form .flex-item input[type="radio"] {
+      margin: 0.2em;
+    }
+    form.dplr_form label.horizontal_label{
+      white-space: nowrap;
+      margin-right: 10px;
+    }
+    form.dplr_form div.consent_field{
+      order:999;
+      text-align: left
+    }
+  
+  .dplr_settings_not_founded{
+    color: #756e15;
+    background: #fffbd1;
+    border: 1px solid #87803e;
+    padding: 10px;
+    margin: 10px 10px 10px 0px;
+  }
+  
+  .permission-form-container{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
 @keyframes rotation {
   from {
     -webkit-transform: rotate(0deg);
