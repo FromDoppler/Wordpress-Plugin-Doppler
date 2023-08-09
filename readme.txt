@@ -91,6 +91,7 @@ En [este artículo](https://help.fromdoppler.com/es/api-interfaz-de-programacion
 = 2.3.5 =
 * Add tracking script by default when installing.
 * Fix rendering of placeholders in forms with horizontal orientation.
+* Added labels for horizontaly rendered forms.
 
 = 2.3.4 =
 * Fix font's path.
