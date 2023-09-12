@@ -683,6 +683,18 @@ msgstr ""
 msgid "Thanks for subscribing"
 msgstr ""
 
-#: includes/helpers/Form_Helper.php:108
+#: includes/helpers/Form_Helper.php:168
+msgid "Please enter only numbers."
+msgstr ""
+
+#: includes/helpers/Form_Helper.php:185
+msgid "Please enter a valid phone number +XXXXXX."
+msgstr ""
+
+#: includes/helpers/Form_Helper.php:234
 msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/helpers/Form_Helper.php:261
+msgid "Please enter a valid date dd/mm/YYYY."
 msgstr ""
