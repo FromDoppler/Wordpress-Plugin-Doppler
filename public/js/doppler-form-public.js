@@ -19,6 +19,26 @@
 			f.find('.msg-data-sending').hide();
 		});
 
+		//Input Phone doppler flags
+		const input = document.querySelector("#phone-doppler");
+        const countrySelector = document.querySelector("#country-selector");
+        const iti = window.intlTelInput(input, {
+        	utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js",
+        	initialCountry: "auto",
+        	separateDialCode: true,
+        	customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
+            	return selectedCountryPlaceholder;
+        	},
+        });
+        iti.promise.then(function () {
+        	iti.setPlaceholderNumber();
+        	iti.setCountry("auto");
+        });
+
+		//Input Date doopler
+		$("#date-picker").datepicker({
+			dateFormat: "yy-mm-dd", // Format as "YYYY-MM-DD"
+		});
 		$('.dplr_form').submit(function(ev) {
 						
 			ev.preventDefault();

@@ -151,11 +151,27 @@ class DPLR_Form_helper
 			<?php
 			if($form_orientation_horizontal):
 			?>
-				<input <?=$required?> type="number" name="fields-<?php echo $input->name; ?>" placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" maxlength="27"/>
+				<input <?=$required?> 
+				type="number" 
+				oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')" 
+				pattern="[0-9]" 
+				name="fields-<?php echo $input->name; ?>"
+				oninput="this.setCustomValidity('')" 
+				value=""  
+				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" 
+				maxlength="27"/>
 				<?php
 			else:
 			?>
-				<input <?=$required?> type="number" name="fields-<?php echo $input->name; ?>" placeholder="<?php echo $label ?>" maxlength="27"/>
+				<input <?=$required?> 
+				type="number" 
+				oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')" 
+				pattern="[0-9]" 
+				name="fields-<?php echo $input->name; ?>" 
+				oninput="this.setCustomValidity('')" 
+				value=""  
+				placeholder="<?php echo $label ?>" 
+				maxlength="27"/>
 			<?php
 			endif;
 			break;
@@ -163,11 +179,30 @@ class DPLR_Form_helper
 			<?php
 			if($form_orientation_horizontal):
 			?>
-				<input <?=$required?> type="tel" name="fields-<?php echo $input->name; ?>" placeholder="<?php echo $label?>" maxlength="150"/>
+				<input <?=$required?>
+				type="tel" 
+				id = "phone-doppler"
+				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid phone number +XXXXXX.', 'doppler-form') ?>')" 
+				pattern="\d+" 
+				name="fields-<?php echo $input->name; ?>" 
+				oninput="this.setCustomValidity('')" 
+				value=""
+				placeholder="<?php echo $label?>" 
+				maxlength="150"/> 
 				<?php
 			else:
 				?>
-				<input <?=$required?> type="tel" name="fields-<?php echo $input->name; ?>" placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" maxlength="150"/>
+				<input <?=$required?>
+				type="tel" 
+				id = "phone-doppler" 
+				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid phone number +XXXXXX.', 'doppler-form') ?>')" 
+				pattern="\d+" 
+				name="fields-<?php echo $input->name; ?>" 
+				oninput="this.setCustomValidity('')" 
+				value=""
+				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" 
+				maxlength="20"/>
+				<div id="country-selector"></div>
 			<?php
 			endif;
 			break;
@@ -220,12 +255,28 @@ class DPLR_Form_helper
 			<?php
 			if($form_orientation_horizontal):
 			?>
-				<input <?=$required?> type="text" name="<?php echo $input->name; ?>" value="" class="date" maxlength="150" placeholder="<?php echo $label ?>">
+				<input <?=$required?> 
+				type="text" 
+				name="<?php echo $input->name; ?>" 
+				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
+				pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$" 
+				value="" 
+				class="date" 
+				maxlength="150" 
+				placeholder="<?php echo $label ?>"> 
 				<input type="hidden" name="fields-<?php echo $input->name; ?>" value="">
 			<?php
 			else:
 			?>
-				<input <?=$required?> type="text" name="<?php echo $input->name; ?>" value="" class="date" maxlength="150">
+				<input <?=$required?>
+				id="date-picker"
+				type="text" 
+				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
+				pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$" 
+				name="<?php echo $input->name; ?>" 
+				value="" 
+				class="date" 
+				maxlength="150">
 				<input type="hidden" name="fields-<?php echo $input->name; ?>" value="">
 			<?php
 			endif;
