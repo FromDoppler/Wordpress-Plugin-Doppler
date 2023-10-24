@@ -596,7 +596,7 @@ class Doppler_Admin {
 	/**
 	 * Get Lists by Page number. 1st page by default.
 	 */
-	public function get_lists_by_page( $page = 1, $per_page ) {
+	public function get_lists_by_page($per_page, $page = 1 ) {
 		$list_resource = $this->doppler_service->getResource( 'lists' );
 		return $list_resource->getListsByPage( $page , $per_page );
 	}
