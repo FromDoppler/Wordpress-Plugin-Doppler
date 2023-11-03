@@ -182,8 +182,8 @@ class DPLR_Form_helper
 				<input <?=$required?>
 				type="tel" 
 				id = "phone-doppler"
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid phone number +XXXXXX.', 'doppler-form') ?>')" 
-				pattern="\d+" 
+				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid phone number like (+xxx xxxxxx) or (xxxxx).', 'doppler-form') ?>')" 
+				pattern="(\+\d+|\d+)" 
 				name="fields-<?php echo $input->name; ?>" 
 				oninput="this.setCustomValidity('')" 
 				value=""
@@ -195,8 +195,8 @@ class DPLR_Form_helper
 				<input <?=$required?>
 				type="tel" 
 				id = "phone-doppler" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid phone number +XXXXXX.', 'doppler-form') ?>')" 
-				pattern="\d+" 
+				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid phone number like (+xxx xxxxxx) or (xxxxx).', 'doppler-form') ?>')" 
+				pattern="(\+\d+|\d+)" 
 				name="fields-<?php echo $input->name; ?>" 
 				oninput="this.setCustomValidity('')" 
 				value=""
@@ -232,7 +232,7 @@ class DPLR_Form_helper
 			?>
 				<input <?=$required?> type="email" 
 				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid email address.', 'doppler-form') ?>')" 
-				pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" 
+				pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$" 
 				name="<?php echo $input->name; ?>"  oninput="this.setCustomValidity('')" 
 				value="" 
 				maxlength="150" 
@@ -242,7 +242,7 @@ class DPLR_Form_helper
 			?>
 				<input <?=$required?> type="email" 
 				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid email address.', 'doppler-form') ?>')" 
-				pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" 
+				pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$" 
 				name="<?php echo $input->name; ?>"  oninput="this.setCustomValidity('')" 
 				value="" 
 				maxlength="150" 
@@ -257,6 +257,7 @@ class DPLR_Form_helper
 			?>
 				<input <?=$required?> 
 				type="text" 
+				readonly 
 				name="<?php echo $input->name; ?>" 
 				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
 				pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$" 
@@ -270,6 +271,7 @@ class DPLR_Form_helper
 			?>
 				<input <?=$required?>
 				id="date-picker"
+				readonly 
 				type="text" 
 				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
 				pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$" 
@@ -283,8 +285,9 @@ class DPLR_Form_helper
 			break;
 		case 'gender':
 		?>
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="M">M
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="F">F<?php
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="Masculino">M
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="Femenino">F
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="N/A">N/A<?php
 			break;
 		case 'country':
 			?><select <?php echo $required; ?> name="fields-<?php echo $input->name; ?>">

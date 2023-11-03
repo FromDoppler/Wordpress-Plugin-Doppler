@@ -23,17 +23,41 @@
 		const input = document.querySelector("#phone-doppler");
         const countrySelector = document.querySelector("#country-selector");
         const iti = window.intlTelInput(input, {
-        	utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js",
-        	initialCountry: "auto",
+        	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+        	initialCountry: "us",
         	separateDialCode: true,
         	customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
             	return selectedCountryPlaceholder;
         	},
         });
-        iti.promise.then(function () {
-        	iti.setPlaceholderNumber();
-        	iti.setCountry("auto");
-        });
+
+		$("form.dplr_form").submit(function(e){
+			if($("#phone-doppler").val()){
+				var validate = true;
+				var input_tel = String($("#phone-doppler").val());
+				var country_code = String($(".iti__active .iti__dial-code").html());
+				if(country_code === "undefined")						validate = false;
+				else{
+					if(input_tel[0]=="+"){
+						if(country_code.length>=input_tel.length)		validate = false;
+						else{
+							for(var i=0;i<country_code.length;i++){
+								if(country_code[i]!=input_tel[i])		validate = false;
+							}
+						}
+					}
+					else	input_tel = country_code+input_tel;
+				}
+				if(validate){
+					$("#phone-doppler").val(input_tel);
+					alert($("#phone-doppler").val());
+				}	
+				else{
+					alert("Error en el codigo pais del telefono.");
+					stopEvent(e);
+				}
+			}
+		});
 
 		//Input Date doopler
 		$("#date-picker").datepicker({
