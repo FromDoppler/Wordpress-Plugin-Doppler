@@ -5,7 +5,7 @@
  */
 
 if( ! class_exists( 'Doppler_Service' ) ) :
-
+  #[\AllowDynamicProperties]
 class Doppler_Service
 {
 
