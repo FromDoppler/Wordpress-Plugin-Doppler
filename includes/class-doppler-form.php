@@ -27,7 +27,7 @@
  * @subpackage Plugin_Name/includes
  * @author     Your Name <email@example.com>
  */
-
+#[\AllowDynamicProperties]
 class DPLR_Doppler {
 
 	/**

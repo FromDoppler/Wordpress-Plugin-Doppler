@@ -4,6 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  */
+#[\AllowDynamicProperties]
 class Doppler_Admin {
 
 	/**
