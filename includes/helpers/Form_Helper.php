@@ -186,7 +186,7 @@ class DPLR_Form_helper
 				pattern="(\+\d+|\d+)" 
 				name="fields-<?php echo $input->name; ?>" 
 				oninput="this.setCustomValidity('')" 
-				value=""
+				value="" 
 				placeholder="<?php echo $label?>" 
 				maxlength="150"/> 
 				<?php
