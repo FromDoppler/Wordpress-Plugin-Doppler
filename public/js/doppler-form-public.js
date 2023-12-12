@@ -20,42 +20,53 @@
 		});
 
 		//Input Phone doppler flags
-		const input = document.querySelector("#phone-doppler");
+		const input = document.getElementById("phone-doppler");
         const countrySelector = document.querySelector("#country-selector");
         const iti = window.intlTelInput(input, {
         	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-        	initialCountry: "us",
+        	initialCountry: "ar",
         	separateDialCode: true,
         	customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
             	return selectedCountryPlaceholder;
         	},
         });
 
-		$("form.dplr_form").submit(function(e){
-			if($("#phone-doppler").val()){
-				var validate = true;
-				var input_tel = String($("#phone-doppler").val());
-				var country_code = String($(".iti__active .iti__dial-code").html());
-				if(country_code === "undefined")						validate = false;
-				else{
-					if(input_tel[0]=="+"){
-						if(country_code.length>=input_tel.length)		validate = false;
-						else{
-							for(var i=0;i<country_code.length;i++){
-								if(country_code[i]!=input_tel[i])		validate = false;
-							}
-						}
+		function validateTel(phone_input){
+			const errorMap = ["Please enter a valid phone number.", "Please enter a valid country code.", "Please enter a valid phone number this is too short.", "Please enter a valid phone number this is too long.", "Please enter a valid number."];
+			var errorMsg = '';
+			if (input.value.trim()) {
+				if (!iti.isValidNumber()) {	
+					const errorCode = iti.getValidationError();
+					if(errorCode != -99) {
+						errorMsg = errorMap[errorCode];
+					} else {
+						errorMsg = 'Please enter a valid phone format.';
 					}
-					else	input_tel = country_code+input_tel;
+					phone_input.setCustomValidity(errorMsg);
+					phone_input.reportValidity();
+					return false;
 				}
-				if(validate){
-					$("#phone-doppler").val(input_tel);
-					alert($("#phone-doppler").val());
-				}	
 				else{
-					alert("Error en el codigo pais del telefono.");
-					stopEvent(e);
+					return true;
 				}
+			}
+			else{
+				return false;
+			}
+		}
+
+		$("#phone-doppler").blur(function (){
+			validateTel(this);			
+		});
+
+		$("form.dplr_form").submit(function(e){
+			if(validateTel($("#phone-doppler"))){
+				var phoneNumber = $("#phone-doppler").val();
+				var countryCode = $(".iti__selected-dial-code").html();
+				$("#phone-doppler").val(countryCode + phoneNumber);
+			}
+			else{
+				return false;
 			}
 		});
 
@@ -128,3 +139,17 @@
 		});
 	});
 })( jQuery );
+
+
+
+function telValidation(){
+
+	if (input.value.trim()) {
+		if (!iti.isValidNumber()) {	
+			const errorCode = iti.getValidationError();
+			errorMsg = errorMap[errorCode];
+			alert(errorMsg);
+		}
+	}
+	
+}

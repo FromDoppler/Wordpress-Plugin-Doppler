@@ -182,8 +182,6 @@ class DPLR_Form_helper
 				<input <?=$required?>
 				type="tel" 
 				id = "phone-doppler"
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid phone number like (+xxx xxxxxx) or (xxxxx).', 'doppler-form') ?>')" 
-				pattern="(\+\d+|\d+)" 
 				name="fields-<?php echo $input->name; ?>" 
 				oninput="this.setCustomValidity('')" 
 				value="" 
@@ -195,8 +193,6 @@ class DPLR_Form_helper
 				<input <?=$required?>
 				type="tel" 
 				id = "phone-doppler" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid phone number like (+xxx xxxxxx) or (xxxxx).', 'doppler-form') ?>')" 
-				pattern="(\+\d+|\d+)" 
 				name="fields-<?php echo $input->name; ?>" 
 				oninput="this.setCustomValidity('')" 
 				value=""
