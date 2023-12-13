@@ -139,17 +139,3 @@
 		});
 	});
 })( jQuery );
-
-
-
-function telValidation(){
-
-	if (input.value.trim()) {
-		if (!iti.isValidNumber()) {	
-			const errorCode = iti.getValidationError();
-			errorMsg = errorMap[errorCode];
-			alert(errorMsg);
-		}
-	}
-	
-}
