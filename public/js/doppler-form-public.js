@@ -32,7 +32,7 @@
         });
 
 		function validateTel(phone_input){
-			const errorMap = ["Please enter a valid phone number.", "Please enter a valid country code.", "Please enter a valid phone number this is too short.", "Please enter a valid phone number this is too long.", "Please enter a valid number."];
+			const errorMap = ["Please enter a valid phone number.", "Please enter a valid country code.", "The phone number is too short.", "The phone number is too long.", "Please enter a valid number."];
 			var errorMsg = '';
 			if (input.value.trim()) {
 				if (!iti.isValidNumber()) {	
