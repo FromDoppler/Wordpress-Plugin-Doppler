@@ -742,10 +742,6 @@ msgstr "Gracias por suscribirte"
 msgid "Please enter only numbers."
 msgstr "Ingrese solo numeros."
 
-#: includes/helpers/Form_Helper.php:185
-msgid "Please enter a valid phone number +XXXXXX."
-msgstr "Ingrese un numero valido +XXXXXX."
-
 #: includes/helpers/Form_Helper.php:234
 msgid "Please enter a valid email address."
 msgstr "Ingrese un Email válido."
@@ -753,6 +749,10 @@ msgstr "Ingrese un Email válido."
 #: includes/helpers/Form_Helper.php:261
 msgid "Please enter a valid date dd/mm/YYYY."
 msgstr "Ingrese una fecha valida dd/mm/YYYY."
+
+#: public/doppler-forms-public.php:108
+msgid "Invalid Format."
+msgstr "Formato Inválido."
 
 #~ msgid "This extension is installed. Go to %s settings page</a>."
 #~ msgstr ""

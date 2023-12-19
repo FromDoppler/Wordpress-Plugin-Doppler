@@ -104,6 +104,9 @@ class DPLR_Doppler_Form_Public {
 		wp_enqueue_script('js-input-date', 'https://unpkg.com/datepickr', array(), $this->version, false);
 		wp_localize_script( $this->plugin_name, 'dplr_obj_vars',
             array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+		wp_localize_script( $this->plugin_name, 'errorMsg',
+			array( 'err' => esc_html__("Invalid Format.",'doppler-form') )
+		);
 
 	}
 

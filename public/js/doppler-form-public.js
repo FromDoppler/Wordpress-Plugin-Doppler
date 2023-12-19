@@ -32,26 +32,15 @@
         });
 
 		function validateTel(phone_input){
-			const errorMap = ["Please enter a valid phone number.", "Please enter a valid country code.", "The phone number is too short.", "The phone number is too long.", "Please enter a valid number."];
-			var errorMsg = '';
 			if (input.value.trim()) {
 				if (!iti.isValidNumber()) {	
-					const errorCode = iti.getValidationError();
-					if(errorCode != -99) {
-						errorMsg = errorMap[errorCode];
-					} else {
-						errorMsg = 'Please enter a valid phone format.';
-					}
-					phone_input.setCustomValidity(errorMsg);
+					phone_input.setCustomValidity(errorMsg.err);
 					phone_input.reportValidity();
 					return false;
 				}
 				else{
 					return true;
 				}
-			}
-			else{
-				return false;
 			}
 		}
 

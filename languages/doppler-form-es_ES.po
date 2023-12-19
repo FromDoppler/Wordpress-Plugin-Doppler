@@ -848,9 +848,9 @@ msgstr "Gracias por suscribirte"
 msgid "Please enter only numbers."
 msgstr "Ingrese solo numeros."
 
-#: includes/helpers/Form_Helper.php:185
-msgid "Please enter a valid phone number +XXXXXX."
-msgstr "Ingrese un numero valido +XXXXXX."
+#: public/doppler-forms-public.php:108
+msgid "Invalid Format."
+msgstr "Formato Inválido."
 
 #: includes/helpers/Form_Helper.php:234
 msgid "Please enter a valid email address."
