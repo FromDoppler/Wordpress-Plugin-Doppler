@@ -687,8 +687,8 @@ msgstr ""
 msgid "Please enter only numbers."
 msgstr ""
 
-#: includes/helpers/Form_Helper.php:185
-msgid "Please enter a valid phone number +XXXXXX."
+#: public/doppler-forms-public.php:108
+msgid "Invalid Format."
 msgstr ""
 
 #: includes/helpers/Form_Helper.php:234

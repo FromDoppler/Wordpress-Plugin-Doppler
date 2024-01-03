@@ -75,7 +75,7 @@ class DPLR_Doppler_Form_Public {
 		 */
 		wp_enqueue_style( 'jquery-ui-datepicker', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/doppler-form-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style('css-input-tel', 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css', array(), $this->version, 'all');
+		wp_enqueue_style('css-input-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css', array(), $this->version, 'all');
 		wp_enqueue_style('css-input-date', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), $this->version, 'all');
 
 	}
@@ -100,10 +100,13 @@ class DPLR_Doppler_Form_Public {
 		 */
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/doppler-form-public.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script('js-input-tel', 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js', array(), $this->version, false);
+		wp_enqueue_script('js-input-tel', 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js', array(), $this->version, false);
 		wp_enqueue_script('js-input-date', 'https://unpkg.com/datepickr', array(), $this->version, false);
 		wp_localize_script( $this->plugin_name, 'dplr_obj_vars',
             array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+		wp_localize_script( $this->plugin_name, 'errorMsg',
+			array( 'err' => esc_html__("Invalid Format.",'doppler-form') )
+		);
 
 	}
 
@@ -114,7 +117,7 @@ class DPLR_Doppler_Form_Public {
 		try
 		{
 
-			$options = get_option('dplr_settings');
+			$options = get_option('dplr_settings'); 
 			$this->doppler_service->setCredentials(['api_key' => $options['dplr_option_apikey'], 'user_account' => $options['dplr_option_useraccount']]);
 
 			$subscriber_resource = $this->doppler_service->getResource('subscribers');
