@@ -21,43 +21,45 @@
 
 		//Input Phone doppler flags
 		const input = document.getElementById("phone-doppler");
-        const countrySelector = document.querySelector("#country-selector");
-        const iti = window.intlTelInput(input, {
-        	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-        	initialCountry: "ar",
-        	separateDialCode: true,
-        	customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
-            	return selectedCountryPlaceholder;
-        	},
-        });
+		if(input != null){
+			const countrySelector = document.querySelector("#country-selector");
+			const iti = window.intlTelInput(input, {
+				utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+				initialCountry: "ar",
+				separateDialCode: true,
+				customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
+					return selectedCountryPlaceholder;
+				},
+			});
 
-		function validateTel(phone_input){
-			if (input.value.trim()) {
-				if (!iti.isValidNumber()) {	
-					phone_input.setCustomValidity(errorMsg.err);
-					phone_input.reportValidity();
-					return false;
+			function validateTel(phone_input){
+				if (input.value.trim()) {
+					if (!iti.isValidNumber()) {	
+						phone_input.setCustomValidity(errorMsg.err);
+						phone_input.reportValidity();
+						return false;
+					}
+					else{
+						return true;
+					}
+				}
+			}
+
+			$("#phone-doppler").blur(function (){
+				validateTel(this);			
+			});
+
+			$("form.dplr_form").submit(function(e){
+				if(validateTel($("#phone-doppler"))){
+					var phoneNumber = $("#phone-doppler").val();
+					var countryCode = $(".iti__selected-dial-code").html();
+					$("#phone-doppler").val(countryCode + phoneNumber);
 				}
 				else{
-					return true;
+					return false;
 				}
-			}
+			});	
 		}
-
-		$("#phone-doppler").blur(function (){
-			validateTel(this);			
-		});
-
-		$("form.dplr_form").submit(function(e){
-			if(validateTel($("#phone-doppler"))){
-				var phoneNumber = $("#phone-doppler").val();
-				var countryCode = $(".iti__selected-dial-code").html();
-				$("#phone-doppler").val(countryCode + phoneNumber);
-			}
-			else{
-				return false;
-			}
-		});
 
 		//Input Date doopler
 		$("#date-picker").datepicker({
