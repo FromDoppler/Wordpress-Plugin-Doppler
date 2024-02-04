@@ -63,10 +63,6 @@
 			});
 		}
 
-		//Input Date doopler
-		$("#date-picker").datepicker({
-			dateFormat: "yy-mm-dd", // Format as "YYYY-MM-DD"
-		});
 		$(".dplr_form").submit(function (ev) {
 			ev.preventDefault();
 

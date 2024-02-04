@@ -266,7 +266,6 @@ class DPLR_Form_helper
 			else:
 			?>
 				<input <?=$required?>
-				id="date-picker"
 				readonly 
 				type="text" 
 				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
