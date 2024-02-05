@@ -101,7 +101,10 @@
 
 				var field = {};
 				field["name"] = name;
-				field["value"] = input.val();
+				field["value"] =
+					input.attr("type") == "radio" && input.val() == "N/A"
+						? ""
+						: input.val();
 				subscriber.fields.push(field);
 			});
 
