@@ -266,7 +266,6 @@ class DPLR_Form_helper
 			else:
 			?>
 				<input <?=$required?>
-				id="date-picker"
 				readonly 
 				type="text" 
 				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
@@ -281,8 +280,8 @@ class DPLR_Form_helper
 			break;
 		case 'gender':
 		?>
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="Masculino">M
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="Femenino">F
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="M">M
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="F">F
 			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="N/A">N/A<?php
 			break;
 		case 'country':

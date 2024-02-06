@@ -1,72 +1,69 @@
-(function( $ ) {
-	'use strict';
-	$(document).ready(function() {
-		$("form.dplr_form input[type='text'].date").each(function() {
+(function ($) {
+	"use strict";
+	$(document).ready(function () {
+		$("form.dplr_form input[type='text'].date").each(function () {
 			var dateElement = $(this);
-			var elementName = dateElement.attr('name');
+			var elementName = dateElement.attr("name");
 			dateElement.datepicker({
-				'dateFormat': 'dd/mm/yy',
-				'altFormat': 'yy-mm-dd',
-				'yearRange': '-100:+10',
-				'changeMonth': true,
-      			'changeYear': true,
-				'altField': 'input[name="fields-'+elementName+'"]'
+				dateFormat: "dd/mm/yy",
+				altFormat: "yy-mm-dd",
+				yearRange: "-100:+100",
+				changeMonth: true,
+				changeYear: true,
+				altField: 'input[name="fields-' + elementName + '"]',
 			});
 		});
 
-		$('.dplr_form input[name="EMAIL"]').focus(function(){
-			var f = $(this).closest('form');
-			f.find('.msg-data-sending').hide();
+		$('.dplr_form input[name="EMAIL"]').focus(function () {
+			var f = $(this).closest("form");
+			f.find(".msg-data-sending").hide();
 		});
 
 		//Input Phone doppler flags
 		const input = document.getElementById("phone-doppler");
-        if(input != null){
+		if (input != null) {
 			const countrySelector = document.querySelector("#country-selector");
 			const iti = window.intlTelInput(input, {
-				utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+				utilsScript:
+					"https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
 				initialCountry: "ar",
 				separateDialCode: true,
-				customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
+				customPlaceholder: function (
+					selectedCountryPlaceholder,
+					selectedCountryData
+				) {
 					return selectedCountryPlaceholder;
 				},
 			});
-	
-			function validateTel(phone_input){
+
+			function validateTel(phone_input) {
 				if (input.value.trim()) {
-					if (!iti.isValidNumber()) {	
+					if (!iti.isValidNumber()) {
 						phone_input.setCustomValidity(errorMsg.err);
 						phone_input.reportValidity();
 						return false;
-					}
-					else{
+					} else {
 						return true;
 					}
 				}
 			}
-	
-			$("#phone-doppler").blur(function (){
-				validateTel(this);			
+
+			$("#phone-doppler").blur(function () {
+				validateTel(this);
 			});
-	
-			$("form.dplr_form").submit(function(e){
-				if(validateTel($("#phone-doppler"))){
+
+			$("form.dplr_form").submit(function (e) {
+				if (validateTel($("#phone-doppler"))) {
 					var phoneNumber = $("#phone-doppler").val();
 					var countryCode = $(".iti__selected-dial-code").html();
 					$("#phone-doppler").val(countryCode + phoneNumber);
-				}
-				else{
+				} else {
 					return false;
 				}
 			});
 		}
 
-		//Input Date doopler
-		$("#date-picker").datepicker({
-			dateFormat: "yy-mm-dd", // Format as "YYYY-MM-DD"
-		});
-		$('.dplr_form').submit(function(ev) {
-						
+		$(".dplr_form").submit(function (ev) {
 			ev.preventDefault();
 
 			var f = $(this);
@@ -75,58 +72,65 @@
 			var l = $(this).find("input[name='list_id']");
 			var d = $(this).find("input[name='form_id']");
 			var e = $(this).find("input[name='EMAIL']");
-			var honey =  $(this).find("input[name='secondary-dplrEmail']");
+			var honey = $(this).find("input[name='secondary-dplrEmail']");
 			var thankyou = $(this).find("input[name='thankyou']");
-			var fields = $(this).find("input[name|='fields'], select[name|='fields'], textarea[name|='fields']");
+			var fields = $(this).find(
+				"input[name|='fields'], select[name|='fields'], textarea[name|='fields']"
+			);
 
 			s.attr("disabled", "disabled");
-			s.addClass('sending');
+			s.addClass("sending");
 
 			var subscriber = {},
-			list_id = l.val();
+				list_id = l.val();
 			let form_id = d.val();
 			subscriber.email = e.val();
 			subscriber.hp = honey.val();
 			subscriber.fields = [];
 
-			fields.each(function(index) {
+			fields.each(function (index) {
 				var input = $(fields[index]);
 
-				if (input.attr('type') == 'radio' && !input.is(':checked')) return;
-				if (input.attr('type') == 'checkbox' && !input.is(':checked')) return;
+				if (input.attr("type") == "radio" && !input.is(":checked")) return;
+				if (input.attr("type") == "checkbox" && !input.is(":checked")) return;
 
-				var name = input.attr('name');
-				name = name.split('-');
+				var name = input.attr("name");
+				name = name.split("-");
 				name = name.slice(1);
-				name = !Array.isArray(name) ? name : name.join('-');
+				name = !Array.isArray(name) ? name : name.join("-");
 
 				var field = {};
-				field['name'] = name;
-				field['value'] = input.val();
+				field["name"] = name;
+				field["value"] =
+					input.attr("type") == "radio" && input.val() == "N/A"
+						? ""
+						: input.val();
 				subscriber.fields.push(field);
 			});
-			
-			$.post(dplr_obj_vars.ajax_url,
+
+			$.post(
+				dplr_obj_vars.ajax_url,
 				{
-					"action": 'submit_form', 
-					"subscriber": subscriber, 
-					"list_id": list_id,
-					"form_id": form_id
+					action: "submit_form",
+					subscriber: subscriber,
+					list_id: list_id,
+					form_id: form_id,
 				},
-				function(res) {
-					if(thankyou.length !== 0){
+				function (res) {
+					if (thankyou.length !== 0) {
 						window.location.href = thankyou.val();
-					}else{
-						s.removeClass('sending');
+					} else {
+						s.removeClass("sending");
 						m.show();
 						s.removeAttr("disabled");
-						f.trigger('reset');
-						setTimeout(function() {
+						f.trigger("reset");
+						setTimeout(function () {
 							m.hide();
 							f[0].reset();
 						}, 8000);
 					}
-			});
+				}
+			);
 		});
 	});
-})( jQuery );
+})(jQuery);
