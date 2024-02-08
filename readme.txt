@@ -1,4 +1,4 @@
-﻿=== Doppler Forms ===
+=== Doppler Forms ===
 Contributors: fromdoppler
 Donate link: --
 Tags: Doppler, Email marketing, integration, subscription, form, automation
