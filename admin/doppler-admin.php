@@ -530,7 +530,7 @@ class Doppler_Admin {
 	  */
 	public function ajax_get_lists() {
 		$this->set_credentials();
-		echo json_encode($this->get_lists_by_page($_POST['page'], $_POST['per_page']));
+		echo json_encode($this->get_lists_by_page($_POST['per_page'], $_POST['page']));
 		wp_die();
 	}
 
