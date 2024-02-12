@@ -567,11 +567,8 @@ function validateEmailContent(e) {
 	if (!tinyMCE.activeEditor)
 		jQuery(".wp-editor-wrap .switch-tmce").trigger("click");
 
-	if (!tinyMCE.activeEditor) {
-		content = document.getElementById("content").value;
-	} else {
-		content = tinyMCE.activeEditor.getContent();
-	}
+	// get content by element Id because sometimes the tinyMCE.getContent() function is not updated
+	content = document.getElementById("content").value;
 
 	content = content.replace(
 		'href="[[[ConfirmationLink]]]"',
@@ -582,7 +579,7 @@ function validateEmailContent(e) {
 		"href=[[[ConfirmationLink]]]"
 	);
 
-	if (!tinyMCE.activeEditor) {
+	if (tinyMCE.activeEditor) {
 		tinyMCE.activeEditor.setContent(content);
 	} else {
 		document.getElementById("content").value = content;
