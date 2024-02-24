@@ -158,59 +158,37 @@ class DPLR_Form_helper
 			<?php }
 			break;
 		case 'number':?>
+			<input <?=$required?>
+			type="number"
+			oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')"
+			pattern="[0-9]"
+			name="fields-<?php echo $input->name; ?>"
+			oninput="this.setCustomValidity('')"
+			value=""
+			placeholder="<?php $form_orientation_horizontal ?
+				echo isset($input->settings['placeholder']) ?
+					$input->settings['placeholder']
+					: ''
+				: echo $label ?>"
+			maxlength="27"/>
 			<?php
-			if($form_orientation_horizontal):
-			?>
-				<input <?=$required?> 
-				type="number" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')" 
-				pattern="[0-9]" 
-				name="fields-<?php echo $input->name; ?>"
-				oninput="this.setCustomValidity('')" 
-				value=""  
-				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" 
-				maxlength="27"/>
-				<?php
-			else:
-			?>
-				<input <?=$required?> 
-				type="number" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')" 
-				pattern="[0-9]" 
-				name="fields-<?php echo $input->name; ?>" 
-				oninput="this.setCustomValidity('')" 
-				value=""  
-				placeholder="<?php echo $label ?>" 
-				maxlength="27"/>
-			<?php
-			endif;
 			break;
 		case 'phone':?>
-			<?php
-			if($form_orientation_horizontal):
-			?>
 				<input <?=$required?>
-				type="tel" 
+				type="tel"
 				id = "phone-doppler"
-				name="fields-<?php echo $input->name; ?>" 
-				oninput="this.setCustomValidity('')" 
-				value="" 
-				placeholder="<?php echo $label?>" 
-				maxlength="150"/> 
-				<?php
-			else:
-				?>
-				<input <?=$required?>
-				type="tel" 
-				id = "phone-doppler" 
-				name="fields-<?php echo $input->name; ?>" 
-				oninput="this.setCustomValidity('')" 
+				name="fields-<?php echo $input->name; ?>"
+				oninput="this.setCustomValidity('')"
 				value=""
-				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" 
-				maxlength="20"/>
-				<div id="country-selector"></div>
+				placeholder="<?php $form_orientation_horizontal ?
+					echo $label
+					: echo isset($input->settings['placeholder']) ?
+						$input->settings['placeholder']
+						: ''
+				?>"
+				maxlength="150"/>
+				<?php $form_orientation_horizontal ? '' : echo '<div id="country-selector"></div>' ?>
 			<?php
-			endif;
 			break;
 		case 'consent':?>
 			<input <?=$required?>
@@ -246,60 +224,33 @@ class DPLR_Form_helper
 			break;
 		case 'email':
 			?>
+			<input <?=$required?>
+			type="email"
+			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid email address.', 'doppler-form') ?>')"
+			pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$"
+			name="<?php echo $input->name; ?>"
+			oninput="this.setCustomValidity('')"
+			value=""
+			maxlength="150"
+			placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>">
 			<?php
-			if($form_orientation_horizontal):
-			?>
-				<input <?=$required?> type="email" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid email address.', 'doppler-form') ?>')" 
-				pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$" 
-				name="<?php echo $input->name; ?>"  oninput="this.setCustomValidity('')" 
-				value="" 
-				maxlength="150" 
-				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>">
-			<?php
-			else:
-			?>
-				<input <?=$required?> type="email" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid email address.', 'doppler-form') ?>')" 
-				pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$" 
-				name="<?php echo $input->name; ?>"  oninput="this.setCustomValidity('')" 
-				value="" 
-				maxlength="150" 
-				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>">
-			<?php
-			endif;
 			break;
 		case 'date':
 			?>
+			<input <?=$required?>
+			type="text"
+			readonly
+			name="<?php echo $input->name; ?>"
+			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')"
+			pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$"
+			value=""
+			class="date"
+			maxlength="150"
+			<?php $form_orientation_horizontal? echo 'placeholder="'$label'">': '' ?>>
+			<input type="hidden"
+			name="fields-<?php echo $input->name; ?>"
+			value="">
 			<?php
-			if($form_orientation_horizontal):
-			?>
-				<input <?=$required?> 
-				type="text" 
-				readonly 
-				name="<?php echo $input->name; ?>" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
-				pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$" 
-				value="" 
-				class="date" 
-				maxlength="150" 
-				placeholder="<?php echo $label ?>"> 
-				<input type="hidden" name="fields-<?php echo $input->name; ?>" value="">
-			<?php
-			else:
-			?>
-				<input <?=$required?>
-				readonly 
-				type="text" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
-				pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$" 
-				name="<?php echo $input->name; ?>" 
-				value="" 
-				class="date" 
-				maxlength="150">
-				<input type="hidden" name="fields-<?php echo $input->name; ?>" value="">
-			<?php
-			endif;
 			break;
 		case 'gender':
 		?>
