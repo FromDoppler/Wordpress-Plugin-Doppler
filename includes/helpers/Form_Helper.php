@@ -138,13 +138,23 @@ class DPLR_Form_helper
 			if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'single') {
 				
 				?>
-					<input <?=$required?> type="text" name="fields-<?php echo $input->name; ?>" placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" maxlength="150"/>
+					<input <?=$required?>
+					type="text"
+					name="fields-<?php echo $input->name; ?>"
+					placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
+					maxlength="150"/>
 				<?php
 
 			} 
 			else 
 			{?>
-				<textarea <?=$required?> name="fields-<?php echo $input->name; ?>" placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" rows="3" cols="80" maxlength="150"></textarea>
+				<textarea <?=$required?>
+					name="fields-<?php echo $input->name; ?>"
+					placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
+					rows="3"
+					cols="80"
+					maxlength="150">
+				</textarea>
 			<?php }
 			break;
 		case 'number':?>
@@ -203,22 +213,36 @@ class DPLR_Form_helper
 			endif;
 			break;
 		case 'consent':?>
-			<input <?=$required?> type="checkbox" name="fields-<?php echo $input->name; ?>" value = "true"/>
+			<input <?=$required?>
+			type="checkbox"
+			name="fields-<?php echo $input->name; ?>"
+			value = "true"/>
 			<?php
 			break;
 			//Agregado case 'permission'
 		case 'permission':?>
 			<div class="permission-field permission-form-container">
-				<input <?=$required?> type="checkbox" name="fields-<?php echo $input->name; ?>" value = "true"/>
-				<label for="fields-<?php echo $input->name; ?>"><?php echo $input->name; ?>
+				<input <?=$required?>
+				type="checkbox"
+				name="fields-<?php echo $input->name; ?>"
+				value = "true"/>
+				<label for="fields-<?php echo $input->name; ?>">
+					<?php echo $input->name; ?>
 				</label>
 			</div>
 			<?php
 			break;
 		case 'boolean':
 			?>
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="true">Si
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="false">No<br/>
+			<input <?=$required?>
+			type="radio"
+			name="fields-<?php echo $input->name; ?>"
+			value="true">Si
+			<input <?=$required?>
+			type="radio"
+			name="fields-<?php echo $input->name; ?>"
+			value="false">No
+			<br/>
 			<?php
 			break;
 		case 'email':
