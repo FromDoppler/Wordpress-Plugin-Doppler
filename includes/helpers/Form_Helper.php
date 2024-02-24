@@ -219,7 +219,6 @@ class DPLR_Form_helper
 			value = "true"/>
 			<?php
 			break;
-			//Agregado case 'permission'
 		case 'permission':?>
 			<div class="permission-field permission-form-container">
 				<input <?=$required?>
