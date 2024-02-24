@@ -165,11 +165,10 @@ class DPLR_Form_helper
 			name="fields-<?php echo $input->name; ?>"
 			oninput="this.setCustomValidity('')"
 			value=""
-			placeholder="<?php $form_orientation_horizontal ?
-				echo isset($input->settings['placeholder']) ?
-					$input->settings['placeholder']
-					: ''
-				: echo $label ?>"
+			placeholder="<?php echo $form_orientation_horizontal ? isset($input->settings['placeholder']) ?
+				$input->settings['placeholder'] 
+				: ''
+			: $label ?>"
 			maxlength="27"/>
 			<?php
 			break;
@@ -180,11 +179,11 @@ class DPLR_Form_helper
 				name="fields-<?php echo $input->name; ?>"
 				oninput="this.setCustomValidity('')"
 				value=""
-				placeholder="<?php $form_orientation_horizontal ?
-					echo $label
-					: echo isset($input->settings['placeholder']) ?
+				placeholder="<?php echo $form_orientation_horizontal ?
+					$label
+					: (isset($input->settings['placeholder']) ?
 						$input->settings['placeholder']
-						: ''
+						: '')
 				?>"
 				maxlength="150"/>
 				<?php $form_orientation_horizontal ? '' : echo '<div id="country-selector"></div>' ?>
@@ -246,7 +245,7 @@ class DPLR_Form_helper
 			value=""
 			class="date"
 			maxlength="150"
-			<?php $form_orientation_horizontal? echo 'placeholder="'$label'">': '' ?>>
+			<?php echo $form_orientation_horizontal? 'placeholder="' . $label . '"': '' ?>>
 			<input type="hidden"
 			name="fields-<?php echo $input->name; ?>"
 			value="">
