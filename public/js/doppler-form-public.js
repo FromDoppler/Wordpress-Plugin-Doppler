@@ -74,8 +74,15 @@
 			var e = $(this).find("input[name='EMAIL']");
 			var honey = $(this).find("input[name='secondary-dplrEmail']");
 			var thankyou = $(this).find("input[name='thankyou']");
+			let form_id = d.val();
 			var fields = $(this).find(
-				"input[name|='fields'], select[name|='fields'], textarea[name|='fields']"
+				"input[name|='fields'], select[name|='fields'], textarea[name|='fields']" &&
+					[
+						"input[name$='",
+						"'], select[name$='",
+						"'], textarea[name$='",
+						"']",
+					].join(form_id)
 			);
 
 			s.attr("disabled", "disabled");
@@ -83,7 +90,6 @@
 
 			var subscriber = {},
 				list_id = l.val();
-			let form_id = d.val();
 			subscriber.email = e.val();
 			subscriber.hp = honey.val();
 			subscriber.fields = [];
@@ -96,7 +102,7 @@
 
 				var name = input.attr("name");
 				name = name.split("-");
-				name = name.slice(1);
+				name = name[1];
 				name = !Array.isArray(name) ? name : name.join("-");
 
 				var field = {};

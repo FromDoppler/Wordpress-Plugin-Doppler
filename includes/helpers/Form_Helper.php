@@ -140,7 +140,7 @@ class DPLR_Form_helper
 				?>
 					<input <?=$required?>
 					type="text"
-					name="fields-<?php echo $input->name; ?>"
+					name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 					placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
 					maxlength="150"/>
 				<?php
@@ -149,7 +149,7 @@ class DPLR_Form_helper
 			else 
 			{?>
 				<textarea <?=$required?>
-					name="fields-<?php echo $input->name; ?>"
+					name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 					placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
 					rows="3"
 					cols="80"
@@ -162,7 +162,7 @@ class DPLR_Form_helper
 			type="number"
 			oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')"
 			pattern="[0-9]"
-			name="fields-<?php echo $input->name; ?>"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 			oninput="this.setCustomValidity('')"
 			value=""
 			placeholder="<?php echo $form_orientation_horizontal ? isset($input->settings['placeholder']) ?
@@ -176,7 +176,7 @@ class DPLR_Form_helper
 				<input <?=$required?>
 				type="tel"
 				id = "phone-doppler"
-				name="fields-<?php echo $input->name; ?>"
+				name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 				oninput="this.setCustomValidity('')"
 				value=""
 				placeholder="<?php echo $form_orientation_horizontal ?
@@ -186,13 +186,13 @@ class DPLR_Form_helper
 						: '')
 				?>"
 				maxlength="150"/>
-				<?php $form_orientation_horizontal ? '' : echo '<div id="country-selector"></div>' ?>
+				<?php echo $form_orientation_horizontal ? '' : '<div id="country-selector"></div>' ?>
 			<?php
 			break;
 		case 'consent':?>
 			<input <?=$required?>
 			type="checkbox"
-			name="fields-<?php echo $input->name; ?>"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 			value = "true"/>
 			<?php
 			break;
@@ -200,7 +200,7 @@ class DPLR_Form_helper
 			<div class="permission-field permission-form-container">
 				<input <?=$required?>
 				type="checkbox"
-				name="fields-<?php echo $input->name; ?>"
+				name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 				value = "true"/>
 				<label for="fields-<?php echo $input->name; ?>">
 					<?php echo $input->name; ?>
@@ -212,11 +212,11 @@ class DPLR_Form_helper
 			?>
 			<input <?=$required?>
 			type="radio"
-			name="fields-<?php echo $input->name; ?>"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 			value="true">Si
 			<input <?=$required?>
 			type="radio"
-			name="fields-<?php echo $input->name; ?>"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 			value="false">No
 			<br/>
 			<?php
@@ -247,18 +247,18 @@ class DPLR_Form_helper
 			maxlength="150"
 			<?php echo $form_orientation_horizontal? 'placeholder="' . $label . '"': '' ?>>
 			<input type="hidden"
-			name="fields-<?php echo $input->name; ?>"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 			value="">
 			<?php
 			break;
 		case 'gender':
 		?>
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="M">M
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="F">F
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="N/A">N/A<?php
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name . '-' . $form->id; ?>" value="M">M
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name . '-' . $form->id; ?>" value="F">F
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name . '-' . $form->id; ?>" value="N/A">N/A<?php
 			break;
 		case 'country':
-			?><select <?php echo $required; ?> name="fields-<?php echo $input->name; ?>">
+			?><select <?php echo $required; ?> name="fields-<?php echo $input->name . '-' . $form->id; ?>">
 				<option value="AF">Afghanistan</option>
 				<option value="AX">Åland Islands</option>
 				<option value="AL">Albania</option>
