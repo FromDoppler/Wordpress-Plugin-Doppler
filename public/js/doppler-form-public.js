@@ -78,9 +78,9 @@
 			var fields = $(this).find(
 				"input[name|='fields'], select[name|='fields'], textarea[name|='fields']" &&
 					[
-						"input[name$='",
-						"'], select[name$='",
-						"'], textarea[name$='",
+						"input[name$='-",
+						"'], select[name$='-",
+						"'], textarea[name$='-",
 						"']",
 					].join(form_id)
 			);
