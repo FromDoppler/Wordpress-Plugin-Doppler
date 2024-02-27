@@ -138,154 +138,128 @@ class DPLR_Form_helper
 			if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'single') {
 				
 				?>
-					<input <?=$required?> type="text" name="fields-<?php echo $input->name; ?>" placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" maxlength="150"/>
+					<input <?=$required?>
+					type="text"
+					name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+					placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
+					maxlength="150"/>
 				<?php
 
 			} 
 			else 
 			{?>
-				<textarea <?=$required?> name="fields-<?php echo $input->name; ?>" placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" rows="3" cols="80" maxlength="150"></textarea>
+				<textarea <?=$required?>
+					name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+					placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
+					rows="3"
+					cols="80"
+					maxlength="150">
+				</textarea>
 			<?php }
 			break;
 		case 'number':?>
+			<input <?=$required?>
+			type="number"
+			oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')"
+			pattern="[0-9]"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			oninput="this.setCustomValidity('')"
+			value=""
+			placeholder="<?php echo $form_orientation_horizontal ? isset($input->settings['placeholder']) ?
+				$input->settings['placeholder'] 
+				: ''
+			: $label ?>"
+			maxlength="27"/>
 			<?php
-			if($form_orientation_horizontal):
-			?>
-				<input <?=$required?> 
-				type="number" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')" 
-				pattern="[0-9]" 
-				name="fields-<?php echo $input->name; ?>"
-				oninput="this.setCustomValidity('')" 
-				value=""  
-				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" 
-				maxlength="27"/>
-				<?php
-			else:
-			?>
-				<input <?=$required?> 
-				type="number" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')" 
-				pattern="[0-9]" 
-				name="fields-<?php echo $input->name; ?>" 
-				oninput="this.setCustomValidity('')" 
-				value=""  
-				placeholder="<?php echo $label ?>" 
-				maxlength="27"/>
-			<?php
-			endif;
 			break;
 		case 'phone':?>
-			<?php
-			if($form_orientation_horizontal):
-			?>
 				<input <?=$required?>
-				type="tel" 
+				type="tel"
 				id = "phone-doppler"
-				name="fields-<?php echo $input->name; ?>" 
-				oninput="this.setCustomValidity('')" 
-				value="" 
-				placeholder="<?php echo $label?>" 
-				maxlength="150"/> 
-				<?php
-			else:
-				?>
-				<input <?=$required?>
-				type="tel" 
-				id = "phone-doppler" 
-				name="fields-<?php echo $input->name; ?>" 
-				oninput="this.setCustomValidity('')" 
+				name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+				oninput="this.setCustomValidity('')"
 				value=""
-				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>" 
-				maxlength="20"/>
-				<div id="country-selector"></div>
+				placeholder="<?php echo $form_orientation_horizontal ?
+					$label
+					: (isset($input->settings['placeholder']) ?
+						$input->settings['placeholder']
+						: '')
+				?>"
+				maxlength="150"/>
+				<?php echo $form_orientation_horizontal ? '' : '<div id="country-selector"></div>' ?>
 			<?php
-			endif;
 			break;
 		case 'consent':?>
-			<input <?=$required?> type="checkbox" name="fields-<?php echo $input->name; ?>" value = "true"/>
+			<input <?=$required?>
+			type="checkbox"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			value = "true"/>
 			<?php
 			break;
-			//Agregado case 'permission'
 		case 'permission':?>
 			<div class="permission-field permission-form-container">
-				<input <?=$required?> type="checkbox" name="fields-<?php echo $input->name; ?>" value = "true"/>
-				<label for="fields-<?php echo $input->name; ?>"><?php echo $input->name; ?>
+				<input <?=$required?>
+				type="checkbox"
+				name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+				value = "true"/>
+				<label for="fields-<?php echo $input->name; ?>">
+					<?php echo $input->name; ?>
 				</label>
 			</div>
 			<?php
 			break;
 		case 'boolean':
 			?>
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="true">Si
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="false">No<br/>
+			<input <?=$required?>
+			type="radio"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			value="true">Si
+			<input <?=$required?>
+			type="radio"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			value="false">No
+			<br/>
 			<?php
 			break;
 		case 'email':
 			?>
+			<input <?=$required?>
+			type="email"
+			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid email address.', 'doppler-form') ?>')"
+			pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$"
+			name="<?php echo $input->name; ?>"
+			oninput="this.setCustomValidity('')"
+			value=""
+			maxlength="150"
+			placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>">
 			<?php
-			if($form_orientation_horizontal):
-			?>
-				<input <?=$required?> type="email" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid email address.', 'doppler-form') ?>')" 
-				pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$" 
-				name="<?php echo $input->name; ?>"  oninput="this.setCustomValidity('')" 
-				value="" 
-				maxlength="150" 
-				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>">
-			<?php
-			else:
-			?>
-				<input <?=$required?> type="email" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid email address.', 'doppler-form') ?>')" 
-				pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$" 
-				name="<?php echo $input->name; ?>"  oninput="this.setCustomValidity('')" 
-				value="" 
-				maxlength="150" 
-				placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>">
-			<?php
-			endif;
 			break;
 		case 'date':
 			?>
+			<input <?=$required?>
+			type="text"
+			readonly
+			name="<?php echo $input->name; ?>"
+			data-form-id="<?php echo $form->id; ?>"
+			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')"
+			pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$"
+			value=""
+			class="date"
+			maxlength="150"
+			<?php echo $form_orientation_horizontal? 'placeholder="' . $label . '"': '' ?>>
+			<input type="hidden"
+			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			value="">
 			<?php
-			if($form_orientation_horizontal):
-			?>
-				<input <?=$required?> 
-				type="text" 
-				readonly 
-				name="<?php echo $input->name; ?>" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
-				pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$" 
-				value="" 
-				class="date" 
-				maxlength="150" 
-				placeholder="<?php echo $label ?>"> 
-				<input type="hidden" name="fields-<?php echo $input->name; ?>" value="">
-			<?php
-			else:
-			?>
-				<input <?=$required?>
-				readonly 
-				type="text" 
-				oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')" 
-				pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$" 
-				name="<?php echo $input->name; ?>" 
-				value="" 
-				class="date" 
-				maxlength="150">
-				<input type="hidden" name="fields-<?php echo $input->name; ?>" value="">
-			<?php
-			endif;
 			break;
 		case 'gender':
 		?>
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="M">M
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="F">F
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name; ?>" value="N/A">N/A<?php
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name . '-' . $form->id; ?>" value="M">M
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name . '-' . $form->id; ?>" value="F">F
+			<input <?=$required?> type="radio" name="fields-<?php echo $input->name . '-' . $form->id; ?>" value="N/A">N/A<?php
 			break;
 		case 'country':
-			?><select <?php echo $required; ?> name="fields-<?php echo $input->name; ?>">
+			?><select <?php echo $required; ?> name="fields-<?php echo $input->name . '-' . $form->id; ?>">
 				<option value="AF">Afghanistan</option>
 				<option value="AX">Åland Islands</option>
 				<option value="AL">Albania</option>
