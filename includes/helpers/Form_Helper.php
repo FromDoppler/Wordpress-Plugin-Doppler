@@ -240,6 +240,7 @@ class DPLR_Form_helper
 			type="text"
 			readonly
 			name="<?php echo $input->name; ?>"
+			data-form-id="<?php echo $form->id; ?>"
 			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')"
 			pattern="^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\d{4}$"
 			value=""

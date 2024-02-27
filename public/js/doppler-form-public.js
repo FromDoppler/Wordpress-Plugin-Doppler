@@ -4,13 +4,15 @@
 		$("form.dplr_form input[type='text'].date").each(function () {
 			var dateElement = $(this);
 			var elementName = dateElement.attr("name");
+			var elementFormId = dateElement.attr("data-form-id");
 			dateElement.datepicker({
 				dateFormat: "dd/mm/yy",
 				altFormat: "yy-mm-dd",
 				yearRange: "-100:+100",
 				changeMonth: true,
 				changeYear: true,
-				altField: 'input[name="fields-' + elementName + '"]',
+				altField:
+					'input[name="fields-' + elementName + "-" + elementFormId + '"]',
 			});
 		});
 
