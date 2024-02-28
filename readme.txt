@@ -5,7 +5,7 @@ Tags: Doppler, Email marketing, integration, subscription, form, automation
 Requires at least: 4.9
 Tested up to: 6.4
 Requires PHP: 5.6.4
-Stable tag: 2.3.6
+Stable tag: 2.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,13 @@ En [este artículo](https://help.fromdoppler.com/es/api-interfaz-de-programacion
 8. Formulario de Suscripción.
 
 == Changelog ==
+= 2.3.7 =
+* Feat: Added new field validations when submiting forms.
+* Fix: Fix for minor warnings.
+* Fix: Fix for HTML editor textbox on form creation and edition.
+* Fix: Fix for submittion error when there are two or more forms on page.
+
+
 = 2.3.6 =
 * Fix double optin forms edition.
 
