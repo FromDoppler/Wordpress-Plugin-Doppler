@@ -34,14 +34,11 @@ class DPLR_Form_helper
 				$label = isset($field->settings['label']) ? $field->settings['label'] : $field->name;?>
 				<div class="<?php echo ($field->type !== "permission") ? "flex-item" : ""; ?> input-field <?php echo isset($field->settings['required']) ? 'required' : ''; ?>">
 					<?php if($label!==''): ?>
-						<?php if($field->type === 'permission'): ?>
-							<label for="<?php echo $field->name; ?>" >
+						<?php if($field->type !== 'permission'): ?>
+							<label for="<?php echo $field->name; ?>" class="horizontal_label" >
 								<?php echo $label; ?>
 							</label>
 						<?php endif; ?>
-						<label for="<?php echo $field->name; ?>" class="horizontal_label" >
-							<?php echo $label; ?>
-						</label>
 					<?php endif;
 					if($field->type !== 'permission'):
 						echo self::printInput($field, $form, $label, $form_orientation_horizontal);
