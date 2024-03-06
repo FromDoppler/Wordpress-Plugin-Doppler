@@ -22,46 +22,49 @@
 		});
 
 		//Input Phone doppler flags
-		const input = document.getElementById("phone-doppler");
-		if (input != null) {
-			const countrySelector = document.querySelector("#country-selector");
-			const iti = window.intlTelInput(input, {
-				utilsScript:
-					"https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-				initialCountry: "ar",
-				separateDialCode: true,
-				customPlaceholder: function (
-					selectedCountryPlaceholder,
-					selectedCountryData
-				) {
-					return selectedCountryPlaceholder;
-				},
-			});
+		const inputs = $(".phone-doppler");
+		if (inputs != null) {
+			inputs.each(function () {
+				const input = $(this)[0];
+				const iti = window.intlTelInput(input, {
+					utilsScript:
+						"https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+					initialCountry: "ar",
+					separateDialCode: true,
+					customPlaceholder: function (
+						selectedCountryPlaceholder,
+						selectedCountryData
+					) {
+						return selectedCountryPlaceholder;
+					},
+				});
 
-			function validateTel(phone_input) {
-				if (input.value.trim()) {
-					if (!iti.isValidNumber()) {
-						phone_input.setCustomValidity(errorMsg.err);
-						phone_input.reportValidity();
-						return false;
-					} else {
-						return true;
+				function validateTel(phone_input) {
+					if (input.value.trim()) {
+						if (!iti.isValidNumber()) {
+							phone_input.setCustomValidity(errorMsg.err);
+							phone_input.reportValidity();
+							return false;
+						} else {
+							return true;
+						}
 					}
 				}
-			}
 
-			$("#phone-doppler").blur(function () {
-				validateTel(this);
-			});
+				$(".phone-doppler").blur(function () {
+					validateTel(this);
+				});
 
-			$("form.dplr_form").submit(function (e) {
-				if (validateTel($("#phone-doppler"))) {
-					var phoneNumber = $("#phone-doppler").val();
-					var countryCode = $(".iti__selected-dial-code").html();
-					$("#phone-doppler").val(countryCode + phoneNumber);
-				} else {
-					return false;
-				}
+				$("form.dplr_form").submit(function () {
+					const dopplerPhone = $(this).find(".phone-doppler");
+					if (validateTel(dopplerPhone)) {
+						var phoneNumber = dopplerPhone.val();
+						var countryCode = $(".iti__selected-dial-code").html();
+						dopplerPhone.val(countryCode + phoneNumber);
+					} else {
+						return false;
+					}
+				});
 			});
 		}
 
