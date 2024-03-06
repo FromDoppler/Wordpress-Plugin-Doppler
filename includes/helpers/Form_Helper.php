@@ -172,7 +172,7 @@ class DPLR_Form_helper
 		case 'phone':?>
 				<input <?=$required?>
 				type="tel"
-				id = "phone-doppler"
+				class = "phone-doppler"
 				name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 				oninput="this.setCustomValidity('')"
 				value=""
