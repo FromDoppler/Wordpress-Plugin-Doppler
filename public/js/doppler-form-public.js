@@ -5,15 +5,33 @@
 			var dateElement = $(this);
 			var elementName = dateElement.attr("name");
 			var elementFormId = dateElement.attr("data-form-id");
-			dateElement.datepicker({
-				dateFormat: "dd/mm/yy",
-				altFormat: "yy-mm-dd",
-				yearRange: "-100:+100",
-				changeMonth: true,
-				changeYear: true,
-				altField:
-					'input[name="fields-' + elementName + "-" + elementFormId + '"]',
-			});
+			dateElement
+				.datepicker({
+					dateFormat: "dd/mm/yy",
+					altFormat: "yy-mm-dd",
+					yearRange: "-100:+100",
+					changeMonth: true,
+					changeYear: true,
+					altField:
+						'input[name="fields-' + elementName + "-" + elementFormId + '"]',
+				})
+				.on("blur", function () {
+					if (this.value.match(/\d{1,2}[^\d]\d{1,2}[^\d]\d{4,4}/gi) == null) {
+						this.reportValidity();
+					} else {
+						var t = this.value.split(/[^\d]/);
+						var dd = parseInt(t[0], 10);
+						var m0 = parseInt(t[1], 10) - 1;
+						var yyyy = parseInt(t[2], 10);
+						var d = new Date(yyyy, m0, dd);
+						if (
+							d.getDate() != dd ||
+							d.getMonth() != m0 ||
+							d.getFullYear() != yyyy
+						)
+							this.reportValidity();
+					}
+				});
 		});
 
 		$('.dplr_form input[name="EMAIL"]').focus(function () {
