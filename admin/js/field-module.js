@@ -188,9 +188,24 @@ var FieldModel;
 			html += "		</div>";
 			if ($.inArray(field.type, ["boolean", "gender"]) == -1) {
 				html += '		<div class="dplr_input_section horizontal">';
-				html += '			<label for="fields['+field.name+'][settings][placeholder]">'+ObjStr.Placeholder+'</label>';
-				html += '   	<input type="text" name="fields['+field.name+'][settings][placeholder]" value="'+field.settings.placeholder+'" '+(this.readOnly?'disabled':'')+'>';
-				html += '		</div>';
+				html +=
+					'			<label for="fields[' +
+					field.name +
+					'][settings][placeholder]">' +
+					ObjStr.Placeholder +
+					"</label>";
+				html +=
+					'   	<input type="text" name="fields[' +
+					field.name +
+					'][settings][placeholder]" value="' +
+					(typeof field.settings.placeholder != "undefined" &&
+					field.settings.placeholder != ""
+						? field.settings.placeholder
+						: "dd/mm/yyyy") +
+					'" ' +
+					(this.readOnly ? "disabled" : "") +
+					">";
+				html += "		</div>";
 			}
 			if (field.type === "string") {
 				html += '		<div class="dplr_input_section horizontal">';
