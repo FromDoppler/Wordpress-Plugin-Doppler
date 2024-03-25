@@ -260,7 +260,7 @@ class DPLR_Form_Controller
     $dplr_fields = $fields_resource->getAllFields();
     $dplr_fields = isset($dplr_fields->items) ? $dplr_fields->items : [];
     usort($dplr_fields, function($a, $b) {
-      return strtolower($a->name) > strtolower($b->name);
+      return strtolower($a->name) <=> strtolower($b->name);
     });
 
     if ($form_id != NULL) {

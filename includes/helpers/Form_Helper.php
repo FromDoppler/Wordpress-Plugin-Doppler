@@ -242,7 +242,9 @@ class DPLR_Form_helper
 			value=""
 			class="date"
 			maxlength="150"
-			placeholder="dd/mm/yyyy">
+			placeholder= "<?php isset($input->settings['placeholder']) ?
+				$input->settings['placeholder'] 
+				: "dd/mm/yyyy" ?>">
 			<input type="hidden"
 			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 			value="">

@@ -579,7 +579,7 @@ function validateEmailContent(e) {
 		"href=[[[ConfirmationLink]]]"
 	);
 
-	if (tinyMCE.activeEditor) {
+	if (!tinyMCE.activeEditor) {
 		tinyMCE.activeEditor.setContent(content);
 	} else {
 		document.getElementById("content").value = content;
