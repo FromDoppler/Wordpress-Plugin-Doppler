@@ -397,6 +397,10 @@
 		$('input[name="name"]').on("change", function () {
 			$("#form_name").val($(this).val());
 		});
+
+		if ($('input[name="name"]').val()) {
+			$("#form_name").val($('input[name="name"]').val());
+		}
 	});
 
 	function listsLoading() {
