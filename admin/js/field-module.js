@@ -186,7 +186,7 @@ var FieldModel;
 				field.settings.description +
 				"</textarea><br>";
 			html += "		</div>";
-			if ($.inArray(field.type, ["boolean", "gender"]) == -1) {
+			if (field.type === "date") {
 				html += '		<div class="dplr_input_section horizontal">';
 				html +=
 					'			<label for="fields[' +
@@ -202,6 +202,24 @@ var FieldModel;
 					field.settings.placeholder != ""
 						? field.settings.placeholder
 						: "dd/mm/yyyy") +
+					'" ' +
+					(this.readOnly ? "disabled" : "") +
+					">";
+				html += "		</div>";
+			}
+			if ($.inArray(field.type, ["boolean", "gender", "date"]) == -1) {
+				html += '		<div class="dplr_input_section horizontal">';
+				html +=
+					'			<label for="fields[' +
+					field.name +
+					'][settings][placeholder]">' +
+					ObjStr.Placeholder +
+					"</label>";
+				html +=
+					'   	<input type="text" name="fields[' +
+					field.name +
+					'][settings][placeholder]" value="' +
+					field.settings.placeholder +
 					'" ' +
 					(this.readOnly ? "disabled" : "") +
 					">";
