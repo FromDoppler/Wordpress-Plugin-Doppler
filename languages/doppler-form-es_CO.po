@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
 "POT-Creation-Date: 2020-02-02 16:48-0300\n"
-"PO-Revision-Date: 2024-04-06 17:23+0000\n"
+"PO-Revision-Date: 2024-04-07 14:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: Español de Colombia\n"
 "Language: es_CO\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Loco-Version: 2.6.7; wp-6.5-RC4"
+"X-Loco-Version: 2.6.7; wp-6.5"
 
 #: admin/partials/forms-create.php:14 admin/partials/forms-create.php:18
 #: admin/partials/forms-create.php:112 admin/partials/forms-create.php:150
@@ -193,9 +193,8 @@ msgid "Done! You should now see your Form published on your Website."
 msgstr "¡Listo! Tu Formulario aparecerá publicado en tu Sitio Web."
 
 #: admin/doppler-admin.php:172 admin/doppler-admin.php:173
-#, fuzzy
 msgid "Doppler"
-msgstr "Lista de Doppler"
+msgstr "Doppler"
 
 #: admin/partials/extensions.php:51 admin/partials/extensions.php:54
 msgid "Doppler for LearnPress"
@@ -438,7 +437,6 @@ msgid "I've read and accept the privace policy"
 msgstr "He leído y acepto la política de privacidad"
 
 #: admin/partials/forms-create.php:247 admin/partials/forms-edit.php:258
-#, fuzzy
 msgid "I've read and accept the privacy policy"
 msgstr "He leído y acepto la política de privacidad"
 
