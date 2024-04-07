@@ -132,8 +132,38 @@ class DPLR_Form_helper
 		$required = isset($input->settings["required"]) ? "required" : "";
     	switch ($input->type) {
 		case 'string':
-			if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'single') {
-				
+			if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'multi')
+			{
+				?>
+					<textarea <?=$required?>
+						name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+						placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
+						rows="3"
+						cols="80"
+						maxlength="150">
+					</textarea>
+				<?php 
+			}
+			else if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'options')
+			{
+				?>
+					<select <?=$required?>
+						name="fields-<?php echo $input->name . '-' . $form->id; ?>">
+						<?php echo (isset($input->settings['placeholder']) && $input->settings['placeholder'] !== '' )
+							? '<option value="">' . $input->settings['placeholder'] . '</option>' 
+							: ''; 
+						?>
+						<?php if (isset($input->settings['text_options']) && $input->settings['text_options'] !== '') {
+							$lines = explode("\n", $input->settings['text_options']);
+							foreach (array_map('trim', $lines) as $line) {
+								echo '<option value="' . $line . '">' . $line . '</option>';
+							}
+						} ?>
+					</select>
+				<?php 
+			}
+			else 
+			{
 				?>
 					<input <?=$required?>
 					type="text"
@@ -141,18 +171,7 @@ class DPLR_Form_helper
 					placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
 					maxlength="150"/>
 				<?php
-
-			} 
-			else 
-			{?>
-				<textarea <?=$required?>
-					name="fields-<?php echo $input->name . '-' . $form->id; ?>"
-					placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
-					rows="3"
-					cols="80"
-					maxlength="150">
-				</textarea>
-			<?php }
+			}
 			break;
 		case 'number':?>
 			<input <?=$required?>
