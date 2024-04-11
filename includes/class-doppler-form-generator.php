@@ -16,10 +16,9 @@ class DPLR_Form_Shortcode{
             self::FORM_CLASS => '',
         ), $atts);
 
-        // Traemos todos los forms
         $forms = DPLR_Form_Model::getAll();
 
-        $encontrado = false;
+        $found = false;
         for ($i=0; $i < count($forms); $i++) {   
             if ($forms[$i]->id == $atts[self::FORM_ID]) {
                 $form = array('form' => DPLR_Form_Model::get($forms[$i]->id, true));
@@ -30,10 +29,10 @@ class DPLR_Form_Shortcode{
                 $result = DPLR_Form_Helper::generate($form);
                 // $result = generate();
                 
-                $encontrado = true;
+                $found = true;
             }
         }
-        if ($encontrado == true) {
+        if ($found == true) {
             return ob_get_clean();
         } else {
             return "El id del form está mal " . $atts['id'] . (isset($atts['txt']) ? " " . $atts['txt'] : '');
