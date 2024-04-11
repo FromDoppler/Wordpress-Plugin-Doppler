@@ -94,6 +94,24 @@ var FieldModel;
 			});
 
 			this.selectedFieldsContainer.append(newSelectedFieldDOMElement);
+
+			$("#select-" + unselectedField.name).on("change", function () {
+				if ($(this).val() === "options") {
+					$("#optionsArea-" + unselectedField.name).show();
+				} else {
+					$("#optionsArea-" + unselectedField.name).hide();
+				}
+			});
+
+			$("textarea[data-validation]").on("blur", function () {
+				var value = $(this).val();
+				if (value.length > 0 && value.indexOf("\n") !== -1) {
+					var trimedValues = value.split("\n").map(function (item) {
+						return item.trim();
+					});
+					$(this).val(trimedValues.join("\n"));
+				}
+			});
 		};
 
 		FormFieldsView.prototype.renderSelectedField = function (field) {
@@ -238,7 +256,9 @@ var FieldModel;
 					field.name +
 					'][settings][text_lines]" ' +
 					(this.readOnly ? "disabled" : "") +
-					">";
+					'id="select-' +
+					field.name +
+					'">';
 				html +=
 					field.settings.text_lines == "single"
 						? '				<option selected="selected" value="single">' +
@@ -251,8 +271,35 @@ var FieldModel;
 						  ObjStr.MultipleLines +
 						  "</option>"
 						: '   		<option value="multi">' + ObjStr.MultipleLines + "</option>";
+				html +=
+					field.settings.text_lines == "options"
+						? '				<option selected="selected" value="options">' +
+						  ObjStr.optionsLine +
+						  "</option>"
+						: '				<option value="options">' + ObjStr.optionsLine + "</option>";
 				html += "			</select>";
 				html += "		</div>";
+				html +=
+					'		<div class="dplr_input_section horizontal" id="optionsArea-' +
+					field.name +
+					'" ' +
+					(field.settings.text_lines == "options" ? "" : "hidden") +
+					">";
+				html +=
+					' <label for="name="fields[' +
+					field.name +
+					'][settings][text_options]">' +
+					ObjStr.OptionsLabel +
+					"</label>";
+				html +=
+					' <textarea name="fields[' +
+					field.name +
+					'][settings][text_options]"' +
+					' rows="3" cols="80" maxlength="150" data-validation>' +
+					(field.settings.text_options ? field.settings.text_options : "") +
+					"</textarea>";
+				html += "<p>" + ObjStr.OptionsDescription + "</p>";
+				html += "	</div>";
 			}
 			html += " </div>";
 			html += "</li>";

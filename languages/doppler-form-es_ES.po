@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
 "POT-Creation-Date: 2024-04-06 15:29+0000\n"
-"PO-Revision-Date: 2024-04-06 17:29+0000\n"
+"PO-Revision-Date: 2024-04-07 14:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: Español\n"
 "Language: es_ES\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Loco-Version: 2.6.7; wp-6.5-RC4"
+"X-Loco-Version: 2.6.7; wp-6.5"
 
 #: admin/partials/forms-create.php:14 admin/partials/forms-create.php:18
 #: admin/partials/forms-create.php:112 admin/partials/forms-create.php:150
@@ -795,7 +795,6 @@ msgid "Target URL"
 msgstr "URL de destino"
 
 #: includes/helpers/Form_Helper.php:113
-#, fuzzy
 msgid "Thanks for subscribing"
 msgstr "Gracias por suscribirte"
 

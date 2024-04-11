@@ -147,6 +147,9 @@ class Doppler_Admin {
 			'TextType'    		=> __( 'Lines', 'doppler-form'),
 			'OneSingleLine' 	=> __( 'Simple', 'doppler-form'),
 			'MultipleLines' 	=> __( 'Multiple', 'doppler-form'),
+			'optionsLine'		=> __( 'Drop-down List', 'doppler-form'),
+			'OptionsLabel'		=> __( 'Options', 'doppler-form'),
+			'OptionsDescription'=> __( 'Write the options you want to show in your Drop-down List, separating them by a line break.', 'doppler-form'),
 			'admin_url'			=> DOPPLER_PLUGIN_URL
 		) );
 		wp_enqueue_script('jquery-ui-sortable');
