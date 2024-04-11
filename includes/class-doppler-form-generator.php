@@ -16,24 +16,23 @@ class DPLR_Form_Shortcode{
             self::FORM_CLASS => '',
         ), $atts);
 
-        // Traemos todos los forms
         $forms = DPLR_Form_Model::getAll();
 
-        $encontrado = false;
+        $found = false;
         for ($i=0; $i < count($forms); $i++) {   
             if ($forms[$i]->id == $atts[self::FORM_ID]) {
                 $form = array('form' => DPLR_Form_Model::get($forms[$i]->id, true));
                 $form['fields'] = DPLR_Field_Model::getBy(['form_id'=>$forms[$i]->id], ['sort_order'], true);
                 $form['classes'] = explode(" ", $atts[self::FORM_CLASS]);
                 ob_start();
-                echo "<h2 class='widget-title subheading heading-size-3'>" . $form['form']->title . "</h2>";
+                echo "<div> <h2 class='widget-title subheading heading-size-3'>" . $form['form']->title . "</h2>";
                 $result = DPLR_Form_Helper::generate($form);
-                // $result = generate();
+                echo "</div>";
                 
-                $encontrado = true;
+                $found = true;
             }
         }
-        if ($encontrado == true) {
+        if ($found == true) {
             return ob_get_clean();
         } else {
             return "El id del form está mal " . $atts['id'] . (isset($atts['txt']) ? " " . $atts['txt'] : '');
