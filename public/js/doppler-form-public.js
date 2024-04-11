@@ -77,10 +77,10 @@
 					const dopplerPhone = $(this).find(".phone-doppler");
 					if (validateTel(dopplerPhone)) {
 						var phoneNumber = dopplerPhone.val();
-						var countryCode = $(".iti__selected-dial-code").html();
-						dopplerPhone.val(countryCode + phoneNumber);
-					} else {
-						return false;
+						if (!phoneNumber.startsWith("+")) {
+							var countryCode = $(".iti__selected-dial-code").html();
+							dopplerPhone.val(countryCode + phoneNumber);
+						}
 					}
 				});
 			});
