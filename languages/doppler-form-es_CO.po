@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
 "POT-Creation-Date: 2020-02-02 16:48-0300\n"
-"PO-Revision-Date: 2024-04-07 14:44+0000\n"
+"PO-Revision-Date: 2024-04-15 11:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: Español de Colombia\n"
 "Language: es_CO\n"
@@ -500,8 +500,8 @@ msgid "Left"
 msgstr "Izquierda"
 
 #: admin/doppler-admin.php:147
-msgid "Lines"
-msgstr "Líneas"
+msgid "Input Type"
+msgstr "Tipo de ingreso"
 
 #: admin/partials/forms-list.php:21 admin/partials/lists-crud.php:24
 msgid "List ID"
