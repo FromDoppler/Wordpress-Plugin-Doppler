@@ -468,7 +468,7 @@ msgid "Left"
 msgstr ""
 
 #: admin/doppler-admin.php:147
-msgid "Lines"
+msgid "Input Type"
 msgstr ""
 
 #: admin/partials/forms-list.php:21 admin/partials/lists-crud.php:24
