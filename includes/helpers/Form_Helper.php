@@ -261,7 +261,7 @@ class DPLR_Form_helper
 			value=""
 			class="date"
 			maxlength="150"
-			placeholder= "<?php isset($input->settings['placeholder']) ?
+			placeholder= "<?php echo isset($input->settings['placeholder']) ?
 				$input->settings['placeholder'] 
 				: "dd/mm/yyyy" ?>">
 			<input type="hidden"
