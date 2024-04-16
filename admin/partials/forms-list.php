@@ -10,23 +10,20 @@
     ?><h2><?php _e('You don\'t have Forms yet!','doppler-form'); ?></h2><?php
   }else{
     ?>
-
-   
         <table class="fixed widefat mb-1">
           <thead>
             <tr>
-              <th class="col-id"><?php _e('Form ID', 'doppler-form')?></th>
               <th class="col-title"><?php _e('Form Name', 'doppler-form')?></th>
+              <th>Form type</th>
               <th class="col-listname"><?php _e('List Name', 'doppler-form')?></th>
-              <th class="col-listid"><?php _e('List ID', 'doppler-form')?></th>
               <th class="col-shortcode"><?php _e('Shortcode', 'doppler-form')?></th>
             </tr>
           </thead>
           <tbody>
             <?php for ($i=0; $i <count($forms) ; $i++) {
-              $form = $forms[$i];?>
+              $form = DPLR_Form_Model::get($forms[$i]->id, true);
+              ?>
             <tr>
-              <td><?= $form->id; ?></td>
               <td>
                 <a href="<?php echo str_replace('[FORM_ID]', $form->id , $edit_form_url); ?>" class="bold"> <?php echo $form->name; ?></a>
                 <div class="column-actions">
@@ -34,8 +31,8 @@
                   <a href="<?php echo str_replace('[FORM_ID]', $form->id , $delete_form_url); ?>" data-list-id="<?php echo $form->id ?>" class="dplr-remove"><?php _e('Delete', 'doppler-form')?></a>
                 </div>
               </td>
+              <td><?php echo ($form->settings["form_doble_optin"] == "yes") ? 'Doble Opt-In' : 'Simple Opt-In' ?></td>
               <td><?php echo isset($dplr_lists_arr[$form->list_id])? $dplr_lists_arr[$form->list_id] : '' ?></td>
-              <td><?php echo isset($dplr_lists_arr[$form->list_id])? $form->list_id : '' ?></td>
               <td>[doppler-form id='<?= $form->id ?>']</td>
             </tr>
             <?php } ?>
