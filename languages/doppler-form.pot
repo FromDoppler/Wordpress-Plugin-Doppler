@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-04-07 14:46+0000\n"
+"POT-Creation-Date: 2024-04-17 11:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Hernán Galván\n"
@@ -216,7 +216,7 @@ msgid "Doppler LLC"
 msgstr ""
 
 #: admin/partials/forms-edit.php:147 admin/partials/forms-edit.php:152
-msgid "Double Opt-In:"
+msgid "Double Opt-In"
 msgstr ""
 
 #: admin/partials/forms-create.php:44 admin/partials/forms-edit.php:50
@@ -715,7 +715,7 @@ msgid "Simple"
 msgstr ""
 
 #: admin/partials/forms-edit.php:146 admin/partials/forms-edit.php:151
-msgid "Simple Opt-In:"
+msgid "Simple Opt-In"
 msgstr ""
 
 #: admin/partials/forms-create.php:150 admin/partials/forms-edit.php:167
@@ -878,4 +878,7 @@ msgstr ""
 
 #: includes/class-doppler-form-widget.php:12
 msgid "Your Doppler Subscription Forms"
+msgstr ""
+
+msgid "Opt-In Type"
 msgstr ""
