@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
 "POT-Creation-Date: 2020-02-02 16:48-0300\n"
-"PO-Revision-Date: 2024-04-15 11:45+0000\n"
+"PO-Revision-Date: 2024-04-17 11:25+0000\n"
 "Last-Translator: \n"
 "Language-Team: Español de Chile\n"
 "Language: es_CL\n"
@@ -223,7 +223,8 @@ msgid "Doppler LLC"
 msgstr "Doppler LLC"
 
 #: admin/partials/forms-edit.php:147 admin/partials/forms-edit.php:152
-msgid "Double Opt-In:"
+#| msgid "Double Opt-In:"
+msgid "Double Opt-In"
 msgstr "Doble Opt-In"
 
 #: admin/partials/forms-create.php:44 admin/partials/forms-edit.php:50
@@ -471,6 +472,10 @@ msgstr ""
 msgid "in addition to the API Key and re-connect your Doppler account."
 msgstr "además del API Key y vuelve a conectar tu cuenta de Doppler."
 
+#: admin/doppler-admin.php:147
+msgid "Input Type"
+msgstr "Tipo de ingreso"
+
 #: admin/partials/extensions.php:33 admin/partials/extensions.php:63
 msgid "Install"
 msgstr "Instalar"
@@ -498,10 +503,6 @@ msgstr "Aprende cómo crear Campos Personalizados en Doppler. Presiona"
 #: admin/partials/forms-create.php:69 admin/partials/forms-edit.php:76
 msgid "Left"
 msgstr "Izquierda"
-
-#: admin/doppler-admin.php:147
-msgid "Input Type"
-msgstr "Tipo de ingreso"
 
 #: admin/partials/forms-list.php:21 admin/partials/lists-crud.php:24
 msgid "List ID"
@@ -535,6 +536,9 @@ msgstr "El código de seguimiento ha sido guardado correctamente"
 #: admin/partials/tabs-nav.php:7
 msgid "On-Site Tracking"
 msgstr "Seguimiento en sitio"
+
+msgid "Opt-In Type"
+msgstr "Tipo de Opt-In"
 
 #: admin/doppler-admin.php:151
 msgid "Options"
@@ -766,7 +770,8 @@ msgid "Simple"
 msgstr "Simple"
 
 #: admin/partials/forms-edit.php:146 admin/partials/forms-edit.php:151
-msgid "Simple Opt-In:"
+#| msgid "Simple Opt-In:"
+msgid "Simple Opt-In"
 msgstr "Simple Opt-In"
 
 #: admin/partials/forms-create.php:150 admin/partials/forms-edit.php:167

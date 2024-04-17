@@ -144,7 +144,7 @@ class Doppler_Admin {
 			'LabelToShow' 		=> __( 'Label to be shown', 'doppler-form'),
 			'Placeholder' 		=> __( 'Placeholder', 'doppler-form'),
 			'Description' 		=> __( 'Description', 'doppler-form'),
-			'TextType'    		=> __( 'Lines', 'doppler-form'),
+			'TextType'    		=> __( 'Input Type', 'doppler-form'),
 			'OneSingleLine' 	=> __( 'Simple', 'doppler-form'),
 			'MultipleLines' 	=> __( 'Multiple', 'doppler-form'),
 			'optionsLine'		=> __( 'Drop-down List', 'doppler-form'),
