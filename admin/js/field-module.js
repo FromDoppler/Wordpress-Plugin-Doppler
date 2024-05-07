@@ -109,7 +109,10 @@ var FieldModel;
 					var trimedValues = value.split("\n").map(function (item) {
 						return item.trim();
 					});
-					$(this).val(trimedValues.join("\n"));
+					var filteredValues = trimedValues.filter(function (el) {
+						return el !== "";
+					});
+					$(this).val(filteredValues.join("\n"));
 				}
 			});
 		};
