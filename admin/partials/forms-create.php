@@ -135,8 +135,7 @@
             <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in"><?php _e('HELP', 'doppler-form') ?></a>.
           </p>
 
-          <div id="dplr_doble_opt_in_section" <?= (isset($form->settings['use_consent_field']) && $form->settings['use_consent_field']==='yes')? 'style="display:block"' : 'style="display:none"'; ?>>
-
+          <div id="dplr_doble_opt_in_section">
             <div class="dplr_input_section" id="section_email_confirmacion">
               <h2><?php _e('Confirmation email', 'doppler-form') ?></h2>
             <div class="dplr_input_section">
