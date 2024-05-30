@@ -317,10 +317,18 @@ function hideShowConfigDobleOptIn(){
   }
 }
 
+function removeGdprContainerOnClick(){
+  jQuery(".gdpr_remove_button_class").on("click", function () {
+				var fieldContainer = jQuery(this).closest("li");
+				fieldContainer.remove();
+			});
+}
+
 window.onload = function(){
   hideShowConfigDobleOptIn();
   hideShowConfigLandingOrURL();
   removeQuoteMarksFromConfirmationLink();
+  removeGdprContainerOnClick();
 }
 
 String.prototype.replaceHtmlEntites = function() {
