@@ -294,6 +294,7 @@
 
 </div>
 <script type="text/javascript">
+var gdprAmount = <?php echo count($consentTextArray); ?>;
 
 function hideShowConfigDobleOptIn(){
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){

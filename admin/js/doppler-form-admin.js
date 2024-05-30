@@ -401,6 +401,52 @@
 		if ($('input[name="name"]').val()) {
 			$("#form_name").val($('input[name="name"]').val());
 		}
+
+		$("#gdpr_add_button").on("click", function () {
+			var html =
+				"<li id='gdpr_input_section_" +
+				gdprAmount +
+				"' class='active' >" +
+				"<div class='icon-close' id='gdpr_remove_button' >" +
+				"<img src='http://localhost:81/wordpress/wp-content/plugins/doppler-form//admin/img/close.svg'>" +
+				"</div>" +
+				"<a class='alt-toggle'>Editar Campo <i></i></a>" +
+				"<div class='accordion-content field-settings'>" +
+				"<div class='dplr_input_section'>" +
+				"<label for='settings[consent_field_text][" +
+				gdprAmount +
+				"]'>" +
+				object_string.privacyPolicyLabel +
+				"</label>" +
+				"<input type='text' name='settings[consent_field_text][" +
+				gdprAmount +
+				"]' value=''" +
+				"placeholder='" +
+				object_string.privacyPolicyPlaceholder +
+				"' maxlength='150' required/>" +
+				"</div>" +
+				"<div class='dplr_input_section'>" +
+				"<label for='settings[consent_field_url][" +
+				gdprAmount +
+				"]'>" +
+				object_string.privacyPolicyUrlPlaceholder +
+				"</label>" +
+				"<input type='url' name='settings[consent_field_url][" +
+				gdprAmount +
+				"]' pattern='https?://.+'" +
+				"value='' placeholder='' maxlength='150' required/>" +
+				"</div>" +
+				"</div>" +
+				"</li>";
+
+			$("#gdpr_section").prepend(html);
+
+			$("#gdpr_remove_button").on("click", function () {
+				var fieldContainer = $(this).closest("li");
+				fieldContainer.remove();
+			});
+			gdprAmount += 1;
+		});
 	});
 
 	function listsLoading() {

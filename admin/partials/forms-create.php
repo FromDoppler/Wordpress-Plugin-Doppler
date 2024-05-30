@@ -243,6 +243,7 @@
 
 </div>
 <script type="text/javascript">
+var gdprAmount = 0;
 
 function hideShowConfigDobleOptIn(){
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
