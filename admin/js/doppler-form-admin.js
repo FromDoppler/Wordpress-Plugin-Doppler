@@ -408,9 +408,13 @@
 				gdprAmount +
 				"' class='active' >" +
 				"<div class='icon-close' id='gdpr_remove_button' >" +
-				"<img src='http://localhost:81/wordpress/wp-content/plugins/doppler-form//admin/img/close.svg'>" +
+				"<img src='" +
+				object_string.admin_url +
+				"/admin/img/close.svg'>" +
 				"</div>" +
-				"<a class='alt-toggle'>Editar Campo <i></i></a>" +
+				"<a class='alt-toggle'>" +
+				object_string.editField +
+				"<i></i></a>" +
 				"<div class='accordion-content field-settings'>" +
 				"<div class='dplr_input_section'>" +
 				"<label for='settings[consent_field_text][" +

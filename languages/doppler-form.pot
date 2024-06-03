@@ -882,3 +882,6 @@ msgstr ""
 
 msgid "Opt-In Type"
 msgstr ""
+
+msgid "Add new consent"
+msgstr ""

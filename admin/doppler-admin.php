@@ -139,6 +139,8 @@ class Doppler_Admin {
 			'privacyPolicyPlaceholder' => __('I\'ve read and accept the privacy policy', 'doppler-form'),
 			'privacyPolicyUrlPlaceholder' => __('Enter the URL of your privacy policy', 'doppler-form'),
 			'privacyPolicyLabel' => __('Checkbox label', 'doppler-form'),
+			'admin_url'			=> DOPPLER_PLUGIN_URL,
+			'editField'   		=> __( 'Edit Field', 'doppler-form' ),
 		) ); 
 		wp_enqueue_script('field-module', plugin_dir_url( __FILE__ ) . 'js/field-module.js', array($this->plugin_name), $this->version, false);
 		wp_localize_script( 'field-module', 'ObjStr', array( 

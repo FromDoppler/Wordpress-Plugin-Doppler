@@ -243,7 +243,7 @@
             <h2><?php _e('Consent Field settings', 'doppler-form')?></h2>
           </div>
           <p class="hlp"><?php _e('What is it? Press','doppler-form')?> <?= '<a href="'.__('https://help.fromdoppler.com/en/general-data-protection-regulation?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form').'" target="blank">'.__('HELP','doppler-form').'</a>'?>.</p>
-          <button type="button" id="gdpr_add_button" class="dp-button primary-green button-small mt-1">Add GDPR</button>
+          <button type="button" id="gdpr_add_button" class="dp-button primary-green button-small mt-1"><?php _e('Add new consent','doppler-form') ?></button>
           <ul class="accordion panel-body grid" id="gdpr_section">
             <?php
               if(isset($form->settings["consent_field_text"]) && isset($form->settings["consent_field_url"]))
@@ -257,9 +257,9 @@
                   {  ?>
                   <li id="gdpr_input_section_<?php echo $key ?>" class="active">
                     <div class="icon-close gdpr_remove_button_class" id="gdpr_remove_button">
-                      <img src="http://localhost:81/wordpress/wp-content/plugins/doppler-form//admin/img/close.svg">
+                    <img src="<?php echo DOPPLER_PLUGIN_URL ?>/admin/img/close.svg">
                     </div>
-                    <a class="alt-toggle">Editar Campo <i></i></a>
+                    <a class="alt-toggle"><?php __('Edit Field', 'doppler-form')  ?><i></i></a>
                     <div class="accordion-content field-settings">
                       <div class="dplr_input_section">
                         <label for="settings[consent_field_text][<?php echo $key ?>]">

@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
 "POT-Creation-Date: 2024-04-06 15:29+0000\n"
-"PO-Revision-Date: 2024-04-17 11:26+0000\n"
+"PO-Revision-Date: 2024-06-03 13:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: Español\n"
 "Language: es_ES\n"
@@ -28,6 +28,9 @@ msgstr ""
 #: admin/partials/forms-edit.php:204
 msgid "(Required)"
 msgstr "Obligatorio"
+
+msgid "Add new consent"
+msgstr "Agregar nuevo consentimiento"
 
 #: admin/doppler-admin.php:301
 msgid "Appearance > Widgets"

@@ -229,7 +229,7 @@
           <h2><?php _e('Consent Field settings', 'doppler-form')?></h2>
         </div>
         <p class="hlp"><?php _e('What is it? Press','doppler-form')?> <?= '<a href="'.__('https://help.fromdoppler.com/en/general-data-protection-regulation?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form').'" target="blank">'.__('HELP','doppler-form').'</a>'?>.</p>
-        <button type="button" id="gdpr_add_button" class="dp-button primary-green button-small mt-1">Add GDPR</button>
+        <button type="button" id="gdpr_add_button" class="dp-button primary-green button-small mt-1"><?php _e('Add new consent','doppler-form') ?></button>
         <ul class="accordion panel-body grid" id="gdpr_section"></ul>
       </div>
     </div>
