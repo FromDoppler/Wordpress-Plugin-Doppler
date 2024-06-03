@@ -333,8 +333,8 @@ window.onload = function(){
 
 String.prototype.replaceHtmlEntites = function() {
   var s = this;
-  var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
-  var translate = {"nbsp": " ","amp" : "&","quot": "\"","lt"  : "<","gt"  : ">"};
+  var translate_re = /&(amp|quot|lt|gt);/g;
+  var translate = {"amp" : "&","quot": "\"","lt"  : "<","gt"  : ">"};
   return ( s.replace(translate_re, function(match, entity) {
     return translate[entity];
   }) );
