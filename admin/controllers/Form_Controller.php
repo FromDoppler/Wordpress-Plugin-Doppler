@@ -87,7 +87,14 @@ class DPLR_Form_Controller
         DPLR_Form_Model::insert(['name'=>$form['name'], 'title' => $form['title'], 'list_id' => $form['list_id']]);
         $form_id =  DPLR_Form_Model::insert_id();
 
-        $form["settings"]["form_email_confirmacion_email_contenido"] = $form["content"]; 
+        $form["settings"]["form_email_confirmacion_email_contenido"] = $form["content"];
+
+        if (isset($form["settings"]["consent_field_text"]) && isset($form["settings"]["consent_field_url"]))
+        {
+          $form["settings"]["consent_field_text"] = implode("||", $form["settings"]["consent_field_text"]);
+          $form["settings"]["consent_field_url"] = implode("||", $form["settings"]["consent_field_url"]);
+        }
+        
         DPLR_Form_Model::setSettings($form_id, $form["settings"]);
 
         $field_position_counter = 1;
@@ -202,8 +209,14 @@ class DPLR_Form_Controller
 
       if($result_code == 0) {
 
-      	  DPLR_Form_Model::update($form_id, ['name'=>$form_to_update['name'], 'title' => $form_to_update['title'], 'list_id' => $form_to_update['list_id'] ]);
+      	DPLR_Form_Model::update($form_id, ['name'=>$form_to_update['name'], 'title' => $form_to_update['title'], 'list_id' => $form_to_update['list_id'] ]);
 
+        if (isset($form_to_update["settings"]["consent_field_text"]) && isset($form_to_update["settings"]["consent_field_url"]))
+        {
+          $form_to_update["settings"]["consent_field_text"] = implode("||", $form_to_update["settings"]["consent_field_text"]);
+          $form_to_update["settings"]["consent_field_url"] = implode("||", $form_to_update["settings"]["consent_field_url"]);
+        }
+        
 	      DPLR_Form_Model::setSettings($form_id, $form_to_update["settings"]);
 
 	      $field_position_counter = 1;

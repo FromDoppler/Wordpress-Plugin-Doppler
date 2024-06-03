@@ -99,31 +99,48 @@ class DPLR_Form_helper
 			<?php endif; ?>
 				
 	<?php endif;
-	
-	?>
 
-				<input type="text" name="secondary-dplrEmail" value="" class="dplr-secondary-email"/>
-				<?php $button_position = isset($form->settings["button_position"]) ? $form->settings["button_position"] : "left";
-				$submit_text = isset($form->settings["button_text"]) ? $form->settings["button_text"] : "";
-				$message_success = isset($form->settings["message_success"]) ? $form->settings["message_success"] : "";
-				if(empty($submit_text)):
-					$submit_text =  __('Submit', 'doppler-form');
-				endif;
-				if(empty($message_success)):
-					$message_success = __('Thanks for subscribing', 'doppler-form');
-				endif;
-				$buttom_color = '';
-				if(isset($form->settings['change_button_bg']) && $form->settings['change_button_bg']==='yes'):
-					$buttom_color = isset($form->settings["button_color"]) && !empty(trim($form->settings["button_color"])) ? "background: ". $form->settings["button_color"] .";" : "";
-				endif;?>
-				<label class="msg-data-sending"><?=$message_success?></label>
-				<div class="input-buttom" >
-					<button type="submit"  name="submit" style="<?php echo $buttom_color; ?>" class="<?php echo $button_position; ?>">
-						<img src="<?php echo plugin_dir_url(__FILE__)?>../../public/img/spinner.svg"/>
-						<span><?=$submit_text?></span>
-					</button>
-				</div>
-   		</form>
+	if(!isset($form->settings['use_consent_field']) 
+	&& isset($form->settings['consent_field_text']) 
+	&& isset($form->settings['consent_field_url'])
+	) {
+		$consentTextArray = explode("||", $form->settings["consent_field_text"]);
+		$consentUrlArray = explode("||", $form->settings["consent_field_url"]);
+
+		foreach ($consentTextArray as $key => $value)
+		{ 
+			if (!empty($value))
+			{  ?>
+			<div class="input-field consent_field" required>
+				<input type="checkbox" name="fields-CONSENT" value="true" required/>
+				<?php echo $value ?>
+				<a href="<?= $consentUrlArray[$key] ?>"><?php _e('Read more', 'doppler-form')?></a>
+			</div>
+			<?php }
+		} 
+	}?>
+		<input type="text" name="secondary-dplrEmail" value="" class="dplr-secondary-email"/>
+		<?php $button_position = isset($form->settings["button_position"]) ? $form->settings["button_position"] : "left";
+		$submit_text = isset($form->settings["button_text"]) ? $form->settings["button_text"] : "";
+		$message_success = isset($form->settings["message_success"]) ? $form->settings["message_success"] : "";
+		if(empty($submit_text)):
+			$submit_text =  __('Submit', 'doppler-form');
+		endif;
+		if(empty($message_success)):
+			$message_success = __('Thanks for subscribing', 'doppler-form');
+		endif;
+		$buttom_color = '';
+		if(isset($form->settings['change_button_bg']) && $form->settings['change_button_bg']==='yes'):
+			$buttom_color = isset($form->settings["button_color"]) && !empty(trim($form->settings["button_color"])) ? "background: ". $form->settings["button_color"] .";" : "";
+		endif;?>
+		<label class="msg-data-sending"><?=$message_success?></label>
+		<div class="input-buttom" >
+			<button type="submit"  name="submit" style="<?php echo $buttom_color; ?>" class="<?php echo $button_position; ?>">
+				<img src="<?php echo plugin_dir_url(__FILE__)?>../../public/img/spinner.svg"/>
+				<span><?=$submit_text?></span>
+			</button>
+		</div>
+	</form>
     <?php
   }
 

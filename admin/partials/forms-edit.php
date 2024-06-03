@@ -111,15 +111,6 @@
               <input type="url" name="settings[thankyou_page_url]" value="<?=isset($form->settings["thankyou_page_url"])?$form->settings["thankyou_page_url"]:'' ?>" pattern="https?://.+" placeholder="" maxlength="150" <?php if(isset($form->settings['use_thankyou_page']) && $form->settings['use_thankyou_page']==='yes') echo 'required';?> />
             </div>
             <div class="dplr_input_section">
-             <label for="settings[use_consent_field]"><?php _e('Consent Field (GDPR)', 'doppler-form')?> <!--<span class="hlp"><?php _e('What is it? Press','doppler-form')?> <?= '<a href="'.__('https://help.fromdoppler.com/en/general-data-protection-regulation?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form').'" target="blank">'.__('HELP','doppler-form').'</a>'?>.</span>--></label>
-                <div class="radio_section">
-                  <?php _e('Yes', 'doppler-form')?>
-                  <input type="radio" name="settings[use_consent_field]" class="dplr-toggle-consent" value="yes" <?php if(isset($form->settings['use_consent_field']) && $form->settings['use_consent_field']==='yes') echo 'checked'?>>&nbsp; 
-                  <?php _e('No', 'doppler-form')?>
-                  <input type="radio" name="settings[use_consent_field]" class="dplr-toggle-consent" value="no" <?php if(isset($form->settings['use_consent_field']) && $form->settings['use_consent_field']!=='yes') echo 'checked'?>> 
-                </div>
-            </div>
-            <div class="dplr_input_section">
               <label for="settings[form_orientation]"><?php _e('Form orientation', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
               <div class="radio_section">
                 <?php _e('Vertical','doppler-form')?><input type="radio" name="settings[form_orientation]" value="vertical" <?php if(isset($form->settings['form_orientation']) && $form->settings['form_orientation']==='vertical') echo 'checked'?> />&nbsp; 
@@ -246,24 +237,51 @@
           </div>
         </div>
       </div>
-      
-      <div class="grid" id="dplr_consent_section" <?= (isset($form->settings['use_consent_field']) && $form->settings['use_consent_field']==='yes')? 'style="display:block"' : 'style="display:none"'; ?>>
+      <div class="grid" id="dplr_consent_section">
         <div class="col-4-5 panel nopd">
           <div class="panel-header">
             <h2><?php _e('Consent Field settings', 'doppler-form')?></h2>
           </div>
-          <div class="panel-body grid">
-              <div class="dplr_input_section">
-                <label for="settings[consent_field_text]"><?php _e('Checkbox label', 'doppler-form')?></label>
-                <input type="text" name="settings[consent_field_text]" value="<?=$form->settings["consent_field_text"] ?>" placeholder="<?php _e("I've read and accept the privacy policy", "doppler-form")?>" maxlength="150" />
-              </div>
-              <div class="dplr_input_section">
-              <label for="settings[consent_field_url]">
-                <?php _e('Enter the URL of your privacy policy', 'doppler-form'); ?> 
-              </label>
-              <input type="url" name="settings[consent_field_url]" pattern="https?://.+" value="<?=$form->settings["consent_field_url"] ?>" placeholder="" maxlength="150"/>
-            </div>
-          </div>
+          <p class="hlp"><?php _e('What is it? Press','doppler-form')?> <?= '<a href="'.__('https://help.fromdoppler.com/en/general-data-protection-regulation?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form').'" target="blank">'.__('HELP','doppler-form').'</a>'?>.</p>
+          <button type="button" id="gdpr_add_button" class="dp-button primary-green button-small mt-1"><?php _e('Add new consent','doppler-form') ?></button>
+          <ul class="accordion panel-body grid" id="gdpr_section">
+            <?php
+              if(isset($form->settings["consent_field_text"]) && isset($form->settings["consent_field_url"]))
+              {
+                $consentTextArray = explode("||", $form->settings["consent_field_text"]);
+                $consentUrlArray = explode("||", $form->settings["consent_field_url"]);
+  
+                foreach ($consentTextArray as $key => $value)
+                { 
+                  if (!empty($value))
+                  {  ?>
+                  <li id="gdpr_input_section_<?php echo $key ?>" class="active">
+                    <div class="icon-close gdpr_remove_button_class" id="gdpr_remove_button">
+                    <img src="<?php echo DOPPLER_PLUGIN_URL ?>/admin/img/close.svg">
+                    </div>
+                    <a class="alt-toggle"><?php __('Edit Field', 'doppler-form')  ?><i></i></a>
+                    <div class="accordion-content field-settings">
+                      <div class="dplr_input_section">
+                        <label for="settings[consent_field_text][<?php echo $key ?>]">
+                          <?php _e('Checkbox label', 'doppler-form') ?>
+                        </label>
+                        <input type="text" name="settings[consent_field_text][<?php echo $key ?>]"
+                        value="<?php echo $value ?>" placeholder="<?php _e("I've read and accept the privacy policy", "doppler-form") ?>"
+                        maxlength="150" required/>
+                      </div>
+                      <div class="dplr_input_section">
+                        <label for="settings[consent_field_url][<?php echo $key ?>]">
+                          <?php _e('Enter the URL of your privacy policy', 'doppler-form') ?>
+                        </label>
+                        <input type="url" name="settings[consent_field_url][<?php echo $key ?>]" pattern="https?://.+"
+                        value="<?php echo $consentUrlArray[$key] ?>" placeholder="" maxlength="150" required/>
+                      </div>
+                    </div>
+                  </li>
+                  <?php }
+                } 
+              } ?>
+          </ul>
         </div>
       </div>
     
@@ -276,6 +294,7 @@
 
 </div>
 <script type="text/javascript">
+var gdprAmount = <?php echo count($consentTextArray); ?>;
 
 function hideShowConfigDobleOptIn(){
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
@@ -298,10 +317,18 @@ function hideShowConfigDobleOptIn(){
   }
 }
 
+function removeGdprContainerOnClick(){
+  jQuery(".gdpr_remove_button_class").on("click", function () {
+				var fieldContainer = jQuery(this).closest("li");
+				fieldContainer.remove();
+			});
+}
+
 window.onload = function(){
   hideShowConfigDobleOptIn();
   hideShowConfigLandingOrURL();
   removeQuoteMarksFromConfirmationLink();
+  removeGdprContainerOnClick();
 }
 
 String.prototype.replaceHtmlEntites = function() {
