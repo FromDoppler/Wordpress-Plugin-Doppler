@@ -77,10 +77,11 @@ form.dplr_form .input-buttom button img {
 	height: 20px;
 }
 
-  form.dplr_form .container {
-    display: flex;
-    justify-content: space-between;
-  }
+form.dplr_form .container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
 form.dplr_form .flex-item {
 	flex: 1;
 	padding: 5px;
