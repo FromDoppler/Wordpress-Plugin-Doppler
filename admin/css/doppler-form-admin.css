@@ -620,6 +620,9 @@
   line-height: 11px;
   font-weight: 300;
   padding: 10px 15px;
+
+.dplr_settings .dp-button.button-right {
+	float: right;
 }
 
 .dplr_settings .dp-button.dp-button--inline.button--loading {
@@ -790,9 +793,8 @@
 }
 
 .dplr_settings .panel ul.accordion {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 5px;
+	list-style-type: none;
+	padding: 0;
 }
 
 .dplr_settings .panel ul.accordion > li {
@@ -1246,8 +1248,9 @@
   width: 201px;
 }
 
-.dplr_settings .dplr-tab-content--form-create span.noti, .dplr_settings .dplr-tab-content--form-edit span.noti {
-  padding-left: 10px;
+.dplr_settings .dplr-tab-content--form-create span.noti,
+.dplr_settings .dplr-tab-content--form-edit span.noti {
+	padding-left: 10px;
 }
 
 .dplr_settings .dplr-tab-content--form-create .dp-button, .dplr_settings .dplr-tab-content--form-edit .dp-button {
