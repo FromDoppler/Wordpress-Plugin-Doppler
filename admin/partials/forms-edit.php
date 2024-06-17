@@ -242,46 +242,49 @@
           <div class="panel-header">
             <h2><?php _e('Consent Field settings', 'doppler-form')?></h2>
           </div>
-          <p class="hlp"><?php _e('What is it? Press','doppler-form')?> <?= '<a href="'.__('https://help.fromdoppler.com/en/general-data-protection-regulation?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form').'" target="blank">'.__('HELP','doppler-form').'</a>'?>.</p>
-          <button type="button" id="gdpr_add_button" class="dp-button primary-green button-small mt-1"><?php _e('Add new consent','doppler-form') ?></button>
-          <ul class="accordion panel-body grid" id="gdpr_section">
-            <?php
-              if(isset($form->settings["consent_field_text"]) && isset($form->settings["consent_field_url"]))
-              {
-                $consentTextArray = explode("||", $form->settings["consent_field_text"]);
-                $consentUrlArray = explode("||", $form->settings["consent_field_url"]);
-  
-                foreach ($consentTextArray as $key => $value)
-                { 
-                  if (!empty($value))
-                  {  ?>
-                  <li id="gdpr_input_section_<?php echo $key ?>" class="active">
-                    <div class="icon-close gdpr_remove_button_class" id="gdpr_remove_button">
-                    <img src="<?php echo DOPPLER_PLUGIN_URL ?>/admin/img/close.svg">
-                    </div>
-                    <a class="alt-toggle"><?php __('Edit Field', 'doppler-form')  ?><i></i></a>
-                    <div class="accordion-content field-settings">
-                      <div class="dplr_input_section">
-                        <label for="settings[consent_field_text][<?php echo $key ?>]">
-                          <?php _e('Checkbox label', 'doppler-form') ?>
-                        </label>
-                        <input type="text" name="settings[consent_field_text][<?php echo $key ?>]"
-                        value="<?php echo $value ?>" placeholder="<?php _e("I've read and accept the privacy policy", "doppler-form") ?>"
-                        maxlength="150" required/>
+          <div class="panel-body grid">
+            <span class="hlp"><?php _e('What is it? Press','doppler-form')?> <?= '<a href="'.__('https://help.fromdoppler.com/en/general-data-protection-regulation?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form').'" target="blank">'.__('HELP','doppler-form').'</a>'?>.</span>
+            <button type="button" id="gdpr_add_button" class="dp-button primary-green button-small button-right"><?php _e('Add new consent','doppler-form') ?></button>
+            <ul class="accordion panel-body grid mt-1" id="gdpr_section">
+              <?php
+                if(isset($form->settings["consent_field_text"]) && isset($form->settings["consent_field_url"]))
+                {
+                  $consentTextArray = explode("||", $form->settings["consent_field_text"]);
+                  $consentUrlArray = explode("||", $form->settings["consent_field_url"]);
+    
+                  foreach ($consentTextArray as $key => $value)
+                  { 
+                    if (!empty($value))
+                    {  ?>
+                    <li id="gdpr_input_section_<?php echo $key ?>">
+                      <div class="icon-close gdpr_remove_button_class" id="gdpr_remove_button">
+                      <img src="<?php echo DOPPLER_PLUGIN_URL ?>/admin/img/close.svg">
                       </div>
-                      <div class="dplr_input_section">
-                        <label for="settings[consent_field_url][<?php echo $key ?>]">
-                          <?php _e('Enter the URL of your privacy policy', 'doppler-form') ?>
-                        </label>
-                        <input type="url" name="settings[consent_field_url][<?php echo $key ?>]" pattern="https?://.+"
-                        value="<?php echo $consentUrlArray[$key] ?>" placeholder="" maxlength="150" required/>
+                      <?php echo $value ?>
+                      <a class="alt-toggle"><?php echo __('Edit Field', 'doppler-form')  ?><i></i></a>
+                      <div class="accordion-content field-settings">
+                        <div class="dplr_input_section">
+                          <label for="settings[consent_field_text][<?php echo $key ?>]">
+                            <?php _e('Checkbox label', 'doppler-form') ?>
+                          </label>
+                          <input type="text" name="settings[consent_field_text][<?php echo $key ?>]"
+                          value="<?php echo $value ?>" placeholder="<?php _e("I've read and accept the privacy policy", "doppler-form") ?>"
+                          maxlength="150" required/>
+                        </div>
+                        <div class="dplr_input_section">
+                          <label for="settings[consent_field_url][<?php echo $key ?>]">
+                            <?php _e('Enter the URL of your privacy policy', 'doppler-form') ?>
+                          </label>
+                          <input type="url" name="settings[consent_field_url][<?php echo $key ?>]" pattern="https?://.+"
+                          value="<?php echo $consentUrlArray[$key] ?>" placeholder="" maxlength="150" required/>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                  <?php }
-                } 
-              } ?>
-          </ul>
+                    </li>
+                    <?php }
+                  } 
+                } ?>
+            </ul>
+          </div>
         </div>
       </div>
     
