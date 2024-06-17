@@ -226,6 +226,7 @@ var FieldModel;
 					'" ' +
 					(this.readOnly ? "disabled" : "") +
 					">";
+				html += "<span class='hlp'>" + ObjStr.DatePlaceholderHelp + "</span>";
 				html += "		</div>";
 			}
 			if ($.inArray(field.type, ["boolean", "gender", "date"]) == -1) {

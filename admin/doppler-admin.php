@@ -155,7 +155,8 @@ class Doppler_Admin {
 			'optionsLine'		=> __( 'Drop-down List', 'doppler-form'),
 			'OptionsLabel'		=> __( 'Options', 'doppler-form'),
 			'OptionsDescription'=> __( 'Write the options you want to show in your Drop-down List, separating them by a line break.', 'doppler-form'),
-			'admin_url'			=> DOPPLER_PLUGIN_URL
+			'admin_url'			=> DOPPLER_PLUGIN_URL,
+			'DatePlaceholderHelp' => __('The date will be displayed in the same format that you configure in the placeholder. day=dd | month=mm | year=y or yy', 'doppler-form')
 		) );
 		wp_enqueue_script('jquery-ui-sortable');
 		wp_enqueue_script('jquery-ui-dialog');

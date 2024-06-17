@@ -5,17 +5,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-04-06 15:29+0000\n"
-"PO-Revision-Date: 2024-06-03 13:23+0000\n"
+"POT-Creation-Date: 2020-02-02 16:48-0300\n"
+"PO-Revision-Date: 2024-06-17 17:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: Español\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:"
+"1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;"
+"esc_html\n"
+"X-Poedit-Basepath: ..\n"
 "X-Generator: Loco https://localise.biz/\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Loco-Version: 2.6.7; wp-6.5"
+"X-Poedit-SearchPath-0: .\n"
+"X-Loco-Version: 2.6.9; wp-6.5.4"
 
 #: admin/partials/forms-create.php:14 admin/partials/forms-create.php:18
 #: admin/partials/forms-create.php:112 admin/partials/forms-create.php:150
@@ -95,7 +103,7 @@ msgstr "Configure la extensión"
 
 #: admin/partials/forms-create.php:148 admin/partials/forms-edit.php:164
 msgid "Confirmation email"
-msgstr "Email de confirmación"
+msgstr "Confirmacion de email"
 
 #: admin/partials/forms-create.php:93 admin/partials/forms-create.php:97
 #: admin/partials/forms-edit.php:102 admin/partials/forms-edit.php:106
@@ -104,7 +112,7 @@ msgstr "Mensaje de confirmación"
 
 #: admin/partials/forms-create.php:185 admin/partials/forms-edit.php:202
 msgid "Confirmation page"
-msgstr "Pagina de confirmación"
+msgstr "Página de confirmación"
 
 #: admin/partials/api-connection.php:161
 msgid "Connect"
@@ -220,7 +228,7 @@ msgstr "Doppler LLC"
 #: admin/partials/forms-edit.php:147 admin/partials/forms-edit.php:152
 #| msgid "Double Opt-In:"
 msgid "Double Opt-In"
-msgstr "Doble Opt-In"
+msgstr "Doble Opt-in"
 
 #: admin/partials/forms-create.php:44 admin/partials/forms-edit.php:50
 msgid "Drag and drop the Fields to give them the order you want"
@@ -243,8 +251,8 @@ msgid ""
 "Email content. Must obligatorily have an anchor element with the attribute: "
 "href=[[[ConfirmationLink]]]"
 msgstr ""
-"Define el contenido del Email. ¡Psst! No olvides incluir un elemento anchor "
-"(&lt;a&gt;&lt;/a&gt;) con: href=[[[ConfirmationLink]]]"
+"Contenido del email. Tiene que tener, obligatoriamente, un anchor element "
+"con: href=[[[ConfirmationLink]]]"
 
 #: admin/partials/forms-create.php:167 admin/partials/forms-edit.php:184
 msgid "Email reply-to"
@@ -280,8 +288,8 @@ msgid ""
 "element with the attribute: href=[[[ConfirmationLink]]]"
 msgstr ""
 "Error! Recuerde que el contenido del email tiene que tener, obligatoriamente,"
-" un elemento anchor (&lt;a&gt; &lt;/a&gt;) con el atributo: "
-"href=[[[ConfirmationLink]]]"
+" un elemento anchor (&lt;a&gt; \"\n"
+"\"&lt;/a&gt;) con el atributo: href=[[[ConfirmationLink]]]"
 
 #: admin/partials/forms-create.php:203 admin/partials/forms-edit.php:220
 msgid "Example: https://www.fromdoppler.com"
@@ -373,7 +381,7 @@ msgstr "Dirígete a la pestaña Formularios Doppler  > Crear Formulario."
 #: admin/partials/forms-create.php:142 admin/partials/forms-edit.php:44
 #: admin/partials/forms-edit.php:114 admin/partials/forms-edit.php:160
 msgid "HELP"
-msgstr "AYUDA"
+msgstr "HELP"
 
 #: admin/partials/forms-create.php:115 admin/partials/forms-edit.php:126
 msgid "Horizontal"
@@ -680,11 +688,11 @@ msgstr "Texto de ejemplo"
 
 #: admin/doppler-admin.php:128
 msgid "Please enter a valid color code, i.e: #000000."
-msgstr "Por favor, ingresa un código de color válido."
+msgstr "Por favor, ingresa un código de color válido. "
 
 #: includes/helpers/Form_Helper.php:240
-msgid "Please enter a valid date dd/mm/YYYY."
-msgstr "Ingrese una fecha valida dd/mm/YYYY."
+msgid "Please enter a valid date."
+msgstr "Ingrese una fecha valida."
 
 #: includes/helpers/Form_Helper.php:225
 msgid "Please enter a valid email address."
@@ -806,6 +814,13 @@ msgstr "URL de destino"
 msgid "Thanks for subscribing"
 msgstr "Gracias por suscribirte"
 
+msgid ""
+"The date will be displayed in the same format that you configure in the "
+"placeholder. day=dd | month=mm | year=y or yy"
+msgstr ""
+"La fecha se mostrará en el mismo formato que configures en el texto de "
+"ejemplo. día=dd | mes=mm | año=y o yy"
+
 #: admin/doppler-admin.php:340
 msgid "The Form has been deleted correctly."
 msgstr "El Formulario ha sido eliminado correctamente."
@@ -847,7 +862,7 @@ msgstr ""
 
 #: admin/doppler-admin.php:373
 msgid "Tracking code is invalid"
-msgstr "El código de seguimiento es incorrecto"
+msgstr "El código de seguimiento es incorrecto."
 
 #: admin/doppler-admin.php:126
 msgid "Uninstalling"
@@ -897,7 +912,7 @@ msgstr "¡Ya casi lo tienes! Sigue estos pasos"
 
 #: includes/class-doppler-form-widget.php:69 admin/partials/forms-list.php:10
 msgid "You don't have Forms yet!"
-msgstr "Aún no tienes Formularios!"
+msgstr "Aún no tienes Formularios."
 
 #: doppler-form.php:43
 msgid ""

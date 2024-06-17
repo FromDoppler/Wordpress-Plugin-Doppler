@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
 "POT-Creation-Date: 2020-02-02 16:48-0300\n"
-"PO-Revision-Date: 2024-06-03 13:22+0000\n"
+"PO-Revision-Date: 2024-06-17 17:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: Español de Chile\n"
 "Language: es_CL\n"
@@ -103,7 +103,7 @@ msgstr "Configure la extensión"
 
 #: admin/partials/forms-create.php:148 admin/partials/forms-edit.php:164
 msgid "Confirmation email"
-msgstr "Email de confirmación"
+msgstr "Confirmacion de email"
 
 #: admin/partials/forms-create.php:93 admin/partials/forms-create.php:97
 #: admin/partials/forms-edit.php:102 admin/partials/forms-edit.php:106
@@ -112,7 +112,7 @@ msgstr "Mensaje de confirmación"
 
 #: admin/partials/forms-create.php:185 admin/partials/forms-edit.php:202
 msgid "Confirmation page"
-msgstr "Pagina de confirmación"
+msgstr "Página de confirmación"
 
 #: admin/partials/api-connection.php:161
 msgid "Connect"
@@ -228,7 +228,7 @@ msgstr "Doppler LLC"
 #: admin/partials/forms-edit.php:147 admin/partials/forms-edit.php:152
 #| msgid "Double Opt-In:"
 msgid "Double Opt-In"
-msgstr "Doble Opt-In"
+msgstr "Doble Opt-in"
 
 #: admin/partials/forms-create.php:44 admin/partials/forms-edit.php:50
 msgid "Drag and drop the Fields to give them the order you want"
@@ -251,8 +251,8 @@ msgid ""
 "Email content. Must obligatorily have an anchor element with the attribute: "
 "href=[[[ConfirmationLink]]]"
 msgstr ""
-"Define el contenido del Email. ¡Psst! No olvides incluir un elemento anchor "
-"(&lt;a&gt;&lt;/a&gt;) con: href=[[[ConfirmationLink]]]"
+"Contenido del email. Tiene que tener, obligatoriamente, un anchor element "
+"con: href=[[[ConfirmationLink]]]"
 
 #: admin/partials/forms-create.php:167 admin/partials/forms-edit.php:184
 msgid "Email reply-to"
@@ -288,8 +288,8 @@ msgid ""
 "element with the attribute: href=[[[ConfirmationLink]]]"
 msgstr ""
 "Error! Recuerde que el contenido del email tiene que tener, obligatoriamente,"
-" un elemento anchor (&lt;a&gt; &lt;/a&gt;) con el atributo: "
-"href=[[[ConfirmationLink]]]"
+" un elemento anchor (&lt;a&gt; \"\n"
+"\"&lt;/a&gt;) con el atributo: href=[[[ConfirmationLink]]]"
 
 #: admin/partials/forms-create.php:203 admin/partials/forms-edit.php:220
 msgid "Example: https://www.fromdoppler.com"
@@ -691,8 +691,8 @@ msgid "Please enter a valid color code, i.e: #000000."
 msgstr "Por favor, ingresa un código de color válido. "
 
 #: includes/helpers/Form_Helper.php:240
-msgid "Please enter a valid date dd/mm/YYYY."
-msgstr "Ingrese una fecha valida dd/mm/YYYY."
+msgid "Please enter a valid date."
+msgstr "Ingrese una fecha valida."
 
 #: includes/helpers/Form_Helper.php:225
 msgid "Please enter a valid email address."
@@ -796,7 +796,7 @@ msgstr "Suscriptores"
 
 #: admin/partials/forms-create.php:128 admin/partials/forms-edit.php:137
 msgid "Subscription Type"
-msgstr "Tipo de suscripción"
+msgstr "Tipo de subscripción"
 
 #: admin/partials/api-connection.php:17
 msgid "Successful connection!"
@@ -813,6 +813,13 @@ msgstr "URL de destino"
 #: includes/helpers/Form_Helper.php:113
 msgid "Thanks for subscribing"
 msgstr "Gracias por suscribirte"
+
+msgid ""
+"The date will be displayed in the same format that you configure in the "
+"placeholder. day=dd | month=mm | year=y or yy"
+msgstr ""
+"La fecha se mostrará en el mismo formato que configures en el texto de "
+"ejemplo. día=dd | mes=mm | año=y o yy"
 
 #: admin/doppler-admin.php:340
 msgid "The Form has been deleted correctly."
