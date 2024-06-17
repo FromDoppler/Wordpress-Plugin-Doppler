@@ -1,13 +1,22 @@
 (function ($) {
 	"use strict";
+	function isValidDateFormat(dateFormat) {
+		var regExDateFormat =
+			/^(?:(((mm|dd)(\/|-| )){2}y{1,2})|(y{1,2}(\/|-| )(mm|dd)(\/|-| )(mm|dd)))$/;
+		return regExDateFormat.test(dateFormat);
+	}
+
 	$(document).ready(function () {
 		$("form.dplr_form input[type='text'].date").each(function () {
 			var dateElement = $(this);
 			var elementName = dateElement.attr("name");
 			var elementFormId = dateElement.attr("data-form-id");
+			var elementDateFormat = dateElement.attr("placeholder");
 			dateElement
 				.datepicker({
-					dateFormat: "dd/mm/yy",
+					dateFormat: isValidDateFormat(elementDateFormat)
+						? elementDateFormat
+						: "dd/mm/yy",
 					altFormat: "yy-mm-dd",
 					yearRange: "-100:+100",
 					changeMonth: true,
