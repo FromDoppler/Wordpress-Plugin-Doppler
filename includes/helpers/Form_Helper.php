@@ -66,7 +66,6 @@ class DPLR_Form_helper
 		if($form->settings['use_thankyou_page']==='yes'): ?>
 			<input type="hidden" value="<?php echo $form->settings['thankyou_page_url']?>" name="thankyou"/>
 		<?php endif;
-	
 	else: ?>
 
 		<div>
@@ -273,8 +272,8 @@ class DPLR_Form_helper
 			type="text"
 			name="<?php echo $input->name; ?>"
 			data-form-id="<?php echo $form->id; ?>"
-			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date dd/mm/YYYY.', 'doppler-form') ?>')"
-			pattern="^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$"
+			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date.', 'doppler-form') ?>')"
+			pattern="^((\d{1,2}(\/|-| )){2}\d{4,4})|(\d{2,4}(\/|-| )\d{1,2}(\/|-| )\d{1,2})$"
 			value=""
 			class="date"
 			maxlength="150"

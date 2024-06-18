@@ -1,13 +1,22 @@
 (function ($) {
 	"use strict";
+	function isValidDateFormat(dateFormat) {
+		var regExDateFormat =
+			/^(?:(((mm|dd)(\/|-| )){2}y{1,2})|(y{1,2}(\/|-| )(mm|dd)(\/|-| )(mm|dd)))$/;
+		return regExDateFormat.test(dateFormat);
+	}
+
 	$(document).ready(function () {
 		$("form.dplr_form input[type='text'].date").each(function () {
 			var dateElement = $(this);
 			var elementName = dateElement.attr("name");
 			var elementFormId = dateElement.attr("data-form-id");
+			var elementDateFormat = dateElement.attr("placeholder");
 			dateElement
 				.datepicker({
-					dateFormat: "dd/mm/yy",
+					dateFormat: isValidDateFormat(elementDateFormat)
+						? elementDateFormat
+						: "dd/mm/yy",
 					altFormat: "yy-mm-dd",
 					yearRange: "-100:+100",
 					changeMonth: true,
@@ -16,20 +25,12 @@
 						'input[name="fields-' + elementName + "-" + elementFormId + '"]',
 				})
 				.on("blur", function () {
-					if (this.value.match(/\d{1,2}[^\d]\d{1,2}[^\d]\d{4,4}/gi) == null) {
+					if (
+						this.value.match(
+							/((\d{1,2}(\/|-| )){2}\d{4,4})|(\d{2,4}(\/|-| )\d{1,2}(\/|-| )\d{1,2})/gi
+						) == null
+					) {
 						this.reportValidity();
-					} else {
-						var t = this.value.split(/[^\d]/);
-						var dd = parseInt(t[0], 10);
-						var m0 = parseInt(t[1], 10) - 1;
-						var yyyy = parseInt(t[2], 10);
-						var d = new Date(yyyy, m0, dd);
-						if (
-							d.getDate() != dd ||
-							d.getMonth() != m0 ||
-							d.getFullYear() != yyyy
-						)
-							this.reportValidity();
 					}
 				});
 		});

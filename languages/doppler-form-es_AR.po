@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
 "POT-Creation-Date: 2020-02-02 16:48-0300\n"
-"PO-Revision-Date: 2024-06-03 13:21+0000\n"
+"PO-Revision-Date: 2024-06-17 17:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: Español de Argentina\n"
 "Language: es_AR\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Loco-Version: 2.6.7; wp-6.5"
+"X-Loco-Version: 2.6.9; wp-6.5.4"
 
 #: admin/partials/forms-create.php:14 admin/partials/forms-create.php:18
 #: admin/partials/forms-create.php:112 admin/partials/forms-create.php:150
@@ -691,8 +691,8 @@ msgid "Please enter a valid color code, i.e: #000000."
 msgstr "Por favor, ingresa un código de color válido. "
 
 #: includes/helpers/Form_Helper.php:240
-msgid "Please enter a valid date dd/mm/YYYY."
-msgstr "Ingrese una fecha valida dd/mm/YYYY."
+msgid "Please enter a valid date."
+msgstr "Ingrese una fecha valida."
 
 #: includes/helpers/Form_Helper.php:225
 msgid "Please enter a valid email address."
@@ -813,6 +813,13 @@ msgstr "URL de destino"
 #: includes/helpers/Form_Helper.php:113
 msgid "Thanks for subscribing"
 msgstr "Gracias por suscribirte"
+
+msgid ""
+"The date will be displayed in the same format that you configure in the "
+"placeholder. day=dd | month=mm | year=y or yy"
+msgstr ""
+"La fecha se mostrará en el mismo formato que configures en el texto de "
+"ejemplo. día=dd | mes=mm | año=y o yy\n"
 
 #: admin/doppler-admin.php:340
 msgid "The Form has been deleted correctly."

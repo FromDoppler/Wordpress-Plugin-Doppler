@@ -904,6 +904,10 @@
 	font-weight: bold;
 }
 
+.dplr_settings .panel ul.accordion > li span.hlp {
+	color: #838370;
+}
+
 .dplr_settings table.panel {
 	padding-bottom: 10px;
 	margin-bottom: 30px;

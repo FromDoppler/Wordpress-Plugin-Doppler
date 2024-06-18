@@ -633,7 +633,7 @@ msgid "Please enter a valid color code, i.e: #000000."
 msgstr ""
 
 #: includes/helpers/Form_Helper.php:240
-msgid "Please enter a valid date dd/mm/YYYY."
+msgid "Please enter a valid date."
 msgstr ""
 
 #: includes/helpers/Form_Helper.php:225
@@ -885,3 +885,7 @@ msgstr ""
 
 msgid "Add new consent"
 msgstr ""
+
+msgid "The date will be displayed in the same format that you configure in the placeholder. day=dd | month=mm | year=y or yy"
+msgstr ""
+
