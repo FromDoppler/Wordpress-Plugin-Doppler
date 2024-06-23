@@ -126,6 +126,24 @@ var FieldModel;
 							description: "",
 							placeholder: "",
 					  };
+			var dateFormats = [
+				"dd/mm/yy",
+				"dd/mm/y",
+				"mm/dd/yy",
+				"mm/dd/y",
+				"yy/mm/dd",
+				"y/mm/dd",
+				"yy/dd/mm",
+				"y/dd/mm",
+				"dd-mm-yy",
+				"dd-mm-y",
+				"mm-dd-yy",
+				"mm-dd-y",
+				"yy-mm-dd",
+				"y-mm-dd",
+				"yy-dd-mm",
+				"y-dd-mm",
+			];
 
 			var html = "<li data-field-name='" + field.name + "'>";
 			html += !field.readonly
@@ -226,7 +244,27 @@ var FieldModel;
 					'" ' +
 					(this.readOnly ? "disabled" : "") +
 					">";
-				html += "<span class='hlp'>" + ObjStr.DatePlaceholderHelp + "</span>";
+				html += "		</div>";
+				html += '		<div class="dplr_input_section horizontal">';
+				html +=
+					'<label for="fields[' +
+					field.name +
+					'][settings][dateFormat]">' +
+					"DateFormat" +
+					"</label>";
+				html +=
+					'<select name="fields[' + field.name + '][settings][dateFormat]">';
+				dateFormats.forEach((format) => {
+					html +=
+						'<option value="' +
+						format +
+						'"' +
+						(field.settings.dateFormat == format ? "selected" : "") +
+						">" +
+						format +
+						"</option>";
+				});
+				html += "</select>";
 				html += "		</div>";
 			}
 			if ($.inArray(field.type, ["boolean", "gender", "date"]) == -1) {
