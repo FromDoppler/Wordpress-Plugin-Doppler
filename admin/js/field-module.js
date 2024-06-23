@@ -250,7 +250,7 @@ var FieldModel;
 					'<label for="fields[' +
 					field.name +
 					'][settings][dateFormat]">' +
-					"DateFormat" +
+					ObjStr.DateFormat +
 					"</label>";
 				html +=
 					'<select name="fields[' + field.name + '][settings][dateFormat]">';
