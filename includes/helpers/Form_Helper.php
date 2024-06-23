@@ -272,6 +272,7 @@ class DPLR_Form_helper
 			type="text"
 			name="<?php echo $input->name; ?>"
 			data-form-id="<?php echo $form->id; ?>"
+			data-date-format="<?php echo ($input->settings['dateFormat'] ?? '"dd/mm/yy'); ?>"
 			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date.', 'doppler-form') ?>')"
 			pattern="^((\d{1,2}(\/|-| )){2}\d{4,4})|(\d{2,4}(\/|-| )\d{1,2}(\/|-| )\d{1,2})$"
 			value=""
@@ -279,7 +280,7 @@ class DPLR_Form_helper
 			maxlength="150"
 			placeholder= "<?php echo isset($input->settings['placeholder']) ?
 				$input->settings['placeholder'] 
-				: "dd/mm/yyyy" ?>">
+				: "" ?>">
 			<input type="hidden"
 			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
 			value="">
