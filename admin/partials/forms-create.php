@@ -90,7 +90,7 @@
             <label for="settings[use_thankyou_page]"><?php _e('What do you want to show to your users after submitting the Form?', 'doppler-form')?></label>
             <div class="radio_section">
               <?php _e('Custom confirmation page', 'doppler-form')?><input type="radio" name="settings[use_thankyou_page]" class="dplr-toggle-thankyou" value="yes" <?php if(isset($form['settings']['use_thankyou_page']) && $form['settings']['use_thankyou_page']==='yes') echo 'checked'?>>&nbsp; 
-              <?php _e('Confirmation message', 'doppler-form')?><input type="radio" name="settings[use_thankyou_page]" class="dplr-toggle-thankyou" value="no" <?php if(isset($form['settings']['use_thankyou_page']) && $form['settings']['use_thankyou_page']!=='yes') echo 'checked'?>> 
+              <?php _e('Confirmation message', 'doppler-form')?><input type="radio" name="settings[use_thankyou_page]" class="dplr-toggle-thankyou" value="no" <?php if(!isset($form['settings']['use_thankyou_page']) || $form['settings']['use_thankyou_page']==='no') echo 'checked'?>> 
             </div>
           </div>
           <div class="dplr_input_section dplr_confirmation_message" <?= (isset($form['settings']['use_thankyou_page']) && $form['settings']['use_thankyou_page']==='yes')? 'style="display:none"' : 'style="display:block"'; ?>>
@@ -104,7 +104,7 @@
           <div class="dplr_input_section">
             <label for="settings[form_orientation]"><?php _e('Form orientation', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
             <div class="radio_section">
-              <?php _e('Vertical','doppler-form')?><input type="radio" name="settings[form_orientation]" value="vertical" required <?php if(isset($form['settings']['form_orientation']) && $form['settings']['form_orientation']==='vertical') echo 'checked'?>/>&nbsp; 
+              <?php _e('Vertical','doppler-form')?><input type="radio" name="settings[form_orientation]" value="vertical" required <?php if(!isset($form['settings']['form_orientation']) || $form['settings']['form_orientation']==='vertical') echo 'checked'?>/>&nbsp; 
               <?php _e('Horizontal','doppler-form')?><input type="radio" name="settings[form_orientation]" value="horizontal" required <?php if(isset($form['settings']['form_orientation']) && $form['settings']['form_orientation']==='horizontal') echo 'checked'?>/>
             </div>
           </div>
