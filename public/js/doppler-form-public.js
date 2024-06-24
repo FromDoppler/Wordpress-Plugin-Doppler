@@ -11,7 +11,7 @@
 			var dateElement = $(this);
 			var elementName = dateElement.attr("name");
 			var elementFormId = dateElement.attr("data-form-id");
-			var elementDateFormat = dateElement.attr("placeholder");
+			var elementDateFormat = dateElement.attr("data-date-format");
 			dateElement
 				.datepicker({
 					dateFormat: isValidDateFormat(elementDateFormat)
