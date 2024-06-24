@@ -229,13 +229,13 @@
 			if (o === "yes") {
 				$(".dplr_thankyou_url input").attr("required", "required");
 				$(".dplr_thankyou_url input").removeAttr("disabled");
-				$(".dplr_thankyou_url").css("display", "inline");
+				$(".dplr_thankyou_url").css("display", "block");
 				$(".dplr_confirmation_message").val("").css("display", "none");
 			} else {
 				$(".dplr_thankyou_url input").removeAttr("required");
 				$(".dplr_thankyou_url input").attr("disabled", "disabled");
 				$(".dplr_thankyou_url").val("").css("display", "none");
-				$(".dplr_confirmation_message").css("display", "inline");
+				$(".dplr_confirmation_message").css("display", "block");
 			}
 		});
 
