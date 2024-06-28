@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-06-23 13:38-0300\n"
+"POT-Creation-Date: 2024-06-28 08:23-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Hernán Galván\n"
@@ -706,7 +706,10 @@ msgid "Consent Field settings"
 msgstr ""
 
 #: admin/partials/forms-create.php:232 admin/partials/forms-edit.php:246
-msgid "What is it? Press"
+msgid ""
+"Automatically include checkboxes for opt-in, editable text and link that "
+"allow you to explain how and why you are using contact data. Whant to know "
+"more? Press"
 msgstr ""
 
 #: admin/partials/forms-create.php:232 admin/partials/forms-edit.php:246
