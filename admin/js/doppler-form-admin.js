@@ -621,8 +621,7 @@ function validateEmailContent(e) {
 	if (!tinyMCE.activeEditor)
 		jQuery(".wp-editor-wrap .switch-tmce").trigger("click");
 
-	// get content by element Id because sometimes the tinyMCE.getContent() function is not updated
-	content = document.getElementById("content").value;
+	content = tinymce.activeEditor.getContent();
 
 	content = content.replace(
 		'href="[[[ConfirmationLink]]]"',
@@ -641,10 +640,12 @@ function validateEmailContent(e) {
 
 	if (document.getElementById("settings[form_doble_optin]").value === "yes") {
 		if (!content.includes("href=[[[ConfirmationLink]]]")) {
-			// display div con mensaje de error
 			document.getElementById("error-message").style.display = "block";
-			// cancelar el submit del formulario
-			e.preventDefault();
+
+			//cancel form submition
+			if (e) {
+				e.preventDefault();
+			}
 		} else {
 			document.getElementById("error-message").style.display = "none";
 		}
