@@ -182,7 +182,14 @@
                   // the_editor(); 
                   $settings = array(
                     'textarea_name' => 'content',
-                    'media_buttons' => true
+                    'media_buttons' => true,
+                    'tinymce' => array(
+                    'init_instance_callback' => 'function(editor) {
+                                editor.on("blur", function(){
+                                  validateEmailContent();
+                            });
+                        }'
+                    )
                   );
                   wp_editor( isset($form->settings["form_email_confirmacion_email_contenido"])?stripslashes(html_entity_decode($form->settings["form_email_confirmacion_email_contenido"])):'', 'content', $settings );
                 ?>
@@ -368,10 +375,6 @@ document.getElementById("doble_optin_section").addEventListener("click", functio
     document.getElementById("form_name").disabled = false;
     document.getElementById("form_email_reply_to").disabled = false;
   }
-});
-
-document.getElementById("content").addEventListener("blur", function(){
-  validateEmailContent(event);
 });
 
 document.getElementById("section_pagina_confirmacion").addEventListener("click", function(){
