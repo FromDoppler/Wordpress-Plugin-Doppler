@@ -224,6 +224,23 @@ class Doppler_Admin {
 				array($this, 'doppler_forms_screen')
 			);
 
+			add_submenu_page(
+				'doppler_forms_menu',
+				__('Lists Managment', 'doppler-form'),
+				__('Lists Managment', 'doppler-form'),
+				'manage_options',
+				'doppler_list_management',
+				array($this, 'doppler_list_screen')
+			);
+
+			add_submenu_page(
+				'doppler_forms_menu',
+				__('On-Site Tracking', 'doppler-form'),
+				__('On-Site Tracking', 'doppler-form'),
+				'manage_options',
+				'doppler-data-hub',
+				array($this, 'doppler_data_hub_screen')
+			);
 			
 			add_submenu_page(
 				'doppler_forms_menu',
@@ -369,26 +386,31 @@ class Doppler_Admin {
 			}
 		}
 
-		if($active_tab == 'data-hub'):
-			if(isset($_POST['dplr_hub_script'])):
-				if( current_user_can('manage_options') && check_admin_referer('use-hub') ){
-					if( $_POST['dplr_hub_script'] === '' || $this->validate_tracking_code($_POST['dplr_hub_script'])):
-						update_option( 'dplr_hub_script', $this->sanitize_tracking_code($_POST['dplr_hub_script']));
-						$this->set_success_message(__('On Site Tracking code saved successfully', 'doppler-form'));
-					else:
-						$this->set_error_message(__('Tracking code is invalid', 'doppler-form'));
-					endif;
-				}
-			endif;
-			$dplr_hub_script = get_option('dplr_hub_script');
-		endif;
-
 		require_once('partials/doppler-forms-display.php');
 
 	}
 
 	public function doppler_extensions_screen() {
 		require_once('partials/extensions.php');
+	}
+
+	public function doppler_list_screen() {
+		require_once('partials/lists-crud.php');
+	}
+
+	public function doppler_data_hub_screen() {
+		if(isset($_POST['dplr_hub_script'])):
+			if( current_user_can('manage_options') && check_admin_referer('use-hub') ){
+				if( $_POST['dplr_hub_script'] === '' || $this->validate_tracking_code($_POST['dplr_hub_script'])):
+					update_option( 'dplr_hub_script', $this->sanitize_tracking_code($_POST['dplr_hub_script']));
+					$this->set_success_message(__('On Site Tracking code saved successfully', 'doppler-form'));
+				else:
+					$this->set_error_message(__('Tracking code is invalid', 'doppler-form'));
+				endif;
+			}
+		endif;
+		$dplr_hub_script = get_option('dplr_hub_script');
+		require_once('partials/data-hub.php');
 	}
 
 	public function show_admin_notices() {
