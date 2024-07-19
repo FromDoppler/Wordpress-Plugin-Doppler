@@ -18,7 +18,7 @@ $response =  $this->doppler_service->connectionStatus();
     <h2 class="main-title"><?php _e('Doppler Forms', 'doppler-form')?> <?php echo $this->get_version()?></h2> 
 
     <?php
-    if( in_array($active_tab, array('forms','lists','data-hub')) ){
+    if( in_array($active_tab, array('forms')) ){
         include plugin_dir_path( __FILE__ ) . "../partials/tabs-nav.php";
     }
     ?>
@@ -52,12 +52,6 @@ switch($active_tab){
         $this->display_error_message();
         $form_id = isset($_GET['form_id']) ? $_GET['form_id'] : $_POST['form_id'];
         $this->form_controller->showCreateEditForm($form_id);
-        break;
-    case 'lists':
-        include plugin_dir_path( __FILE__ ) . "../partials/lists-crud.php";
-        break;
-    case 'data-hub':
-        include plugin_dir_path( __FILE__ ) . "../partials/data-hub.php";
         break;
     default:
         break;
