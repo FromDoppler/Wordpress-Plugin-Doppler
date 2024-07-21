@@ -26,8 +26,7 @@
 				<div class="disconnect-box">
 					<form method="POST" action="options.php" id="dplr-disconnect-form">
 						<div class="dplr-row-section d-flex" style="justify-content: center;align-items: center;">
-							<span><?php echo __('Username', 'doppler-form')?>: <strong><?php echo $options['dplr_option_useraccount']?></strong></span>
-							<span>Api Key: <strong><?php echo $options['dplr_option_apikey']?></strong></span>
+							<span><?php echo __('Connected account', 'doppler-form')?>: <strong><?php echo $options['dplr_option_useraccount']?></strong></span>
 							<?php settings_fields('dplr_plugin_options'); ?>
 							<button type="submit" class="dp-button button-medium primary-green"><?php _e("Disconnect", "doppler-form"); ?></button>
 						</div>
