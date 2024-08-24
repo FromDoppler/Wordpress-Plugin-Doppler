@@ -4,8 +4,9 @@
 
   <?php $this->display_error_message() ?>
 
-  <?php 
-  
+  <a href="<?php echo $create_form_url; ?>" class="dp-button primary-green button-medium mb-1"><?php _e('Create Form', 'doppler-form')?></a>
+
+  <?php   
   if(count($forms) == 0){
     ?><h2><?php _e('You don\'t have Forms yet!','doppler-form'); ?></h2><?php
   }else{
@@ -42,8 +43,6 @@
   <?php
   }
   ?>
-
-<a href="<?php echo $create_form_url; ?>" class="dp-button primary-green button-medium"><?php _e('Create Form', 'doppler-form')?></a>
 
 <div id="dplr-dialog-confirm" title="<?php _e('Are you sure you want to delete the Form?', 'doppler-form'); ?>">
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> <?php _e('It\'ll be deleted and can\'t be recovered.', 'doppler-form')?></p>
