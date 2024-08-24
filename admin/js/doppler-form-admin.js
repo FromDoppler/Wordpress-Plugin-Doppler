@@ -322,12 +322,7 @@
 					var body = JSON.parse(response);
 					if (body.createdResourceId) {
 						var html = "<tr>";
-						html +=
-							"<td>" +
-							body.createdResourceId +
-							"</td><td><strong>" +
-							listName +
-							"</strong></td>";
+						html += "<td><strong>" + listName + "</strong></td>";
 						html += "<td>0</td>";
 						html +=
 							'<td><a href="#" class="text-dark-red" data-list-id="' +
@@ -487,7 +482,6 @@
 				for (const key in items) {
 					var value = items[key];
 					html += "<tr>";
-					html += "<td>" + value.listId + "</td>";
 					html += "<td><strong>" + value.name + "</strong></td>";
 					html += "<td>" + value.subscribersCount + "</td>";
 					html +=
