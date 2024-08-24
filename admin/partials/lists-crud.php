@@ -35,7 +35,6 @@
         <table id="dplr-tbl-lists" class="grid widefat mt-30 d-none">
             <thead>
                 <tr>
-                    <th><?php _e('List ID', 'doppler-form')?></th>
                     <th><?php _e('Name', 'doppler-form')?></th>
                     <th><?php _e('Subscribers', 'doppler-form')?></th>
                     <th></th>
