@@ -648,14 +648,14 @@ function validateEmailContent(e) {
 
 	if (document.getElementById("settings[form_doble_optin]").value === "yes") {
 		if (!content.includes("href=[[[ConfirmationLink]]]")) {
-			document.getElementById("error-message").style.display = "block";
+			document.getElementById("error-message").classList.remove("d-none");
 
 			//cancel form submition
 			if (e) {
 				e.preventDefault();
 			}
 		} else {
-			document.getElementById("error-message").style.display = "none";
+			document.getElementById("error-message").classList.add("d-none");
 		}
 	}
 }

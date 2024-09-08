@@ -312,9 +312,13 @@
       </div>
     </div>
     
-    <p id="error-message" class="error-message">
-      <?php _e('Error! Remember that the email\'s content must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form'); ?>
-    </p>
+    <div id="error-message" class="dp-wrap-message dp-wrap-cancel m-b-12 d-none">
+      <span class="dp-message-icon"></span>
+      <div class="dp-content-message">
+        <p><?php _e('Error! Remember that the email\'s content must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form'); ?></p>
+      </div>
+    </div>
+
     <button id="submit_button" type="submit" name="form-create" class="dp-button primary-green button-medium">
       <?php _e('Save', 'doppler-form')?>
     </button>
@@ -379,7 +383,7 @@ document.getElementById("submit_button").addEventListener("click", function(){
 document.getElementById("doble_optin_section").addEventListener("click", function(){
   hideShowConfigDobleOptIn();
   if(document.getElementById("settings[form_doble_optin]").value !== 'yes'){
-    document.getElementById("error-message").style.display = 'none';
+    document.getElementById("error-message").classList.add('d-none');
   }
 });
 

@@ -128,7 +128,7 @@
 }
 
 .dplr_settings .d-none {
-	display: none;
+	display: none !important;
 }
 
 .dplr_settings .hidden {
@@ -480,15 +480,6 @@
 .dplr_settings form {
 	opacity: 100% !important;
 	display: block !important;
-}
-
-.dplr_settings form #error-message {
-	display: none;
-	padding: 10px 20px;
-	color: #721c24;
-	background-color: #f8d7da;
-	border-color: #f5c6cb;
-	font-size: 15px;
 }
 
 .dplr_settings form label {
