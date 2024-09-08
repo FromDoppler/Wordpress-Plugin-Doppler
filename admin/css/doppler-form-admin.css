@@ -1334,6 +1334,12 @@
 
 .dplr_settings #dplr-crud #dplr-form-list-crud input[type="text"] {
 	max-width: 240px;
+	font-weight: normal;
+}
+
+.dplr_settings .dp-icons-group {
+	/* override doppler's style */
+	justify-content: start !important;
 }
 
 .dplr_settings #dplr-crud .dplr-loading {

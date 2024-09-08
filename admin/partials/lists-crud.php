@@ -1,52 +1,69 @@
-<div class="wrap dplr_settings">
-    <a href="<?php _e('https://www.fromdoppler.com/en/?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form')?>" target="_blank" class="dplr-logo-header">
-		<img id="" src="<?php echo DOPPLER_PLUGIN_URL?>admin/img/logo-doppler.svg" alt="Doppler logo"/>
-	</a>
+<div class="dp-library">
+    <div class="dp-container">
+        <div class="wrap dplr_settings">
+            <a href="<?php _e('https://www.fromdoppler.com/en/?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form')?>" target="_blank" class="dplr-logo-header">
+                <img id="" src="<?php echo DOPPLER_PLUGIN_URL?>admin/img/logo-doppler.svg" alt="Doppler logo"/>
+            </a>
 
-    <h2 class="main-title">
-        <?php _e('Doppler Forms', 'doppler-form')?> <?php echo $this->get_version()?>
-    </h2>
+            <h2 class="main-title">
+                <?php _e('Doppler Forms', 'doppler-form')?> <?php echo $this->get_version()?>
+            </h2>
 
-    <h2 class="nav-tab-wrapper">
-        <a href="?page=doppler_list_management" class="nav-tab nav-tab-active">
-            <?php _e('Lists Managment', 'doppler-form')?>
-        </a>
-    </h2>
-    <div id="dplr-crud" class="dplr-tab-content dplr-tab-content--crud pb-1">
-        <div id="showErrorResponse" class="messages-container blocker d-none"></div>
-        <div id="showSuccessResponse" class="messages-container info d-none"></div>
+            <h2 class="nav-tab-wrapper">
+                <a href="?page=doppler_list_management" class="nav-tab nav-tab-active">
+                    <?php _e('Lists Managment', 'doppler-form')?>
+                </a>
+            </h2>
+            <div id="dplr-crud" class="dplr-tab-content dplr-tab-content--crud pb-1">
+                <div id="showErrorResponse" class="messages-container blocker d-none"></div>
+                <div id="showSuccessResponse" class="messages-container info d-none"></div>
 
-        <form id="dplr-form-list-crud" class="mb-1" action="" method="post">
+                <form id="dplr-form-list-crud" class="mb-1" action="" method="post">
+                    <div class="dp-rowflex" style="align-items:center;">
+                        <div class="col-sm-3 col-md-3 col-lg-3 m-b-12">
+                            <div class="awa-form" >
+                                <label for="listCreation" class="labelcontrol" aria-disabled="false" data-required="false">
+                                    <?php _e('Create a Doppler List', 'doppler-form')?>
+                                    <input type="text" id="listCreation" value="" disabled="disabled" maxlength="100" name="listCreation"
+                                        placeholder="<?php _e('Write the List name', 'doppler-form')?>" aria-required="true" aria-invalid="false">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-3 col-lg-3">
+                            <button id="dplr-save-list" class="dp-button button-big primary-green button-medium" disabled="disabled">
+                                <?php _e('Create List', 'doppler-form') ?>
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
-            <label><?php _e('Create a Doppler List', 'doppler-form')?></label>
-            <input type="text" value=""  disabled="disabled" maxlength="100" placeholder="<?php _e('Write the List name', 'doppler-form')?>"/>
-
-            <button id="dplr-save-list" class="dp-button button-medium primary-green" disabled="disabled">
-                <?php _e('Create List', 'doppler-form') ?>
-            </button>
-
-        </form>
-
-        <div class="dplr-loading wrapper-loading pt-3">
-            <div class="loading-page">
+                <div class="dplr-loading wrapper-loading pt-3">
+                    <div class="loading-page">
+                    </div>
+                </div>
+                
+                <table class="dp-c-table" id="dplr-tbl-lists" aria-label="List grid" summary="List grid">
+                <thead>
+                    <tr>
+                        <th aria-label="List name" scope="col">
+                        <span><?php _e('Name', 'doppler-form')?></span>
+                        </th>
+                        <th aria-label="Subscribers amount" scope="col">
+                        <span><?php _e('Subscribers', 'doppler-form')?></span>
+                        </th>
+                        <th aria-label="Actions" scope="col">
+                        <span><?php _e('Actions', 'doppler-form')?></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+                
+            <div id="dplr-dialog-confirm" title="<?php _e('Are you sure you want to delete the List?', 'doppler-form'); ?>">
+                <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> <?php _e('If you proceed, the List will also be deleted in Doppler.', 'doppler-form')?></p>
             </div>
         </div>
-        
-        <table id="dplr-tbl-lists" class="grid widefat mt-30 d-none">
-            <thead>
-                <tr>
-                    <th><?php _e('Name', 'doppler-form')?></th>
-                    <th><?php _e('Subscribers', 'doppler-form')?></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        
-    </div>
-        
-    <div id="dplr-dialog-confirm" title="<?php _e('Are you sure you want to delete the List?', 'doppler-form'); ?>">
-        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> <?php _e('If you proceed, the List will also be deleted in Doppler.', 'doppler-form')?></p>
     </div>
 </div>
