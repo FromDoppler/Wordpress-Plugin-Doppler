@@ -146,11 +146,8 @@ var FieldModel;
 			];
 
 			var html = "<li data-field-name='" + field.name + "'>";
-			html += !field.readonly
-				? "<div class='icon-close'><img src='" +
-				  ObjStr.admin_url +
-				  "/admin/img/close.svg'/></div>"
-				: "";
+			html +=
+				field.name != "EMAIL" ? "<div class='ms-icon icon-close'></div>" : "";
 			html +=
 				field.name +
 				"<span class='type'> (" +

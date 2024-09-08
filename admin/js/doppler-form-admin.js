@@ -402,10 +402,7 @@
 				"<li id='gdpr_input_section_" +
 				gdprAmount +
 				"' class='active' >" +
-				"<div class='icon-close' id='gdpr_remove_button' >" +
-				"<img src='" +
-				object_string.admin_url +
-				"/admin/img/close.svg'>" +
+				"<div class='ms-icon icon-close' id='gdpr_remove_button' >" +
 				"</div>" +
 				"<a class='alt-toggle'>" +
 				object_string.editField +
@@ -485,13 +482,21 @@
 					html += "<td><strong>" + value.name + "</strong></td>";
 					html += "<td>" + value.subscribersCount + "</td>";
 					html +=
-						'<td><a href="#" class="text-dark-red" data-list-id="' +
+						'<td><div class="dp-icons-group"><a href="#" class="dplr-remove" data-list-id="' +
 						value.listId +
 						'">' +
+						'<div class="dp-tooltip-container"> \
+						<span class="ms-icon icon-delete"></span> \
+						<div class="dp-tooltip-top"> \
+							<span>' +
 						object_string.Delete +
-						"</a></td>";
+						"</span> \
+							</div> \
+						</div>" +
+						"</a></div></td>";
 					html += "</tr>";
 				}
+
 				$("#dplr-tbl-lists tbody").prepend(html);
 				if (page == 1) {
 					listsLoaded();
@@ -523,34 +528,43 @@
 
 		clearResponseMessages();
 
-		$("#dplr-dialog-confirm").dialog("option", "buttons", [
-			{
-				text: object_string.Delete,
-				click: function () {
-					$(this).dialog("close");
-					tr.addClass("deleting");
-					$.post(ajaxurl, data, function (response) {
-						var obj = JSON.parse(response);
-						if (obj.response.code == 200) {
-							tr.remove();
-							return;
-						}
-						obj.response.code == 0
-							? $("#showErrorResponse")
-									.css("display", "flex")
-									.html("<p>" + obj.response.message + "</p>")
-							: displayErrors(JSON.parse(obj.body));
-						tr.removeClass("deleting");
-					});
-				},
+		$("#dplr-dialog-confirm").dialog({
+			width: 450,
+			create: function (event, ui) {
+				$(".ui-dialog-title").css(
+					"max-width",
+					$(this).closest(".ui-dialog").width() - 50 + "px"
+				);
 			},
-			{
-				text: object_string.Cancel,
-				click: function () {
-					$(this).dialog("close");
+			buttons: [
+				{
+					text: object_string.Delete,
+					click: function () {
+						$(this).dialog("close");
+						tr.addClass("deleting");
+						$.post(ajaxurl, data, function (response) {
+							var obj = JSON.parse(response);
+							if (obj.response.code == 200) {
+								tr.remove();
+								return;
+							}
+							obj.response.code == 0
+								? $("#showErrorResponse")
+										.css("display", "flex")
+										.html("<p>" + obj.response.message + "</p>")
+								: displayErrors(JSON.parse(obj.body));
+							tr.removeClass("deleting");
+						});
+					},
 				},
-			},
-		]);
+				{
+					text: object_string.Cancel,
+					click: function () {
+						$(this).dialog("close");
+					},
+				},
+			],
+		});
 
 		$("#dplr-dialog-confirm").dialog("open");
 	}
@@ -634,14 +648,14 @@ function validateEmailContent(e) {
 
 	if (document.getElementById("settings[form_doble_optin]").value === "yes") {
 		if (!content.includes("href=[[[ConfirmationLink]]]")) {
-			document.getElementById("error-message").style.display = "block";
+			document.getElementById("error-message").classList.remove("d-none");
 
 			//cancel form submition
 			if (e) {
 				e.preventDefault();
 			}
 		} else {
-			document.getElementById("error-message").style.display = "none";
+			document.getElementById("error-message").classList.add("d-none");
 		}
 	}
 }

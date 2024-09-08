@@ -40,7 +40,7 @@ class Doppler_Extension_Manager {
     /**
      * Install extensions.
      */
-    public function install_extension() {  
+    public function install_extension() {
         if(empty($_POST['extensionName'])) return false;
         
         if(!$this->is_plugin_installed($_POST['extensionName'])){
