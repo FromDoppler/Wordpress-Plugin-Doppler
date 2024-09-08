@@ -794,6 +794,7 @@
 	color: #fff;
 	font-size: 14px;
 	line-height: 20px;
+	padding: 12px;
 }
 
 .dplr_settings .panel .panel-header th {
@@ -1312,11 +1313,6 @@
 	display: inline-block;
 	cursor: pointer;
 	margin-right: 10px;
-}
-
-.dplr_settings .dplr-tab-content--form-create .icon-close img,
-.dplr_settings .dplr-tab-content--form-edit .icon-close img {
-	height: 10px;
 }
 
 .dplr_settings #dplr-crud {

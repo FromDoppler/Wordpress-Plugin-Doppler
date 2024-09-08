@@ -74,9 +74,27 @@
           </div>
           <div class="dplr_input_section">
             <label for="settings[change_button_bg]"><?php _e('Button background color', 'doppler-form')?></label>
+            <div class="dp-input--radio">
+              <label aria-disabled="false">
+                <input type="radio"
+                  name="settings[change_button_bg]"
+                  value="no"
+                  <?php if(!isset($form['settings']['change_button_bg']) || $form['settings']['change_button_bg']==='no') echo 'checked'?>
+                  class="dplr-toggle-selector"/>
+                <span><?php _e('Use my theme\'s default color', 'doppler-form')?></span>
+              </label>
+            </div>
+            <div class="dp-input--radio">
+              <label aria-disabled="false">
+                <input type="radio"
+                name="settings[change_button_bg]"
+                value="yes"
+                <?php if(isset($form['settings']['change_button_bg']) && $form['settings']['change_button_bg']==='yes') echo 'checked'?>
+                class="dplr-toggle-selector"/>
+                <span><?php _e('Choose another color', 'doppler-form')?></span>
+              </label>
+            </div>
             <div class="radio_section">
-              <?php _e('Use my theme\'s default color', 'doppler-form')?><input type="radio" name="settings[change_button_bg]" class="dplr-toggle-selector" value="no" <?php if(!isset($form['settings']['change_button_bg']) || $form['settings']['change_button_bg']==='no') echo 'checked'?>>&nbsp; 
-              <?php _e('Choose another color', 'doppler-form')?><input type="radio" name="settings[change_button_bg]" class="dplr-toggle-selector" value="yes" <?php if(isset($form['settings']['change_button_bg']) && $form['settings']['change_button_bg']==='yes') echo 'checked'?>> 
               <input  class="color-selector d-none" 
                       type="text" 
                       pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" 
@@ -89,8 +107,27 @@
           <div class="dplr_input_section">
             <label for="settings[use_thankyou_page]"><?php _e('What do you want to show to your users after submitting the Form?', 'doppler-form')?></label>
             <div class="radio_section">
-              <?php _e('Custom confirmation page', 'doppler-form')?><input type="radio" name="settings[use_thankyou_page]" class="dplr-toggle-thankyou" value="yes" <?php if(isset($form['settings']['use_thankyou_page']) && $form['settings']['use_thankyou_page']==='yes') echo 'checked'?>>&nbsp; 
-              <?php _e('Confirmation message', 'doppler-form')?><input type="radio" name="settings[use_thankyou_page]" class="dplr-toggle-thankyou" value="no" <?php if(!isset($form['settings']['use_thankyou_page']) || $form['settings']['use_thankyou_page']==='no') echo 'checked'?>> 
+
+              <div class="dp-input--radio">
+                <label aria-disabled="false">
+                  <input type="radio"
+                    name="settings[use_thankyou_page]"
+                    value="yes"
+                    <?php if(isset($form['settings']['use_thankyou_page']) && $form['settings']['use_thankyou_page']==='yes') echo 'checked'?>
+                    class="dplr-toggle-thankyou"/>
+                  <span><?php _e('Custom confirmation page', 'doppler-form')?></span>
+                </label>
+              </div>
+              <div class="dp-input--radio">
+                <label aria-disabled="false">
+                  <input type="radio"
+                    name="settings[use_thankyou_page]"
+                    value="no"
+                    <?php if(!isset($form['settings']['use_thankyou_page']) || $form['settings']['use_thankyou_page']==='no') echo 'checked'?>
+                    class="dplr-toggle-thankyou"/>
+                  <span><?php _e('Confirmation message', 'doppler-form')?></span>
+                </label>
+              </div>
             </div>
           </div>
           <div class="dplr_input_section dplr_confirmation_message" <?= (isset($form['settings']['use_thankyou_page']) && $form['settings']['use_thankyou_page']==='yes')? 'style="display:none"' : 'style="display:block"'; ?>>
@@ -104,11 +141,31 @@
           <div class="dplr_input_section">
             <label for="settings[form_orientation]"><?php _e('Form orientation', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
             <div class="radio_section">
-              <?php _e('Vertical','doppler-form')?><input type="radio" name="settings[form_orientation]" value="vertical" required <?php if(!isset($form['settings']['form_orientation']) || $form['settings']['form_orientation']==='vertical') echo 'checked'?>/>&nbsp; 
-              <?php _e('Horizontal','doppler-form')?><input type="radio" name="settings[form_orientation]" value="horizontal" required <?php if(isset($form['settings']['form_orientation']) && $form['settings']['form_orientation']==='horizontal') echo 'checked'?>/>
+
+              <div class="dp-input--radio">
+                <label aria-disabled="false">
+                  <input type="radio"
+                    name="settings[form_orientation]"
+                    value="vertical"
+                    <?php if(!isset($form['settings']['form_orientation']) || $form['settings']['form_orientation']==='vertical') echo 'checked'?>
+                    class="dplr-toggle-thankyou"
+                    required />
+                  <span><?php _e('Vertical','doppler-form')?></span>
+                </label>
+              </div>
+              <div class="dp-input--radio">
+                <label aria-disabled="false">
+                  <input type="radio"
+                    name="settings[form_orientation]"
+                    value="horizontal"
+                    <?php if(isset($form['settings']['form_orientation']) && $form['settings']['form_orientation']==='horizontal') echo 'checked'?>
+                    class="dplr-toggle-thankyou"
+                    required />
+                  <span><?php _e('Horizontal','doppler-form')?></span>
+                </label>
+              </div>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -186,14 +243,26 @@
               <label for="settings[form_pagina_confirmacion]"><?php _e('Choose an option:', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
               <div class="radio-inputs-landing-or-url">
                 <div class="radio_section">
-                  <?php _e('Redirect to landing page', 'doppler-form');?><input 
-                  type="radio" 
-                  id="mostrar_landing" 
-                  name="settings[form_pagina_confirmacion]" 
-                  value="landing" 
-                  <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='landing') echo 'checked'?> />&nbsp; 
-                  <?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?>
-                  <input type="radio" id="mostrar_url" name="settings[form_pagina_confirmacion]" value="url" <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='url') echo 'checked'?> />
+                  <div class="dp-input--radio">
+                    <label aria-disabled="false">
+                      <input type="radio"
+                        id="mostrar_landing" 
+                        name="settings[form_pagina_confirmacion]"
+                        value="landing"
+                        <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='landing') echo 'checked'?>/>
+                      <span><?php _e('Redirect to landing page', 'doppler-form');?></span>
+                    </label>
+                  </div>
+                  <div class="dp-input--radio">
+                    <label aria-disabled="false">
+                      <input type="radio"
+                        id="mostrar_url"
+                        name="settings[form_pagina_confirmacion]"
+                        value="url"
+                        <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='url') echo 'checked'?>/>
+                      <span><?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?></span>
+                    </label>
+                  </div>
                 </div>
               </div>
 
@@ -237,7 +306,7 @@
         </div>
         <div class="panel-body grid">
           <span class="hlp"><?php _e('Automatically include checkboxes for opt-in, editable text and link that allow you to explain how and why you are using contact data. Whant to know more? Press','doppler-form')?> <?= '<a href="'.__('https://help.fromdoppler.com/en/general-data-protection-regulation?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form').'" target="blank">'.__('HELP','doppler-form').'</a>'?>.</span>
-          <button type="button" id="gdpr_add_button" class="dp-button primary-green button-small button-right"><?php _e('Add new consent','doppler-form') ?></button>
+          <button type="button" id="gdpr_add_button" class="dp-button primary-green button-medium button-right"><?php _e('Add new consent','doppler-form') ?></button>
           <ul class="accordion panel-body grid mt-1" id="gdpr_section"></ul>
         </div>
       </div>
@@ -246,7 +315,10 @@
     <p id="error-message" class="error-message">
       <?php _e('Error! Remember that the email\'s content must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form'); ?>
     </p>
-    <input id="submit_button" type="submit" name="form-create" value="<?php _e('Save', 'doppler-form')?>" class="dp-button primary-green button-medium"/> <a href="<?php echo admin_url('admin.php?page=doppler_forms_main')?>"  class="dp-button primary-grey button-medium"><?php _e('Cancel', 'doppler-form')?></a>
+    <button id="submit_button" type="submit" name="form-create" class="dp-button primary-green button-medium">
+      <?php _e('Save', 'doppler-form')?>
+    </button>
+    <a href="<?php echo admin_url('admin.php?page=doppler_forms_main')?>"  class="dp-button primary-grey button-medium"><?php _e('Cancel', 'doppler-form')?></a>
   
   </form>
 

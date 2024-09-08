@@ -402,10 +402,7 @@
 				"<li id='gdpr_input_section_" +
 				gdprAmount +
 				"' class='active' >" +
-				"<div class='icon-close' id='gdpr_remove_button' >" +
-				"<img src='" +
-				object_string.admin_url +
-				"/admin/img/close.svg'>" +
+				"<div class='ms-icon icon-close' id='gdpr_remove_button' >" +
 				"</div>" +
 				"<a class='alt-toggle'>" +
 				object_string.editField +

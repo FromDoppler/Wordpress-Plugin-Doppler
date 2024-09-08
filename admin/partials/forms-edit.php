@@ -264,8 +264,7 @@
                     if (!empty($value))
                     {  ?>
                     <li id="gdpr_input_section_<?php echo $key ?>">
-                      <div class="icon-close gdpr_remove_button_class" id="gdpr_remove_button">
-                      <img src="<?php echo DOPPLER_PLUGIN_URL ?>/admin/img/close.svg">
+                      <div class="ms-icon icon-close gdpr_remove_button_class" id="gdpr_remove_button">
                       </div>
                       <?php echo $value ?>
                       <a class="alt-toggle"><?php echo __('Edit Field', 'doppler-form')  ?><i></i></a>
