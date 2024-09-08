@@ -52,7 +52,7 @@
               ?>
             <tr>
               <td aria-label="Form name">
-                <a href="<?php echo str_replace('[FORM_ID]', $form->id , $edit_form_url); ?>" role="link" rel="noopener" target="_blank" class="bold"><?php echo $form->name; ?></a>
+                <a href="<?php echo str_replace('[FORM_ID]', $form->id , $edit_form_url); ?>" role="link" rel="noopener" class="bold"><?php echo $form->name; ?></a>
               </td>
               <td aria-label="Form Opt-In">
                 <span><?php echo ($form->settings["form_doble_optin"] == "yes") ? _e('Double Opt-In', 'doppler-form') : _e('Simple Opt-In', 'doppler-form') ?></span>
