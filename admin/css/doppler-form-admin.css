@@ -1320,7 +1320,6 @@
 }
 
 .dplr_settings #dplr-crud #dplr-form-list-crud input[type="text"] {
-	max-width: 240px;
 	font-weight: normal;
 }
 
