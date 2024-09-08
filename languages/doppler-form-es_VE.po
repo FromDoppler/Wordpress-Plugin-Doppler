@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-07-21 18:38-0300\n"
-"PO-Revision-Date: 2024-07-21 18:39-0300\n"
+"POT-Creation-Date: 2024-08-30 22:22-0300\n"
+"PO-Revision-Date: 2024-08-30 22:22-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Venezuela\n"
 "Language: es_VE\n"
@@ -21,11 +21,11 @@ msgstr ""
 "_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;"
 "esc_html\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 "X-Loco-Version: 2.6.9; wp-6.5.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/doppler-admin.php:115 admin/partials/forms-list.php:31
+#: admin/doppler-admin.php:115 admin/partials/forms-list.php:82
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -35,7 +35,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: admin/doppler-admin.php:117 admin/doppler-admin.php:127
-#: admin/doppler-admin.php:293
+#: admin/doppler-admin.php:295
 msgid ""
 "Ouch! There's something wrong with your Username or API Key. Please, try "
 "again."
@@ -66,7 +66,7 @@ msgid "Ouch! The List name is invalid. Please choose another."
 msgstr ""
 "¡Ouch! Ocurrió un error al validar los datos . Por favor intenta nuevamente."
 
-#: admin/doppler-admin.php:123 admin/partials/doppler-forms-display.php:31
+#: admin/doppler-admin.php:123 admin/partials/doppler-forms-display.php:32
 msgid ""
 "Ouch! An error ocurred while trying to communicate with the API. Try again "
 "later."
@@ -159,48 +159,48 @@ msgstr "URL de tu política de privacidad"
 msgid "Checkbox label"
 msgstr "Texto para el checkbox"
 
-#: admin/doppler-admin.php:143 admin/doppler-admin.php:147
+#: admin/doppler-admin.php:143 admin/doppler-admin.php:149
 #: admin/partials/forms-edit.php:271
 msgid "Edit Field"
 msgstr "Editar Campo"
 
-#: admin/doppler-admin.php:148
+#: admin/doppler-admin.php:150
 msgid "Required"
 msgstr "Requerido"
 
-#: admin/doppler-admin.php:149
+#: admin/doppler-admin.php:151
 msgid "Label to be shown"
 msgstr "Nombre a mostrar"
 
-#: admin/doppler-admin.php:150
+#: admin/doppler-admin.php:152
 msgid "Placeholder"
 msgstr "Texto de ejemplo"
 
-#: admin/doppler-admin.php:151
+#: admin/doppler-admin.php:153
 msgid "Description"
 msgstr "Descripción"
 
-#: admin/doppler-admin.php:152
+#: admin/doppler-admin.php:154
 msgid "Input Type"
 msgstr "Tipo de ingreso"
 
-#: admin/doppler-admin.php:153
+#: admin/doppler-admin.php:155
 msgid "Simple"
 msgstr "Simple"
 
-#: admin/doppler-admin.php:154
+#: admin/doppler-admin.php:156
 msgid "Multiple"
 msgstr "Múltiple"
 
-#: admin/doppler-admin.php:155
+#: admin/doppler-admin.php:157
 msgid "Drop-down List"
 msgstr "Lista desplegable"
 
-#: admin/doppler-admin.php:156
+#: admin/doppler-admin.php:158
 msgid "Options"
 msgstr "Opciones"
 
-#: admin/doppler-admin.php:157
+#: admin/doppler-admin.php:159
 msgid ""
 "Write the options you want to show in your Drop-down List, separating them "
 "by a line break."
@@ -208,66 +208,66 @@ msgstr ""
 "Escribe las opciones que quieres que aparezcan en la Lista desplegable, "
 "separándolas por un salto de línea."
 
-#: admin/doppler-admin.php:159
+#: admin/doppler-admin.php:161
 msgid "Date format"
 msgstr "Formato de fecha"
 
-#: admin/doppler-admin.php:178 admin/doppler-admin.php:179
+#: admin/doppler-admin.php:180 admin/doppler-admin.php:181
 msgid "Doppler"
 msgstr "Doppler"
 
-#: admin/doppler-admin.php:209 admin/doppler-admin.php:210
+#: admin/doppler-admin.php:211 admin/doppler-admin.php:212
 msgid "Connect with Doppler"
 msgstr "Conectar con Doppler"
 
-#: admin/doppler-admin.php:220 admin/doppler-admin.php:221
-#: admin/partials/data-hub.php:12 admin/partials/doppler-forms-display.php:18
+#: admin/doppler-admin.php:222 admin/doppler-admin.php:223
+#: admin/partials/data-hub.php:12 admin/partials/doppler-forms-display.php:19
 #: admin/partials/lists-crud.php:7
 msgid "Doppler Forms"
 msgstr "Formularios Doppler"
 
-#: admin/doppler-admin.php:229 admin/doppler-admin.php:230
+#: admin/doppler-admin.php:231 admin/doppler-admin.php:232
 #: admin/partials/lists-crud.php:12
 msgid "Lists Managment"
 msgstr "Administración de Listas"
 
-#: admin/doppler-admin.php:238 admin/doppler-admin.php:239
+#: admin/doppler-admin.php:240 admin/doppler-admin.php:241
 #: admin/partials/data-hub.php:17
 msgid "On-Site Tracking"
 msgstr "Seguimiento en sitio"
 
-#: admin/doppler-admin.php:247 admin/doppler-admin.php:248
+#: admin/doppler-admin.php:249 admin/doppler-admin.php:250
 msgid "Extensions"
 msgstr "Extensiones"
 
-#: admin/doppler-admin.php:301 admin/partials/api-connection.php:116
+#: admin/doppler-admin.php:303 admin/partials/api-connection.php:116
 msgid "Ouch! Enter a valid Email."
 msgstr "¡Ouch! Escribe un Email válido."
 
-#: admin/doppler-admin.php:306 admin/partials/api-connection.php:145
+#: admin/doppler-admin.php:308 admin/partials/api-connection.php:145
 msgid "Ouch! The field is empty."
 msgstr "¡Ouch! El campo está vacío."
 
-#: admin/doppler-admin.php:324
+#: admin/doppler-admin.php:326
 msgid "Pst! Go to"
 msgstr "¡Psst! Dirígete a"
 
-#: admin/doppler-admin.php:324
+#: admin/doppler-admin.php:326
 msgid "Appearance > Widgets"
 msgstr "Apariencia > Widgets"
 
-#: admin/doppler-admin.php:324
+#: admin/doppler-admin.php:326
 msgid "to choose the place on your Website where you want your Form to appear."
 msgstr ""
 "para elegir el lugar de tu Sitio Web donde quieres que aparezca tu "
 "Formulario."
 
-#: admin/doppler-admin.php:328 admin/doppler-admin.php:347
+#: admin/doppler-admin.php:330 admin/doppler-admin.php:349
 msgid ""
 "The urlLanding field is not a valid fully-qualified http, https, or ftp URL."
 msgstr "El campo urlLanding no es una URL http, https o ftp totalmente válida."
 
-#: admin/doppler-admin.php:331 admin/doppler-admin.php:350
+#: admin/doppler-admin.php:333 admin/doppler-admin.php:352
 msgid ""
 "You should validate the Email sender domain before using it. HELP: https://"
 "help.fromdoppler.com/en/from-email-domain-validation/"
@@ -275,41 +275,41 @@ msgstr ""
 "Debe validar el dominio del remitente del correo electrónico antes de "
 "usarlo. AYUDA: https://help.fromdoppler.com/en/from-email-domain-validation/"
 
-#: admin/doppler-admin.php:334
+#: admin/doppler-admin.php:336
 msgid ""
 "Ouch! An error ocurred and the Form couldn't be created. Try again later."
 msgstr ""
 "¡Ouch! Ocurrió un error y el Formulario no fue creado. Intenta nuevamente."
 
-#: admin/doppler-admin.php:343
+#: admin/doppler-admin.php:345
 msgid "The Form has been edited correctly."
 msgstr "El Formulario ha sido editado correctamente."
 
-#: admin/doppler-admin.php:353
+#: admin/doppler-admin.php:355
 msgid ""
 "Ouch! An error ocurred and the Form couldn't be edited. Try again later."
 msgstr ""
 "¡Ouch! Ocurrió un error y el Formulario no fue editado. Intenta nuevamente."
 
-#: admin/doppler-admin.php:363
+#: admin/doppler-admin.php:365
 msgid "The Form has been deleted correctly."
 msgstr "El Formulario ha sido eliminado correctamente."
 
-#: admin/doppler-admin.php:365
+#: admin/doppler-admin.php:367
 msgid ""
 "Ouch! An error ocurred and the Form couldn't be deleted. Try again later."
 msgstr ""
 "¡Ouch! Ocurrió un error y el Formulario no fue eliminado. Intenta nuevamente."
 
-#: admin/doppler-admin.php:406
+#: admin/doppler-admin.php:408
 msgid "On Site Tracking code saved successfully"
 msgstr "El código de seguimiento ha sido guardado correctamente"
 
-#: admin/doppler-admin.php:408
+#: admin/doppler-admin.php:410
 msgid "Tracking code is invalid"
 msgstr "El código de seguimiento es incorrecto"
 
-#: admin/doppler-admin.php:424
+#: admin/doppler-admin.php:426
 msgid ""
 "You've updated the <strong>Doppler Forms</strong> plugin into the "
 "<strong>2.0.0</strong> version. Please,"
@@ -317,15 +317,15 @@ msgstr ""
 "Has actualizado el plugin <strong>Formularios Doppler</strong> a la versión "
 "<strong>2.0.0</strong>. Para continuar utilizándolo,"
 
-#: admin/doppler-admin.php:426
+#: admin/doppler-admin.php:428
 msgid "enter your Username"
 msgstr "ingresa tu Email de Usuario"
 
-#: admin/doppler-admin.php:427
+#: admin/doppler-admin.php:429
 msgid "in addition to the API Key and re-connect your Doppler account."
 msgstr "además del API Key y vuelve a conectar tu cuenta de Doppler."
 
-#: admin/doppler-admin.php:587
+#: admin/doppler-admin.php:589
 msgid ""
 "Ouch! The List is being used in a form or an extension, so it cannot be "
 "deleted."
@@ -334,7 +334,7 @@ msgstr ""
 "Doppler y no puede ser eliminada."
 
 #: admin/partials/api-connection.php:8 admin/partials/data-hub.php:7
-#: admin/partials/doppler-forms-display.php:14 admin/partials/extensions.php:7
+#: admin/partials/doppler-forms-display.php:15 admin/partials/extensions.php:7
 #: admin/partials/lists-crud.php:2
 msgid ""
 "https://www.fromdoppler.com/en/?"
@@ -536,7 +536,7 @@ msgid "Form basic information"
 msgstr "Información básica del Formulario"
 
 #: admin/partials/forms-create.php:14 admin/partials/forms-edit.php:15
-#: admin/partials/lists-crud.php:39
+#: admin/partials/lists-crud.php:38
 msgid "Name"
 msgstr "Nombre"
 
@@ -822,47 +822,54 @@ msgstr "Simple Opt-In:"
 msgid "Double Opt-In:"
 msgstr "Doble Opt-in:"
 
-#: admin/partials/forms-list.php:10 includes/class-doppler-form-widget.php:69
-msgid "You don't have Forms yet!"
-msgstr "Aún no tienes Formularios!"
-
-#: admin/partials/forms-list.php:16
-msgid "Form Name"
-msgstr "Nombre del Formulario"
-
-#: admin/partials/forms-list.php:17
-msgid "Form Opt-In"
-msgstr "Opt-in del formulario"
-
-#: admin/partials/forms-list.php:18
-msgid "List Name"
-msgstr "Nombre de la Lista"
-
-#: admin/partials/forms-list.php:19
-msgid "Shortcode"
-msgstr "Shortcode"
-
-#: admin/partials/forms-list.php:30
-msgid "Edit"
-msgstr "Editar"
-
-#: admin/partials/forms-list.php:34
-msgid "Double Opt-In"
-msgstr "Doble Opt-in"
-
-#: admin/partials/forms-list.php:34
-msgid "Simple Opt-In"
-msgstr "Simple Opt-In"
-
-#: admin/partials/forms-list.php:46
+#: admin/partials/forms-list.php:7
 msgid "Create Form"
 msgstr "Crear Formulario"
 
-#: admin/partials/forms-list.php:48
+#: admin/partials/forms-list.php:11 includes/class-doppler-form-widget.php:69
+msgid "You don't have Forms yet!"
+msgstr "Aún no tienes Formularios!"
+
+#: admin/partials/forms-list.php:20
+#, php-format
+msgid "You have <strong>%s</strong> form"
+msgid_plural "You have <strong>%s</strong> forms"
+msgstr[0] "Tienes <strong>%s</strong> formulario"
+msgstr[1] "Tienes <strong>%s</strong> formularios"
+
+#: admin/partials/forms-list.php:33
+msgid "Form Name"
+msgstr "Nombre del Formulario"
+
+#: admin/partials/forms-list.php:36
+msgid "Form Opt-In"
+msgstr "Opt-in del formulario"
+
+#: admin/partials/forms-list.php:39
+msgid "List Name"
+msgstr "Nombre de la Lista"
+
+#: admin/partials/forms-list.php:42
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: admin/partials/forms-list.php:58
+msgid "Double Opt-In"
+msgstr "Doble Opt-in"
+
+#: admin/partials/forms-list.php:58
+msgid "Simple Opt-In"
+msgstr "Simple Opt-In"
+
+#: admin/partials/forms-list.php:72
+msgid "Edit"
+msgstr "Editar"
+
+#: admin/partials/forms-list.php:96
 msgid "Are you sure you want to delete the Form?"
 msgstr "¿Estás seguro de que deseas eliminar el Formulario?"
 
-#: admin/partials/forms-list.php:49
+#: admin/partials/forms-list.php:97
 msgid "It'll be deleted and can't be recovered."
 msgstr "Será eliminado y ya no podrás recuperarlo."
 
@@ -878,19 +885,15 @@ msgstr "Escribe el nombre de la Lista"
 msgid "Create List"
 msgstr "Crear Lista"
 
-#: admin/partials/lists-crud.php:38
-msgid "List ID"
-msgstr "ID de la Lista"
-
-#: admin/partials/lists-crud.php:40
+#: admin/partials/lists-crud.php:39
 msgid "Subscribers"
 msgstr "Suscriptores"
 
-#: admin/partials/lists-crud.php:50
+#: admin/partials/lists-crud.php:49
 msgid "Are you sure you want to delete the List?"
 msgstr "¿Estás seguro de que deseas eliminar la Lista?"
 
-#: admin/partials/lists-crud.php:51
+#: admin/partials/lists-crud.php:50
 msgid "If you proceed, the List will also be deleted in Doppler."
 msgstr "Si lo haces, la Lista también será eliminada en Doppler."
 
@@ -946,6 +949,9 @@ msgstr "Ingrese una fecha valida."
 #: public/doppler-forms-public.php:108
 msgid "Invalid Format."
 msgstr "Formato Inválido."
+
+#~ msgid "List ID"
+#~ msgstr "ID de la Lista"
 
 #~ msgid "What is it? Press"
 #~ msgstr "¿De qué se trata? Presiona"
