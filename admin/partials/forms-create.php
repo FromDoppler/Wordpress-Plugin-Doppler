@@ -107,7 +107,6 @@
           <div class="dplr_input_section">
             <label for="settings[use_thankyou_page]"><?php _e('What do you want to show to your users after submitting the Form?', 'doppler-form')?></label>
             <div class="radio_section">
-
               <div class="dp-input--radio">
                 <label aria-disabled="false">
                   <input type="radio"
@@ -141,7 +140,6 @@
           <div class="dplr_input_section">
             <label for="settings[form_orientation]"><?php _e('Form orientation', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
             <div class="radio_section">
-
               <div class="dp-input--radio">
                 <label aria-disabled="false">
                   <input type="radio"
