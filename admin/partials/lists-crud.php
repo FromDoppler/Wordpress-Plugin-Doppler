@@ -20,16 +20,25 @@
 
                 <form id="dplr-form-list-crud" class="mb-1" action="" method="post">
                     <div class="dp-rowflex" style="align-items:center;">
-                        <div class="col-sm-3 col-md-3 col-lg-3 m-b-12">
-                            <div class="awa-form" >
-                                <label for="listCreation" class="labelcontrol" aria-disabled="false" data-required="false">
+                        <div class="col-sm-10 col-md-10 col-lg-10 m-b-12">
+                            <div class="awa-form">
+                                <label for="listCreation" class="labelcontrol" aria-disabled="false">
                                     <?php _e('Create a Doppler List', 'doppler-form')?>
-                                    <input type="text" id="listCreation" value="" disabled="disabled" maxlength="100" name="listCreation"
-                                        placeholder="<?php _e('Write the List name', 'doppler-form')?>" aria-required="true" aria-invalid="false">
+                                    <div class="dp-wrap-search">
+                                    <input type="text"
+                                        id="listCreation"
+                                        value=""
+                                        disabled="disabled"
+                                        maxlength="100"
+                                        name="listCreation"
+                                        placeholder="<?php _e('Write the List name', 'doppler-form')?>"
+                                        aria-required="true"
+                                        aria-invalid="false">
+                                    </div>
                                 </label>
                             </div>
                         </div>
-                        <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             <button id="dplr-save-list" class="dp-button button-big primary-green button-medium" disabled="disabled">
                                 <?php _e('Create List', 'doppler-form') ?>
                             </button>
