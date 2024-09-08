@@ -11,35 +11,84 @@
     ?><h2><?php _e('You don\'t have Forms yet!','doppler-form'); ?></h2><?php
   }else{
     ?>
-        <table class="fixed widefat mb-1">
-          <thead>
-            <tr>
-              <th class="col-title"><?php _e('Form Name', 'doppler-form')?></th>
-              <th><?php _e('Form Opt-In', 'doppler-form')?></th>
-              <th class="col-listname"><?php _e('List Name', 'doppler-form')?></th>
-              <th class="col-shortcode"><?php _e('Shortcode', 'doppler-form')?></th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php for ($i=0; $i <count($forms) ; $i++) {
+
+      <table class="dp-c-table" aria-label="Forms list" summary="Forms list">
+        <caption>
+          <span> 
+            <?php printf(
+              _n(
+                'You have <strong>%s</strong> form',
+                'You have <strong>%s</strong> forms',
+                count($forms),
+                'doppler-form'
+              ),
+              number_format_i18n( count($forms) )
+            );
+            ?>
+          </span>
+        </caption>
+        <thead>
+          <tr>
+            <th aria-label="Form name" scope="col">
+              <span><?php _e('Form Name', 'doppler-form')?></span>
+            </th>
+            <th aria-label="Form Opt-In" scope="col">
+              <span><?php _e('Form Opt-In', 'doppler-form')?></span>
+            </th>
+            <th aria-label="List Name" scope="col">
+              <span><?php _e('List Name', 'doppler-form')?></span>
+            </th>
+            <th aria-label="Shortcode" scope="col">
+              <span><?php _e('Shortcode', 'doppler-form')?></span>
+            </th>
+            <th aria-label="Actions" scope="col">
+              <span><?php _e('Actions', 'doppler-form')?></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php for ($i=0; $i <count($forms) ; $i++) {
               $form = DPLR_Form_Model::get($forms[$i]->id, true);
               ?>
             <tr>
-              <td>
-                <a href="<?php echo str_replace('[FORM_ID]', $form->id , $edit_form_url); ?>" class="bold"> <?php echo $form->name; ?></a>
-                <div class="column-actions">
-                  <a href="<?php echo str_replace('[FORM_ID]', $form->id , $edit_form_url); ?>"><?php _e('Edit', 'doppler-form')?></a> |
-                  <a href="<?php echo str_replace('[FORM_ID]', $form->id , $delete_form_url); ?>" data-list-id="<?php echo $form->id ?>" class="dplr-remove"><?php _e('Delete', 'doppler-form')?></a>
+              <td aria-label="Form name">
+                <a href="<?php echo str_replace('[FORM_ID]', $form->id , $edit_form_url); ?>" role="link" rel="noopener" target="_blank" class="bold"><?php echo $form->name; ?></a>
+              </td>
+              <td aria-label="Form Opt-In">
+                <span><?php echo ($form->settings["form_doble_optin"] == "yes") ? _e('Double Opt-In', 'doppler-form') : _e('Simple Opt-In', 'doppler-form') ?></span>
+              </td>
+              <td aria-label="List Name">
+                <span><?php echo isset($dplr_lists_arr[$form->list_id])? $dplr_lists_arr[$form->list_id] : '' ?></span>
+              </td>
+              <td aria-label="Shortcode">
+                <span>[doppler-form id='<?= $form->id ?>']</span>
+              </td>
+              <td aria-label="Actions">
+                <div class="dp-icons-group">
+                  <a href="<?php echo str_replace('[FORM_ID]', $form->id , $edit_form_url); ?>" class="p-r-6">
+                    <div class="dp-tooltip-container">
+                      <span class="ms-icon icon-edit"></span>
+                      <div class="dp-tooltip-top">
+                        <span><?php _e('Edit', 'doppler-form')?></span>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="<?php echo str_replace('[FORM_ID]', $form->id , $delete_form_url); ?>" 
+                    data-list-id="<?php echo $form->id ?>"
+                    class="dplr-remove">
+                    <div class="dp-tooltip-container">
+                      <span class="ms-icon icon-delete"></span>
+                      <div class="dp-tooltip-top">
+                        <span><?php _e('Delete', 'doppler-form')?></span>
+                      </div>
+                    </div>
+                  </a>
                 </div>
               </td>
-              <td><?php echo ($form->settings["form_doble_optin"] == "yes") ? _e('Double Opt-In', 'doppler-form') : _e('Simple Opt-In', 'doppler-form') ?></td>
-              <td><?php echo isset($dplr_lists_arr[$form->list_id])? $dplr_lists_arr[$form->list_id] : '' ?></td>
-              <td>[doppler-form id='<?= $form->id ?>']</td>
             </tr>
             <?php } ?>
-          </tbody>
-        </table>
-        
+        </tbody>
+      </table>
   <?php
   }
   ?>
