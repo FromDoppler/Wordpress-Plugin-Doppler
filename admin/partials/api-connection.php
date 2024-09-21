@@ -1,7 +1,7 @@
 
 <section class="dplr_settings">
 
-<div class="wrap dplr_connect text-center">
+<div class="dplr_connect text-center">
 
 		<h2></h2>
 

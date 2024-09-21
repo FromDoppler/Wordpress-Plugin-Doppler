@@ -1,11 +1,38 @@
 <div class="dplr dplr-tab-content dplr-tab-content--list">
 
+  <header class="hero-banner">
+    <div class="dp-container">
+      <div class="dp-rowflex">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <h2><?php _e('Manage your forms', 'doppler-form')?></h2>
+        </div>
+        <div class="col-sm-7">
+          <p><?php printf(
+              _n(
+                'Here you will find all your subscription forms. You currently have <strong>%s</strong> form',
+                'Here you will find all your subscription forms. You currently have <strong>%s</strong> forms',
+                count($forms),
+                'doppler-form'
+              ),
+              number_format_i18n( count($forms) )
+            );
+            ?>
+          </p>
+        </div>
+        <div class="col-sm-5 text-align--right">
+        <a href="<?php echo $create_form_url; ?>">
+          <button type="button" class="dp-button button-medium primary-green">
+            <?php _e('Create Form', 'doppler-form')?>
+          </button>
+        </a>
+        </div>
+      </div>
+      <span class="arrow"></span>
+    </div>
+  </header>
   <?php $this->display_success_message() ?>
-
   <?php $this->display_error_message() ?>
-
-  <a href="<?php echo $create_form_url; ?>" class="dp-button primary-green button-medium mb-1"><?php _e('Create Form', 'doppler-form')?></a>
-
+  
   <?php   
   if(count($forms) == 0){
     ?><h2><?php _e('You don\'t have Forms yet!','doppler-form'); ?></h2><?php
@@ -13,20 +40,6 @@
     ?>
 
       <table class="dp-c-table" aria-label="Forms list" summary="Forms list">
-        <caption>
-          <span> 
-            <?php printf(
-              _n(
-                'You have <strong>%s</strong> form',
-                'You have <strong>%s</strong> forms',
-                count($forms),
-                'doppler-form'
-              ),
-              number_format_i18n( count($forms) )
-            );
-            ?>
-          </span>
-        </caption>
         <thead>
           <tr>
             <th aria-label="Form name" scope="col">
@@ -41,7 +54,7 @@
             <th aria-label="Shortcode" scope="col">
               <span><?php _e('Shortcode', 'doppler-form')?></span>
             </th>
-            <th aria-label="Actions" scope="col">
+            <th aria-label="Actions" scope="col" style="width: 25px;">
               <span><?php _e('Actions', 'doppler-form')?></span>
             </th>
           </tr>
