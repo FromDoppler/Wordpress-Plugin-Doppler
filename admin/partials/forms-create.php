@@ -50,7 +50,7 @@
               </div>
             </label>
           </div>
-          <div class="col-1-2">
+          <div class="col-1-2 p-b-24">
             <span class="noti"><?php _e('Drag and drop the Fields to give them the order you want', 'doppler-form')?></span>
             <ul class="sortable accordion" id="formFields">
             </ul>
