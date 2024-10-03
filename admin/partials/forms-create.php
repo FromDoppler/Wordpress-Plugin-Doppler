@@ -5,7 +5,7 @@
     <input type="hidden" name="create" value="true">
     
     <div class="grid">
-      <div class="col-4-5 panel nopd">
+      <div class="col-4-5 panel nopd dp-box-shadow">
         <div class="panel-header">
           <h2><?php _e('Form basic information', 'doppler-form')?></h2>
         </div>
@@ -14,33 +14,43 @@
             <label for="name"><?php _e('Name', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
             <input type="text" name="name" placeholder="" value="<?php echo isset($form['name'])?$form['name']:''; ?>" required maxlength="80"/>
           </div>
-          <div class="dplr_input_section">
-            <label for="list_id"><?php _e('Doppler List', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-            <select class="" name="list_id" id="list-id" required>
-              <option value=""><?php _e('Select the destination List where your new Subscribers will be sent', 'doppler-form'); ?></option>
-              <?php 
-                for ($i=0; $i < count($dplr_lists); $i++) { 
-                ?><option <?php echo isset($form['list_id']) && intval($form['list_id']) == intval($dplr_lists[$i]->listId) ? 'selected="selected"' : ''; ?> value="<?php echo $dplr_lists[$i]->listId; ?>"><?php echo trim($dplr_lists[$i]->name); ?></option><?php
-                }
-              ?>
-            </select>
+          <div class="dplr_input_section awa-form">
+            <label for="list_id">
+              <?php _e('Doppler List', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span>
+              <div class="dp-select">
+                <span class="dropdown-arrow"></span>
+                <select name="list_id" id="list-id" required>
+                  <option value=""><?php _e('Select the destination List where your new Subscribers will be sent', 'doppler-form'); ?></option>
+                  <?php 
+                    for ($i=0; $i < count($dplr_lists); $i++) { 
+                    ?><option <?php echo isset($form['list_id']) && intval($form['list_id']) == intval($dplr_lists[$i]->listId) ? 'selected="selected"' : ''; ?> value="<?php echo $dplr_lists[$i]->listId; ?>"><?php echo trim($dplr_lists[$i]->name); ?></option><?php
+                    }
+                  ?>
+                </select>
+              </div>
+            </label>
           </div>
       </div>
     </div>
     
     <div class="grid">
-      <div class="col-4-5 panel nopd">
+      <div class="col-4-5 panel nopd dp-box-shadow">
         <div class="panel-header">
           <h2><?php _e('Form Fields', 'doppler-form')?></h2>
         </div>
         <div class="panel-body grid">
-          <div class="col-1-2 dplr_input_section">
-            <label for="list_id"><?php _e('Fields to include', 'doppler-form')?> <span class="hlp"><?php _e('Learn how to create Custom Fields with Doppler. Press', 'doppler-form')?> <a href="<?php _e('https://help.fromdoppler.com/en/how-to-create-a-customized-field/?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form')?>" class="green-link" target="_blank"><?php _e('HELP', 'doppler-form')?></a>.</span></label>
-            <select id="fieldList" class="" name="">
-              <option value=""><?php _e('Select the Fields that will appear on your Form', 'doppler-form')?></option>
-            </select>
+          <div class="col-1-2 dplr_input_section awa-form">
+            <label for="fieldList"><?php _e('Fields to include', 'doppler-form')?> 
+              <span class="hlp"><?php _e('Learn how to create Custom Fields with Doppler. Press', 'doppler-form')?> <a href="<?php _e('https://help.fromdoppler.com/en/how-to-create-a-customized-field/?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form')?>" class="green-link" target="_blank"><?php _e('HELP', 'doppler-form')?></a>.</span>
+              <div class="dp-select">
+                <span class="dropdown-arrow"></span>
+                <select name="fieldList" id="fieldList">
+                  <option value=""><?php _e('Select the Fields that will appear on your Form', 'doppler-form')?></option>
+                </select>
+              </div>
+            </label>
           </div>
-          <div class="col-1-2">
+          <div class="col-1-2 p-b-24">
             <span class="noti"><?php _e('Drag and drop the Fields to give them the order you want', 'doppler-form')?></span>
             <ul class="sortable accordion" id="formFields">
             </ul>
@@ -50,7 +60,7 @@
     </div>
     
     <div class="grid">
-      <div class="col-4-5 panel nopd">
+      <div class="col-4-5 panel nopd dp-box-shadow">
         <div class="panel-header">
           <h2><?php _e('Form settings', 'doppler-form')?></h2>
         </div>
@@ -63,14 +73,19 @@
             <label for="submit_text"><?php _e('Button text', 'doppler-form')?></label>
             <input type="text" name="settings[button_text]" value="<?php echo isset($form['settings']['button_text'])?$form['settings']['button_text']:''; ?>" placeholder="<?php _e('Submit', 'doppler-form')?>" maxlength="40"/>
           </div>
-          <div class="dplr_input_section">
-            <label for="settings[button_position]"><?php _e('Button alignment', 'doppler-form')?></label>
-            <select class="" name="settings[button_position]">
-              <option <?php if(isset($form['settings']['button_position']) && $form['settings']['button_position'] == 'left') echo 'selected="selected"';?> value="left"><?php _e('Left', 'doppler-form')?></option>
-              <option <?php if(isset($form['settings']['button_position']) && $form['settings']['button_position'] == 'center') echo 'selected="selected"';?> value="center"><?php _e('Center', 'doppler-form')?></option>
-              <option <?php if(isset($form['settings']['button_position']) && $form['settings']['button_position'] == 'right') echo 'selected="selected"';?> value="right"><?php _e('Right', 'doppler-form')?></option>
-              <option <?php if(isset($form['settings']['button_position']) && $form['settings']['button_position'] == 'fill') echo 'selected="selected"';?> value="fill"><?php _e('Full width', 'doppler-form')?></option>
-            </select>
+          <div class="dplr_input_section awa-form">
+            <label for="settings[button_position]">
+              <?php _e('Button alignment', 'doppler-form')?>
+              <div class="dp-select">
+                <span class="dropdown-arrow"></span>
+                <select name="settings[button_position]" id="settings[button_position]" required>
+                <option <?php if(isset($form['settings']['button_position']) && $form['settings']['button_position'] == 'left') echo 'selected="selected"';?> value="left"><?php _e('Left', 'doppler-form')?></option>
+                <option <?php if(isset($form['settings']['button_position']) && $form['settings']['button_position'] == 'center') echo 'selected="selected"';?> value="center"><?php _e('Center', 'doppler-form')?></option>
+                <option <?php if(isset($form['settings']['button_position']) && $form['settings']['button_position'] == 'right') echo 'selected="selected"';?> value="right"><?php _e('Right', 'doppler-form')?></option>
+                <option <?php if(isset($form['settings']['button_position']) && $form['settings']['button_position'] == 'fill') echo 'selected="selected"';?> value="fill"><?php _e('Full width', 'doppler-form')?></option>
+                </select>
+              </div>
+            </label>
           </div>
           <div class="dplr_input_section">
             <label for="settings[change_button_bg]"><?php _e('Button background color', 'doppler-form')?></label>
@@ -167,24 +182,24 @@
         </div>
       </div>
     </div>
-
-
-
     <div class="grid">
-      <div class="col-4-5 panel nopd">
+      <div class="col-4-5 panel nopd dp-box-shadow">
         <div class="panel-header">
           <h2><?php _e('Subscription Type', 'doppler-form')?></h2>
         </div>
         <div class="panel-body grid">
-
-          <div class="dplr_input_section" id ="doble_optin_section">
-            <label for="settings[form_doble_optin]"><?php _e('Choose Opt-In type:', 'doppler-form')?> <span class="req">(Obligatorio)</span></label>
-            <select name="settings[form_doble_optin]" id="settings[form_doble_optin]">
-                <option <?php if(isset($form['settings']['form_doble_optin']) && $form['settings']['form_doble_optin'] === 'no') echo 'selected="selected"';?> value="no">Simple Opt-in</option>
-                <option <?php if(isset($form['settings']['form_doble_optin']) && $form['settings']['form_doble_optin'] === 'yes') echo 'selected="selected"';?> value="yes">Doble Opt-in</option>
-            </select>
+          <div class="dplr_input_section awa-form" id ="doble_optin_section">
+            <label for="settings[form_doble_optin]"><?php _e('Choose Opt-In type:', 'doppler-form')?>
+              <span class="req"><?php _e('(Required)', 'doppler-form') ?></span>
+              <div class="dp-select">
+                <span class="dropdown-arrow"></span>
+                <select name="settings[form_doble_optin]" id="settings[form_doble_optin]">
+                  <option <?php if(isset($form['settings']['form_doble_optin']) && $form['settings']['form_doble_optin'] === 'no') echo 'selected="selected"';?> value="no">Simple Opt-in</option>
+                  <option <?php if(isset($form['settings']['form_doble_optin']) && $form['settings']['form_doble_optin'] === 'yes') echo 'selected="selected"';?> value="yes">Doble Opt-in</option>
+                </select>
+              </div>
+            </label>
           </div>
-          
           <p>
             <?php _e('If you\'d like to know the difference between Simple Opt-In and Double Opt-In, click:', 'doppler-form')?>
             <a href="https://help.fromdoppler.com/es/diferencias-entre-simple-y-doble-opt-in"><?php _e('HELP', 'doppler-form') ?></a>.
@@ -237,40 +252,41 @@
 
           <div class="dplr_input_section" id="section_pagina_confirmacion">
             <h2><?php _e('Confirmation page', 'doppler-form');?></h2>
-
-              <label for="settings[form_pagina_confirmacion]"><?php _e('Choose an option:', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
-              <div class="radio-inputs-landing-or-url">
-                <div class="radio_section">
-                  <div class="dp-input--radio">
-                    <label aria-disabled="false">
-                      <input type="radio"
-                        id="mostrar_landing" 
-                        name="settings[form_pagina_confirmacion]"
-                        value="landing"
-                        <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='landing') echo 'checked'?>/>
-                      <span><?php _e('Redirect to landing page', 'doppler-form');?></span>
-                    </label>
-                  </div>
-                  <div class="dp-input--radio">
-                    <label aria-disabled="false">
-                      <input type="radio"
-                        id="mostrar_url"
-                        name="settings[form_pagina_confirmacion]"
-                        value="url"
-                        <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='url') echo 'checked'?>/>
-                      <span><?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?></span>
-                    </label>
-                  </div>
+            <label for="settings[form_pagina_confirmacion]"><?php _e('Choose an option:', 'doppler-form')?> <span class="req"><?php _e('(Required)', 'doppler-form') ?></span></label>
+            <div class="radio-inputs-landing-or-url">
+              <div class="radio_section">
+                <div class="dp-input--radio">
+                  <label aria-disabled="false">
+                    <input type="radio"
+                      id="mostrar_landing" 
+                      name="settings[form_pagina_confirmacion]"
+                      value="landing"
+                      <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='landing') echo 'checked'?>/>
+                    <span><?php _e('Redirect to landing page', 'doppler-form');?></span>
+                  </label>
+                </div>
+                <div class="dp-input--radio">
+                  <label aria-disabled="false">
+                    <input type="radio"
+                      id="mostrar_url"
+                      name="settings[form_pagina_confirmacion]"
+                      value="url"
+                      <?php if(isset($form['settings']['form_pagina_confirmacion']) && $form['settings']['form_pagina_confirmacion']==='url') echo 'checked'?>/>
+                    <span><?php _e('Redirect to URL (must have https:// prefix!).', 'doppler-form');?></span>
+                  </label>
                 </div>
               </div>
-
-              <div id="div_url_destino">
-                <label for="settings[form_pagina_confirmacion_url]"><?php _e('Target URL', 'doppler-form')?> <span class="req"></span></label>
-                <input type="text" id="form_pagina_confirmacion_url" name="settings[form_pagina_confirmacion_url]" value="<?php echo isset($form['settings']["form_pagina_confirmacion_url"])?$form['settings']["form_pagina_confirmacion_url"]:'' ?>" placeholder="<?php _e('Example: https://www.fromdoppler.com', 'doppler-form')?>" maxlength="150"/>
-              </div>
+            </div>
+            <div id="div_url_destino">
+              <label for="settings[form_pagina_confirmacion_url]"><?php _e('Target URL', 'doppler-form')?> <span class="req"></span></label>
+              <input type="text" id="form_pagina_confirmacion_url" name="settings[form_pagina_confirmacion_url]" value="<?php echo isset($form['settings']["form_pagina_confirmacion_url"])?$form['settings']["form_pagina_confirmacion_url"]:'' ?>" placeholder="<?php _e('Example: https://www.fromdoppler.com', 'doppler-form')?>" maxlength="150"/>
+            </div>
               
-              <div id="div_landing_page">
-                <label for="settings[form_pagina_confirmacion_select_landing]"><?php _e('Choose the page:', 'doppler-form')?> <span class="req"></span></label>
+            <div id="div_landing_page" class="awa-form">
+              <label for="settings[form_pagina_confirmacion_select_landing]"><?php _e('Choose the page:', 'doppler-form')?>
+              <span class="req"></span>
+              <div class="dp-select">
+                <span class="dropdown-arrow"></span>
                 <select name="settings[form_pagina_confirmacion_select_landing]" id="settings[form_pagina_confirmacion_url]">
                   <?php
                     $pages = get_pages();
@@ -291,20 +307,29 @@
                   ?>
                 </select>
               </div>
+              </label>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
     <div class="grid" id="dplr_consent_section">
-      <div class="col-4-5 panel nopd">
+      <div class="col-4-5 panel nopd dp-box-shadow">
         <div class="panel-header">
           <h2><?php _e('Consent Field settings', 'doppler-form')?></h2>
         </div>
         <div class="panel-body grid">
-          <span class="hlp"><?php _e('Automatically include checkboxes for opt-in, editable text and link that allow you to explain how and why you are using contact data. Whant to know more? Press','doppler-form')?> <?= '<a href="'.__('https://help.fromdoppler.com/en/general-data-protection-regulation?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form').'" target="blank">'.__('HELP','doppler-form').'</a>'?>.</span>
-          <button type="button" id="gdpr_add_button" class="dp-button primary-green button-medium button-right"><?php _e('Add new consent','doppler-form') ?></button>
+          <div class="dp-rowflex">
+            <div class="col-sm-9 col-md-9 col-lg-9
+            m-b-12">
+              <span class="hlp"><?php _e('Automatically include checkboxes for opt-in, editable text and link that allow you to explain how and why you are using contact data. Whant to know more? Press','doppler-form')?> <?= '<a href="'.__('https://help.fromdoppler.com/en/general-data-protection-regulation?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form').'" target="blank">'.__('HELP','doppler-form').'</a>'?>.</span>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3 m-b-12">
+              <button type="button" id="gdpr_add_button" class="dp-button primary-green button-medium button-right"><?php _e('Add new consent','doppler-form') ?></button>
+            </div>
+          </div>
           <ul class="accordion panel-body grid mt-1" id="gdpr_section"></ul>
         </div>
       </div>

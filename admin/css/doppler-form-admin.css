@@ -7,15 +7,10 @@
 	opacity: 1;
 }
 
-.dplr_settings {
-	/* Variables */
-}
-
 .dplr_settings h2.main-title {
 	font-size: 22px;
 	color: #525845;
 	font-weight: bold;
-	margin-bottom: 2em;
 }
 
 .dplr_settings .dplr-logo-header {
@@ -324,7 +319,6 @@
 }
 
 .dplr_settings .dplr-tab-content {
-	padding: 43px 10px;
 	font-family: "Proxima Nova Rg", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 }
@@ -351,8 +345,8 @@
 	font-size: 14px;
 }
 
-.dplr_settings table.widefat tbody tr td .column-actions a {
-	font-size: 14px;
+.dplr_settings table tbody tr td .dp-icons-group {
+	font-size: 16px;
 }
 
 .dplr_settings.ui-dialog-content p img {
@@ -504,7 +498,6 @@
 .dplr_settings form select,
 .dplr_settings form textarea {
 	font-size: 14px;
-	height: 40px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	width: 100%;
@@ -512,15 +505,11 @@
 }
 
 .dplr_settings form .dplr_input_section {
-	width: 100%;
-	margin-top: 10px;
-	position: relative;
 	margin-bottom: 25px;
 }
 
 .dplr_settings form .dplr_input_section label {
 	color: #333;
-	padding-right: 10px;
 }
 
 .dplr_settings form .dplr_input_section label span.req,
@@ -544,7 +533,9 @@
 }
 
 .dplr_settings form textarea {
-	height: initial;
+	height: 100px;
+	/* override doppler's styles */
+	resize: vertical !important;
 }
 
 .dplr_settings form select {
@@ -755,7 +746,6 @@
 
 .dplr_settings .panel {
 	position: relative;
-	overflow: auto;
 	margin: 16px 0;
 	padding: 23px 10px 0;
 	border: 1px solid #e5e5e5;
@@ -878,16 +868,11 @@
 }
 
 .dplr_settings .panel ul.accordion > li .accordion-content {
-	padding: 0.75em 0;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
-	background-color: #f8f8f8;
 	display: none;
 }
 
 .dplr_settings .panel ul.accordion > li.active .accordion-content {
 	display: block;
-	margin-top: 10px;
 }
 
 .dplr_settings .panel ul.accordion > li.active a.alt-toggle > i::after {
@@ -1323,11 +1308,6 @@
 	font-weight: normal;
 }
 
-.dplr_settings .dp-icons-group {
-	/* override doppler's style */
-	justify-content: start !important;
-}
-
 .dplr_settings #dplr-crud .dplr-loading {
 	display: none;
 }
@@ -1533,4 +1513,14 @@
 	flex-direction: row;
 	gap: 15px;
 	padding-left: 10px;
+}
+
+input[type="checkbox"]:checked::before {
+	content: none;
+}
+
+/* override doppler's styles */
+.wp-core-ui .wp-editor-tools .wp-media-buttons > button {
+	color: #2271b1;
+	border: 1px solid #2271b1;
 }

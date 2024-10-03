@@ -174,21 +174,27 @@ var FieldModel;
 				  field.name +
 				  '][settings][required]" value="required">'
 				: "";
-			html += '		<div class="dplr_input_section horizontal">';
 			html +=
-				'			<label for="fields[' +
+				'<div class="dplr_input_section horizontal">' +
+				'<div class="awa-form">';
+			html +=
+				'<label class="dp-label-checkbox" for="fields[' +
 				field.name +
 				'][settings][required]">' +
-				ObjStr.Required +
-				"</label>";
-			html +=
-				"   	<input " +
+				'<input type="checkbox" class="setting-required"' +
 				readonly +
-				' class="setting-required" type="checkbox" ' +
-				checkedRequired +
 				' name="fields[' +
 				field.name +
-				'][settings][required]" value="required"><br>';
+				'][settings][required]" value="required"' +
+				checkedRequired +
+				' id="fields[' +
+				field.name +
+				'][settings][required]">' +
+				"<span>" +
+				ObjStr.Required +
+				"</span>";
+			("</label>");
+			html += "</div>";
 			html += "		</div>";
 			html += '		<div class="dplr_input_section horizontal">';
 			html +=

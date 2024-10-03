@@ -1,6 +1,6 @@
 <section class="dplr_settings dplr-extensions">
 
-<div class="wrap dplr_connect text-center">
+<div class="dplr_connect text-center">
 		
     <h2></h2>
 		
