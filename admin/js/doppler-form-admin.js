@@ -325,11 +325,18 @@
 						html += "<td><strong>" + listName + "</strong></td>";
 						html += "<td>0</td>";
 						html +=
-							'<td><a href="#" class="text-dark-red" data-list-id="' +
+							'<td><div class="dp-icons-group"><a href="#" class="dplr-remove" data-list-id="' +
 							body.createdResourceId +
 							'">' +
+							'<div class="dp-tooltip-container"> \
+							<span class="ms-icon icon-delete"></span> \
+							<div class="dp-tooltip-top"> \
+							<span>' +
 							object_string.Delete +
-							"</a></td>";
+							"</span> \
+							</div> \
+							</div>" +
+							"</a></div></td>";
 						html += "</tr>";
 						$("#dplr-tbl-lists tbody").prepend(html);
 					} else {
