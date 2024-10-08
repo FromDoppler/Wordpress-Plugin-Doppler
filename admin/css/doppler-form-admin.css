@@ -1520,7 +1520,9 @@ input[type="checkbox"]:checked::before {
 }
 
 /* override doppler's styles */
-.wp-core-ui .wp-editor-tools .wp-media-buttons > button {
-	color: #2271b1;
-	border: 1px solid #2271b1;
+.wp-core-ui .wp-editor-tools .wp-media-buttons > button,
+.wp-core-ui .wp-editor-container .ed_button {
+	color: #2271b1 !important;
+	border: 1px solid #2271b1 !important;
+	width: auto !important;
 }
