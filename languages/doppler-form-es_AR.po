@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-09-21 09:36-0300\n"
-"PO-Revision-Date: 2024-09-21 09:37-0300\n"
+"POT-Creation-Date: 2024-10-13 13:21-0300\n"
+"PO-Revision-Date: 2024-10-13 13:21-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Argentina\n"
 "Language: es_AR\n"
@@ -25,7 +25,7 @@ msgstr ""
 "X-Loco-Version: 2.6.9; wp-6.5.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/doppler-admin.php:125 admin/partials/forms-list.php:95
+#: admin/doppler-admin.php:125 admin/partials/forms-list.php:107
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -877,15 +877,19 @@ msgstr "Doble Opt-in"
 msgid "Simple Opt-In"
 msgstr "Simple Opt-In"
 
-#: admin/partials/forms-list.php:85
+#: admin/partials/forms-list.php:84
+msgid "Copy"
+msgstr "Copiar"
+
+#: admin/partials/forms-list.php:97
 msgid "Edit"
 msgstr "Editar"
 
-#: admin/partials/forms-list.php:109
+#: admin/partials/forms-list.php:121
 msgid "Are you sure you want to delete the Form?"
 msgstr "¿Estás seguro de que deseas eliminar el Formulario?"
 
-#: admin/partials/forms-list.php:110
+#: admin/partials/forms-list.php:122
 msgid "It'll be deleted and can't be recovered."
 msgstr "Será eliminado y ya no podrás recuperarlo."
 
