@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-09-20 09:04-0300\n"
+"POT-Creation-Date: 2024-10-13 13:21-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Hernán Galván\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/doppler-admin.php:125 admin/partials/forms-list.php:95
+#: admin/doppler-admin.php:125 admin/partials/forms-list.php:107
 msgid "Delete"
 msgstr ""
 
@@ -808,15 +808,19 @@ msgstr ""
 msgid "Simple Opt-In"
 msgstr ""
 
-#: admin/partials/forms-list.php:85
+#: admin/partials/forms-list.php:84
+msgid "Copy"
+msgstr ""
+
+#: admin/partials/forms-list.php:97
 msgid "Edit"
 msgstr ""
 
-#: admin/partials/forms-list.php:109
+#: admin/partials/forms-list.php:121
 msgid "Are you sure you want to delete the Form?"
 msgstr ""
 
-#: admin/partials/forms-list.php:110
+#: admin/partials/forms-list.php:122
 msgid "It'll be deleted and can't be recovered."
 msgstr ""
 
