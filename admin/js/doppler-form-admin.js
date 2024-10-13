@@ -450,6 +450,18 @@
 			});
 			gdprAmount += 1;
 		});
+
+		$(".copy-shortcode").click(function (e) {
+			e.preventDefault();
+
+			var shortcode = $(this)
+				.closest(".dp-rowflex")
+				.find("span")
+				.first()
+				.text();
+
+			navigator.clipboard.writeText(shortcode);
+		});
 	});
 
 	function listsLoading() {

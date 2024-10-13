@@ -74,7 +74,19 @@
                 <span><?php echo isset($dplr_lists_arr[$form->list_id])? $dplr_lists_arr[$form->list_id] : '' ?></span>
               </td>
               <td aria-label="Shortcode">
-                <span>[doppler-form id='<?= $form->id ?>']</span>
+                <div class="dp-rowflex">
+                  <span class="col-lg-10 col-sm-10 col-md-10">[doppler-form id='<?= $form->id ?>']</span>
+                  <div class="dp-icons-group col-lg-2 col-sm-2 col-md-2">
+                    <a class="copy-shortcode">
+                      <div class="dp-tooltip-container">
+                          <span class="ms-icon dpicon iconapp-copy-paste"></span>
+                          <div class="dp-tooltip-top">
+                            <span><?php _e('Copy', 'doppler-form')?></span>
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
               </td>
               <td aria-label="Actions">
                 <div class="dp-icons-group">
