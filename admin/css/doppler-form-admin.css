@@ -1515,7 +1515,7 @@
 	padding-left: 10px;
 }
 
-input[type="checkbox"]:checked::before {
+.awa-form .dp-label-checkbox input[type="checkbox"]:checked::before {
 	content: none;
 }
 
