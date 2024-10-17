@@ -75,11 +75,11 @@
               </td>
               <td aria-label="Shortcode">
                 <div class="dp-rowflex">
-                  <span class="col-lg-10 col-sm-10 col-md-10">[doppler-form id='<?= $form->id ?>']</span>
+                  <span>[doppler-form id='<?= $form->id ?>']</span>
                   <div class="dp-icons-group col-lg-2 col-sm-2 col-md-2">
                     <a class="copy-shortcode">
                       <div class="dp-tooltip-container">
-                          <span class="ms-icon dpicon iconapp-copy-paste"></span>
+                          <span class="ms-icon dpicon iconapp-copy-file"></span>
                           <div class="dp-tooltip-top">
                             <span><?php _e('Copy', 'doppler-form')?></span>
                           </div>
