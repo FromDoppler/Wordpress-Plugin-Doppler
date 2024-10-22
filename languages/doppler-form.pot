@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-10-13 13:21-0300\n"
+"POT-Creation-Date: 2024-10-22 08:16-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Hernán Galván\n"
@@ -809,7 +809,7 @@ msgid "Simple Opt-In"
 msgstr ""
 
 #: admin/partials/forms-list.php:84
-msgid "Copy"
+msgid "Copy to clipboard"
 msgstr ""
 
 #: admin/partials/forms-list.php:97
@@ -851,6 +851,10 @@ msgstr ""
 
 #: admin/partials/lists-crud.php:76
 msgid "If you proceed, the List will also be deleted in Doppler."
+msgstr ""
+
+#: admin/partials/tabs-nav.php:5
+msgid "Forms"
 msgstr ""
 
 #: doppler-form.php:43

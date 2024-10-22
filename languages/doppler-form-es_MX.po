@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-10-13 13:22-0300\n"
-"PO-Revision-Date: 2024-10-13 13:22-0300\n"
+"POT-Creation-Date: 2024-10-22 08:17-0300\n"
+"PO-Revision-Date: 2024-10-22 08:18-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de México\n"
 "Language: es_MX\n"
@@ -878,8 +878,8 @@ msgid "Simple Opt-In"
 msgstr "Simple Opt-In"
 
 #: admin/partials/forms-list.php:84
-msgid "Copy"
-msgstr "Copiar"
+msgid "Copy to clipboard"
+msgstr "Copiar al portapapeles"
 
 #: admin/partials/forms-list.php:97
 msgid "Edit"
@@ -921,6 +921,10 @@ msgstr "¿Estás seguro de que deseas eliminar la Lista?"
 #: admin/partials/lists-crud.php:76
 msgid "If you proceed, the List will also be deleted in Doppler."
 msgstr "Si lo haces, la Lista también será eliminada en Doppler."
+
+#: admin/partials/tabs-nav.php:5
+msgid "Forms"
+msgstr "Formularios"
 
 #: doppler-form.php:43
 msgid ""
@@ -971,14 +975,14 @@ msgstr "Ingrese una fecha valida."
 msgid "Invalid Format."
 msgstr "Formato Inválido."
 
+#~ msgid "Copy"
+#~ msgstr "Copiar"
+
 #, php-format
 #~ msgid "You have <strong>%s</strong> form"
 #~ msgid_plural "You have <strong>%s</strong> forms"
 #~ msgstr[0] "Tienes <strong>%s</strong> formulario"
 #~ msgstr[1] "Tienes <strong>%s</strong> formularios"
-
-#~ msgid "Forms"
-#~ msgstr "Formularios"
 
 #~ msgid "List ID"
 #~ msgstr "ID de la Lista"
