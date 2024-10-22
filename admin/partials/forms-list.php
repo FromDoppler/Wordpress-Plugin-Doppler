@@ -81,7 +81,7 @@
                       <div class="dp-tooltip-container">
                           <span class="ms-icon dpicon iconapp-copy-file"></span>
                           <div class="dp-tooltip-top">
-                            <span><?php _e('Copy', 'doppler-form')?></span>
+                            <span><?php _e('Copy to clipboard', 'doppler-form')?></span>
                           </div>
                       </div>
                     </a>
