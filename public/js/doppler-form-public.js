@@ -6,8 +6,83 @@
 		return regExDateFormat.test(dateFormat);
 	}
 
-	$(document).ready(function () {
 		$("form.dplr_form input[type='text'].date").each(function () {
+	function submitDplrForm(form) {
+		var f = form;
+		var s = form.find("button[name='submit']");
+		var m = form.find(".msg-data-sending");
+		var l = form.find("input[name='list_id']");
+		var d = form.find("input[name='form_id']");
+		var e = form.find("input[name='EMAIL']");
+		var honey = form.find("input[name='secondary-dplrEmail']");
+		var thankyou = form.find("input[name='thankyou']");
+		let form_id = d.val();
+		var fields = form.find(
+			"input[name|='fields'], select[name|='fields'], textarea[name|='fields']" &&
+				[
+					"input[name$='-",
+					"'], select[name$='-",
+					"'], textarea[name$='-",
+					"']",
+				].join(form_id)
+		);
+
+		s.attr("disabled", "disabled");
+		s.addClass("sending");
+
+		var subscriber = {},
+			list_id = l.val();
+		subscriber.email = e.val();
+		subscriber.hp = honey.val();
+		subscriber.fields = [];
+
+		fields.each(function (index) {
+			var input = $(fields[index]);
+
+			if (input.attr("type") == "radio" && !input.is(":checked")) return;
+			if (input.attr("type") == "checkbox" && !input.is(":checked")) return;
+
+			var name = input.attr("name");
+			name = name.split("-");
+			name = name[1];
+			name = !Array.isArray(name) ? name : name.join("-");
+
+			var field = {};
+			field["name"] = name;
+			field["value"] =
+				input.attr("type") == "radio" && input.val() == "N/A"
+					? ""
+					: input.val();
+			subscriber.fields.push(field);
+		});
+
+		$.post(
+			dplr_obj_vars.ajax_url,
+			{
+				action: "submit_form",
+				subscriber: subscriber,
+				list_id: list_id,
+				form_id: form_id,
+			},
+			function (res) {
+				if (thankyou.length !== 0) {
+					window.location.href = thankyou.val();
+				} else {
+					s.removeClass("sending");
+					m.show();
+					s.removeAttr("disabled");
+					f.trigger("reset");
+					setTimeout(function () {
+						m.hide();
+						f[0].reset();
+					}, 8000);
+				}
+			}
+		);
+	}
+
+	function addDatePickerToDplrDateFields(form) {
+		form.find("input[type='text'].date").each(function () {
 			var dateElement = $(this);
 			var elementName = dateElement.attr("name");
 			var elementFormId = dateElement.attr("data-form-id");
@@ -34,6 +109,7 @@
 					}
 				});
 		});
+	}
 
 		$('.dplr_form input[name="EMAIL"]').focus(function () {
 			var f = $(this).closest("form");
@@ -42,6 +118,8 @@
 
 		//Input Phone doppler flags
 		const inputs = $(".phone-doppler");
+	function addFlagsAndValidationToDplrPhoneFields(form) {
+		const inputs = form.find(".phone-doppler");
 		if (inputs != null) {
 			inputs.each(function () {
 				const input = $(this)[0];
@@ -86,81 +164,13 @@
 				});
 			});
 		}
+	}
 
 		$(".dplr_form").submit(function (ev) {
 			ev.preventDefault();
+	$(document).ready(function () {
 
-			var f = $(this);
-			var s = $(this).find("button[name='submit']");
-			var m = $(this).find(".msg-data-sending");
-			var l = $(this).find("input[name='list_id']");
-			var d = $(this).find("input[name='form_id']");
-			var e = $(this).find("input[name='EMAIL']");
-			var honey = $(this).find("input[name='secondary-dplrEmail']");
-			var thankyou = $(this).find("input[name='thankyou']");
-			let form_id = d.val();
-			var fields = $(this).find(
-				"input[name|='fields'], select[name|='fields'], textarea[name|='fields']" &&
-					[
-						"input[name$='-",
-						"'], select[name$='-",
-						"'], textarea[name$='-",
-						"']",
-					].join(form_id)
-			);
 
-			s.attr("disabled", "disabled");
-			s.addClass("sending");
-
-			var subscriber = {},
-				list_id = l.val();
-			subscriber.email = e.val();
-			subscriber.hp = honey.val();
-			subscriber.fields = [];
-
-			fields.each(function (index) {
-				var input = $(fields[index]);
-
-				if (input.attr("type") == "radio" && !input.is(":checked")) return;
-				if (input.attr("type") == "checkbox" && !input.is(":checked")) return;
-
-				var name = input.attr("name");
-				name = name.split("-");
-				name = name[1];
-				name = !Array.isArray(name) ? name : name.join("-");
-
-				var field = {};
-				field["name"] = name;
-				field["value"] =
-					input.attr("type") == "radio" && input.val() == "N/A"
-						? ""
-						: input.val();
-				subscriber.fields.push(field);
-			});
-
-			$.post(
-				dplr_obj_vars.ajax_url,
-				{
-					action: "submit_form",
-					subscriber: subscriber,
-					list_id: list_id,
-					form_id: form_id,
-				},
-				function (res) {
-					if (thankyou.length !== 0) {
-						window.location.href = thankyou.val();
-					} else {
-						s.removeClass("sending");
-						m.show();
-						s.removeAttr("disabled");
-						f.trigger("reset");
-						setTimeout(function () {
-							m.hide();
-							f[0].reset();
-						}, 8000);
-					}
-				}
-			);
 		});
 	});
 })(jQuery);
