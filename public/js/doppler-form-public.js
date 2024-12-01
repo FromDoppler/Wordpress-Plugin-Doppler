@@ -6,7 +6,6 @@
 		return regExDateFormat.test(dateFormat);
 	}
 
-		$("form.dplr_form input[type='text'].date").each(function () {
 	function submitDplrForm(form) {
 		var f = form;
 		var s = form.find("button[name='submit']");
@@ -111,13 +110,6 @@
 		});
 	}
 
-		$('.dplr_form input[name="EMAIL"]').focus(function () {
-			var f = $(this).closest("form");
-			f.find(".msg-data-sending").hide();
-		});
-
-		//Input Phone doppler flags
-		const inputs = $(".phone-doppler");
 	function addFlagsAndValidationToDplrPhoneFields(form) {
 		const inputs = form.find(".phone-doppler");
 		if (inputs != null) {
@@ -166,8 +158,6 @@
 		}
 	}
 
-		$(".dplr_form").submit(function (ev) {
-			ev.preventDefault();
 	$(document).ready(function () {
 		$(document).on("elementor/popup/show", (event, popupId) => {
 			const popupSelector = $(`#elementor-popup-modal-${popupId}`);
@@ -184,7 +174,20 @@
 			}
 		});
 
+		const dplrForm = $("form.dplr_form").filter(function () {
+			return $(this).closest(".elementor").length === 0;
+		});
+		addDatePickerToDplrDateFields(dplrForm);
+		addFlagsAndValidationToDplrPhoneFields(dplrForm);
 
+		$('.dplr_form input[name="EMAIL"]').focus(function () {
+			var f = $(this).closest("form");
+			f.find(".msg-data-sending").hide();
+		});
+
+		$(".dplr_form").submit(function (ev) {
+			ev.preventDefault();
+			submitDplrForm($(this));
 		});
 	});
 })(jQuery);
