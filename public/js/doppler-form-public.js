@@ -169,6 +169,20 @@
 		$(".dplr_form").submit(function (ev) {
 			ev.preventDefault();
 	$(document).ready(function () {
+		$(document).on("elementor/popup/show", (event, popupId) => {
+			const popupSelector = $(`#elementor-popup-modal-${popupId}`);
+			const dplrForm = popupSelector.find("form.dplr_form");
+
+			if (dplrForm) {
+				addDatePickerToDplrDateFields(dplrForm);
+				addFlagsAndValidationToDplrPhoneFields(dplrForm);
+
+				dplrForm.submit(function (ev) {
+					ev.preventDefault();
+					submitDplrForm($(this));
+				});
+			}
+		});
 
 
 		});
