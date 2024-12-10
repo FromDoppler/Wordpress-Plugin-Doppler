@@ -107,6 +107,10 @@
 						this.reportValidity();
 					}
 				});
+
+			//This is a patch to avoid closing Elementor's popups when clicking on the calendar
+			const datepicker = $(".ui-datepicker");
+			datepicker.addClass("flatpickr-calendar");
 		});
 	}
 
