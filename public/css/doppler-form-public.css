@@ -46,27 +46,27 @@ form.dplr_form .input-field.required label::after {
 	content: " *";
 	color: #f71010;
 }
-form.dplr_form .input-buttom {
+form.dplr_form .input-button {
 	text-align: center;
 }
-form.dplr_form .input-buttom::after {
+form.dplr_form .input-button::after {
 	content: "";
 	clear: both;
 	display: table;
 }
-form.dplr_form .input-buttom button {
+form.dplr_form .input-button button {
 	position: relative;
 }
-form.dplr_form .input-buttom button.left {
+form.dplr_form .input-button button.left {
 	float: left;
 }
-form.dplr_form .input-buttom button.right {
+form.dplr_form .input-button button.right {
 	float: right;
 }
-form.dplr_form .input-buttom button.fill {
+form.dplr_form .input-button button.fill {
 	width: 100%;
 }
-form.dplr_form .input-buttom button img {
+form.dplr_form .input-button button img {
 	display: none;
 	position: absolute;
 	animation: rotation 2s infinite linear;
@@ -141,10 +141,10 @@ form.dplr_form div.consent_field {
 		transform: rotate(359deg);
 	}
 }
-form.dplr_form .input-buttom button.sending img {
+form.dplr_form .input-button button.sending img {
 	display: table;
 }
-form.dplr_form .input-buttom button.sending span {
+form.dplr_form .input-button button.sending span {
 	opacity: 0.3;
 }
 

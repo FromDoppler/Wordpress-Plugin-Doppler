@@ -2,148 +2,107 @@
 
 class DPLR_Form_helper
 {
-  public static function generate($context, $options = NULL) {
-		
-	$doppler_settings = get_option('dplr_settings');
-	if(!$doppler_settings): ?>
-
-		<div class="dplr_settings_not_founded">
-			El formulario no se puede mostrar porque la cuenta no esta conectada a Doppler API!
-		</div>
-
-	<?php return;
-	endif;
-
-    $form = $context['form'];
-    $fields = isset($context['fields']) ? $context['fields'] : [];
-    $form_class = isset($context['classes']) ? implode(" ", $context['classes']) : "";
-    $form_orientation_horizontal = isset($form->settings["form_orientation"]) && $form->settings["form_orientation"] === 'horizontal';
-
-    ?>
-
-	<form class="dplr_form <?php echo $form_class; ?>">	
-
-	<?php
-
-	if($form_orientation_horizontal):?>
-    
-		<div class="container">
-			<input type="hidden" name="list_id" value="<?php echo $form->list_id; ?>">
-			<input type="hidden" name="form_id" value="<?php echo $form->id; ?>">
-			<?php foreach ($fields as $field) :
-				$label = isset($field->settings['label']) ? $field->settings['label'] : $field->name;?>
-				<div class="<?php echo ($field->type !== "permission") ? "flex-item" : ""; ?> input-field <?php echo isset($field->settings['required']) ? 'required' : ''; ?>">
-					<?php if($label!==''): ?>
-						<?php if($field->type !== 'permission'): ?>
-							<label for="<?php echo $field->name; ?>" class="horizontal_label" >
-								<?php echo $label; ?>
-							</label>
-						<?php endif; ?>
-					<?php endif;
-					if($field->type !== 'permission'):
-						echo self::printInput($field, $form, $label, $form_orientation_horizontal);
-					endif; ?>
+	public static function generate($context, $options = NULL) {
+		$doppler_settings = get_option('dplr_settings');
+		if (!$doppler_settings) {
+			return '<div class="dplr_settings_not_founded">El formulario no se puede mostrar porque la cuenta no está conectada a Doppler API!</div>';
+		}
+	
+		$form = $context['form'];
+		$fields = isset($context['fields']) ? $context['fields'] : [];
+		$form_class = isset($context['classes']) ? implode(" ", $context['classes']) : "";
+		$form_orientation_horizontal = isset($form->settings["form_orientation"]) && $form->settings["form_orientation"] === 'horizontal';
+	
+		ob_start();
+	
+		?>
+		<form class="dplr_form <?php echo $form_class; ?>">
+			<?php if ($form_orientation_horizontal): ?>
+				<div class="container">
+					<input type="hidden" name="list_id" value="<?php echo $form->list_id; ?>">
+					<input type="hidden" name="form_id" value="<?php echo $form->id; ?>">
+					<?php foreach ($fields as $field) :
+						$label = isset($field->settings['label']) ? $field->settings['label'] : $field->name; ?>
+						<div class="<?php echo ($field->type !== "permission") ? "flex-item" : ""; ?> input-field <?php echo isset($field->settings['required']) ? 'required' : ''; ?>">
+							<?php if ($label !== ''): ?>
+								<?php if ($field->type !== 'permission'): ?>
+									<label for="<?php echo $field->name; ?>" class="horizontal_label">
+										<?php echo $label; ?>
+									</label>
+								<?php endif; ?>
+							<?php endif;
+							if ($field->type !== 'permission'):
+								echo self::printInput($field, $form, $label, $form_orientation_horizontal);
+							endif; ?>
+						</div>
+					<?php endforeach; ?>
 				</div>
-			<?php endforeach; ?>
-		</div>
-		<?php foreach ($fields as $field):
-			if($field->type === "permission"): ?>
-				<label for="<?php echo $field->name; ?>" >
-					<?php echo $field->settings["label"]; ?>
-				</label>
-				<?php echo self::printInput($field, $form, $label, $form_orientation_horizontal);
-			endif;
-		endforeach;
-		if($form->settings['use_consent_field']==='yes'): ?>
-			<div class="input-field consent_field" required>
-				<input type="checkbox" name="fields-CONSENT" value="true" required/>
-				<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? $form->settings['consent_field_text'] : _e("I've read and accept the privace policy", "doppler-form");
-				if( isset($form->settings['consent_field_url']) && !empty($form->settings['consent_field_url']) ): ?>
-						<a href="<?= $form->settings['consent_field_url'] ?>"><?php _e('Read more', 'doppler-form')?></a>
-				<?php endif; ?>
-			</div>
-		<?php endif;
-		if($form->settings['use_thankyou_page']==='yes'): ?>
-			<input type="hidden" value="<?php echo $form->settings['thankyou_page_url']?>" name="thankyou"/>
-		<?php endif;
-	else: ?>
-
-		<div>
-			<input type="hidden" name="list_id" value="<?php echo $form->list_id; ?>">
-			<input type="hidden" name="form_id" value="<?php echo $form->id; ?>">
-			<?php foreach ($fields as $field) :
-				$label = isset($field->settings['label']) ? $field->settings['label'] : $field->name;?>
-				<div class="input-field <?php echo isset($field->settings['required']) ? 'required' : ''; ?>">
-					<?php if($label!==''): ?>
-						<?php if($field->type !== 'permission'): ?>
-							<label for="<?php echo $field->name; ?>" >
-								<?php echo $label; ?>
-							</label>
-						<?php endif;
+				<?php foreach ($fields as $field):
+					if ($field->type === "permission"): ?>
+						<label for="<?php echo $field->name; ?>">
+							<?php echo $field->settings["label"]; ?>
+						</label>
+						<?php echo self::printInput($field, $form, $label, $form_orientation_horizontal);
 					endif;
-					echo self::printInput($field, $form, $label, $form_orientation_horizontal); ?>
-				</div>
-			<?php endforeach;
-			if(isset($form->settings['use_consent_field']) && $form->settings['use_consent_field']==='yes'): ?>
-				<div class="input-field consent_field" required>
-					<input type="checkbox" name="fields-CONSENT" value="true" required/>
-					<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? $form->settings['consent_field_text'] : _e("I've read and accept the privace policy", "doppler-form");
-					if( isset($form->settings['consent_field_url']) && !empty($form->settings['consent_field_url']) ): ?>
-						<a href="<?= $form->settings['consent_field_url'] ?>"><?php _e('Read more', 'doppler-form')?></a>
+				endforeach;
+				if ($form->settings['use_consent_field'] === 'yes'): ?>
+					<div class="input-field consent_field" required>
+						<input type="checkbox" name="fields-CONSENT" value="true" required/>
+						<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? $form->settings['consent_field_text'] : _e("I've read and accept the privacy policy", "doppler-form");
+						if (isset($form->settings['consent_field_url']) && !empty($form->settings['consent_field_url'])): ?>
+							<a href="<?= $form->settings['consent_field_url'] ?>"><?php _e('Read more', 'doppler-form') ?></a>
+						<?php endif; ?>
+					</div>
+				<?php endif;
+				if ($form->settings['use_thankyou_page'] === 'yes'): ?>
+					<input type="hidden" value="<?php echo $form->settings['thankyou_page_url'] ?>" name="thankyou"/>
+				<?php endif;
+			else: ?>
+				<div>
+					<input type="hidden" name="list_id" value="<?php echo $form->list_id; ?>">
+					<input type="hidden" name="form_id" value="<?php echo $form->id; ?>">
+					<?php foreach ($fields as $field) :
+						$label = isset($field->settings['label']) ? $field->settings['label'] : $field->name; ?>
+						<div class="input-field <?php echo isset($field->settings['required']) ? 'required' : ''; ?>">
+							<?php if ($label !== ''): ?>
+								<?php if ($field->type !== 'permission'): ?>
+									<label for="<?php echo $field->name; ?>">
+										<?php echo $label; ?>
+									</label>
+								<?php endif; ?>
+							<?php endif;
+							echo self::printInput($field, $form, $label, $form_orientation_horizontal); ?>
+						</div>
+					<?php endforeach;
+					if (isset($form->settings['use_consent_field']) && $form->settings['use_consent_field'] === 'yes'): ?>
+						<div class="input-field consent_field" required>
+							<input type="checkbox" name="fields-CONSENT" value="true" required/>
+							<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? $form->settings['consent_field_text'] : _e("I've read and accept the privacy policy", "doppler-form");
+							if (isset($form->settings['consent_field_url']) && !empty($form->settings['consent_field_url'])): ?>
+								<a href="<?= $form->settings['consent_field_url'] ?>"><?php _e('Read more', 'doppler-form') ?></a>
+							<?php endif; ?>
+						</div>
+					<?php endif;
+					if (isset($form->settings['use_thankyou_page']) && $form->settings['use_thankyou_page'] === 'yes'): ?>
+						<input type="hidden" value="<?php echo $form->settings['thankyou_page_url'] ?>" name="thankyou"/>
 					<?php endif; ?>
 				</div>
-			<?php endif;
-			if(isset($form->settings['use_thankyou_page']) && $form->settings['use_thankyou_page']==='yes'): ?>
-				<input type="hidden" value="<?php echo $form->settings['thankyou_page_url']?>" name="thankyou"/>
 			<?php endif; ?>
-				
-	<?php endif;
-
-	if(!isset($form->settings['use_consent_field']) 
-	&& isset($form->settings['consent_field_text']) 
-	&& isset($form->settings['consent_field_url'])
-	) {
-		$consentTextArray = explode("||", $form->settings["consent_field_text"]);
-		$consentUrlArray = explode("||", $form->settings["consent_field_url"]);
-
-		foreach ($consentTextArray as $key => $value)
-		{ 
-			if (!empty($value))
-			{  ?>
-			<div class="input-field consent_field" required>
-				<input type="checkbox" name="fields-CONSENT" value="true" required/>
-				<?php echo $value ?>
-				<a href="<?= $consentUrlArray[$key] ?>"><?php _e('Read more', 'doppler-form')?></a>
+			<input type="text" name="secondary-dplrEmail" value="" class="dplr-secondary-email"/>
+			<label class="msg-data-sending"><?php echo isset($form->settings["message_success"]) ? $form->settings["message_success"] : __('Thanks for subscribing', 'doppler-form'); ?></label>
+			<div class="input-button">
+				<button type="submit" name="submit" class="<?php echo isset($form->settings["button_position"]) ? $form->settings["button_position"] : 'left'; ?>">
+					<img src="<?php echo plugin_dir_url(__FILE__) ?>../../public/img/spinner.svg"/>
+					<span><?php echo isset($form->settings["button_text"]) ? $form->settings["button_text"] : __('Submit', 'doppler-form'); ?></span>
+				</button>
 			</div>
-			<?php }
-		} 
-	}?>
-		<input type="text" name="secondary-dplrEmail" value="" class="dplr-secondary-email"/>
-		<?php $button_position = isset($form->settings["button_position"]) ? $form->settings["button_position"] : "left";
-		$submit_text = isset($form->settings["button_text"]) ? $form->settings["button_text"] : "";
-		$message_success = isset($form->settings["message_success"]) ? $form->settings["message_success"] : "";
-		if(empty($submit_text)):
-			$submit_text =  __('Submit', 'doppler-form');
-		endif;
-		if(empty($message_success)):
-			$message_success = __('Thanks for subscribing', 'doppler-form');
-		endif;
-		$buttom_color = '';
-		if(isset($form->settings['change_button_bg']) && $form->settings['change_button_bg']==='yes'):
-			$buttom_color = isset($form->settings["button_color"]) && !empty(trim($form->settings["button_color"])) ? "background: ". $form->settings["button_color"] .";" : "";
-		endif;?>
-		<label class="msg-data-sending"><?=$message_success?></label>
-		<div class="input-buttom" >
-			<button type="submit"  name="submit" style="<?php echo $buttom_color; ?>" class="<?php echo $button_position; ?>">
-				<img src="<?php echo plugin_dir_url(__FILE__)?>../../public/img/spinner.svg"/>
-				<span><?=$submit_text?></span>
-			</button>
-		</div>
-	</form>
-    <?php
-  }
+		</form>
+		<?php
+	
+		return ob_get_clean();
+	}
 
-  private static function printInput($input, $form, $label, $form_orientation_horizontal) {
+  	private static function printInput($input, $form, $label, $form_orientation_horizontal) {
 
 		$required = isset($input->settings["required"]) ? "required" : "";
     	switch ($input->type) {
