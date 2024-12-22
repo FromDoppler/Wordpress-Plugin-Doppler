@@ -81,12 +81,6 @@ class DPLR_Doppler {
 			'dplr_option_useraccount' => ''
 			]);
 
-		 /* Not sure about this block. */
-		 try {
-		 	//$this->doppler_service->setCredentials(['api_key' => $options['dplr_option_apikey'], 'user_account' => $options['dplr_option_useraccount']]);
-		 } catch (Exception $e) {;}
-
-		// inicializar el shortcode aca:
 		$this->load_shortcodes();
 		$this->load_dependencies();
 		$this->set_locale(); 
@@ -277,12 +271,14 @@ class DPLR_Doppler {
 			update_option('dplr_version','2.0.0');
 			update_option('dplr_2_0_updated',1);
 
-		}else{
-
-			update_option('dplr_version', $this->get_version() );
-		
 		}
-	
+		else if(isset($settings['dplr_option_apikey']) && (!$db_version || version_compare($db_version,'2.5.0','<'))) {
+			DPLR_Form_Model::init();
+			update_option('dplr_version', $this->get_version());
+		}
+		else {
+			update_option('dplr_version', $this->get_version() );
+		}
 	}
 
 	/**
