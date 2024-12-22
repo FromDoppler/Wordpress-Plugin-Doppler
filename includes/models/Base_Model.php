@@ -11,6 +11,13 @@ class DPLR_Base_Model {
     return $wpdb->prefix . $tablename;
   }
 
+  public static function _eventTable() {
+    global $wpdb;
+    $tablename = strtolower( get_called_class() );
+    $tablename = str_replace( '_model', '_events', $tablename );
+    return $wpdb->prefix . $tablename;
+  }
+
   private static function _settings_table() {
     global $wpdb;
     $tablename = strtolower( get_called_class() );
