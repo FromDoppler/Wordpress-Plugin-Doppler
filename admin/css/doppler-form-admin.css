@@ -1089,13 +1089,11 @@
 }
 
 .dplr_settings .dplr_connect a {
-	color: #33ad73;
-	text-decoration: none;
+	color: #33ad73 !important;
 }
 
 .dplr_settings .dplr_connect a:hover {
-	color: #008046;
-	text-decoration: none;
+	color: #008046 !important;
 }
 
 .dplr_settings .dplr_connect p {
@@ -1114,7 +1112,6 @@
 }
 
 .dplr_settings .dplr_connect #dplr_logo {
-	margin: 90px 0 60px 0;
 	display: inline-block;
 }
 
@@ -1134,17 +1131,6 @@
 
 .dplr_settings .dplr_connect .disconnect-box span {
 	margin-right: 30px;
-}
-
-.dplr_settings .dplr_connect form#dplr-connect-form .dp-button {
-	position: absolute;
-	top: 18px;
-	right: 20px;
-}
-
-.dplr_settings .dplr_connect form#dplr-connect-form .dplr-input-section {
-	margin-top: 0px;
-	margin-bottom: 0px;
 }
 
 .dplr_settings

@@ -1,46 +1,34 @@
 (function ($) {
-	function triggerError(input) {
-		var container = input.closest(".dplr-input-section");
-		container.addClass("input-error");
-		container.removeClass("tooltip-hide");
-		container
-			.find(".tooltip-container span")
-			.html(input.attr("data-validation-fixed"));
-	}
-
-	function validateEmail(emailElement) {
-		var email = emailElement.val();
-		var container = emailElement.closest(".dplr-input-section");
+	function validateEmail(emailInput) {
+		var email = emailInput.val();
+		var assistanceWrap = emailInput[0].nextElementSibling;
 
 		if (
 			email.match(
 				/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 			)
 		) {
-			container.removeClass("input-error");
-			container.addClass("tooltip-hide");
+			emailInput.attr("aria-invalid", "false");
+			$(assistanceWrap).find("span").html("");
 		} else {
-			container
-				.find(".tooltip-container span")
-				.html(emailElement.attr("data-validation-email"));
-			container.addClass("input-error");
-			container.removeClass("tooltip-hide");
+			emailInput.attr("aria-invalid", "true");
+			$(assistanceWrap)
+				.find("span")
+				.html(emailInput.attr("data-validation-email"));
 		}
 	}
 
 	function validateRequired(requiredElement) {
 		var value = requiredElement.val();
-		var container = requiredElement.closest(".dplr-input-section");
-
+		var assistanceWrap = requiredElement[0].nextElementSibling;
 		if (value) {
-			container.removeClass("input-error");
-			container.addClass("tooltip-hide");
+			requiredElement.attr("aria-invalid", "false");
+			$(assistanceWrap).find("span").html("");
 		} else {
-			container
-				.find(".tooltip-container span")
+			requiredElement.attr("aria-invalid", "true");
+			$(assistanceWrap)
+				.find("span")
 				.html(requiredElement.attr("data-validation-required"));
-			container.addClass("input-error");
-			container.removeClass("tooltip-hide");
 		}
 	}
 
@@ -51,11 +39,6 @@
 	$(document).ready(function () {
 		var colorSelector = $(".color-selector");
 		var default_page_size = 200;
-
-		$("input[data-validation-fixed]").each(function () {
-			hideUserApiError();
-			triggerError($(this));
-		});
 
 		$("input[data-validation-email]").focusout(function () {
 			hideUserApiError();
