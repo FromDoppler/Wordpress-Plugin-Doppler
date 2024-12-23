@@ -182,5 +182,11 @@ class DPLR_Base_Model {
       dbDelta( $sql );
     }
   }
+
+  static function insertEvent( $data ) {
+    global $wpdb;
+    $wpdb->insert( self::_eventTable(), $data );
+    return $wpdb->insert_id;
+  }
 }
 ?>
