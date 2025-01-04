@@ -116,7 +116,6 @@ class DPLR_Doppler_Form_Public {
 
 		try
 		{
-
 			$options = get_option('dplr_settings'); 
 			$this->doppler_service->setCredentials(['api_key' => $options['dplr_option_apikey'], 'user_account' => $options['dplr_option_useraccount']]);
 
@@ -125,10 +124,8 @@ class DPLR_Doppler_Form_Public {
 			$subscriber = $_POST['subscriber'];
 			$form_id = $_POST['form_id'];
 
-			// traer la plantilla a utilizar en el mail.
 			$form = DPLR_Form_Model::get($form_id, true);
 			$subscriber["form_doble_optin"] = $form->settings["form_doble_optin"];
-			// $form->settings["form_plantilla_id"] cuando se crea el formulario es NULL. Por ende hasta que no se actualiza con algun cambio luego de haberlo creado, no funciona el envio de email, porque al ser null el template, el endpoint tira error porque le falta ese parametro obligatorio.
 			$subscriber["form_plantilla_id"] = $form->settings["form_plantilla_id"];
 
 			if(isset($subscriber['hp']) && $subscriber['hp']==''){
@@ -141,6 +138,11 @@ class DPLR_Doppler_Form_Public {
 				}
 				$this->doppler_service->pluginLogger(array('action' => 'result submit_form', 'data' => $result), 'submit_form');
 			}
+
+			if (is_array($result) && isset($result['response']['code']) && $result['response']['code'] === 200) {
+				self::registerSubmitEvent($form_id);
+			}
+
 			$this->doppler_service->pluginLogger(array( 'action' => 'finish submit_form'), 'submit_form');
 		}
 		catch(\Exception $err) {
@@ -159,4 +161,13 @@ class DPLR_Doppler_Form_Public {
 		}
 	}
 
+	private static function registerSubmitEvent($formId) {
+		require_once(plugin_dir_path( __FILE__ ) . "../includes/enums/EventType.php");
+
+		DPLR_Form_Model::insertEvent([
+			'parent_id'=>$formId,
+			'event_type' => EventType::SUBMIT,
+			'event_date' => DPLR_Form_Model::now()
+		]);
+	}
 }
