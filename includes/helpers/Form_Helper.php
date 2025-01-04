@@ -14,7 +14,7 @@ class DPLR_Form_helper
 		$form_class = isset($context['classes']) ? implode(" ", $context['classes']) : "";
 		$form_orientation_horizontal = isset($form->settings["form_orientation"]) && $form->settings["form_orientation"] === 'horizontal';
 
-		self::registerDisplayEvnet($form->id);
+		self::registerDisplayEvent($form->id);
 	
 		ob_start();
 	
@@ -510,7 +510,8 @@ class DPLR_Form_helper
         break;
     	}
   	}
-	private static function registerDisplayEvnet($formId) {
+
+	private static function registerDisplayEvent($formId) {
 		DPLR_Form_Model::insertEvent([
 			'parent_id'=>$formId,
 			'event_type' => EventType::DISPLAY,
