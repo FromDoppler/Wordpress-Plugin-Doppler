@@ -1,4 +1,5 @@
 <?php
+require_once(plugin_dir_path( __FILE__ ) . "../enums/EventType.php");
 
 class DPLR_Form_helper
 {
@@ -12,6 +13,8 @@ class DPLR_Form_helper
 		$fields = isset($context['fields']) ? $context['fields'] : [];
 		$form_class = isset($context['classes']) ? implode(" ", $context['classes']) : "";
 		$form_orientation_horizontal = isset($form->settings["form_orientation"]) && $form->settings["form_orientation"] === 'horizontal';
+
+		self::registerDisplayEvnet($form->id);
 	
 		ob_start();
 	
@@ -505,7 +508,14 @@ class DPLR_Form_helper
 			</select>
 		<?php
         break;
-    }
-  }
+    	}
+  	}
+	private static function registerDisplayEvnet($formId) {
+		DPLR_Form_Model::insertEvent([
+			'parent_id'=>$formId,
+			'event_type' => EventType::DISPLAY,
+			'event_date' => DPLR_Form_Model::now()
+		]);
+	}
 }
 ?>
