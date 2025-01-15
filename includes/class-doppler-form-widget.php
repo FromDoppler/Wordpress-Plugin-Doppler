@@ -32,7 +32,7 @@ class Dplr_Subscription_Widget extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 
 			$form['fields'] = DPLR_Field_Model::getBy(['form_id' => $instance['form_id']],['sort_order'], true);
-			DPLR_Form_Helper::generate($form);
+			echo DPLR_Form_Helper::generate($form);
 
 			echo $after_widget;
 		}
