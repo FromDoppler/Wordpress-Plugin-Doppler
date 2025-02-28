@@ -302,6 +302,8 @@ class Doppler_Admin {
 
 					if( is_array($connection_status) && $connection_status['response']['code'] === 200 ){
 						$connected = true;
+
+						$forms = $this->form_controller->getAll(true, true);
 					}
 				}
 				//If saved credentials don't pass API test, unset them, disconnect and show error.
