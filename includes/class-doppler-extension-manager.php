@@ -76,4 +76,55 @@ class Doppler_Extension_Manager {
           return false;
         }
     }
+    
+    private function get_latest_plugin_version( $extension_slug ) {
+        require_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+    
+        $args = array(
+            'slug' => $extension_slug,
+            'fields' => array(
+                'version' => true,
+            ),
+        );
+    
+        $response = plugins_api( 'plugin_information', $args );
+    
+        if ( is_wp_error( $response ) ) {
+            return false;
+        }
+    
+        return $response->version;
+    }
+
+    public function has_latest_plugin_version($extension_slug) {
+        if ( ! function_exists( 'get_plugins' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+          }
+        
+        $all_plugins = get_plugins();
+
+        $plugin_file = '';
+        foreach ( $all_plugins as $file => $plugin_data ) {
+            $plugin_folder = dirname( $file );
+            if ( $plugin_folder === $extension_slug ) {
+                $plugin_file = $file;
+                break;
+            }
+        }
+
+        if ( empty( $plugin_file ) ) {            
+            return false;
+        }
+
+        $plugin_data = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_file );
+        $current_version = $plugin_data['Version'];
+
+        $latest_version = $this->get_latest_plugin_version( $extension_slug );
+    
+        if ( $latest_version && version_compare( $current_version, $latest_version, '<' ) ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
