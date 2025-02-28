@@ -244,9 +244,9 @@ class DPLR_Form_Controller
     }
   }
 
-  function getAll() {
+  function getAll($with_settings = false, $with_events = false) {
     
-    return DPLR_Form_Model::getAll(false, array('id'));
+    return DPLR_Form_Model::getAll($with_settings, array('id'), $with_events);
     
   }
 
