@@ -111,6 +111,7 @@ class Doppler_Admin {
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/doppler-form-admin.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'jquery-ui-dialog', includes_url() . 'css/jquery-ui-dialog.min.css', array(), $this->version, 'all' );
+		wp_enqueue_script('billboard-css', 'https://cdnjs.cloudflare.com/ajax/libs/billboard.js/3.14.3/billboard.min.css', array(''), '3.14.3', 'all');
 	}
 
 	/**
@@ -173,7 +174,12 @@ class Doppler_Admin {
 		wp_enqueue_script('jquery-ui-sortable');
 		wp_enqueue_script('jquery-ui-dialog');
 		wp_enqueue_script('iris');
-		
+		wp_enqueue_script('d3-js', 'https://d3js.org/d3.v6.min.js',	array($this->plugin_name), '6.7.0', true);
+		wp_enqueue_script('billboard-js', 'https://cdnjs.cloudflare.com/ajax/libs/billboard.js/3.14.3/billboard.min.js', array($this->plugin_name, 'd3-js'), '3.14.3', true);
+
+		$data = $this->get_Chart_Data();
+
+		wp_localize_script($this->plugin_name, 'chartData', ['data' => $data]);
 	}
 
 	public function init_widget() {
@@ -667,6 +673,12 @@ class Doppler_Admin {
 		//Is valid to save empty value in this case.
 		if($code === '') return $code;
 		return sanitize_text_field(htmlentities(trim($code)));
+	}
+
+	private function get_Chart_Data() {
+		$forms = $this->form_controller->getAll(true, true);
+
+		return $forms;
 	}
 
 }
