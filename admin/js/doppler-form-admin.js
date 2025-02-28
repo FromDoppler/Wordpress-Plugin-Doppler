@@ -335,7 +335,7 @@
 
 		$("#dplr-tbl-lists tbody").on("click", "tr a", deleteList);
 
-		$(".dplr-extensions .dplr-boxes button.dp-install").click(function () {
+		$(".dplr-extensions .extension-item button.dp-install").click(function () {
 			var button = $(this);
 			var extension = button.attr("data-extension");
 			button.addClass("button--loading").html(object_string.installing);
@@ -352,15 +352,14 @@
 			});
 		});
 
-		/*
-	$(".dplr-extensions .dplr-boxes button.dp-uninstall").click(function(){
-		var button = $(this);
-		var extension = button.attr('data-extension');
-		button.addClass('button--loading').html(object_string.uninstalling);
-		button.closest('.dplr-extensions').find('button').css('pointer-events','none');
-		console.log('uninstall');
-	});
-	*/
+		$(".tab--link").click(function (e) {
+			e.preventDefault();
+			$(".tab--link").removeClass("active");
+			$(this).addClass("active");
+			var tab = $(this).attr("data-tab");
+			$(".tab--content").removeClass("active");
+			$("#tab-" + tab).addClass("active");
+		});
 
 		if ($("#dplr-tbl-lists").length > 0) {
 			loadLists(1, default_page_size);
@@ -445,6 +444,74 @@
 
 			navigator.clipboard.writeText(shortcode);
 		});
+
+		if ($("#doppler-forms-chart").length) {
+			const formNames = ["x"];
+			const classicForms = ["Clásico"];
+			const dobleOptinForms = ["Doble OptIn"];
+
+			chartData.data.forEach(form => {
+				formNames.push(form.name || "Sin Nombre");
+
+				const displays = parseInt(form.events?.Display) || 0;
+				const submits = parseInt(form.events?.Submit) || 0;
+				const ratio = displays > 0 ? ((submits / displays) * 100).toFixed(2) : 0;
+
+				if (form.settings?.form_doble_optin === "yes") {
+					dobleOptinForms.push(parseFloat(ratio));
+					classicForms.push(null);
+				} else {
+					classicForms.push(parseFloat(ratio));
+					dobleOptinForms.push(null);
+				}
+			});
+
+			bb.generate({
+				data: {
+					x: "x",
+					columns: [formNames, classicForms, dobleOptinForms],
+					type: "bar",
+					colors: {
+						"Clásico": "#A783C7",
+						"Doble OptIn": "#F5B128"
+					},
+					groups: [["Clásico", "Doble OptIn"]],
+					labels: true
+				},
+				size: {
+					width: 800
+				},
+				axis: {
+					x: { type: "category" },
+					y: {
+						tick: { format: d => d + "%" }
+					}
+				},
+				tooltip: {
+					grouped: false,
+					contents: function (d) {
+						let data = d[0];
+						let formIndex = data.index;
+						let form = chartData.data[formIndex];
+			
+						let ratio = data.value + "%";
+						let displays = form.events?.Display || 0;
+						let submits = form.events?.Submit || 0;
+						let tipo = form.settings?.form_doble_optin === "yes" ? "Doble OptIn" : "Clásico";
+			
+						return `
+						<div class="bb-tooltip p-t-12 p-b-12 p-l-12 p-r-12">
+									<strong>${form.name}</strong><br>
+									Ratio de conversión: <strong>${ratio}</strong><br>
+									Impresiones: <strong>${displays}</strong><br>
+									Suscripciones: <strong>${submits}</strong><br>
+									Tipo: <strong>${tipo}</strong>
+								</div>`;
+					}
+				},
+				bindto: "#doppler-forms-chart"
+			});
+		}
 	});
 
 	function listsLoading() {
