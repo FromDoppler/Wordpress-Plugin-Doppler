@@ -25,31 +25,6 @@
 		}
 	}
 
-	.dplr_form_wrapper {
-		max-width: 760px;
-		margin-bottom: 50px;
-	}
-
-	.disconnect-box {
-		font-size: 18px;
-		font-family: $text-family-rg;
-		span {
-			margin-right: 30px;
-		}
-	}
-
-	.dplr-row-section {
-		> div {
-			&:nth-child(2) {
-				.tooltip-container {
-					&.pl-1 {
-						padding-left: 10px;
-					}
-				}
-			}
-		}
-	}
-
 	.tooltip.tooltip-warning > .tooltip-container span {
 		font-size: $font-size-regular;
 		color: $light-red;

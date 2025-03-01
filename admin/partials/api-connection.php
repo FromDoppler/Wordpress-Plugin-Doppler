@@ -123,7 +123,7 @@
 						</div>
 						<!-- end of KPIs -->
 					</div>
-					<div class="dashboard-wrapper col-sm-12">
+					<div class="d-flex space-between col-sm-12">
 						<div class="col-sm-9 m-r-12">
 							<!-- Statics -->
 							<div class="dp-box-shadow m-b-36">

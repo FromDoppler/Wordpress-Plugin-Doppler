@@ -309,39 +309,8 @@
 	flex-grow: 2;
 }
 
-.dplr_settings .nav-tab {
-	font-family: "Proxima Nova Rg", Helvetica, Arial, sans-serif;
-	color: #525845;
-}
-
-.dplr_settings .nav-tab.nav-tab-active {
-	color: #525845;
-}
-
 .dplr_settings .dplr-tab-content {
 	font-family: "Proxima Nova Rg", Helvetica, Arial, sans-serif;
-	font-size: 14px;
-}
-
-.dplr_settings table.widefat {
-	color: #525845;
-	font-family: "Proxima Nova Rg", Helvetica, Arial, sans-serif;
-}
-
-.dplr_settings table.widefat thead th {
-	font-weight: bold;
-	color: #525845;
-}
-
-.dplr_settings table.widefat tbody tr:nth-child(odd) {
-	background: #f9f9f9;
-}
-
-.dplr_settings table.widefat tbody tr:nth-child(even) {
-	background: #ffffff;
-}
-
-.dplr_settings table.widefat tbody tr td {
 	font-size: 14px;
 }
 
@@ -918,49 +887,6 @@
 	animation: flash 2s infinite linear;
 }
 
-.dplr_settings .loading-box,
-.dplr_settings .loading-box:before {
-	left: 0;
-	opacity: 0.9;
-	position: absolute;
-}
-
-.dplr_settings .loading-box {
-	top: 0;
-	right: 0;
-	bottom: 0;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	-js-display: flex;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	z-index: 10;
-	background-color: #f2f2f2;
-}
-
-.dplr_settings .loading-box:before {
-	content: "";
-}
-
-.dplr_settings .loading-box:after,
-.dplr_settings .wrapper-loading .loading-page:after {
-	content: "";
-	width: 3.3em;
-	height: 3.3em;
-	position: absolute;
-	border-radius: 50%;
-	border: 5px solid;
-	border-color: rgba(153, 153, 153, 0.3);
-	border-top-color: #999;
-	-webkit-animation: dp-preloader-spin 0.7s infinite linear;
-	animation: dp-preloader-spin 0.7s infinite linear;
-}
-
 .dplr_settings .input-text.input-icon .icon {
 	display: inline;
 	text-align: center;
@@ -1113,28 +1039,6 @@
 	width: 210px;
 }
 
-.dplr_settings .dplr_connect .dplr_form_wrapper {
-	max-width: 760px;
-	margin-bottom: 50px;
-}
-
-.dplr_settings .dplr_connect .disconnect-box {
-	font-size: 18px;
-	font-family: "Proxima Nova Rg", Helvetica, Arial, sans-serif;
-}
-
-.dplr_settings .dplr_connect .disconnect-box span {
-	margin-right: 30px;
-}
-
-.dplr_settings
-	.dplr_connect
-	.dplr-row-section
-	> div:nth-child(2)
-	.tooltip-container.pl-1 {
-	padding-left: 10px;
-}
-
 .dplr_settings
 	.dplr_connect
 	.tooltip.tooltip-warning
@@ -1145,11 +1049,6 @@
 	letter-spacing: 0;
 	line-height: 24px;
 	font-family: "Proxima Nova Rg", Helvetica, Arial, sans-serif;
-}
-
-.dplr_settings .dplr_connect .dashboard-wrapper {
-	display: flex;
-    justify-content: space-between;
 }
 
 .dplr_settings table tbody tr.deleting {
@@ -1265,173 +1164,6 @@
 
 .dplr_settings #dplr-crud.loading #dplr-tbl-lists {
 	display: none;
-}
-
-.dplr_settings.dplr-extensions p.subtitle {
-	line-height: 24px;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes > div {
-	width: 33%;
-	max-width: 550px;
-	margin: 30px;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes > div > a {
-	display: inline-block;
-	font-size: 14px;
-	font-weight: 700;
-	margin-top: 15px;
-	font-family: "Proxima Nova Rg", Helvetica, Arial, sans-serif;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes > div > .extension-card {
-	min-height: 390px;
-	-webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-	text-align: left;
-	background-color: #fff;
-	position: relative;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes > div > .extension-card figure {
-	text-align: center;
-	padding-top: 25px;
-	padding-bottom: 25px;
-	margin: 0;
-	border-bottom: 1px solid #c8c7bf;
-	height: 100px;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes > div > .extension-card figure img {
-	width: 100%;
-	max-width: 100px;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes > div > .extension-card:first-child {
-	margin-left: 0;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes > div > .extension-card:last-child {
-	margin-right: 0;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes > div > .extension-card h3 {
-	color: #525845;
-	font-size: 22px;
-	font-weight: bold;
-	font-family: "Proxima Nova Rg", Helvetica, Arial, sans-serif;
-	margin-left: 40px;
-	margin-top: 40px;
-}
-
-.dplr_settings.dplr-extensions .dplr-boxes > div > .extension-card p {
-	font-size: 16px;
-	margin-left: 40px;
-	margin-right: 40px;
-}
-
-.dplr_settings.dplr-extensions
-	.dplr-boxes
-	> div
-	> .extension-card
-	> div.box-footer {
-	margin-top: 30px;
-	padding: 0 40px 40px 40px;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-}
-
-.dplr_settings.dplr-extensions
-	.dplr-boxes
-	> div
-	> .extension-card
-	> div.box-footer
-	button {
-	-ms-flex-item-align: start;
-	align-self: flex-start;
-}
-
-.dplr_settings.dplr-extensions
-	.dplr-boxes
-	> div
-	> .extension-card
-	> div.box-footer
-	p {
-	margin: 0px 20px;
-	font-size: 14px;
-	line-height: 16px;
-}
-
-.dplr_settings.dplr-extensions
-	.dplr-boxes
-	> div
-	> .extension-card
-	> div.box-footer
-	span {
-	line-height: 1;
-}
-
-.dplr_settings.dplr-extensions
-	.dplr-boxes
-	> div
-	> .extension-card
-	> div.box-footer
-	img {
-	position: relative;
-	top: 3px;
-	margin-right: 10px;
-}
-
-@media only screen and (max-width: 768px) {
-	.dplr_settings.dplr-extensions .dplr-boxes {
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		-ms-flex-direction: column;
-		flex-direction: column;
-	}
-	.dplr_settings.dplr-extensions .dplr-boxes > div {
-		width: 90%;
-		margin: 30px auto;
-	}
-}
-
-.doppler_page_doppler_forms_main .ui-dialog-titlebar span.ui-dialog-title {
-	font-size: 14px;
-}
-
-.form_orientation {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: row;
-	flex-direction: row;
-	gap: 15px;
-	padding-left: 10px;
 }
 
 .awa-form .dp-label-checkbox input[type="checkbox"]:checked::before {
