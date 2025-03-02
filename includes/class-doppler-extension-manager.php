@@ -42,27 +42,42 @@ class Doppler_Extension_Manager {
      */
     public function install_extension() {
         if(empty($_POST['extensionName'])) return false;
+
+        $slug = $_POST['extensionName'];
         
-        if(!$this->is_plugin_installed($_POST['extensionName'])){
+        if(!$this->is_plugin_installed($slug)){
             include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
             wp_cache_flush();
             $upgrader = new Plugin_Upgrader();
-            $buffer = $upgrader->install( $this->extensions[$_POST['extensionName']]['zip_file'], array( 'clear_destination' => true ) );
+            $buffer = $upgrader->install( $this->extensions[$slug]['zip_file'], array( 'clear_destination' => true ) );
         }
         
-        if(!$this->is_active($_POST['extensionName'])){
-            $extension_path = DOPPLER_PLUGINS_PATH .$_POST['extensionName'].'\\'.$_POST['extensionName'].'.php';
+        if(!$this->is_active($slug)){
+            $extension_path = DOPPLER_PLUGINS_PATH .$slug.'\\'.$slug.'.php';
             if(activate_plugin($extension_path) == NULL){
                 echo '1';
             }
         }
+
+        if(!$this->has_latest_plugin_version($slug)){
+            include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+            wp_cache_flush();
+            $upgrader = new Plugin_Upgrader();
+            $upgrader->upgrade($slug.'/'.$slug.'.php');
+
+            $extension_path = DOPPLER_PLUGINS_PATH .$slug.'\\'.$slug.'.php';
+            if(activate_plugin($extension_path) == NULL){
+                echo '1';
+            }
+        }
+
         exit();
     }
 
     /**
      * Check if an extension is installed.
      */
-    private function is_plugin_installed( $slug ) {
+    public function is_plugin_installed( $slug ) {
         if ( ! function_exists( 'get_plugins' ) ) {
           require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }

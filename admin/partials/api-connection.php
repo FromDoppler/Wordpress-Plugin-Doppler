@@ -171,7 +171,7 @@
 																<?= $form->events['Submit'] ?? '0' ?>
 															</td>
 															<td>
-																<?php echo $form->events['Display'] > 0 
+																<?php echo ($form->events['Display'] ?? 0) > 0 
 																	? rtrim(rtrim(number_format(($form->events['Submit'] / $form->events['Display']) * 100, 2), '0'), '.') . '%'
 																	: '0%';
 																?>
@@ -220,6 +220,9 @@
 												<a href="<?php echo admin_url('admin.php?page=doppler_list_management')?>"><?php _e("Access","doppler-form");?> →</a>
 											</div>
 										</div>
+										<?php if($this->extension_manager->is_active('doppler-for-learnpress')):  
+											$learnpress_synch = get_option('dplr_learnpress_subscribers_list');
+										?>
 										<div class="dplr-item">
 											<div class="dplr-circle">
 												<img src="<?= plugins_url( '/../img/shopping.svg', __FILE__ ); ?>" alt="<?php _e("Doppler for Learnpress","doppler-form");?>">
@@ -229,6 +232,10 @@
 												<a href="<?php echo admin_url('admin.php?page=doppler_learnpress_menu')?>"><?php _e("Access","doppler-form");?> →</a>
 											</div>
 										</div>
+										<?php endif; ?>
+										<?php if($this->extension_manager->is_active('doppler-for-woocommerce')):
+											$woocommerce_synch = get_option('dplrwoo_last_synch');	
+										?>
 										<div class="dplr-item">
 											<div class="dplr-circle">
 												<img src="<?= plugins_url( '/../img/shopping.svg', __FILE__ ); ?>" alt="<?php _e("Doppler for Woocommerce","doppler-form");?>">
@@ -238,6 +245,7 @@
 												<a href="<?php echo admin_url('admin.php?page=doppler_woocommerce_menu')?>"><?php _e("Access","doppler-form");?> →</a>
 											</div>
 										</div>
+										<?php endif; ?>
 									</div>
 								</div>
 							</div>
