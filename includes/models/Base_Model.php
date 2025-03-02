@@ -87,13 +87,25 @@ class DPLR_Base_Model {
     $wpdb->delete( self::_table(), $condition );
   }
 
-  static function getAll($with_settings = false, $order_by = null) {
-    
+  static function getAll($with_settings = false, $order_by = null, $with_events = false) {
     global $wpdb;
     $order_by = $order_by == null ? '' : ' ORDER BY ' . implode(", ", $order_by) . ' ASC';
-    $sql = sprintf( 'SELECT * FROM %s %s', self::_table(), $order_by);
-    return $wpdb->get_results( $sql );
+    $sql = sprintf( 'SELECT *, NULL AS settings, NULL AS events FROM %s %s', self::_table(), $order_by);
+
+    $result = $wpdb->get_results($sql);
+
+    if($with_settings) {
+      self::groupSettings($result);
+    }
+
+    if ($with_events) 
+    {
+      self::groupEvents($result);
+    }
+
+    return $result;
   }
+
   static function insert_id() {
     global $wpdb;
     return $wpdb->insert_id;
@@ -136,6 +148,37 @@ class DPLR_Base_Model {
         foreach ($settings_result as $setting_result) {
           $to_attach->settings[$setting_result[0]] = $setting_result[1];
         }
+    }
+  }
+
+  private static function groupEvents(& $rows) {
+    if ($rows == NULL) return;
+    global $wpdb;
+    
+    is_object($rows)? $elements = [$rows] : $elements = $rows;
+    
+    foreach ($elements as $to_attach) {
+        
+        $table = self::_eventTable();
+        $sql = "SELECT event_type, COUNT(1) FROM {$table} WHERE parent_id = %d GROUP BY event_type";
+        $events_result = $wpdb->get_results( $wpdb->prepare($sql, array($to_attach->id)), 'ARRAY_N');
+      
+        $result = [];
+
+        foreach ($events_result as $event_result) {
+            list($eventType, $count) = $event_result;
+
+            switch ($eventType) {
+                case EventType::DISPLAY:
+                    $result['Display'] = $count;
+                    break;
+                case EventType::SUBMIT:
+                    $result['Submit'] = $count;
+                    break;
+            }
+        }
+
+        $to_attach->events = $result;
     }
   }
 

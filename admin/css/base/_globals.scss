@@ -263,38 +263,6 @@ a.green-link{
     font-size: $font-size-regular;
 }
 
-//Tables
-table{
-    &.widefat{
-        color: $primary-grey;
-        font-family: $text-family-rg;
-        thead{
-            th{
-                font-weight: bold;
-                color: $primary-grey;
-            }
-        }
-        tbody{
-            tr{
-                &:nth-child(odd) {
-                    background: #f9f9f9;
-                }
-                &:nth-child(even) {
-                    background: #ffffff;
-                }
-                td{
-                    font-size: $font-size-regular;
-                    .column-actions{
-                        a{
-                            font-size: $font-size-regular;
-                        }
-                    }
-                }
-            }
-        } 
-    }
-}
-
 //popup
 &.ui-dialog-content{
     p{
