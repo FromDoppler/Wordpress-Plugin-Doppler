@@ -447,35 +447,35 @@
 
 		if ($("#doppler-forms-chart").length) {
 			const formNames = ["x"];
-			const classicForms = ["Clásico"];
-			const dobleOptinForms = ["Doble OptIn"];
+			const singleOptinForms = [object_string.SimpleOptIn];
+			const doubleOptinForms = [object_string.DoubleOptIn];
 
 			chartData.data.forEach(form => {
-				formNames.push(form.name || "Sin Nombre");
+				formNames.push(form.name);
 
 				const displays = parseInt(form.events?.Display) || 0;
 				const submits = parseInt(form.events?.Submit) || 0;
 				const ratio = displays > 0 ? ((submits / displays) * 100).toFixed(2) : 0;
 
 				if (form.settings?.form_doble_optin === "yes") {
-					dobleOptinForms.push(parseFloat(ratio));
-					classicForms.push(null);
+					doubleOptinForms.push(parseFloat(ratio));
+					singleOptinForms.push(null);
 				} else {
-					classicForms.push(parseFloat(ratio));
-					dobleOptinForms.push(null);
+					singleOptinForms.push(parseFloat(ratio));
+					doubleOptinForms.push(null);
 				}
 			});
 
 			bb.generate({
 				data: {
 					x: "x",
-					columns: [formNames, classicForms, dobleOptinForms],
+					columns: [formNames, singleOptinForms, doubleOptinForms],
 					type: "bar",
 					colors: {
-						"Clásico": "#A783C7",
-						"Doble OptIn": "#F5B128"
+						[object_string.SimpleOptIn]: "#A783C7",
+						[object_string.DoubleOptIn]: "#F5B128"
 					},
-					groups: [["Clásico", "Doble OptIn"]],
+					groups: [[object_string.SimpleOptIn, object_string.DoubleOptIn]],
 					labels: true
 				},
 				size: {
@@ -494,18 +494,18 @@
 						let formIndex = data.index;
 						let form = chartData.data[formIndex];
 			
-						let ratio = data.value + "%";
+						let rate = data.value + "%";
 						let displays = form.events?.Display || 0;
 						let submits = form.events?.Submit || 0;
-						let tipo = form.settings?.form_doble_optin === "yes" ? "Doble OptIn" : "Clásico";
+						let type = form.settings?.form_doble_optin === "yes" ? object_string.DoubleOptIn : object_string.SimpleOptIn;
 			
 						return `
 						<div class="bb-tooltip p-t-12 p-b-12 p-l-12 p-r-12">
 									<strong>${form.name}</strong><br>
-									Ratio de conversión: <strong>${ratio}</strong><br>
-									Impresiones: <strong>${displays}</strong><br>
-									Suscripciones: <strong>${submits}</strong><br>
-									Tipo: <strong>${tipo}</strong>
+									${object_string.ConversonRate}: <strong>${rate}</strong><br>
+									${object_string.Impressions}: <strong>${displays}</strong><br>
+									${object_string.Subscribed}: <strong>${submits}</strong><br>
+									${object_string.formType}: <strong>${type}</strong>
 								</div>`;
 					}
 				},

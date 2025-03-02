@@ -172,7 +172,7 @@
 }
 
 .dplr_settings .pl-0 {
-	padding-left: 0;
+	padding-left: 0 !important;
 }
 
 .dplr_settings .pl-1 {

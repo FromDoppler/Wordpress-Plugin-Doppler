@@ -20,7 +20,7 @@
 								</div>
 								<div class="col-sm-12">
 									<p>
-										<?php _e("Aquí podrás visualizar información acerca del rendimiento de tus formularios y el estado de tus integraciones.","doppler-form");?>
+										<?php _e("Here you can view information about the performance of your forms and the status of your integrations.","doppler-form");?>
 									</p>
 								</div>
 								<div class="col-sm-6 dp-icon-wrapper">
@@ -36,7 +36,7 @@
 							</div>
 						</div>
 						<!-- KPIs -->
-						<div class="dp-wrapper-as-kpi m-r-18 p-r-12">
+						<div class="dp-wrapper-as-kpi">
 							<ul class="kpi-ul">
 								<li>
 									<div class="dp-kpi-card dp-white">
@@ -45,7 +45,7 @@
 											<h3>
 												<?php echo count($forms); ?>
 											</h3>
-											<span>Formularios</span>
+											<span><?php _e("Forms", "doppler-form" ); ?></span>
 										</div>
 									</div>
 								</li>
@@ -62,7 +62,7 @@
 													echo $totalDisplays;
 												?>
 											</h3>
-											<span>Impresiones</span>
+											<span><?php _e("Impressions", "doppler-form" ); ?></span>
 										</div>
 									</div>
 								</li>
@@ -79,7 +79,7 @@
 													echo $totalDisplays;
 												?>
 											</h3>
-											<span>Suscriptos</span>
+											<span><?php _e("Subscribed", "doppler-form" ); ?></span>
 										</div>
 									</div>
 								</li>
@@ -96,7 +96,7 @@
 															: 0; 
 													?>
 												</h3>
-												<span>Contactos Woocommerce</span>
+												<span><?php _e("Woocommerce contacts", "doppler-form" ); ?></span>
 											</div>
 										</div>
 									</li>
@@ -114,7 +114,7 @@
 														? $learnpress_synch['count']
 														: 0
 												?></h3>
-											<span>Contactos Learnpress</span>
+											<span><?php _e("Learnpress contacts", "doppler-form" ); ?></span>
 										</div>
 									</div>
 								</li>
@@ -123,14 +123,14 @@
 						</div>
 						<!-- end of KPIs -->
 					</div>
-					<div class="d-flex space-between col-sm-12">
+					<div class="d-flex space-between col-sm-12 pl-0">
 						<div class="col-sm-9 m-r-12">
 							<!-- Statics -->
 							<div class="dp-box-shadow m-b-36">
 								<nav class="tabs-wrapper">
 									<ul class="tabs-nav" data-tab-active="1">
 										<li class="tab--item">
-											<a href="#" class="tab--link active" data-tab="1"><?php _e("% Conversion Rate","doppler-form");?></a>
+											<a href="#" class="tab--link active" data-tab="1">%<?php _e("Conversion Rate","doppler-form");?></a>
 										</li>
 										<li class="tab--item">
 											<a href="#" class="tab--link" data-tab="2"><?php _e("All Forms","doppler-form");?></a>
@@ -146,11 +146,11 @@
 											<table class="dp-table-multilogin dp-no-header-border-top dp-table-text-lg p-t-12 p-b-12 p-l-12 p-r-12">
 												<thead>
 													<tr>
-														<th>NOMBRE</th>
-														<th>TIPO DE FORMULARIO</th>
-														<th>IMPRESIONES</th>
-														<th>SUSCRIPTOS</th>
-														<th>CONVERSION</th>
+														<th><?php echo strtoupper(__("Name", "doppler-form")); ?></th>
+														<th><?php echo strtoupper(__("Form Type", "doppler-form")); ?></th>
+														<th><?php echo strtoupper(__("Impressions", "doppler-form")); ?></th>
+														<th><?php echo strtoupper(__("Subscribed", "doppler-form")); ?></th>
+														<th><?php echo strtoupper(__("Conversion", "doppler-form")); ?></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -162,7 +162,7 @@
 																<?= $form->name ?>
 															</td>
 															<td>
-																<?php echo $form->settings['form_doble_optin'] == 'yes' ? 'Doble Optin' : 'Clásico'; ?>
+																<?php echo $form->settings['form_doble_optin'] == 'yes' ? _e("Double Opt-In", "doppler-form" ) : _e("Simple Opt-In", "doppler-form" ); ?>
 															</td>
 															<td>
 																<?= $form->events['Display'] ?? '0' ?>
@@ -312,14 +312,14 @@
 										<?php else: ?>
 											<button type="button" class="dp-button button-big secondary-green button-small dp-install m-t-12 col-sm-12" 
 													data-extension="doppler-for-woocommerce">
-												<?php _e('Install', 'doppler-form') ?>
+												<?php $this->extension_manager->is_plugin_installed('doppler-for-woocommerce') ? _e('Activate', 'doppler-form') : _e('Install', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
 									<?php else:
 										if(!$this->extension_manager->has_latest_plugin_version('doppler-for-woocommerce')): ?>
 											<button type="button" class="dp-button button-big secondary-green button-small dp-install m-t-12 col-sm-12" 
 													data-extension="doppler-for-woocommerce">
-												<?php _e('Update Version', 'doppler-form') ?> <!-- Verificar si el install tambien sirve para actualizar la version -->
+												<?php _e('Update Version', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
 									<?php endif; ?>
@@ -349,14 +349,14 @@
 										<?php else: ?>
 											<button type="button" class="dp-button button-big secondary-green button-small dp-install m-t-12 col-sm-12" 
 													data-extension="doppler-for-learnpress">
-												<?php _e('Install', 'doppler-form') ?>
+												<?php $this->extension_manager->is_plugin_installed('doppler-for-learnpress') ? _e('Activate', 'doppler-form') : _e('Install', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
 									<?php else:
 										if(!$this->extension_manager->has_latest_plugin_version('doppler-for-learnpress')): ?>
 											<button type="button" class="dp-button button-big secondary-green button-small dp-install m-t-12 col-sm-12" 
 													data-extension="doppler-for-learnpress">
-												<?php _e('Update Version', 'doppler-form') ?> <!-- Verificar si el install tambien sirve para actualizar la version -->
+												<?php _e('Update Version', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
 									<?php endif; ?>

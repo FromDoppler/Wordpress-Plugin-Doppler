@@ -151,7 +151,13 @@ class Doppler_Admin {
 			'privacyPolicyUrlPlaceholder' => __('Enter the URL of your privacy policy', 'doppler-form'),
 			'privacyPolicyLabel' => __('Checkbox label', 'doppler-form'),
 			'admin_url'			=> DOPPLER_PLUGIN_URL,
-			'editField'   		=> __( 'Edit Field', 'doppler-form' ),
+			'editField'   		=> __('Edit Field', 'doppler-form'),
+			'SimpleOptIn' => __('Simple Opt-In', 'doppler-form'),
+			'DoubleOptIn' => __('Double Opt-In', 'doppler-form'),
+			'ConversonRate' => __('Conversion Rate','doppler-form'),
+			'Impressions' => __('Impressions', 'doppler-form'),
+			'Subscribed' => __('Subscribed', 'doppler-form'),
+			'formType' => __('Form Type', 'doppler-form'),
 		) ); 
 		wp_enqueue_script('field-module', plugin_dir_url( __FILE__ ) . 'js/field-module.js', array($this->plugin_name), $this->version, false);
 		wp_enqueue_script('doppler-loader', 'https://cdn.fromdoppler.com/mfe-loader/loader-v2.0.0.js', array($this->plugin_name), $this->version, false);
@@ -224,8 +230,8 @@ class Doppler_Admin {
 
 		add_submenu_page(
 			'doppler_forms_menu',
-			__('Connect with Doppler', 'doppler-form'),
-			__('Connect with Doppler', 'doppler-form'),
+			__('Home', 'doppler-form'),
+			__('Home', 'doppler-form'),
 			'manage_options',
 			'doppler_forms_menu',
 			array($this, 'display_connection_screen')
