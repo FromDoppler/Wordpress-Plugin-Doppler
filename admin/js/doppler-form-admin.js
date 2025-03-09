@@ -640,23 +640,18 @@
 })(jQuery);
 
 function displayErrors(body) {
-	jQuery("#showErrorResponse")
-		.css("display", "flex")
+	jQuery("#ListErrorMessage")
+		.removeClass("d-none")
+		.find(".dp-content-message")
 		.html("<p>" + generateErrorMsg(body) + "</p>");
 }
 
-function displaySuccess(successMsg) {
-	if (successMsg == "") return false;
-	jQuery("#showSuccessResponse")
-		.css("display", "flex")
-		.html("<p>" + successMsg + "</p>");
-}
-
 function clearResponseMessages() {
-	jQuery("#showSuccessResponse,#showErrorResponse")
-		.html("")
-		.css("display", "none");
-	jQuery("#displaySuccessMessage,#displayErrorMessage").remove();
+	jQuery("#ListErrorMessage")
+		.addClass("d-none")
+		.find(".dp-content-message")
+		.html("");
+		
 }
 
 function generateErrorMsg(body) {
