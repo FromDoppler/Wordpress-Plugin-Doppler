@@ -21,7 +21,16 @@
                     <span class="arrow"></span>
                 </div>
             </header>
+            <div class="dp-rowflex d-none" id="ListErrorMessage">
+                <div class="dp-wrap-message dp-wrap-cancel m-b-12">
+                    <span class="dp-message-icon"></span>
+                    <div class="dp-content-message">
+                    </div>
+                </div>
+            </div>
             <div id="dplr-crud" class="dplr-tab-content dplr-tab-content--crud pb-1">
+                <?php $this->display_success_message() ?>
+                <?php $this->display_error_message() ?>
                 <div id="showErrorResponse" class="messages-container blocker d-none"></div>
                 <div id="showSuccessResponse" class="messages-container info d-none"></div>
 
