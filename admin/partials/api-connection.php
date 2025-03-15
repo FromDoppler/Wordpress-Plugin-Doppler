@@ -3,10 +3,10 @@
 		<?php
 		if ($connected) {
 		?>
-			<div class="dp-container">
+			<div class="dp-container m-t-24">
 				<div class="dp-rowflex">
 					<div class="col-sm-12">
-						<div class="dp-box-shadow m-t-12 p-t-36 p-b-36 p-l-36 p-r-36">
+						<div class="dp-box-shadow dp-white m-t-12 p-t-36 p-b-36 p-l-36 p-r-36">
 							<div class="dp-rowflex">
 								<div class="col-sm-10">
 									<h2><?php _e("Welcome!", "doppler-form" ); ?></h2>
@@ -126,18 +126,22 @@
 					<div class="d-flex space-between col-sm-12 pl-0">
 						<div class="col-sm-9 m-r-12">
 							<!-- Statics -->
-							<div class="dp-box-shadow m-b-36">
+							<div class="dp-box-shadow dp-white m-b-36">
+								<div class="m-t-24 m-l-24">
+									<h3><?php _e("Forms Report","doppler-form");?></h3>
+									<p><?php _e("Here you can see the performance of your forms","doppler-form");?></p>
+								</div>
 								<nav class="tabs-wrapper">
 									<ul class="tabs-nav" data-tab-active="1">
 										<li class="tab--item">
-											<a href="#" class="tab--link active" data-tab="1">%<?php _e("Conversion Rate","doppler-form");?></a>
+											<a href="#" class="tab--link active" data-tab="1"><?php _e("Conversion Rate","doppler-form");?></a>
 										</li>
 										<li class="tab--item">
 											<a href="#" class="tab--link" data-tab="2"><?php _e("All Forms","doppler-form");?></a>
 										</li>
 									</ul>
 								</nav>
-								<section class="tab--container col-sm-12 dp-box-shadow">
+								<section class="tab--container col-sm-12 dp-box-shadow dp-white">
 									<article class="tab--content active" id="tab-1">
 										<div class="col-sm-12" id="doppler-forms-chart"></div>
 									</article>
@@ -188,7 +192,7 @@
 							</div>
 							<!--end of Statics -->
 							<!-- Quick Access -->
-							<div class="dp-box-shadow">
+							<div class="dp-box-shadow dp-white">
 								<div class="dplr-quick-access">
 									<h3><?php _e("Quick Access","doppler-form");?></h3>
 									<p><?php _e("Access all the features from here","doppler-form");?></p>
@@ -253,7 +257,7 @@
 						</div>
 						<div class="col-sm-3">
 							<!-- Helpfull links -->
-							<div class="dp-box-shadow  m-b-36">
+							<div class="dp-box-shadow dp-white m-b-36">
 								<div class="dplr-wrapper-help-links">
 									<ul>
 										<li>
@@ -293,7 +297,7 @@
 							</div>
 							<!--end of Helpfull links -->
 							<!-- Plugin Extensions -->
-							<div class="dp-box-shadow dplr-extensions p-t-12 p-b-12 p-l-12 p-r-12">
+							<div class="dp-box-shadow dplr-extensions dp-white p-t-12 p-b-12 p-l-12 p-r-12">
 								<h3><?php _e("Extensions","doppler-form");?></h3>
 								<div class="extension-item m-t-24">
 									<div class="dp-rowflex p-r-24 p-l-12">
