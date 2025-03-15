@@ -322,15 +322,15 @@
 										<?php if(!$this->extension_manager->has_dependency('doppler-for-woocommerce')): ?>
 											<p class="text-italic"><?php _e('You should have <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce plugin</a> installed and active first.', 'doppler-form')?></p>
 										<?php else: ?>
-											<button type="button" class="dp-button button-big secondary-green button-small dp-install m-t-12 col-sm-12" 
-													data-extension="doppler-for-woocommerce">
+											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12"
+													data-extension="doppler-for-woocommerce" data-click-action=<?php $this->extension_manager->is_plugin_installed('doppler-for-woocommerce') ? _e('Activating', 'doppler-form') : _e('Installing', 'doppler-form') ?>>
 												<?php $this->extension_manager->is_plugin_installed('doppler-for-woocommerce') ? _e('Activate', 'doppler-form') : _e('Install', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
 									<?php else:
 										if(!$this->extension_manager->has_latest_plugin_version('doppler-for-woocommerce')): ?>
-											<button type="button" class="dp-button button-big secondary-green button-small dp-install m-t-12 col-sm-12" 
-													data-extension="doppler-for-woocommerce">
+											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12 button--loading" 
+													data-extension="doppler-for-woocommerce" data-click-action=<?php _e('Updating', 'doppler-form') ?>>
 												<?php _e('Update Version', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
@@ -359,15 +359,15 @@
 										<?php if(!$this->extension_manager->has_dependency('doppler-for-learnpress')): ?>
 											<p class="text-italic"><?php _e('You should have <a href="https://wordpress.org/plugins/learnpress/">LearnPress plugin</a> installed and active first.', 'doppler-form')?></p>
 										<?php else: ?>
-											<button type="button" class="dp-button button-big secondary-green button-small dp-install m-t-12 col-sm-12" 
-													data-extension="doppler-for-learnpress">
+											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12" 
+													data-extension="doppler-for-learnpress" data-click-action=<?php $this->extension_manager->is_plugin_installed('doppler-for-learnpress') ? _e('Activating', 'doppler-form') : _e('Installing', 'doppler-form') ?>>
 												<?php $this->extension_manager->is_plugin_installed('doppler-for-learnpress') ? _e('Activate', 'doppler-form') : _e('Install', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
 									<?php else:
 										if(!$this->extension_manager->has_latest_plugin_version('doppler-for-learnpress')): ?>
-											<button type="button" class="dp-button button-big secondary-green button-small dp-install m-t-12 col-sm-12" 
-													data-extension="doppler-for-learnpress">
+											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12" 
+													data-extension="doppler-for-learnpress" data-click-action=<?php _e('Updating', 'doppler-form') ?>>
 												<?php _e('Update Version', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>

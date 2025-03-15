@@ -338,7 +338,8 @@
 		$(".dplr-extensions .extension-item button.dp-install").click(function () {
 			var button = $(this);
 			var extension = button.attr("data-extension");
-			button.addClass("button--loading").html(object_string.installing);
+			var action = button.attr("data-click-action");
+			button.addClass("button--loading").html(action ? action : object_string.installing);
 			button
 				.closest(".dplr-extensions")
 				.find("button")
