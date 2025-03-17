@@ -211,7 +211,7 @@ class DPLR_Base_Model {
     $tablemame = self::_eventTable();
 
     if($wpdb->get_var("SHOW TABLES LIKE '$tablemame'") != $tablemame) {
-      $sql = "CREATE TABLE ". $eventablemametTableName . "("
+      $sql = "CREATE TABLE ". $tablemame . "("
   		 . "id mediumint(9) NOT NULL AUTO_INCREMENT,"
       . "parent_id mediumint(9) NOT NULL,"
       . "event_type TINYINT NOT NULL,"
