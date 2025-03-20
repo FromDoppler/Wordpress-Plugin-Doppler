@@ -23,7 +23,7 @@
 										<?php _e("Here you can view information about the performance of your forms and the status of your integrations.","doppler-form");?>
 									</p>
 								</div>
-								<div class="col-sm-6 dp-icon-wrapper">
+								<div class="col-sm-6 dp-icon-wrapper m-t-24">
 									<span>
 										<strong> <?php _e("Account","doppler-form");?>:</strong>
 										<span> <?php echo $options['dplr_option_useraccount']?></span>
