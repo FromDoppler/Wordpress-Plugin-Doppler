@@ -1232,7 +1232,6 @@
 .dplr_settings .dplr-quick-access .dplr-item {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	gap: 10px;
 	padding: 10px;
 }
@@ -1245,17 +1244,17 @@
 .dplr_settings .dplr-quick-access .dplr-item .dplr-texts {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 .dplr_settings .dplr-quick-access .dplr-item p {
 	margin: 0;
 	color: #000;
-	text-align: right;
 }
 
 .dplr_settings .dplr-quick-access .dplr-item a {
 	margin-top: 5px;
-	text-align: right;
+	text-align: left;
 }
 
 .dplr_settings .dplr-quick-access .dplr-item a:hover {
@@ -1291,7 +1290,7 @@
 	width: auto !important;
 }
 
-.dp-library .tabs-wrapper {
+.dplr_settings .tabs-wrapper {
 	margin: 10px 12px !important;
 }
 
@@ -1301,4 +1300,17 @@
 
 .dplr_settings .dplr_connect .dp-tooltip-top-bubble a:hover {
 	color: #008046 !important;
+}
+
+.dplr_settings .dp-wrapper-as-kpi .dp-kpi-card {
+	padding-bottom: 18px !important;
+}
+
+.dplr_settings .dp-tabs-plans .tab--link {
+	font-size: 18px !important;
+    
+}
+
+.dplr_settings .dp-tabs-plans .tab--link.active {
+	border-bottom: 4px solid #fab221 !important;
 }

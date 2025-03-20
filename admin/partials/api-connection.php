@@ -131,17 +131,19 @@
 									<h3><?php _e("Forms Report","doppler-form");?></h3>
 									<p><?php _e("Here you can see the performance of your forms","doppler-form");?></p>
 								</div>
-								<nav class="tabs-wrapper">
-									<ul class="tabs-nav" data-tab-active="1">
-										<li class="tab--item">
-											<a href="#" class="tab--link active" data-tab="1"><?php _e("Conversion Rate","doppler-form");?></a>
-										</li>
-										<li class="tab--item">
-											<a href="#" class="tab--link" data-tab="2"><?php _e("All Forms","doppler-form");?></a>
-										</li>
-									</ul>
-								</nav>
-								<section class="tab--container col-sm-12 dp-box-shadow dp-white">
+								<div class="dp-tabs-plans">
+									<nav class="tabs-wrapper">
+										<ul class="tabs-nav" data-tab-active="1">
+											<li class="tab--item">
+												<a href="#" class="tab--link active" data-tab="1"><?php _e("Conversion Rate","doppler-form");?></a>
+											</li>
+											<li class="tab--item">
+												<a href="#" class="tab--link" data-tab="2"><?php _e("All Forms","doppler-form");?></a>
+											</li>
+										</ul>
+									</nav>
+								</div>
+								<section class="tab--container col-sm-12 dp-white">
 									<article class="tab--content active" id="tab-1">
 										<div class="col-sm-12" id="doppler-forms-chart"></div>
 									</article>
