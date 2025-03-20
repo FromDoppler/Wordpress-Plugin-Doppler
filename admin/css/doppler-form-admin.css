@@ -1314,3 +1314,7 @@
 .dplr_settings .dp-tabs-plans .tab--link.active {
 	border-bottom: 4px solid #fab221 !important;
 }
+
+.dplr_settings .dp-icon-wrapper span {
+	font-size: 18px;
+}
