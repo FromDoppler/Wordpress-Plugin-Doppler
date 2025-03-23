@@ -84,16 +84,16 @@
 									</div>
 								</li>
 								<?php if($this->extension_manager->is_active('doppler-for-woocommerce')):
-									$woocommerce_synch = get_option('dplrwoo_last_synch');	
+									$woocommerce_synch = get_option('dplrwoo_last_synch');
 								?>
 									<li>
 										<div class="dp-kpi-card dp-white">
 											<span class="dp-assisted-sales-icon dpicon iconapp-job-transfer"></span>
 											<div class="dp-assisted-sales-text">
 												<h3>
-													<?php echo $woocommerce_synch != null 
-															? $woocommerce_synch['contacts']['counter'] + $last_synch['buyers']['counter'] 
-															: 0; 
+													<?php echo $woocommerce_synch != null
+															? $woocommerce_synch['contacts']['counter'] + $woocommerce_synch['buyers']['counter']
+															: 0;
 													?>
 												</h3>
 												<span><?php _e("Woocommerce contacts", "doppler-form" ); ?></span>
@@ -101,7 +101,7 @@
 										</div>
 									</li>
 								<?php endif; ?>
-								<?php if($this->extension_manager->is_active('doppler-for-learnpress')):  
+								<?php if($this->extension_manager->is_active('doppler-for-learnpress')):
 									$learnpress_synch = get_option('dplr_learnpress_subscribers_list');
 								?>
 								<li>
