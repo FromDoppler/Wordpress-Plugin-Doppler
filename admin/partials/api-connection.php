@@ -59,7 +59,7 @@
 													foreach ($forms as $form) {
 														$totalDisplays += $form->events['Display'] ?? 0;
 													}
-													echo $totalDisplays;
+													echo $this->sanitize_kpi_values($totalDisplays);
 												?>
 											</h3>
 											<span><?php _e("Impressions", "doppler-form" ); ?></span>
@@ -72,11 +72,11 @@
 										<div class="dp-assisted-sales-text">
 											<h3>
 											<?php 
-													$totalDisplays = 0;
+													$totalSubmits = 0;
 													foreach ($forms as $form) {
-														$totalDisplays += $form->events['Submit'] ?? 0;
+														$totalSubmits += $form->events['Submit'] ?? 0;
 													}
-													echo $totalDisplays;
+													echo $this->sanitize_kpi_values($totalSubmits);
 												?>
 											</h3>
 											<span><?php _e("Subscribed", "doppler-form" ); ?></span>
@@ -92,7 +92,7 @@
 											<div class="dp-assisted-sales-text">
 												<h3>
 													<?php echo $woocommerce_synch != null
-															? $woocommerce_synch['contacts']['counter'] + $woocommerce_synch['buyers']['counter']
+															? $this->sanitize_kpi_values($woocommerce_synch['contacts']['counter'] + $woocommerce_synch['buyers']['counter'])
 															: 0;
 													?>
 												</h3>
@@ -111,7 +111,7 @@
 											<h3>
 												<?php
 													echo $learnpress_synch != null 
-														? $learnpress_synch['count']
+														? $this->sanitize_kpi_values($learnpress_synch['count'])
 														: 0
 												?></h3>
 											<span><?php _e("Learnpress contacts", "doppler-form" ); ?></span>
