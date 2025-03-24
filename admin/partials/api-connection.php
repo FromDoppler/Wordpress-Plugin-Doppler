@@ -92,7 +92,7 @@
 											<div class="dp-assisted-sales-text">
 												<h3>
 													<?php echo $woocommerce_synch != null
-															? $this->sanitize_kpi_values($woocommerce_synch['contacts']['counter'] + $woocommerce_synch['buyers']['counter'])
+															? $this->sanitize_kpi_values($woocommerce_synch['contacts']['counter'] ?? 0 + $woocommerce_synch['buyers']['counter'] ?? 0)
 															: 0;
 													?>
 												</h3>
@@ -111,7 +111,7 @@
 											<h3>
 												<?php
 													echo $learnpress_synch != null 
-														? $this->sanitize_kpi_values($learnpress_synch['count'])
+														? $this->sanitize_kpi_values($learnpress_synch['count'] ?? 0)
 														: 0
 												?></h3>
 											<span><?php _e("Learnpress contacts", "doppler-form" ); ?></span>
