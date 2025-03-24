@@ -670,6 +670,25 @@ class Doppler_Admin {
 		return sanitize_text_field(htmlentities(trim($code)));
 	}
 
+	/**
+	 * Sanitize dashboard KPI values.
+	 */
+	public function sanitize_kpi_values($value) {
+		$THOUSAND = 1000;
+		$MILLION = 1000000;
+		$BILLION = 1000000000;
+
+		if ($value >= $BILLION) {
+			$value = number_format($value / $BILLION, 2) . 'B';
+		} elseif ($value >= $MILLION) {
+			$value = number_format($value / $MILLION, 2) . 'M';
+		} elseif ($value >= $THOUSAND) {
+			$value = number_format($value / $THOUSAND, 2) . 'K';
+		}
+		
+		return $value;
+	}
+
 	private function get_Chart_Data() {
 		$forms = $this->form_controller->getAll(true, true);
 
