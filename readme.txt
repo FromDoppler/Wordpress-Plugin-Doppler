@@ -3,9 +3,9 @@ Contributors: fromdoppler
 Donate link: --
 Tags: Doppler, Email marketing, integration, subscription, form, automation
 Requires at least: 4.9
-Tested up to: 6.7.1
+Tested up to: 6.7.2
 Requires PHP: 5.6.4
-Stable tag: 2.4.4
+Stable tag: 2.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,9 @@ En [este artículo](https://help.fromdoppler.com/es/api-interfaz-de-programacion
 8. Formulario de Suscripción.
 
 == Changelog ==
+= 2.4.5 =
+* Update: Replace connection section with new dashboard view
+
 = 2.4.4 =
 * Fix: Fix form rendering when used as widget.
 
