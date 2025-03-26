@@ -92,7 +92,7 @@
 											<div class="dp-assisted-sales-text">
 												<h3>
 													<?php echo $woocommerce_synch != null
-															? $this->sanitize_kpi_values($woocommerce_synch['contacts']['counter'] ?? 0 + $woocommerce_synch['buyers']['counter'] ?? 0)
+															? $this->sanitize_kpi_values(($woocommerce_synch['contacts']['counter'] ?? 0) + ($woocommerce_synch['buyers']['counter'] ?? 0))
 															: 0;
 													?>
 												</h3>
