@@ -1,5 +1,7 @@
+
 <section class="dplr_settings dp-library">
-	<div class="dplr_connect">
+	<!-- This inline style is a hack to avoid loading content before the loading screen is hidden. -->
+	<div class="dplr_connect" id="dplr_body_content" style="display: none;">
 		<?php
 		if ($connected) {
 		?>
@@ -462,9 +464,9 @@
 		<?php
 		}
 		?>
+
+		<div id="dplr-dialog-confirm" title="<?php _e('Are you sure you want to uninstall the extension?', 'doppler-form'); ?>">
+			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> <?php _e('This will deactivate and uninstall the plugin.', 'doppler-form')?></p>
+		</div>
 	</div>
 </section>
-
-<div id="dplr-dialog-confirm" title="<?php _e('Are you sure you want to uninstall the extension?', 'doppler-form'); ?>">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> <?php _e('This will deactivate and uninstall the plugin.', 'doppler-form')?></p>
-</div>

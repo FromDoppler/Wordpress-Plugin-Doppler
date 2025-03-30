@@ -1,5 +1,4 @@
 <div class="dplr dplr-tab-content dplr-tab-content--form-create">
-  
   <form method="post" action="<?php admin_url() ?>admin.php?page=doppler_forms_main">
     
     <input type="hidden" name="create" value="true">
@@ -313,8 +312,6 @@
         </div>
       </div>
     </div>
-  </div>
-
     <div class="grid" id="dplr_consent_section">
       <div class="col-4-5 panel nopd dp-box-shadow">
         <div class="panel-header">
@@ -346,7 +343,6 @@
       <?php _e('Save', 'doppler-form')?>
     </button>
     <a href="<?php echo admin_url('admin.php?page=doppler_forms_main')?>"  class="dp-button primary-grey button-medium"><?php _e('Cancel', 'doppler-form')?></a>
-  
   </form>
 
 </div>

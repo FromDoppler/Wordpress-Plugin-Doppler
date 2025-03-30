@@ -1,5 +1,6 @@
 <div class="dp-library">
-    <div class="dp-container">
+    <!-- This inline style is a hack to avoid loading content before the loading screen is hidden. -->
+    <div class="dp-container" id="dplr_body_content" style="display: none;">
         <div class="dplr_settings">
             <a href="<?php _e('https://www.fromdoppler.com/en/?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form')?>" target="_blank" class="dplr-logo-header">
                 <img id="" src="<?php echo DOPPLER_PLUGIN_URL?>admin/img/logo-doppler.svg" alt="Doppler logo"/>
