@@ -121,6 +121,8 @@ class Doppler_Admin {
 	 */
 	public function enqueue_scripts() {
 		
+		wp_enqueue_script('doppler-loader', 'https://cdn.fromdoppler.com/mfe-loader/loader-v2.0.0.js', array($this->plugin_name), $this->version, false);
+		wp_enqueue_script('doppler-styles', plugin_dir_url( __FILE__ ) . 'js/doppler-styles.js', array($this->plugin_name, 'doppler-loader'), $this->version, false);
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/doppler-form-admin.js', array( 'jquery', 'jquery-ui-sortable' ), $this->version, false );
 		wp_localize_script( $this->plugin_name, 'object_string', array( 
 			'Delete'   	=> __( 'Delete', 'doppler-form' ),
@@ -160,8 +162,6 @@ class Doppler_Admin {
 			'formType' => __('Form Type', 'doppler-form'),
 		) ); 
 		wp_enqueue_script('field-module', plugin_dir_url( __FILE__ ) . 'js/field-module.js', array($this->plugin_name), $this->version, false);
-		wp_enqueue_script('doppler-loader', 'https://cdn.fromdoppler.com/mfe-loader/loader-v2.0.0.js', array($this->plugin_name), $this->version, false);
-		wp_enqueue_script('doppler-styles', plugin_dir_url( __FILE__ ) . 'js/doppler-styles.js', array($this->plugin_name, 'doppler-loader'), $this->version, false);
 		wp_localize_script( 'field-module', 'ObjStr', array( 
 			'editField'   		=> __( 'Edit Field', 'doppler-form' ),
 			'Required'    		=> __( 'Required', 'doppler-form'),
