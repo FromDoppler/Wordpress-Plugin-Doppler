@@ -464,9 +464,9 @@
 		<?php
 		}
 		?>
+
+		<div id="dplr-dialog-confirm" title="<?php _e('Are you sure you want to uninstall the extension?', 'doppler-form'); ?>">
+			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> <?php _e('This will deactivate and uninstall the plugin.', 'doppler-form')?></p>
+		</div>
 	</div>
 </section>
-
-<div id="dplr-dialog-confirm" title="<?php _e('Are you sure you want to uninstall the extension?', 'doppler-form'); ?>">
-    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> <?php _e('This will deactivate and uninstall the plugin.', 'doppler-form')?></p>
-</div>
