@@ -326,6 +326,7 @@ class Doppler_Admin {
 		
 		}
 		
+		require_once("partials/loading.php");
 		include "partials/api-connection.php";
 	}
 
@@ -403,11 +404,13 @@ class Doppler_Admin {
 			}
 		}
 
+		require_once("partials/loading.php");
 		require_once('partials/doppler-forms-display.php');
 
 	}
 
 	public function doppler_list_screen() {
+		require_once("partials/loading.php");
 		require_once('partials/lists-crud.php');
 	}
 
@@ -423,6 +426,8 @@ class Doppler_Admin {
 			}
 		endif;
 		$dplr_hub_script = get_option('dplr_hub_script');
+
+		require_once("partials/loading.php");
 		require_once('partials/data-hub.php');
 	}
 
