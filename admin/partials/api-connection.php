@@ -1,5 +1,7 @@
+
 <section class="dplr_settings dp-library">
-	<div class="dplr_connect">
+	<!-- This inline style is a hack to avoid loading content before the loading screen is hidden. -->
+	<div class="dplr_connect" id="dplr_body_content" style="display: none;">
 		<?php
 		if ($connected) {
 		?>
