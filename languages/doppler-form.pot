@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-03-15 11:18-0300\n"
+"POT-Creation-Date: 2025-05-02 18:57-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Hernán Galván\n"
@@ -24,158 +24,158 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/doppler-admin.php:126 admin/partials/forms-list.php:107
+#: admin/doppler-admin.php:128 admin/partials/forms-list.php:107
 msgid "Delete"
 msgstr ""
 
-#: admin/doppler-admin.php:127 admin/partials/forms-create.php:348
+#: admin/doppler-admin.php:129 admin/partials/forms-create.php:345
 #: admin/partials/forms-edit.php:388
 msgid "Cancel"
 msgstr ""
 
-#: admin/doppler-admin.php:128 admin/doppler-admin.php:138
+#: admin/doppler-admin.php:130 admin/doppler-admin.php:140
 #: admin/doppler-admin.php:310
 msgid ""
 "Ouch! There's something wrong with your Username or API Key. Please, try "
 "again."
 msgstr ""
 
-#: admin/doppler-admin.php:129
+#: admin/doppler-admin.php:131
 msgid "The List has been created correctly."
 msgstr ""
 
-#: admin/doppler-admin.php:130
+#: admin/doppler-admin.php:132
 msgid "Ouch! You've reached the maximum number of Lists created."
 msgstr ""
 
-#: admin/doppler-admin.php:131
+#: admin/doppler-admin.php:133
 msgid "Ouch! You've already used this name for another List."
 msgstr ""
 
-#: admin/doppler-admin.php:132
+#: admin/doppler-admin.php:134
 msgid ""
 "Ouch! You've made several actions in a short period of time. Please wait a "
 "few minutes before making another one."
 msgstr ""
 
-#: admin/doppler-admin.php:133
+#: admin/doppler-admin.php:135
 msgid "Ouch! The List name is invalid. Please choose another."
 msgstr ""
 
-#: admin/doppler-admin.php:134 admin/partials/doppler-forms-display.php:25
+#: admin/doppler-admin.php:136 admin/partials/doppler-forms-display.php:26
 msgid ""
 "Ouch! An error ocurred while trying to communicate with the API. Try again "
 "later."
 msgstr ""
 
-#: admin/doppler-admin.php:135
+#: admin/doppler-admin.php:137
 msgid "Ouch! There has been an error: cURL error 28, timeout error."
 msgstr ""
 
-#: admin/doppler-admin.php:136 admin/partials/api-connection.php:326
-#: admin/partials/api-connection.php:363
+#: admin/doppler-admin.php:138 admin/partials/api-connection.php:330
+#: admin/partials/api-connection.php:367
 msgid "Installing"
 msgstr ""
 
-#: admin/doppler-admin.php:137
+#: admin/doppler-admin.php:139
 msgid "Uninstalling"
 msgstr ""
 
-#: admin/doppler-admin.php:139
+#: admin/doppler-admin.php:141
 msgid "Please enter a valid color code, i.e: #000000."
 msgstr ""
 
-#: admin/doppler-admin.php:140
+#: admin/doppler-admin.php:142
 msgid ""
 "Ouch! The List is associated with a Form. To delete it, go to Doppler and "
 "disassociate them."
 msgstr ""
 
-#: admin/doppler-admin.php:141
+#: admin/doppler-admin.php:143
 msgid "Ouch! The List is associated to a Campaign in sending process."
 msgstr ""
 
-#: admin/doppler-admin.php:142
+#: admin/doppler-admin.php:144
 msgid ""
 "Ouch! The List has associated Segments. To delete it, go to Doppler and "
 "disassociate them."
 msgstr ""
 
-#: admin/doppler-admin.php:143
+#: admin/doppler-admin.php:145
 msgid ""
 "Ouch! The List is associated with an active Automation. To delete it, go to "
 "Doppler and disassociate them."
 msgstr ""
 
-#: admin/doppler-admin.php:144
+#: admin/doppler-admin.php:146
 msgid ""
 "Ouch! The List is associated with an active integration. To delete it, go to "
 "Doppler and disconnect the integration."
 msgstr ""
 
-#: admin/doppler-admin.php:145
+#: admin/doppler-admin.php:147
 msgid "Ouch! The List is in the process of union with another one."
 msgstr ""
 
-#: admin/doppler-admin.php:146
+#: admin/doppler-admin.php:148
 msgid "Ouch! The List is still in the process of being created."
 msgstr ""
 
-#: admin/doppler-admin.php:147
+#: admin/doppler-admin.php:149
 msgid "Ouch! The List is in the process of loading."
 msgstr ""
 
-#: admin/doppler-admin.php:148
+#: admin/doppler-admin.php:150
 msgid "Ouch! the list is in process of being exported."
 msgstr ""
 
-#: admin/doppler-admin.php:149
+#: admin/doppler-admin.php:151
 msgid "Ouch! The List is in the process of being deleted."
 msgstr ""
 
-#: admin/doppler-admin.php:150 admin/partials/forms-edit.php:360
+#: admin/doppler-admin.php:152 admin/partials/forms-edit.php:360
 #: includes/helpers/Form_Helper.php:54 includes/helpers/Form_Helper.php:83
 msgid "I've read and accept the privacy policy"
 msgstr ""
 
-#: admin/doppler-admin.php:151 admin/partials/forms-edit.php:365
+#: admin/doppler-admin.php:153 admin/partials/forms-edit.php:365
 msgid "Enter the URL of your privacy policy"
 msgstr ""
 
-#: admin/doppler-admin.php:152 admin/partials/forms-edit.php:357
+#: admin/doppler-admin.php:154 admin/partials/forms-edit.php:357
 msgid "Checkbox label"
 msgstr ""
 
-#: admin/doppler-admin.php:154 admin/doppler-admin.php:166
+#: admin/doppler-admin.php:156 admin/doppler-admin.php:166
 #: admin/partials/forms-edit.php:353
 msgid "Edit Field"
 msgstr ""
 
-#: admin/doppler-admin.php:155 admin/partials/api-connection.php:169
+#: admin/doppler-admin.php:157 admin/partials/api-connection.php:173
 #: admin/partials/forms-list.php:71
 msgid "Simple Opt-In"
 msgstr ""
 
-#: admin/doppler-admin.php:156 admin/partials/api-connection.php:169
+#: admin/doppler-admin.php:158 admin/partials/api-connection.php:173
 #: admin/partials/forms-list.php:71
 msgid "Double Opt-In"
 msgstr ""
 
-#: admin/doppler-admin.php:157 admin/partials/api-connection.php:137
+#: admin/doppler-admin.php:159 admin/partials/api-connection.php:140
 msgid "Conversion Rate"
 msgstr ""
 
-#: admin/doppler-admin.php:158 admin/partials/api-connection.php:65
-#: admin/partials/api-connection.php:155
+#: admin/doppler-admin.php:160 admin/partials/api-connection.php:67
+#: admin/partials/api-connection.php:159
 msgid "Impressions"
 msgstr ""
 
-#: admin/doppler-admin.php:159 admin/partials/api-connection.php:82
-#: admin/partials/api-connection.php:156
+#: admin/doppler-admin.php:161 admin/partials/api-connection.php:84
+#: admin/partials/api-connection.php:160
 msgid "Subscribed"
 msgstr ""
 
-#: admin/doppler-admin.php:160 admin/partials/api-connection.php:154
+#: admin/doppler-admin.php:162 admin/partials/api-connection.php:158
 msgid "Form Type"
 msgstr ""
 
@@ -234,354 +234,340 @@ msgid "Home"
 msgstr ""
 
 #: admin/doppler-admin.php:244 admin/doppler-admin.php:245
-#: admin/partials/api-connection.php:202 admin/partials/api-connection.php:205
-#: admin/partials/data-hub.php:14 admin/partials/doppler-forms-display.php:19
-#: admin/partials/lists-crud.php:9
+#: admin/partials/api-connection.php:206 admin/partials/api-connection.php:209
+#: admin/partials/doppler-forms-display.php:20 admin/partials/lists-crud.php:10
+#: admin/partials/settings.php:21
 msgid "Doppler Forms"
 msgstr ""
 
 #: admin/doppler-admin.php:253 admin/doppler-admin.php:254
-#: admin/partials/lists-crud.php:15
+#: admin/partials/lists-crud.php:16
 msgid "Lists Managment"
 msgstr ""
 
 #: admin/doppler-admin.php:262 admin/doppler-admin.php:263
-#: admin/partials/data-hub.php:20
-msgid "On-Site Tracking"
+msgid "Settings"
 msgstr ""
 
-#: admin/doppler-admin.php:318 admin/partials/api-connection.php:406
-#: admin/partials/api-connection.php:411 admin/partials/api-connection.php:441
+#: admin/doppler-admin.php:318 admin/partials/api-connection.php:410
+#: admin/partials/api-connection.php:415 admin/partials/api-connection.php:445
 msgid "Ouch! Enter a valid Email."
 msgstr ""
 
-#: admin/doppler-admin.php:323 admin/partials/api-connection.php:434
+#: admin/doppler-admin.php:323 admin/partials/api-connection.php:438
 msgid "Ouch! The field is empty."
 msgstr ""
 
-#: admin/doppler-admin.php:341
+#: admin/doppler-admin.php:342
 msgid "Pst! Go to"
 msgstr ""
 
-#: admin/doppler-admin.php:341
+#: admin/doppler-admin.php:342
 msgid "Appearance > Widgets"
 msgstr ""
 
-#: admin/doppler-admin.php:341
+#: admin/doppler-admin.php:342
 msgid "to choose the place on your Website where you want your Form to appear."
 msgstr ""
 
-#: admin/doppler-admin.php:345 admin/doppler-admin.php:364
+#: admin/doppler-admin.php:346 admin/doppler-admin.php:365
 msgid ""
 "The urlLanding field is not a valid fully-qualified http, https, or ftp URL."
 msgstr ""
 
-#: admin/doppler-admin.php:348 admin/doppler-admin.php:367
+#: admin/doppler-admin.php:349 admin/doppler-admin.php:368
 msgid ""
 "You should validate the Email sender domain before using it. HELP: https://"
 "help.fromdoppler.com/en/from-email-domain-validation/"
 msgstr ""
 
-#: admin/doppler-admin.php:351
+#: admin/doppler-admin.php:352
 msgid ""
 "Ouch! An error ocurred and the Form couldn't be created. Try again later."
 msgstr ""
 
-#: admin/doppler-admin.php:360
+#: admin/doppler-admin.php:361
 msgid "The Form has been edited correctly."
 msgstr ""
 
-#: admin/doppler-admin.php:370
+#: admin/doppler-admin.php:371
 msgid ""
 "Ouch! An error ocurred and the Form couldn't be edited. Try again later."
 msgstr ""
 
-#: admin/doppler-admin.php:380
+#: admin/doppler-admin.php:381
 msgid "The Form has been deleted correctly."
 msgstr ""
 
-#: admin/doppler-admin.php:382
+#: admin/doppler-admin.php:383
 msgid ""
 "Ouch! An error ocurred and the Form couldn't be deleted. Try again later."
 msgstr ""
 
-#: admin/doppler-admin.php:419
-msgid "On Site Tracking code saved successfully"
-msgstr ""
-
-#: admin/doppler-admin.php:421
+#: admin/doppler-admin.php:427
 msgid "Tracking code is invalid"
 msgstr ""
 
-#: admin/doppler-admin.php:437
+#: admin/doppler-admin.php:445
+msgid "Consent checkbox is invalid"
+msgstr ""
+
+#: admin/doppler-admin.php:453
+msgid "Settings saved successfully"
+msgstr ""
+
+#: admin/doppler-admin.php:468
 msgid ""
 "You've updated the <strong>Doppler Forms</strong> plugin into the "
 "<strong>2.0.0</strong> version. Please,"
 msgstr ""
 
-#: admin/doppler-admin.php:439
+#: admin/doppler-admin.php:470
 msgid "enter your Username"
 msgstr ""
 
-#: admin/doppler-admin.php:440
+#: admin/doppler-admin.php:471
 msgid "in addition to the API Key and re-connect your Doppler account."
 msgstr ""
 
-#: admin/doppler-admin.php:600
+#: admin/doppler-admin.php:631
 msgid ""
 "Ouch! The List is being used in a form or an extension, so it cannot be "
 "deleted."
 msgstr ""
 
-#: admin/partials/api-connection.php:12
+#: admin/partials/api-connection.php:14
 msgid "Welcome!"
 msgstr ""
 
-#: admin/partials/api-connection.php:17
+#: admin/partials/api-connection.php:19
 msgid "Disconnect"
 msgstr ""
 
-#: admin/partials/api-connection.php:23
+#: admin/partials/api-connection.php:25
 msgid ""
 "Here you can view information about the performance of your forms and the "
 "status of your integrations."
 msgstr ""
 
-#: admin/partials/api-connection.php:28
+#: admin/partials/api-connection.php:30
 msgid "Account"
 msgstr ""
 
-#: admin/partials/api-connection.php:32
+#: admin/partials/api-connection.php:34
 msgid "Status"
 msgstr ""
 
-#: admin/partials/api-connection.php:33
+#: admin/partials/api-connection.php:35
 msgid "Active"
 msgstr ""
 
-#: admin/partials/api-connection.php:48
+#: admin/partials/api-connection.php:50
 msgid "Forms"
 msgstr ""
 
-#: admin/partials/api-connection.php:99
+#: admin/partials/api-connection.php:101
 msgid "Woocommerce contacts"
 msgstr ""
 
-#: admin/partials/api-connection.php:117
+#: admin/partials/api-connection.php:119
 msgid "Learnpress contacts"
 msgstr ""
 
-#: admin/partials/api-connection.php:131
+#: admin/partials/api-connection.php:133
 msgid "Forms Report"
 msgstr ""
 
-#: admin/partials/api-connection.php:132
+#: admin/partials/api-connection.php:134
 msgid "Here you can see the performance of your forms"
 msgstr ""
 
-#: admin/partials/api-connection.php:140
+#: admin/partials/api-connection.php:143
 msgid "All Forms"
 msgstr ""
 
-#: admin/partials/api-connection.php:153 admin/partials/forms-create.php:14
-#: admin/partials/forms-edit.php:15 admin/partials/lists-crud.php:69
+#: admin/partials/api-connection.php:157 admin/partials/forms-create.php:13
+#: admin/partials/forms-edit.php:15 admin/partials/lists-crud.php:71
 msgid "Name"
 msgstr ""
 
-#: admin/partials/api-connection.php:157
+#: admin/partials/api-connection.php:161
 msgid "Conversion"
 msgstr ""
 
-#: admin/partials/api-connection.php:197
+#: admin/partials/api-connection.php:201
 msgid "Quick Access"
 msgstr ""
 
-#: admin/partials/api-connection.php:198
+#: admin/partials/api-connection.php:202
 msgid "Access all the features from here"
 msgstr ""
 
-#: admin/partials/api-connection.php:206 admin/partials/api-connection.php:215
-#: admin/partials/api-connection.php:224 admin/partials/api-connection.php:236
-#: admin/partials/api-connection.php:249
+#: admin/partials/api-connection.php:210 admin/partials/api-connection.php:219
+#: admin/partials/api-connection.php:228 admin/partials/api-connection.php:240
+#: admin/partials/api-connection.php:253
 msgid "Access"
 msgstr ""
 
-#: admin/partials/api-connection.php:211 admin/partials/api-connection.php:214
+#: admin/partials/api-connection.php:215 admin/partials/api-connection.php:218
 msgid "On-site tracking"
 msgstr ""
 
-#: admin/partials/api-connection.php:220 admin/partials/api-connection.php:223
+#: admin/partials/api-connection.php:224 admin/partials/api-connection.php:227
 msgid "List Management"
 msgstr ""
 
-#: admin/partials/api-connection.php:232 admin/partials/api-connection.php:235
+#: admin/partials/api-connection.php:236 admin/partials/api-connection.php:239
 msgid "Doppler for Learnpress"
 msgstr ""
 
-#: admin/partials/api-connection.php:245 admin/partials/api-connection.php:248
-#: admin/partials/api-connection.php:305
+#: admin/partials/api-connection.php:249 admin/partials/api-connection.php:252
+#: admin/partials/api-connection.php:309
 msgid "Doppler for Woocommerce"
 msgstr ""
 
-#: admin/partials/api-connection.php:264
+#: admin/partials/api-connection.php:268
 msgid "https://help.fromdoppler.com/en/"
 msgstr ""
 
-#: admin/partials/api-connection.php:266 admin/partials/api-connection.php:268
+#: admin/partials/api-connection.php:270 admin/partials/api-connection.php:272
 msgid "Help Center"
 msgstr ""
 
-#: admin/partials/api-connection.php:274 admin/partials/api-connection.php:276
+#: admin/partials/api-connection.php:278 admin/partials/api-connection.php:280
 msgid "Academy"
 msgstr ""
 
-#: admin/partials/api-connection.php:282 admin/partials/api-connection.php:284
+#: admin/partials/api-connection.php:286 admin/partials/api-connection.php:288
 msgid "Blog"
 msgstr ""
 
-#: admin/partials/api-connection.php:290 admin/partials/api-connection.php:292
+#: admin/partials/api-connection.php:294 admin/partials/api-connection.php:296
 msgid "Youtube"
 msgstr ""
 
-#: admin/partials/api-connection.php:301
+#: admin/partials/api-connection.php:305
 msgid "Extensions"
 msgstr ""
 
-#: admin/partials/api-connection.php:308
+#: admin/partials/api-connection.php:312 admin/partials/settings.php:49
 msgid "Doppler for WooCommerce"
 msgstr ""
 
-#: admin/partials/api-connection.php:312 admin/partials/api-connection.php:349
+#: admin/partials/api-connection.php:316 admin/partials/api-connection.php:353
 msgid "Successfully Instaled"
 msgstr ""
 
-#: admin/partials/api-connection.php:314 admin/partials/api-connection.php:351
+#: admin/partials/api-connection.php:318 admin/partials/api-connection.php:355
 msgid "Extension deactivated"
 msgstr ""
 
-#: admin/partials/api-connection.php:323
+#: admin/partials/api-connection.php:327
 msgid ""
 "You should have <a href=\"https://wordpress.org/plugins/woocommerce/"
 "\">WooCommerce plugin</a> installed and active first."
 msgstr ""
 
-#: admin/partials/api-connection.php:326 admin/partials/api-connection.php:363
+#: admin/partials/api-connection.php:330 admin/partials/api-connection.php:367
 msgid "Activating"
 msgstr ""
 
-#: admin/partials/api-connection.php:327 admin/partials/api-connection.php:364
+#: admin/partials/api-connection.php:331 admin/partials/api-connection.php:368
 msgid "Activate"
 msgstr ""
 
-#: admin/partials/api-connection.php:327 admin/partials/api-connection.php:364
+#: admin/partials/api-connection.php:331 admin/partials/api-connection.php:368
 msgid "Install"
 msgstr ""
 
-#: admin/partials/api-connection.php:333 admin/partials/api-connection.php:370
+#: admin/partials/api-connection.php:337 admin/partials/api-connection.php:374
 msgid "Updating"
 msgstr ""
 
-#: admin/partials/api-connection.php:334 admin/partials/api-connection.php:371
+#: admin/partials/api-connection.php:338 admin/partials/api-connection.php:375
 msgid "Update Version"
 msgstr ""
 
-#: admin/partials/api-connection.php:342 admin/partials/api-connection.php:345
+#: admin/partials/api-connection.php:346 admin/partials/api-connection.php:349
 msgid "Doppler for LearnPress"
 msgstr ""
 
-#: admin/partials/api-connection.php:360
+#: admin/partials/api-connection.php:364
 msgid ""
 "You should have <a href=\"https://wordpress.org/plugins/learnpress/"
 "\">LearnPress plugin</a> installed and active first."
 msgstr ""
 
-#: admin/partials/api-connection.php:388
+#: admin/partials/api-connection.php:392
 msgid "Connect your WordPress Forms with Doppler"
 msgstr ""
 
-#: admin/partials/api-connection.php:391
+#: admin/partials/api-connection.php:395
 msgid ""
 "Create Subscription Forms that respect your Website styles and automatically "
 "send your new Subscribers from WordPress to Doppler Lists."
 msgstr ""
 
-#: admin/partials/api-connection.php:400
+#: admin/partials/api-connection.php:404
 msgid "Username"
 msgstr ""
 
-#: admin/partials/api-connection.php:423
+#: admin/partials/api-connection.php:427
 msgid "How do you find your API Key? Press"
 msgstr ""
 
-#: admin/partials/api-connection.php:424
+#: admin/partials/api-connection.php:428
 msgid ""
 "https://help.fromdoppler.com/en/where-do-i-find-my-api-key/?"
 "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
 msgstr ""
 
-#: admin/partials/api-connection.php:425 admin/partials/api-connection.php:458
-#: admin/partials/forms-create.php:44 admin/partials/forms-create.php:205
-#: admin/partials/forms-create.php:327 admin/partials/forms-edit.php:49
+#: admin/partials/api-connection.php:429 admin/partials/api-connection.php:462
+#: admin/partials/forms-create.php:43 admin/partials/forms-create.php:204
+#: admin/partials/forms-create.php:324 admin/partials/forms-edit.php:49
 #: admin/partials/forms-edit.php:208 admin/partials/forms-edit.php:332
 msgid "HELP"
 msgstr ""
 
-#: admin/partials/api-connection.php:445
+#: admin/partials/api-connection.php:449
 msgid "Connect"
 msgstr ""
 
-#: admin/partials/api-connection.php:457
+#: admin/partials/api-connection.php:461
 msgid ""
 "Do you have any doubts about how to connect your Forms with Doppler? Press"
 msgstr ""
 
-#: admin/partials/api-connection.php:458
+#: admin/partials/api-connection.php:462
 msgid ""
 "https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-"
 "doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
 msgstr ""
 
-#: admin/partials/api-connection.php:466
+#: admin/partials/api-connection.php:468
 msgid "Are you sure you want to uninstall the extension?"
 msgstr ""
 
-#: admin/partials/api-connection.php:467
+#: admin/partials/api-connection.php:469
 msgid "This will deactivate and uninstall the plugin."
 msgstr ""
 
-#: admin/partials/data-hub.php:9 admin/partials/doppler-forms-display.php:15
-#: admin/partials/lists-crud.php:4
+#: admin/partials/doppler-forms-display.php:16 admin/partials/lists-crud.php:5
+#: admin/partials/settings.php:10
 msgid ""
 "https://www.fromdoppler.com/en/?"
 "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
 msgstr ""
 
-#: admin/partials/data-hub.php:23
-msgid ""
-"Get your Site Tracking Code from Doppler and paste it below to track your "
-"visitors activity. Not sure how to get your code? Press <a href=\"https://"
-"help.fromdoppler.com/en/create-onsite-tracking-automation\" class=\"green-"
-"link\">HELP</a>"
-msgstr ""
-
-#: admin/partials/data-hub.php:38
-msgid "Paste tracking code here."
-msgstr ""
-
-#: admin/partials/data-hub.php:41 admin/partials/forms-create.php:346
-#: admin/partials/forms-edit.php:387
-msgid "Save"
-msgstr ""
-
-#: admin/partials/forms-create.php:10 admin/partials/forms-edit.php:11
+#: admin/partials/forms-create.php:9 admin/partials/forms-edit.php:11
 msgid "Form basic information"
 msgstr ""
 
-#: admin/partials/forms-create.php:14 admin/partials/forms-create.php:19
-#: admin/partials/forms-create.php:156 admin/partials/forms-create.php:193
-#: admin/partials/forms-create.php:212 admin/partials/forms-create.php:220
-#: admin/partials/forms-create.php:224 admin/partials/forms-create.php:233
-#: admin/partials/forms-create.php:255 admin/partials/forms-edit.php:15
+#: admin/partials/forms-create.php:13 admin/partials/forms-create.php:18
+#: admin/partials/forms-create.php:155 admin/partials/forms-create.php:192
+#: admin/partials/forms-create.php:211 admin/partials/forms-create.php:219
+#: admin/partials/forms-create.php:223 admin/partials/forms-create.php:232
+#: admin/partials/forms-create.php:254 admin/partials/forms-edit.php:15
 #: admin/partials/forms-edit.php:20 admin/partials/forms-edit.php:161
 #: admin/partials/forms-edit.php:199 admin/partials/forms-edit.php:217
 #: admin/partials/forms-edit.php:225 admin/partials/forms-edit.php:229
@@ -589,247 +575,252 @@ msgstr ""
 msgid "(Required)"
 msgstr ""
 
-#: admin/partials/forms-create.php:19 admin/partials/forms-edit.php:20
+#: admin/partials/forms-create.php:18 admin/partials/forms-edit.php:20
 msgid "Doppler List"
 msgstr ""
 
-#: admin/partials/forms-create.php:23
+#: admin/partials/forms-create.php:22
 msgid "Select the destination List where your new Subscribers will be sent"
 msgstr ""
 
-#: admin/partials/forms-create.php:39 admin/partials/forms-edit.php:44
+#: admin/partials/forms-create.php:38 admin/partials/forms-edit.php:44
 msgid "Form Fields"
 msgstr ""
 
-#: admin/partials/forms-create.php:43 admin/partials/forms-edit.php:48
+#: admin/partials/forms-create.php:42 admin/partials/forms-edit.php:48
 msgid "Fields to include"
 msgstr ""
 
-#: admin/partials/forms-create.php:44 admin/partials/forms-edit.php:49
+#: admin/partials/forms-create.php:43 admin/partials/forms-edit.php:49
 msgid "Learn how to create Custom Fields with Doppler. Press"
 msgstr ""
 
-#: admin/partials/forms-create.php:44 admin/partials/forms-edit.php:49
+#: admin/partials/forms-create.php:43 admin/partials/forms-edit.php:49
 msgid ""
 "https://help.fromdoppler.com/en/how-to-create-a-customized-field/?"
 "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
 msgstr ""
 
-#: admin/partials/forms-create.php:48 admin/partials/forms-edit.php:53
+#: admin/partials/forms-create.php:47 admin/partials/forms-edit.php:53
 msgid "Select the Fields that will appear on your Form"
 msgstr ""
 
-#: admin/partials/forms-create.php:54 admin/partials/forms-edit.php:59
+#: admin/partials/forms-create.php:53 admin/partials/forms-edit.php:59
 msgid "Drag and drop the Fields to give them the order you want"
 msgstr ""
 
-#: admin/partials/forms-create.php:65 admin/partials/forms-edit.php:70
+#: admin/partials/forms-create.php:64 admin/partials/forms-edit.php:70
 msgid "Form settings"
 msgstr ""
 
-#: admin/partials/forms-create.php:69 admin/partials/forms-edit.php:74
+#: admin/partials/forms-create.php:68 admin/partials/forms-edit.php:74
 msgid "Title"
 msgstr ""
 
-#: admin/partials/forms-create.php:70 admin/partials/forms-edit.php:75
+#: admin/partials/forms-create.php:69 admin/partials/forms-edit.php:75
 msgid "Subscribe to our Newsletter!"
 msgstr ""
 
-#: admin/partials/forms-create.php:73 admin/partials/forms-edit.php:78
+#: admin/partials/forms-create.php:72 admin/partials/forms-edit.php:78
 msgid "Button text"
 msgstr ""
 
-#: admin/partials/forms-create.php:74 admin/partials/forms-edit.php:79
+#: admin/partials/forms-create.php:73 admin/partials/forms-edit.php:79
 #: includes/helpers/Form_Helper.php:99
 msgid "Submit"
 msgstr ""
 
-#: admin/partials/forms-create.php:78 admin/partials/forms-edit.php:83
+#: admin/partials/forms-create.php:77 admin/partials/forms-edit.php:83
 msgid "Button alignment"
 msgstr ""
 
-#: admin/partials/forms-create.php:82 admin/partials/forms-edit.php:88
+#: admin/partials/forms-create.php:81 admin/partials/forms-edit.php:88
 msgid "Left"
 msgstr ""
 
-#: admin/partials/forms-create.php:83 admin/partials/forms-edit.php:89
+#: admin/partials/forms-create.php:82 admin/partials/forms-edit.php:89
 msgid "Center"
 msgstr ""
 
-#: admin/partials/forms-create.php:84 admin/partials/forms-edit.php:90
+#: admin/partials/forms-create.php:83 admin/partials/forms-edit.php:90
 msgid "Right"
 msgstr ""
 
-#: admin/partials/forms-create.php:85 admin/partials/forms-edit.php:91
+#: admin/partials/forms-create.php:84 admin/partials/forms-edit.php:91
 msgid "Full width"
 msgstr ""
 
-#: admin/partials/forms-create.php:91 admin/partials/forms-edit.php:97
+#: admin/partials/forms-create.php:90 admin/partials/forms-edit.php:97
 msgid "Button background color"
 msgstr ""
 
-#: admin/partials/forms-create.php:99 admin/partials/forms-edit.php:105
+#: admin/partials/forms-create.php:98 admin/partials/forms-edit.php:105
 msgid "Use my theme's default color"
 msgstr ""
 
-#: admin/partials/forms-create.php:109 admin/partials/forms-edit.php:115
+#: admin/partials/forms-create.php:108 admin/partials/forms-edit.php:115
 msgid "Choose another color"
 msgstr ""
 
-#: admin/partials/forms-create.php:123 admin/partials/forms-edit.php:127
+#: admin/partials/forms-create.php:122 admin/partials/forms-edit.php:127
 msgid "What do you want to show to your users after submitting the Form?"
 msgstr ""
 
-#: admin/partials/forms-create.php:132 admin/partials/forms-edit.php:137
+#: admin/partials/forms-create.php:131 admin/partials/forms-edit.php:137
 msgid "Custom confirmation page"
 msgstr ""
 
-#: admin/partials/forms-create.php:142 admin/partials/forms-create.php:148
+#: admin/partials/forms-create.php:141 admin/partials/forms-create.php:147
 #: admin/partials/forms-edit.php:147 admin/partials/forms-edit.php:153
 msgid "Confirmation message"
 msgstr ""
 
-#: admin/partials/forms-create.php:149 admin/partials/forms-edit.php:154
+#: admin/partials/forms-create.php:148 admin/partials/forms-edit.php:154
 msgid "Example: Thanks for subscribing!"
 msgstr ""
 
-#: admin/partials/forms-create.php:152 admin/partials/forms-edit.php:157
+#: admin/partials/forms-create.php:151 admin/partials/forms-edit.php:157
 msgid "Custom confirmation page URL"
 msgstr ""
 
-#: admin/partials/forms-create.php:152 admin/partials/forms-edit.php:157
+#: admin/partials/forms-create.php:151 admin/partials/forms-edit.php:157
 msgid "Enter the URL of the page that you've created."
 msgstr ""
 
-#: admin/partials/forms-create.php:156 admin/partials/forms-edit.php:161
+#: admin/partials/forms-create.php:155 admin/partials/forms-edit.php:161
 msgid "Form orientation"
 msgstr ""
 
-#: admin/partials/forms-create.php:166 admin/partials/forms-edit.php:171
+#: admin/partials/forms-create.php:165 admin/partials/forms-edit.php:171
 msgid "Vertical"
 msgstr ""
 
-#: admin/partials/forms-create.php:177 admin/partials/forms-edit.php:182
+#: admin/partials/forms-create.php:176 admin/partials/forms-edit.php:182
 msgid "Horizontal"
 msgstr ""
 
-#: admin/partials/forms-create.php:188 admin/partials/forms-edit.php:194
+#: admin/partials/forms-create.php:187 admin/partials/forms-edit.php:194
 msgid "Subscription Type"
 msgstr ""
 
-#: admin/partials/forms-create.php:192 admin/partials/forms-edit.php:198
+#: admin/partials/forms-create.php:191 admin/partials/forms-edit.php:198
 msgid "Choose Opt-In type:"
 msgstr ""
 
-#: admin/partials/forms-create.php:204 admin/partials/forms-edit.php:207
+#: admin/partials/forms-create.php:203 admin/partials/forms-edit.php:207
 msgid ""
 "If you'd like to know the difference between Simple Opt-In and Double Opt-"
 "In, click:"
 msgstr ""
 
-#: admin/partials/forms-create.php:210 admin/partials/forms-edit.php:214
+#: admin/partials/forms-create.php:209 admin/partials/forms-edit.php:214
 msgid "Confirmation email"
 msgstr ""
 
-#: admin/partials/forms-create.php:212 admin/partials/forms-edit.php:217
+#: admin/partials/forms-create.php:211 admin/partials/forms-edit.php:217
 msgid "Subject"
 msgstr ""
 
-#: admin/partials/forms-create.php:213 admin/partials/forms-edit.php:218
+#: admin/partials/forms-create.php:212 admin/partials/forms-edit.php:218
 msgid "This is the subject of the email."
 msgstr ""
 
-#: admin/partials/forms-create.php:216 admin/partials/forms-edit.php:221
+#: admin/partials/forms-create.php:215 admin/partials/forms-edit.php:221
 msgid "Pre header"
 msgstr ""
 
-#: admin/partials/forms-create.php:217 admin/partials/forms-edit.php:222
+#: admin/partials/forms-create.php:216 admin/partials/forms-edit.php:222
 msgid "This is the email's pre header"
 msgstr ""
 
-#: admin/partials/forms-create.php:220 admin/partials/forms-edit.php:225
+#: admin/partials/forms-create.php:219 admin/partials/forms-edit.php:225
 msgid "Email sender"
 msgstr ""
 
-#: admin/partials/forms-create.php:221 admin/partials/forms-edit.php:226
+#: admin/partials/forms-create.php:220 admin/partials/forms-edit.php:226
 msgid "Example: some_direction@hotmail.com"
 msgstr ""
 
-#: admin/partials/forms-create.php:224 admin/partials/forms-edit.php:229
+#: admin/partials/forms-create.php:223 admin/partials/forms-edit.php:229
 msgid "Email sender name"
 msgstr ""
 
-#: admin/partials/forms-create.php:225 admin/partials/forms-edit.php:230
+#: admin/partials/forms-create.php:224 admin/partials/forms-edit.php:230
 msgid "Example: Josh"
 msgstr ""
 
-#: admin/partials/forms-create.php:229 admin/partials/forms-edit.php:234
+#: admin/partials/forms-create.php:228 admin/partials/forms-edit.php:234
 msgid "Email reply-to"
 msgstr ""
 
-#: admin/partials/forms-create.php:230 admin/partials/forms-edit.php:235
+#: admin/partials/forms-create.php:229 admin/partials/forms-edit.php:235
 msgid "Example: something-reply-to@hotmail.com"
 msgstr ""
 
-#: admin/partials/forms-create.php:233 admin/partials/forms-edit.php:238
+#: admin/partials/forms-create.php:232 admin/partials/forms-edit.php:238
 msgid ""
 "Email content. Must obligatorily have an anchor element with the attribute: "
 "href=[[[ConfirmationLink]]]"
 msgstr ""
 
-#: admin/partials/forms-create.php:254 admin/partials/forms-edit.php:259
+#: admin/partials/forms-create.php:253 admin/partials/forms-edit.php:259
 msgid "Confirmation page"
 msgstr ""
 
-#: admin/partials/forms-create.php:255 admin/partials/forms-edit.php:261
+#: admin/partials/forms-create.php:254 admin/partials/forms-edit.php:261
 msgid "Choose an option:"
 msgstr ""
 
-#: admin/partials/forms-create.php:265 admin/partials/forms-edit.php:271
+#: admin/partials/forms-create.php:264 admin/partials/forms-edit.php:271
 msgid "Redirect to landing page"
 msgstr ""
 
-#: admin/partials/forms-create.php:275 admin/partials/forms-edit.php:281
+#: admin/partials/forms-create.php:274 admin/partials/forms-edit.php:281
 msgid "Redirect to URL (must have https:// prefix!)."
 msgstr ""
 
-#: admin/partials/forms-create.php:281 admin/partials/forms-edit.php:288
+#: admin/partials/forms-create.php:280 admin/partials/forms-edit.php:288
 msgid "Target URL"
 msgstr ""
 
-#: admin/partials/forms-create.php:282 admin/partials/forms-edit.php:289
+#: admin/partials/forms-create.php:281 admin/partials/forms-edit.php:289
 msgid "Example: https://www.fromdoppler.com"
 msgstr ""
 
-#: admin/partials/forms-create.php:286 admin/partials/forms-edit.php:293
+#: admin/partials/forms-create.php:285 admin/partials/forms-edit.php:293
 msgid "Choose the page:"
 msgstr ""
 
-#: admin/partials/forms-create.php:321 admin/partials/forms-edit.php:326
+#: admin/partials/forms-create.php:318 admin/partials/forms-edit.php:326
 msgid "Consent Field settings"
 msgstr ""
 
-#: admin/partials/forms-create.php:327 admin/partials/forms-edit.php:332
+#: admin/partials/forms-create.php:324 admin/partials/forms-edit.php:332
 msgid ""
 "Automatically include checkboxes for opt-in, editable text and link that "
 "allow you to explain how and why you are using contact data. Whant to know "
 "more? Press"
 msgstr ""
 
-#: admin/partials/forms-create.php:327 admin/partials/forms-edit.php:332
+#: admin/partials/forms-create.php:324 admin/partials/forms-edit.php:332
 msgid ""
 "https://help.fromdoppler.com/en/general-data-protection-regulation?"
 "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
 msgstr ""
 
-#: admin/partials/forms-create.php:330 admin/partials/forms-edit.php:335
+#: admin/partials/forms-create.php:327 admin/partials/forms-edit.php:335
 msgid "Add new consent"
 msgstr ""
 
-#: admin/partials/forms-create.php:341 admin/partials/forms-edit.php:383
+#: admin/partials/forms-create.php:338 admin/partials/forms-edit.php:383
 msgid ""
 "Error! Remember that the email's content must obligatorily have an anchor "
 "element with the attribute: href=[[[ConfirmationLink]]]"
+msgstr ""
+
+#: admin/partials/forms-create.php:343 admin/partials/forms-edit.php:387
+#: admin/partials/settings.php:96
+msgid "Save"
 msgstr ""
 
 #: admin/partials/forms-edit.php:24
@@ -884,7 +875,7 @@ msgstr ""
 msgid "Shortcode"
 msgstr ""
 
-#: admin/partials/forms-list.php:58 admin/partials/lists-crud.php:75
+#: admin/partials/forms-list.php:58 admin/partials/lists-crud.php:77
 msgid "Actions"
 msgstr ""
 
@@ -904,33 +895,79 @@ msgstr ""
 msgid "It'll be deleted and can't be recovered."
 msgstr ""
 
-#: admin/partials/lists-crud.php:18
+#: admin/partials/lists-crud.php:19
 msgid ""
 "Here you will find all your Doppler's lists and be able to create new ones."
 msgstr ""
 
-#: admin/partials/lists-crud.php:42
+#: admin/partials/lists-crud.php:43
 msgid "Create a Doppler List"
 msgstr ""
 
-#: admin/partials/lists-crud.php:48
+#: admin/partials/lists-crud.php:50
 msgid "Write the List name"
 msgstr ""
 
-#: admin/partials/lists-crud.php:54
+#: admin/partials/lists-crud.php:56
 msgid "Create List"
 msgstr ""
 
-#: admin/partials/lists-crud.php:72
+#: admin/partials/lists-crud.php:74
 msgid "Subscribers"
 msgstr ""
 
-#: admin/partials/lists-crud.php:84
+#: admin/partials/lists-crud.php:86
 msgid "Are you sure you want to delete the List?"
 msgstr ""
 
-#: admin/partials/lists-crud.php:85
+#: admin/partials/lists-crud.php:87
 msgid "If you proceed, the List will also be deleted in Doppler."
+msgstr ""
+
+#: admin/partials/settings.php:27
+msgid "On-Site Tracking"
+msgstr ""
+
+#: admin/partials/settings.php:30
+msgid ""
+"Get your Site Tracking Code from Doppler and paste it below to track your "
+"visitors activity. Not sure how to get your code? Press <a href=\"https://"
+"help.fromdoppler.com/en/create-onsite-tracking-automation\" class=\"green-"
+"link\">HELP</a>"
+msgstr ""
+
+#: admin/partials/settings.php:37
+msgid "Paste tracking code here."
+msgstr ""
+
+#: admin/partials/settings.php:55
+msgid "Consent checkbox in Checkout"
+msgstr ""
+
+#: admin/partials/settings.php:65
+msgid ""
+"Adds a checkbox in the checkout for users to consent to email marketing "
+"emails"
+msgstr ""
+
+#: admin/partials/settings.php:73
+msgid "Location"
+msgstr ""
+
+#: admin/partials/settings.php:77
+msgid "Bellow contact Email"
+msgstr ""
+
+#: admin/partials/settings.php:78
+msgid "Checkout notes"
+msgstr ""
+
+#: admin/partials/settings.php:85
+msgid "Consent"
+msgstr ""
+
+#: admin/partials/settings.php:87
+msgid "Your consent text"
 msgstr ""
 
 #: doppler-form.php:43

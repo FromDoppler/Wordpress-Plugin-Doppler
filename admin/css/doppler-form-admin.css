@@ -100,6 +100,10 @@
 	text-align: right;
 }
 
+.dplr_settings .box-shado-0 {
+	box-shadow: none !important;
+}
+
 .dplr_settings a.green-link {
 	color: #33ad73;
 	text-decoration: none;
@@ -177,6 +181,14 @@
 
 .dplr_settings .pl-1 {
 	padding-left: 10px;
+}
+
+.dplr_settings .pr-0 {
+	padding-right: 0 !important;
+}
+
+.dplr_settings .pr-1 {
+	padding-right: 10px;
 }
 
 .dplr_settings .pt-1 {
@@ -1282,6 +1294,17 @@
     font-size: 12px;
 }
 
+.dplr_settings #dplrwoo-form-settings > section {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+
+.dplr_settings #dplrwoo-form-settings > section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
 /* override doppler's styles */
 .wp-core-ui .wp-editor-tools .wp-media-buttons > button,
 .wp-core-ui .wp-editor-container .ed_button {
@@ -1317,4 +1340,18 @@
 
 .dplr_settings .dp-icon-wrapper span {
 	font-size: 18px;
+}
+
+.dplr_settings .dp-switch input[type=checkbox]:focus {
+	outline: transparent !important;
+	box-shadow: inset 0 0 0 2px #f0f0f1 !important;
+	border: transparent !important;
+}
+
+#dplr-consent-location {
+	/* override wp styles for this componente*/
+	background-image: none;
+}
+#dplr-consent-text:disabled::placeholder {
+	color: #999;
 }

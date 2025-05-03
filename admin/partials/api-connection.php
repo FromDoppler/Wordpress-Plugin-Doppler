@@ -216,7 +216,7 @@
 											</div>
 											<div class="dplr-texts">
 												<p><?php _e("On-site tracking","doppler-form");?></p>
-												<a href="<?php echo admin_url('admin.php?page=doppler-data-hub')?>"><?php _e("Access","doppler-form");?> →</a>
+												<a href="<?php echo admin_url('admin.php?page=doppler-settings')?>"><?php _e("Access","doppler-form");?> →</a>
 											</div>
 										</div>
 										<div class="dplr-item">

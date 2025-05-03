@@ -46,6 +46,7 @@
                                             value=""
                                             maxlength="100"
                                             name="listCreation"
+                                            class="box-shado-0"
                                             placeholder="<?php _e('Write the List name', 'doppler-form')?>">
                                 </label>
                             </div>

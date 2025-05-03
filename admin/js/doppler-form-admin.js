@@ -517,6 +517,14 @@
 					bindto: "#doppler-forms-chart"
 				});
 			}
+
+			$("#dplr-consent-checkbox").change(function () {
+				const isChecked = $(this).is(':checked');
+        
+				$('#dplr-consent-location, #dplr-consent-text').prop('disabled', !isChecked);
+				$('#dplr-consent-location, #dplr-consent-text').prop('required', isChecked);
+				$('label[for="dplr-consent-location"], label[for="dplr-consent-text"]').attr('aria-disabled', !isChecked);
+			});
 		});
 	});
 
