@@ -259,11 +259,11 @@ class Doppler_Admin {
 
 			add_submenu_page(
 				'doppler_forms_menu',
-				__('On-Site Tracking', 'doppler-form'),
-				__('On-Site Tracking', 'doppler-form'),
+				__('Settings', 'doppler-form'),
+				__('Settings', 'doppler-form'),
 				'manage_options',
-				'doppler-data-hub',
-				array($this, 'doppler_data_hub_screen')
+				'doppler-settings',
+				array($this, 'doppler_settings_screen')
 			);
 
 			do_action('dplr_add_extension_submenu');
@@ -428,7 +428,7 @@ class Doppler_Admin {
 		$dplr_hub_script = get_option('dplr_hub_script');
 
 		require_once("partials/loading.php");
-		require_once('partials/data-hub.php');
+		require_once('partials/settings.php');
 	}
 
 	public function show_admin_notices() {
