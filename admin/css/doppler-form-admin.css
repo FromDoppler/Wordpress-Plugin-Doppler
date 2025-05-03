@@ -100,6 +100,10 @@
 	text-align: right;
 }
 
+.dplr_settings .box-shado-0 {
+	box-shadow: none !important;
+}
+
 .dplr_settings a.green-link {
 	color: #33ad73;
 	text-decoration: none;
