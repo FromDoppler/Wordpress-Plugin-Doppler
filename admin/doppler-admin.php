@@ -689,7 +689,8 @@ class Doppler_Admin {
 	 * Validates on site tracking code.
 	 */
 	public function validate_tracking_code($code) {
-		return preg_match("/(<|%3C)script[\s\S]*?(>|%3E)[\s\S]*?(<|%3C)(\/|%2F)script[\s\S]*?(>|%3E)/", $code);
+		return preg_match("/(<|%3C)script[\s\S]*?(>|%3E)(<|%3C)(\/|%2F)script(>|%3E)$/", $code)
+			&& strpos($code, 'src=\"https://hub.fromdoppler.com/public/dhtrack.js\"') !== false;
 	}
 	
 	/**
