@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
 "POT-Creation-Date: 2025-05-02 18:45-0300\n"
-"PO-Revision-Date: 2025-05-02 18:48-0300\n"
+"PO-Revision-Date: 2025-05-11 13:06-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Chile\n"
 "Language: es_CL\n"
@@ -264,7 +264,7 @@ msgstr "Administración de Listas"
 
 #: admin/doppler-admin.php:262 admin/doppler-admin.php:263
 msgid "Settings"
-msgstr "Configuración"
+msgstr "Ajustes"
 
 #: admin/doppler-admin.php:318 admin/partials/api-connection.php:410
 #: admin/partials/api-connection.php:415 admin/partials/api-connection.php:445
