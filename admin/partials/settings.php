@@ -15,16 +15,25 @@ if ( ! current_user_can( 'manage_options' ) ) {
             <?php $this->display_error_message() ?>
 
             <form id="dplrwoo-form-settings" action="" method="post">
-                <?php wp_nonce_field( 'use-settings' );?>
+                <?php wp_nonce_field( 'use-settings' );
+                    $dplr_tracking = get_option('dplr_hub_script', '');
+                ?>
                 <section class="col-sm-12 col-md-10 col-lg-7">
                     <h2 class="main-title">
                         <?php _e('Doppler Forms', 'doppler-form')?> <?php echo $this->get_version()?>
                     </h2>
                     <header>
                         <div class="dp-container">
-                            <div class="dp-rowflex">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="dp-rowflex space-between">
+                                <div class="col-sm-10 col-md-10 col-lg-10">
                                     <h3><?php _e('On-Site Tracking', 'doppler-form')?></h3>
+                                </div>
+                                <div class="dp-switch">
+                                    <input type="hidden" name="dplr-tracking-checkbox" value="0">
+                                    <input type="checkbox" id="dplr-tracking-checkbox" name="dplr-tracking-checkbox" <?php echo $dplr_tracking !== '' ? 'checked' : ''; ?>>
+                                    <label for="dplr-tracking-checkbox">
+                                        <span></span>
+                                    </label>
                                 </div>
                                 <div class="col-sm-10 col-md-10 col-lg-10">
                                     <p><?php _e('Get your Site Tracking Code from Doppler and paste it below to track your visitors activity. Not sure how to get your code? Press <a href="https://help.fromdoppler.com/en/create-onsite-tracking-automation" class="green-link">HELP</a>','doppler-form') ?>.</p>
@@ -32,11 +41,6 @@ if ( ! current_user_can( 'manage_options' ) ) {
                             </div>
                         </div>
                     </header>
-                    <div class="dplr-tab-content">
-                        <p>
-                            <textarea name="dplr_hub_script" rows="3" class="m-b-12" placeholder="<?php _e('Paste tracking code here.','doppler-form')?>"><?php echo stripslashes(html_entity_decode($dplr_hub_script)) ?></textarea>
-                        </p>            
-                    </div>
                 </section>
             
                 <?php if($this->extension_manager->is_active('doppler-for-woocommerce')):
