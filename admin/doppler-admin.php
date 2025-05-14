@@ -418,17 +418,15 @@ class Doppler_Admin {
 		$success = 0;
     	$error_messages = [];
 
-		if(isset($_POST['dplr_hub_script'])):
-			if(current_user_can('manage_options') && check_admin_referer('use-settings') ){
-				if( $_POST['dplr_hub_script'] === '' || $this->validate_tracking_code($_POST['dplr_hub_script'])):
-					update_option( 'dplr_hub_script', $this->sanitize_tracking_code($_POST['dplr_hub_script']));
-					$success++;
-				else:
-					$error_messages[] = __('Tracking code is invalid', 'doppler-form');
-				endif;
-			}
+		if(isset($_POST['dplr-tracking-checkbox'])):
+			if(current_user_can('manage_options') && check_admin_referer('use-settings')):
+				$script = $_POST['dplr-tracking-checkbox'] == 0 ? '' : '<script type="text/javascript" async="async" src="https://hub.fromdoppler.com/public/dhtrack.js" ></script>';
+				update_option( 'dplr_hub_script', sanitize_text_field(htmlentities(trim($script))));
+				$success++;
+			else:
+				$error_messages[] = __('Tracking code is invalid', 'doppler-form');
+			endif;
 		endif;
-		$dplr_hub_script = get_option('dplr_hub_script');
 
 		if(isset($_POST['dplr-consent-checkbox'])):
 			if(current_user_can('manage_options') && check_admin_referer('use-settings')):
@@ -683,22 +681,6 @@ class Doppler_Admin {
 	private function create_list($list_name) {
 		$subscriber_resource = $this->doppler_service->getResource('lists');
 		return $subscriber_resource->saveList( $list_name )['body'];
-	}
-
-	/**
-	 * Validates on site tracking code.
-	 */
-	public function validate_tracking_code($code) {
-		return preg_match("/(<|%3C)script[\s\S]*?(>|%3E)[\s\S]*?(<|%3C)(\/|%2F)script[\s\S]*?(>|%3E)/", $code);
-	}
-	
-	/**
-	 * Sanitize on site tracking pasted code.
-	 */
-	public function sanitize_tracking_code($code) {
-		//Is valid to save empty value in this case.
-		if($code === '') return $code;
-		return sanitize_text_field(htmlentities(trim($code)));
 	}
 
 	/**
