@@ -91,7 +91,7 @@ class DPLR_Form_helper
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>
-			<input type="text" name="secondary-dplrEmail" value="" class="dplr-secondary-email"/>
+			<input type="text" name="dplr-hp-field" value="" tabindex="-1" autocomplete="off" class="dplr-hp-field"/>
 			<label class="msg-data-sending"><?php echo isset($form->settings["message_success"]) ? $form->settings["message_success"] : __('Thanks for subscribing', 'doppler-form'); ?></label>
 			<div class="input-button">
 				<button type="submit" name="submit" class="<?php echo isset($form->settings["button_position"]) ? $form->settings["button_position"] : 'left'; ?>">
