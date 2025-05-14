@@ -13,7 +13,7 @@
 		var l = form.find("input[name='list_id']");
 		var d = form.find("input[name='form_id']");
 		var e = form.find("input[name='EMAIL']");
-		var honey = form.find("input[name='secondary-dplrEmail']");
+		var honey = form.find("input[name='dplr-hp-field']");
 		var thankyou = form.find("input[name='thankyou']");
 		let form_id = d.val();
 		var fields = form.find(
