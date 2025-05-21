@@ -1305,6 +1305,18 @@
     margin-bottom: 0;
 }
 
+.dplr_settings .code-block{
+    border-left: 5px solid #c0c3c3;
+    padding: 15px;
+    font-size: 18px;
+    font-style: italic;
+    margin: 20px 0 20px 40px;
+}
+
+.dplr_settings .code-block > p > code{
+    background-color: inherit;
+}
+
 /* override doppler's styles */
 .wp-core-ui .wp-editor-tools .wp-media-buttons > button,
 .wp-core-ui .wp-editor-container .ed_button {

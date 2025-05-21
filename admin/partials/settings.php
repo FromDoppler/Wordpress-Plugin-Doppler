@@ -36,8 +36,13 @@ if ( ! current_user_can( 'manage_options' ) ) {
                                     </label>
                                 </div>
                                 <div class="col-sm-10 col-md-10 col-lg-10">
-                                    <p><?php _e('Get your Site Tracking Code from Doppler and paste it below to track your visitors activity. Not sure how to get your code? Press <a href="https://help.fromdoppler.com/en/create-onsite-tracking-automation" class="green-link">HELP</a>','doppler-form') ?>.</p>
+                                    <p><?php _e('Adds Doppler\'s Site Tracking Code to your site to track your visitors activity. Not sure how it works? Press <a href="https://help.fromdoppler.com/en/create-onsite-tracking-automation" class="green-link">HELP</a>','doppler-form') ?>.</p>
                                 </div>
+                                <blockquote class="code-block">
+                                    <p>
+                                        <code>&lt;script async="async" type="text/javascript" src="https://hub.fromdoppler.com/public/dhtrack.js"&gt;&lt;/script&gt;</code>
+                                    </p>
+                                </blockquote>
                             </div>
                         </div>
                     </header>
