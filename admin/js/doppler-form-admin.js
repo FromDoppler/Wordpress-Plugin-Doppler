@@ -1,9 +1,4 @@
 (function ($) {
-	$(window).on('load', function () {
-		$('#doppler-loading-screen').hide();
-		$('#dplr_body_content').show();
-	});
-
 	function validateEmail(emailInput) {
 		var email = emailInput.val();
 		var assistanceWrap = emailInput[0].nextElementSibling;
@@ -42,6 +37,8 @@
 	}
 
 	$(document).ready(function () {
+		$('#doppler-loading-screen').hide();
+		$('#dplr_body_content').show();
 		var colorSelector = $(".color-selector");
 		var default_page_size = 200;
 
