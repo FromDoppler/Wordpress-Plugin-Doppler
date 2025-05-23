@@ -1,520 +1,339 @@
 (function ($) {
-	jQuery(document).ready(function ($) {
-		function validateEmail(emailInput) {
-			var email = emailInput.val();
-			var assistanceWrap = emailInput[0].nextElementSibling;
+	$(window).on('load', function () {
+		$('#doppler-loading-screen').hide();
+		$('#dplr_body_content').show();
+	});
 
-			if (
-				email.match(
-					/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-				)
-			) {
-				emailInput.attr("aria-invalid", "false");
-				$(assistanceWrap).find("span").html("");
-			} else {
-				emailInput.attr("aria-invalid", "true");
-				$(assistanceWrap)
-					.find("span")
-					.html(emailInput.attr("data-validation-email"));
+	function validateEmail(emailInput) {
+		var email = emailInput.val();
+		var assistanceWrap = emailInput[0].nextElementSibling;
+
+		if (
+			email.match(
+				/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			)
+		) {
+			emailInput.attr("aria-invalid", "false");
+			$(assistanceWrap).find("span").html("");
+		} else {
+			emailInput.attr("aria-invalid", "true");
+			$(assistanceWrap)
+				.find("span")
+				.html(emailInput.attr("data-validation-email"));
+		}
+	}
+
+	function validateRequired(requiredElement) {
+		var value = requiredElement.val();
+		var assistanceWrap = requiredElement[0].nextElementSibling;
+		if (value) {
+			requiredElement.attr("aria-invalid", "false");
+			$(assistanceWrap).find("span").html("");
+		} else {
+			requiredElement.attr("aria-invalid", "true");
+			$(assistanceWrap)
+				.find("span")
+				.html(requiredElement.attr("data-validation-required"));
+		}
+	}
+
+	function hideUserApiError() {
+		$(".tooltip--user_api_error").css("display", "none");
+	}
+
+	$(document).ready(function () {
+		var colorSelector = $(".color-selector");
+		var default_page_size = 200;
+
+		$("input[data-validation-email]").focusout(function () {
+			hideUserApiError();
+			validateEmail($(this));
+		});
+
+		$("input[data-validation-required]").focusout(function () {
+			hideUserApiError();
+			validateRequired($(this));
+		});
+
+		$(".dplr-input-section input[type='text']").focusin(function (e) {
+			$(this)
+				.closest(".dplr-input-section")
+				.addClass("notempty")
+				.find(".tooltip-container span")
+				.html("");
+			$(this).addClass("notempty");
+		});
+
+		$(".dplr-input-section input[type='text']").focusout(function (e) {
+			if ($(this).val() == "") {
+				$(this).closest(".dplr-input-section").removeClass("notempty");
+				$(this).removeClass("notempty");
 			}
-		}
+		});
 
-		function validateRequired(requiredElement) {
-			var value = requiredElement.val();
-			var assistanceWrap = requiredElement[0].nextElementSibling;
-			if (value) {
-				requiredElement.attr("aria-invalid", "false");
-				$(assistanceWrap).find("span").html("");
-			} else {
-				requiredElement.attr("aria-invalid", "true");
-				$(assistanceWrap)
-					.find("span")
-					.html(requiredElement.attr("data-validation-required"));
-			}
-		}
+		$("#dplr-disconnect-form").submit(function (event) {
+			event.preventDefault();
+			hideUserApiError();
 
-		function hideUserApiError() {
-			$(".tooltip--user_api_error").css("display", "none");
-		}
+			var form = $(this);
+			var button = $(this).find("button");
+			button.attr("disabled", "disabled").addClass("button--loading");
 
-		$(window).on('load', function () {
-			$('#doppler-loading-screen').hide();
-			$('#dplr_body_content').show();
+			var data = {
+				action: "dplr_ajax_disconnect",
+			};
 
-			var colorSelector = $(".color-selector");
-			var default_page_size = 200;
-
-			$("input[data-validation-email]").focusout(function () {
-				hideUserApiError();
-				validateEmail($(this));
-			});
-
-			$("input[data-validation-required]").focusout(function () {
-				hideUserApiError();
-				validateRequired($(this));
-			});
-
-			$(".dplr-input-section input[type='text']").focusin(function (e) {
-				$(this)
-					.closest(".dplr-input-section")
-					.addClass("notempty")
-					.find(".tooltip-container span")
-					.html("");
-				$(this).addClass("notempty");
-			});
-
-			$(".dplr-input-section input[type='text']").focusout(function (e) {
-				if ($(this).val() == "") {
-					$(this).closest(".dplr-input-section").removeClass("notempty");
-					$(this).removeClass("notempty");
+			$.post(ajaxurl, data, function (response) {
+				var obj = JSON.parse(response);
+				if (obj.response.code == "200") {
+					window.location.reload();
+				} else {
+					var body = JSON.parse(obj.body);
+					var msg = "";
+					if (body.status != "401") {
+						msg = generateErrorMsg(body);
+					} else {
+						msg = object_string.wrongCredentials;
+					}
+					var error =
+						'<div class="tooltip tooltip-warning tooltip--user_api_error">';
+					error += '<div class="text-red text-left">';
+					error += "<span>" + msg + "</span>";
+					error += "</div>";
+					error += "</div>";
+					form.after(error);
+					button.removeAttr("disabled").removeClass("button--loading");
 				}
 			});
+		});
 
-			$("#dplr-disconnect-form").submit(function (event) {
-				event.preventDefault();
-				hideUserApiError();
+		/**
+		 * Check against api first,
+		 * then save credentials.
+		 */
+		$("#dplr-connect-form").submit(function (event) {
+			event.preventDefault();
+			hideUserApiError();
 
-				var form = $(this);
-				var button = $(this).find("button");
-				button.attr("disabled", "disabled").addClass("button--loading");
+			var form = $(this);
+			var button = $(this).find("button");
+			var userfield = $("#user-account");
+			var keyfield = $("#api-key");
 
-				var data = {
-					action: "dplr_ajax_disconnect",
-				};
+			validateEmail($("input[data-validation-email]"));
+			validateRequired($("input[data-validation-required]"));
 
-				$.post(ajaxurl, data, function (response) {
-					var obj = JSON.parse(response);
-					if (obj.response.code == "200") {
-						window.location.reload();
-					} else {
-						var body = JSON.parse(obj.body);
-						var msg = "";
-						if (body.status != "401") {
-							msg = generateErrorMsg(body);
-						} else {
-							msg = object_string.wrongCredentials;
-						}
-						var error =
-							'<div class="tooltip tooltip-warning tooltip--user_api_error">';
-						error += '<div class="text-red text-left">';
-						error += "<span>" + msg + "</span>";
-						error += "</div>";
-						error += "</div>";
-						form.after(error);
-						button.removeAttr("disabled").removeClass("button--loading");
-					}
-				});
-			});
+			var inputErrors = $(this).find(".input-error");
+			if (inputErrors.length > 0) {
+				button.removeClass("button--loading");
+				return false;
+			}
 
-			/**
-			 * Check against api first,
-			 * then save credentials.
-			 */
-			$("#dplr-connect-form").submit(function (event) {
-				event.preventDefault();
-				hideUserApiError();
+			button.attr("disabled", "disabled").addClass("button--loading");
 
-				var form = $(this);
-				var button = $(this).find("button");
-				var userfield = $("#user-account");
-				var keyfield = $("#api-key");
+			var data = {
+				action: "dplr_ajax_connect",
+				user: userfield.val(),
+				key: keyfield.val(),
+			};
 
-				validateEmail($("input[data-validation-email]"));
-				validateRequired($("input[data-validation-required]"));
-
-				var inputErrors = $(this).find(".input-error");
-				if (inputErrors.length > 0) {
-					button.removeClass("button--loading");
-					return false;
-				}
-
-				button.attr("disabled", "disabled").addClass("button--loading");
-
-				var data = {
-					action: "dplr_ajax_connect",
-					user: userfield.val(),
-					key: keyfield.val(),
-				};
-
-				$.post(ajaxurl, data, function (response) {
-					var obj = JSON.parse(response);
-					if (obj.response.code == "200") {
-						var fields = form.serialize();
-						$.post("options.php", fields, function () {
-							window.location.reload(false);
-						});
-					} else {
-						var body = JSON.parse(obj.body);
-						var msg = "";
-						if (body.status != "401") {
-							msg = generateErrorMsg(body);
-						} else {
-							msg = object_string.wrongCredentials;
-						}
-						var error =
-							'<div class="tooltip tooltip-warning tooltip--user_api_error">';
-						error += '<div class="text-red text-left">';
-						error += "<span>" + msg + "</span>";
-						error += "</div>";
-						error += "</div>";
-						form.after(error);
-						button.removeAttr("disabled").removeClass("button--loading");
-					}
-				});
-			});
-
-			$("#dplr-connect-form.error label input[type='text']").keyup(function (
-				event
-			) {
-				$(".error").each(function (index, el) {
-					$(this).removeClass("error");
-				});
-			});
-
-			$(".multiple-selec").each(function () {
-				var elem = $(this);
-				var elemID = elem.attr("id");
-				if (elemID != "widget-dplr_subscription_widget-__i__-selected_lists") {
-					elem.chosen({
-						width: "100%",
+			$.post(ajaxurl, data, function (response) {
+				var obj = JSON.parse(response);
+				if (obj.response.code == "200") {
+					var fields = form.serialize();
+					$.post("options.php", fields, function () {
+						window.location.reload(false);
 					});
-					elem.addClass("selecAdded");
-				}
-			});
-
-			$(".sortable").sortable({
-				placeholder: "ui-state-mark",
-			});
-
-			$(".sortable").disableSelection();
-
-			/*
-		var fields = {
-			container: $("ul#formFields"),
-
-			items: [],
-			addItem: function(item) {
-				var domElement = $(item.renderItem());
-				var _this = this;
-				this.items.push(item);
-				domElement.find(".icon-close").on("click", function(){
-					$(this).parent().remove();
-				});
-				this.container.append(domElement);
-			},
-			removeItem: function(element) {
-
-			}
-		};*/
-
-			$("body").on("click", "li .alt-toggle", function (e) {
-				$(this).closest("li").toggleClass("active");
-			});
-
-			$(".dplr-toggle-thankyou").change(function () {
-				var o = $(".dplr-toggle-thankyou:checked").val();
-				if (o === "yes") {
-					$(".dplr_thankyou_url input").attr("required", "required");
-					$(".dplr_thankyou_url input").removeAttr("disabled");
-					$(".dplr_thankyou_url").css("display", "block");
-					$(".dplr_confirmation_message").val("").css("display", "none");
 				} else {
-					$(".dplr_thankyou_url input").removeAttr("required");
-					$(".dplr_thankyou_url input").attr("disabled", "disabled");
-					$(".dplr_thankyou_url").val("").css("display", "none");
-					$(".dplr_confirmation_message").css("display", "block");
+					var body = JSON.parse(obj.body);
+					var msg = "";
+					if (body.status != "401") {
+						msg = generateErrorMsg(body);
+					} else {
+						msg = object_string.wrongCredentials;
+					}
+					var error =
+						'<div class="tooltip tooltip-warning tooltip--user_api_error">';
+					error += '<div class="text-red text-left">';
+					error += "<span>" + msg + "</span>";
+					error += "</div>";
+					error += "</div>";
+					form.after(error);
+					button.removeAttr("disabled").removeClass("button--loading");
 				}
 			});
+		});
 
-			$(".dplr-toggle-consent").change(function () {
-				var o = $(".dplr-toggle-consent:checked").val();
-				if (o === "yes") {
-					$("#dplr_consent_section").fadeIn();
-				} else {
-					$("#dplr_consent_section").fadeOut();
-				}
+		$("#dplr-connect-form.error label input[type='text']").keyup(function (
+			event
+		) {
+			$(".error").each(function (index, el) {
+				$(this).removeClass("error");
 			});
+		});
 
-			if ($(".dplr-toggle-selector").length > 0) {
-				colorSelector.iris({
-					change: function (event, ui) {
-						$(".color-selector")[0].setCustomValidity("");
-					},
+		$(".multiple-selec").each(function () {
+			var elem = $(this);
+			var elemID = elem.attr("id");
+			if (elemID != "widget-dplr_subscription_widget-__i__-selected_lists") {
+				elem.chosen({
+					width: "100%",
 				});
-				showColorSelector();
+				elem.addClass("selecAdded");
 			}
+		});
 
-			$(".dplr-toggle-selector").change(function () {
-				if (!colorSelector.val().match("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"))
-					colorSelector.val("");
-				showColorSelector();
+		$(".sortable").sortable({
+			placeholder: "ui-state-mark",
+		});
+
+		$(".sortable").disableSelection();
+
+		/*
+	var fields = {
+		container: $("ul#formFields"),
+
+		items: [],
+		addItem: function(item) {
+			var domElement = $(item.renderItem());
+			var _this = this;
+			this.items.push(item);
+			domElement.find(".icon-close").on("click", function(){
+				$(this).parent().remove();
 			});
+			this.container.append(domElement);
+		},
+		removeItem: function(element) {
 
-			if ($("#dplr-dialog-confirm").length > 0) {
-				$("#dplr-dialog-confirm").dialog({
-					autoOpen: false,
-					resizable: false,
-					height: "auto",
-					width: 400,
-					modal: true,
-				});
+		}
+	};*/
+
+		$("body").on("click", "li .alt-toggle", function (e) {
+			$(this).closest("li").toggleClass("active");
+		});
+
+		$(".dplr-toggle-thankyou").change(function () {
+			var o = $(".dplr-toggle-thankyou:checked").val();
+			if (o === "yes") {
+				$(".dplr_thankyou_url input").attr("required", "required");
+				$(".dplr_thankyou_url input").removeAttr("disabled");
+				$(".dplr_thankyou_url").css("display", "block");
+				$(".dplr_confirmation_message").val("").css("display", "none");
+			} else {
+				$(".dplr_thankyou_url input").removeAttr("required");
+				$(".dplr_thankyou_url input").attr("disabled", "disabled");
+				$(".dplr_thankyou_url").val("").css("display", "none");
+				$(".dplr_confirmation_message").css("display", "block");
 			}
+		});
 
-			$(".dplr-tab-content--list .dplr-remove").click(function (e) {
-				e.preventDefault();
-				clearResponseMessages();
-				var a = $(this);
-				var listId = a.attr("data-list-id");
-				var row = a.closest("tr");
-				if (!listId > 0) return false;
+		$(".dplr-toggle-consent").change(function () {
+			var o = $(".dplr-toggle-consent:checked").val();
+			if (o === "yes") {
+				$("#dplr_consent_section").fadeIn();
+			} else {
+				$("#dplr_consent_section").fadeOut();
+			}
+		});
 
-				$("#dplr-dialog-confirm").dialog("option", "buttons", [
-					{
-						text: object_string.Delete,
-						click: function () {
-							var data = { action: "dplr_delete_form", listId: listId };
-							$(this).dialog("close");
-							row.addClass("deleting");
-							$.post(ajaxurl, data, function (resp) {
-								if (resp == "1") {
-									row.remove();
-								}
-							});
-						},
-					},
-					{
-						text: object_string.Cancel,
-						click: function () {
-							$(this).dialog("close");
-						},
-					},
-				]);
-
-				$("#dplr-dialog-confirm").dialog("open");
+		if ($(".dplr-toggle-selector").length > 0) {
+			colorSelector.iris({
+				change: function (event, ui) {
+					$(".color-selector")[0].setCustomValidity("");
+				},
 			});
+			showColorSelector();
+		}
 
-			/* CRUD */
+		$(".dplr-toggle-selector").change(function () {
+			if (!colorSelector.val().match("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"))
+				colorSelector.val("");
+			showColorSelector();
+		});
 
-			$("#dplr-save-list").click(function (e) {
-				e.preventDefault();
-				clearResponseMessages();
-				var listName = $(this).closest("form").find('input[type="text"]').val();
-				if (listName !== "") {
-					var data = {
-						action: "dplr_save_list",
-						listName: listName,
-					};
-					listsLoading();
-					$.post(ajaxurl, data, function (response) {
-						var body = JSON.parse(response);
-						if (body.createdResourceId) {
-							var html = "<tr>";
-							html += "<td><strong>" + listName + "</strong></td>";
-							html += "<td>0</td>";
-							html +=
-								'<td><div class="dp-icons-group"><a href="#" class="dplr-remove" data-list-id="' +
-								body.createdResourceId +
-								'">' +
-								'<div class="dp-tooltip-container"> \
-								<span class="ms-icon icon-delete"></span> \
-								<div class="dp-tooltip-top"> \
-								<span>' +
-								object_string.Delete +
-								"</span> \
-								</div> \
-								</div>" +
-								"</a></div></td>";
-							html += "</tr>";
-							$("#dplr-tbl-lists tbody").prepend(html);
-						} else {
-							if (body.status >= 400) {
-								//body.status,body.errorCode
-								displayErrors(body);
+		if ($("#dplr-dialog-confirm").length > 0) {
+			$("#dplr-dialog-confirm").dialog({
+				autoOpen: false,
+				resizable: false,
+				height: "auto",
+				width: 400,
+				modal: true,
+			});
+		}
+
+		$(".dplr-tab-content--list .dplr-remove").click(function (e) {
+			e.preventDefault();
+			clearResponseMessages();
+			var a = $(this);
+			var listId = a.attr("data-list-id");
+			var row = a.closest("tr");
+			if (!listId > 0) return false;
+
+			$("#dplr-dialog-confirm").dialog("option", "buttons", [
+				{
+					text: object_string.Delete,
+					click: function () {
+						var data = { action: "dplr_delete_form", listId: listId };
+						$(this).dialog("close");
+						row.addClass("deleting");
+						$.post(ajaxurl, data, function (resp) {
+							if (resp == "1") {
+								row.remove();
 							}
-						}
-						listsLoaded();
-					});
-				}
-			});
+						});
+					},
+				},
+				{
+					text: object_string.Cancel,
+					click: function () {
+						$(this).dialog("close");
+					},
+				},
+			]);
 
-			$("#dplr-tbl-lists tbody").on("click", "tr a", deleteList);
+			$("#dplr-dialog-confirm").dialog("open");
+		});
 
-			$(".dplr-extensions .extension-item button.dp-install").click(function () {
-				var button = $(this);
-				var extension = button.attr("data-extension");
-				var action = button.attr("data-click-action");
-				button.addClass("button--loading").html(action ? action : object_string.installing);
-				button
-					.closest(".dplr-extensions")
-					.find("button")
-					.css("pointer-events", "none");
+		/* CRUD */
+
+		$("#dplr-save-list").click(function (e) {
+			e.preventDefault();
+			clearResponseMessages();
+			var listName = $(this).closest("form").find('input[type="text"]').val();
+			if (listName !== "") {
 				var data = {
-					action: "install_extension",
-					extensionName: extension,
+					action: "dplr_save_list",
+					listName: listName,
 				};
-				$.post(ajaxurl, data, function (resp) {
-					window.location.reload(false);
-				});
-			});
-
-			$(".tab--link").click(function (e) {
-				e.preventDefault();
-				$(".tab--link").removeClass("active");
-				$(this).addClass("active");
-				var tab = $(this).attr("data-tab");
-				$(".tab--content").removeClass("active");
-				$("#tab-" + tab).addClass("active");
-			});
-
-			if ($("#dplr-tbl-lists").length > 0) {
-				loadLists(1, default_page_size);
-			}
-
-			function showColorSelector() {
-				colorSelector.val() == ""
-					? (btnColor = "#000000")
-					: (btnColor = colorSelector.val());
-				$(".dplr-toggle-selector:checked").val() === "yes"
-					? colorSelector
-							.css("display", "block")
-							.iris("color", btnColor)
-							.iris("show")
-					: colorSelector.css("display", "none").iris("hide");
-			}
-
-			//Autocomplete the hidden button with the form_name in the forms of Double Opt-In
-			$('input[name="name"]').on("change", function () {
-				$("#form_name").val($(this).val());
-			});
-
-			if ($('input[name="name"]').val()) {
-				$("#form_name").val($('input[name="name"]').val());
-			}
-
-			$("#gdpr_add_button").on("click", function () {
-				var html =
-					"<li id='gdpr_input_section_" +
-					gdprAmount +
-					"' class='active' >" +
-					"<div class='ms-icon icon-close' id='gdpr_remove_button' >" +
-					"</div>" +
-					"<a class='alt-toggle'>" +
-					object_string.editField +
-					"<i></i></a>" +
-					"<div class='accordion-content field-settings'>" +
-					"<div class='dplr_input_section'>" +
-					"<label for='settings[consent_field_text][" +
-					gdprAmount +
-					"]'>" +
-					object_string.privacyPolicyLabel +
-					"</label>" +
-					"<input type='text' name='settings[consent_field_text][" +
-					gdprAmount +
-					"]' value=''" +
-					"placeholder='" +
-					object_string.privacyPolicyPlaceholder +
-					"' maxlength='150' required/>" +
-					"</div>" +
-					"<div class='dplr_input_section'>" +
-					"<label for='settings[consent_field_url][" +
-					gdprAmount +
-					"]'>" +
-					object_string.privacyPolicyUrlPlaceholder +
-					"</label>" +
-					"<input type='url' name='settings[consent_field_url][" +
-					gdprAmount +
-					"]' pattern='https?://.+'" +
-					"value='' placeholder='' maxlength='150' required/>" +
-					"</div>" +
-					"</div>" +
-					"</li>";
-
-				$("#gdpr_section").prepend(html);
-
-				$("#gdpr_remove_button").on("click", function () {
-					var fieldContainer = $(this).closest("li");
-					fieldContainer.remove();
-				});
-				gdprAmount += 1;
-			});
-
-			$(".copy-shortcode").click(function (e) {
-				e.preventDefault();
-
-				var shortcode = $(this)
-					.closest(".dp-rowflex")
-					.find("span")
-					.first()
-					.text();
-
-				navigator.clipboard.writeText(shortcode);
-			});
-
-			if ($("#doppler-forms-chart").length) {
-				const formNames = ["x"];
-				const singleOptinForms = [object_string.SimpleOptIn];
-				const doubleOptinForms = [object_string.DoubleOptIn];
-
-				chartData.data.forEach(form => {
-					formNames.push(form.name);
-
-					const displays = parseInt(form.events?.Display) || 0;
-					const submits = parseInt(form.events?.Submit) || 0;
-					const ratio = displays > 0 ? ((submits / displays) * 100).toFixed(2) : 0;
-
-					if (form.settings?.form_doble_optin === "yes") {
-						doubleOptinForms.push(parseFloat(ratio));
-						singleOptinForms.push(null);
+				listsLoading();
+				$.post(ajaxurl, data, function (response) {
+					var body = JSON.parse(response);
+					if (body.createdResourceId) {
+						var html = "<tr>";
+						html += "<td><strong>" + listName + "</strong></td>";
+						html += "<td>0</td>";
+						html +=
+							'<td><div class="dp-icons-group"><a href="#" class="dplr-remove" data-list-id="' +
+							body.createdResourceId +
+							'">' +
+							'<div class="dp-tooltip-container"> \
+							<span class="ms-icon icon-delete"></span> \
+							<div class="dp-tooltip-top"> \
+							<span>' +
+							object_string.Delete +
+							"</span> \
+							</div> \
+							</div>" +
+							"</a></div></td>";
+						html += "</tr>";
+						$("#dplr-tbl-lists tbody").prepend(html);
 					} else {
-						singleOptinForms.push(parseFloat(ratio));
-						doubleOptinForms.push(null);
+						if (body.status >= 400) {
+							//body.status,body.errorCode
+							displayErrors(body);
+						}
 					}
-				});
-
-				bb.generate({
-					data: {
-						x: "x",
-						columns: [formNames, singleOptinForms, doubleOptinForms],
-						type: "bar",
-						colors: {
-							[object_string.SimpleOptIn]: "#A783C7",
-							[object_string.DoubleOptIn]: "#F5B128"
-						},
-						groups: [[object_string.SimpleOptIn, object_string.DoubleOptIn]],
-						labels: true
-					},
-					size: {
-						width: 800
-					},
-					axis: {
-						x: { type: "category" },
-						y: {
-							tick: { format: d => d + "%" }
-						}
-					},
-					tooltip: {
-						grouped: false,
-						contents: function (d) {
-							let data = d[0];
-							let formIndex = data.index;
-							let form = chartData.data[formIndex];
-				
-							let rate = data.value + "%";
-							let displays = form.events?.Display || 0;
-							let submits = form.events?.Submit || 0;
-							let type = form.settings?.form_doble_optin === "yes" ? object_string.DoubleOptIn : object_string.SimpleOptIn;
-				
-							return `
-							<div class="bb-tooltip p-t-12 p-b-12 p-l-12 p-r-12">
-										<strong>${form.name}</strong><br>
-										${object_string.ConversonRate}: <strong>${rate}</strong><br>
-										${object_string.Impressions}: <strong>${displays}</strong><br>
-										${object_string.Subscribed}: <strong>${submits}</strong><br>
-										${object_string.formType}: <strong>${type}</strong>
-									</div>`;
-						}
-					},
-					bindto: "#doppler-forms-chart"
+					listsLoaded();
 				});
 			}
 
@@ -526,6 +345,187 @@
 				$('label[for="dplr-consent-location"], label[for="dplr-consent-text"]').attr('aria-disabled', !isChecked);
 			});
 		});
+
+		$("#dplr-tbl-lists tbody").on("click", "tr a", deleteList);
+
+		$(".dplr-extensions .extension-item button.dp-install").click(function () {
+			var button = $(this);
+			var extension = button.attr("data-extension");
+			var action = button.attr("data-click-action");
+			button.addClass("button--loading").html(action ? action : object_string.installing);
+			button
+				.closest(".dplr-extensions")
+				.find("button")
+				.css("pointer-events", "none");
+			var data = {
+				action: "install_extension",
+				extensionName: extension,
+			};
+			$.post(ajaxurl, data, function (resp) {
+				window.location.reload(false);
+			});
+		});
+
+		$(".tab--link").click(function (e) {
+			e.preventDefault();
+			$(".tab--link").removeClass("active");
+			$(this).addClass("active");
+			var tab = $(this).attr("data-tab");
+			$(".tab--content").removeClass("active");
+			$("#tab-" + tab).addClass("active");
+		});
+
+		if ($("#dplr-tbl-lists").length > 0) {
+			loadLists(1, default_page_size);
+		}
+
+		function showColorSelector() {
+			colorSelector.val() == ""
+				? (btnColor = "#000000")
+				: (btnColor = colorSelector.val());
+			$(".dplr-toggle-selector:checked").val() === "yes"
+				? colorSelector
+						.css("display", "block")
+						.iris("color", btnColor)
+						.iris("show")
+				: colorSelector.css("display", "none").iris("hide");
+		}
+
+		//Autocomplete the hidden button with the form_name in the forms of Double Opt-In
+		$('input[name="name"]').on("change", function () {
+			$("#form_name").val($(this).val());
+		});
+
+		if ($('input[name="name"]').val()) {
+			$("#form_name").val($('input[name="name"]').val());
+		}
+
+		$("#gdpr_add_button").on("click", function () {
+			var html =
+				"<li id='gdpr_input_section_" +
+				gdprAmount +
+				"' class='active' >" +
+				"<div class='ms-icon icon-close' id='gdpr_remove_button' >" +
+				"</div>" +
+				"<a class='alt-toggle'>" +
+				object_string.editField +
+				"<i></i></a>" +
+				"<div class='accordion-content field-settings'>" +
+				"<div class='dplr_input_section'>" +
+				"<label for='settings[consent_field_text][" +
+				gdprAmount +
+				"]'>" +
+				object_string.privacyPolicyLabel +
+				"</label>" +
+				"<input type='text' name='settings[consent_field_text][" +
+				gdprAmount +
+				"]' value=''" +
+				"placeholder='" +
+				object_string.privacyPolicyPlaceholder +
+				"' maxlength='150' required/>" +
+				"</div>" +
+				"<div class='dplr_input_section'>" +
+				"<label for='settings[consent_field_url][" +
+				gdprAmount +
+				"]'>" +
+				object_string.privacyPolicyUrlPlaceholder +
+				"</label>" +
+				"<input type='url' name='settings[consent_field_url][" +
+				gdprAmount +
+				"]' pattern='https?://.+'" +
+				"value='' placeholder='' maxlength='150' required/>" +
+				"</div>" +
+				"</div>" +
+				"</li>";
+
+			$("#gdpr_section").prepend(html);
+
+			$("#gdpr_remove_button").on("click", function () {
+				var fieldContainer = $(this).closest("li");
+				fieldContainer.remove();
+			});
+			gdprAmount += 1;
+		});
+
+		$(".copy-shortcode").click(function (e) {
+			e.preventDefault();
+
+			var shortcode = $(this)
+				.closest(".dp-rowflex")
+				.find("span")
+				.first()
+				.text();
+
+			navigator.clipboard.writeText(shortcode);
+		});
+
+		if ($("#doppler-forms-chart").length) {
+			const formNames = ["x"];
+			const singleOptinForms = [object_string.SimpleOptIn];
+			const doubleOptinForms = [object_string.DoubleOptIn];
+
+			chartData.data.forEach(form => {
+				formNames.push(form.name);
+
+				const displays = parseInt(form.events?.Display) || 0;
+				const submits = parseInt(form.events?.Submit) || 0;
+				const ratio = displays > 0 ? ((submits / displays) * 100).toFixed(2) : 0;
+
+				if (form.settings?.form_doble_optin === "yes") {
+					doubleOptinForms.push(parseFloat(ratio));
+					singleOptinForms.push(null);
+				} else {
+					singleOptinForms.push(parseFloat(ratio));
+					doubleOptinForms.push(null);
+				}
+			});
+
+			bb.generate({
+				data: {
+					x: "x",
+					columns: [formNames, singleOptinForms, doubleOptinForms],
+					type: "bar",
+					colors: {
+						[object_string.SimpleOptIn]: "#A783C7",
+						[object_string.DoubleOptIn]: "#F5B128"
+					},
+					groups: [[object_string.SimpleOptIn, object_string.DoubleOptIn]],
+					labels: true
+				},
+				size: {
+					width: 800
+				},
+				axis: {
+					x: { type: "category" },
+					y: {
+						tick: { format: d => d + "%" }
+					}
+				},
+				tooltip: {
+					grouped: false,
+					contents: function (d) {
+						let data = d[0];
+						let formIndex = data.index;
+						let form = chartData.data[formIndex];
+			
+						let rate = data.value + "%";
+						let displays = form.events?.Display || 0;
+						let submits = form.events?.Submit || 0;
+						let type = form.settings?.form_doble_optin === "yes" ? object_string.DoubleOptIn : object_string.SimpleOptIn;
+			
+						return `
+						<div class="bb-tooltip p-t-12 p-b-12 p-l-12 p-r-12">
+									<strong>${form.name}</strong><br>
+									${object_string.ConversonRate}: <strong>${rate}</strong><br>
+									${object_string.Impressions}: <strong>${displays}</strong><br>
+									${object_string.Subscribed}: <strong>${submits}</strong><br>
+									${object_string.formType}: <strong>${type}</strong>
+								</div>`;
+					}
+				},
+				bindto: "#doppler-forms-chart"
+			});
+		}
 	});
 
 	function listsLoading() {
