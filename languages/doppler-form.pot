@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-05-02 18:57-0300\n"
+"POT-Creation-Date: 2025-05-26 08:20-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Hernán Galván\n"
@@ -16,12 +16,10 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
-"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;"
-"esc_html\n"
+"X-Poedit-KeywordsList: "
+"__;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;esc_html\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/doppler-admin.php:128 admin/partials/forms-list.php:107
@@ -236,7 +234,7 @@ msgstr ""
 #: admin/doppler-admin.php:244 admin/doppler-admin.php:245
 #: admin/partials/api-connection.php:206 admin/partials/api-connection.php:209
 #: admin/partials/doppler-forms-display.php:20 admin/partials/lists-crud.php:10
-#: admin/partials/settings.php:21
+#: admin/partials/settings.php:23
 msgid "Doppler Forms"
 msgstr ""
 
@@ -308,29 +306,29 @@ msgstr ""
 msgid "Tracking code is invalid"
 msgstr ""
 
-#: admin/doppler-admin.php:445
+#: admin/doppler-admin.php:443
 msgid "Consent checkbox is invalid"
 msgstr ""
 
-#: admin/doppler-admin.php:453
+#: admin/doppler-admin.php:451
 msgid "Settings saved successfully"
 msgstr ""
 
-#: admin/doppler-admin.php:468
+#: admin/doppler-admin.php:466
 msgid ""
 "You've updated the <strong>Doppler Forms</strong> plugin into the "
 "<strong>2.0.0</strong> version. Please,"
 msgstr ""
 
-#: admin/doppler-admin.php:470
+#: admin/doppler-admin.php:468
 msgid "enter your Username"
 msgstr ""
 
-#: admin/doppler-admin.php:471
+#: admin/doppler-admin.php:469
 msgid "in addition to the API Key and re-connect your Doppler account."
 msgstr ""
 
-#: admin/doppler-admin.php:631
+#: admin/doppler-admin.php:629
 msgid ""
 "Ouch! The List is being used in a form or an extension, so it cannot be "
 "deleted."
@@ -450,7 +448,7 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: admin/partials/api-connection.php:312 admin/partials/settings.php:49
+#: admin/partials/api-connection.php:312 admin/partials/settings.php:58
 msgid "Doppler for WooCommerce"
 msgstr ""
 
@@ -819,7 +817,7 @@ msgid ""
 msgstr ""
 
 #: admin/partials/forms-create.php:343 admin/partials/forms-edit.php:387
-#: admin/partials/settings.php:96
+#: admin/partials/settings.php:105
 msgid "Save"
 msgstr ""
 
@@ -924,49 +922,45 @@ msgstr ""
 msgid "If you proceed, the List will also be deleted in Doppler."
 msgstr ""
 
-#: admin/partials/settings.php:27
+#: admin/partials/settings.php:29
 msgid "On-Site Tracking"
 msgstr ""
 
-#: admin/partials/settings.php:30
+#: admin/partials/settings.php:39
 msgid ""
-"Get your Site Tracking Code from Doppler and paste it below to track your "
-"visitors activity. Not sure how to get your code? Press <a href=\"https://"
+"Adds Doppler's Site Tracking Code to your site to track your visitors "
+"activity. Not sure how it works? Press <a href=\"https://"
 "help.fromdoppler.com/en/create-onsite-tracking-automation\" class=\"green-"
 "link\">HELP</a>"
 msgstr ""
 
-#: admin/partials/settings.php:37
-msgid "Paste tracking code here."
-msgstr ""
-
-#: admin/partials/settings.php:55
+#: admin/partials/settings.php:64
 msgid "Consent checkbox in Checkout"
 msgstr ""
 
-#: admin/partials/settings.php:65
+#: admin/partials/settings.php:74
 msgid ""
 "Adds a checkbox in the checkout for users to consent to email marketing "
-"emails"
+"emails. Not available when using WooCommerce Checkout Block."
 msgstr ""
 
-#: admin/partials/settings.php:73
+#: admin/partials/settings.php:82
 msgid "Location"
 msgstr ""
 
-#: admin/partials/settings.php:77
+#: admin/partials/settings.php:86
 msgid "Bellow contact Email"
 msgstr ""
 
-#: admin/partials/settings.php:78
+#: admin/partials/settings.php:87
 msgid "Checkout notes"
 msgstr ""
 
-#: admin/partials/settings.php:85
+#: admin/partials/settings.php:94
 msgid "Consent"
 msgstr ""
 
-#: admin/partials/settings.php:87
+#: admin/partials/settings.php:96
 msgid "Your consent text"
 msgstr ""
 

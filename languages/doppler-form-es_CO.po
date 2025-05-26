@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-05-15 08:49-0300\n"
-"PO-Revision-Date: 2025-05-15 08:49-0300\n"
+"POT-Creation-Date: 2025-05-26 08:20-0300\n"
+"PO-Revision-Date: 2025-05-26 08:20-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Colombia\n"
 "Language: es_CO\n"
@@ -1007,10 +1007,11 @@ msgstr "Checkbox de consentimiento en Checkout"
 #: admin/partials/settings.php:74
 msgid ""
 "Adds a checkbox in the checkout for users to consent to email marketing "
-"emails"
+"emails. Not available when using WooCommerce Checkout Block."
 msgstr ""
 "Agrega un checkbox en el checkout para que los usuarios puedan consentir al "
-"envío de emails promocionales"
+"envío de emails promocionales. No disponible cuando se utiliza el bloque de "
+"pago de Woocommerce."
 
 #: admin/partials/settings.php:82
 msgid "Location"
@@ -1076,6 +1077,26 @@ msgstr "Ingrese una fecha valida."
 msgid "Invalid Format."
 msgstr "Formato Inválido."
 
+#~ msgid "Enjoy our extensions"
+#~ msgstr "Disfruta nuestras extensiones"
+
+#~ msgid ""
+#~ "Improve your business by integrating these features with you Doppler "
+#~ "account.<br>¡Boost your Email & Automation Marketing strategy!"
+#~ msgstr ""
+#~ "Haz que tu negocio funcione mejor integrando estas funcionalidades con tu "
+#~ "cuenta de Doppler.<br> ¡Potencia tu estrategia de Email y Automation "
+#~ "Marketing!"
+
+#~ msgid "Import customers to your Doppler Lists."
+#~ msgstr "Podrás importar tus clientes y compradores a tus Listas de Doppler."
+
+#~ msgid "Configure extension"
+#~ msgstr "Configure la extensión"
+
+#~ msgid "Import students to your Doppler Lists."
+#~ msgstr "Podrás importar tus Estudiantes a tus Listas de Doppler."
+
 #~ msgid "Paste tracking code here."
 #~ msgstr "Pegue aquí el código de Seguimiento en Sitio."
 
@@ -1115,26 +1136,6 @@ msgstr "Formato Inválido."
 
 #~ msgid "Done! You should now see your Form published on your Website."
 #~ msgstr "¡Listo! Tu Formulario aparecerá publicado en tu Sitio Web."
-
-#~ msgid "Enjoy our extensions"
-#~ msgstr "Disfruta nuestras extensiones"
-
-#~ msgid ""
-#~ "Improve your business by integrating these features with you Doppler "
-#~ "account.<br>¡Boost your Email & Automation Marketing strategy!"
-#~ msgstr ""
-#~ "Haz que tu negocio funcione mejor integrando estas funcionalidades con tu "
-#~ "cuenta de Doppler.<br> ¡Potencia tu estrategia de Email y Automation "
-#~ "Marketing!"
-
-#~ msgid "Import customers to your Doppler Lists."
-#~ msgstr "Podrás importar tus clientes y compradores a tus Listas de Doppler."
-
-#~ msgid "Configure extension"
-#~ msgstr "Configure la extensión"
-
-#~ msgid "Import students to your Doppler Lists."
-#~ msgstr "Podrás importar tus Estudiantes a tus Listas de Doppler."
 
 #~ msgid "I've read and accept the privace policy"
 #~ msgstr "He leído y acepto la política de privacidad"
