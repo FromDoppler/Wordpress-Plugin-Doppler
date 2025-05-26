@@ -71,7 +71,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
                                     </label>
                                 </div>
                                 <div class="col-sm-10 col-md-10 col-lg-10">
-                                    <p><?php _e('Adds a checkbox in the checkout for users to consent to email marketing emails','doppler-form') ?>.</p>
+                                    <p><?php _e('Adds a checkbox in the checkout for users to consent to email marketing emails. Not available when using WooCommerce Checkout Block.','doppler-form') ?></p>
                                 </div>
                             </div>
                         </div>
