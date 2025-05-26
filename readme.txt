@@ -5,7 +5,7 @@ Tags: Doppler, Email marketing, integration, subscription, form, automation
 Requires at least: 4.9
 Tested up to: 6.8.1
 Requires PHP: 5.6.4
-Stable tag: 2.4.5
+Stable tag: 2.4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,12 @@ En [este artículo](https://help.fromdoppler.com/es/api-interfaz-de-programacion
 8. Formulario de Suscripción.
 
 == Changelog ==
+= 2.4.6 =
+* Fix: fix XSS vulnerability
+* Update: Modify tracking section to settings.
+* Update: Add loading screen to wait for style library.
+* Fix: Woocommerce contacts counter.
+
 = 2.4.5 =
 * Update: Replace connection section with new dashboard view
 
