@@ -1,14 +1,8 @@
 <?php
 
-/**
- * Fired during plugin deactivation
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
- */
+if (!defined('WP_UNINSTALL_PLUGIN') && !defined('WPINC')) {
+    die;
+}
 
 /**
  * Fired during plugin deactivation.
