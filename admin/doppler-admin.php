@@ -505,7 +505,7 @@ class Doppler_Admin {
 	 */
 	public function ajax_disconnect() {
 
-		if(is_admin()){
+		if(is_admin() && current_user_can('manage_options')) {
 			$options = get_option('dplr_settings');
 			if( empty($options['dplr_option_apikey']) || empty($options['dplr_option_useraccount']) )  return;
 			
@@ -556,6 +556,8 @@ class Doppler_Admin {
 	 * the form submission and save the settings.
 	 */
 	public function ajax_connect() {
+		check_admin_permissions();
+
 		if( empty($_POST['key']) || empty($_POST['user']) ) return false;
 		$this->doppler_service->setCredentials(['api_key' => $_POST['key'], 'user_account' => $_POST['user']]);
 		$connection_status = $this->doppler_service->connectionStatus();
@@ -588,6 +590,8 @@ class Doppler_Admin {
 	 * Deletes a Form.
 	 */
 	public function ajax_delete_form() {
+		check_admin_permissions();
+
 		if(empty($_POST['listId'])) return false;
 		$this->set_credentials();
 		echo $this->form_controller->delete($_POST['listId']);
@@ -602,6 +606,8 @@ class Doppler_Admin {
 	  * Get Lists.
 	  */
 	public function ajax_get_lists() {
+		check_admin_permissions();
+
 		$this->set_credentials();
 		echo json_encode($this->get_lists_by_page($_POST['per_page'], $_POST['page']));
 		wp_die();
@@ -611,6 +617,8 @@ class Doppler_Admin {
 	 * Validates before creating list through ajax call.
 	 */
 	public function ajax_save_list() {
+		check_admin_permissions();
+
 		if(empty($_POST['listName'])) return false;
 		$this->set_credentials();
 		echo $this->create_list($_POST['listName']);
@@ -622,6 +630,8 @@ class Doppler_Admin {
 	 * and then delete.
 	 */
 	public function ajax_delete_list() {
+		check_admin_permissions();
+
 		if(empty($_POST['listId'])) return false;
 		if(!$this->allow_delete_list($_POST['listId'])){
 			echo json_encode(array('response'=>array(
@@ -708,4 +718,10 @@ class Doppler_Admin {
 		return $forms;
 	}
 
+	private function check_admin_permissions() {
+		if ( ! current_user_can('manage_options') ) {
+			wp_send_json_error(['message' => __('Unauthorized', 'doppler-form')]);
+			wp_die();
+    	}
+	}
 }
