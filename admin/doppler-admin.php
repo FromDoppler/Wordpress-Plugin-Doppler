@@ -444,6 +444,20 @@ class Doppler_Admin {
 			endif;
 		endif;
 
+		if(isset($_POST['dplr-wc-open-graph-checkbox'])):
+			if(current_user_can('manage_options') && check_admin_referer('use-settings')):
+				if($_POST['dplr-wc-open-graph-checkbox'] == 0):
+					update_option( 'dplr_wc_open_graph_meta', 0);
+					$success++;
+				else:
+					update_option( 'dplr_wc_open_graph_meta', 1);
+					$success++;
+				endif;
+			else:
+				$error_messages[] = __('Failed activating Open Graph checkbox', 'doppler-form');
+			endif;
+		endif;
+
 		if (!empty($error_messages)) {
 			$this->set_error_message(implode(', ', $error_messages));
 		}
