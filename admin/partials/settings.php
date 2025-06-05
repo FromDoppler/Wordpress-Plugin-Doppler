@@ -52,51 +52,85 @@ if ( ! current_user_can( 'manage_options' ) ) {
                     $dplr_wc_consent = get_option('dplr_wc_consent', 0);
                     $dplr_wc_consent_location = get_option('dplr_wc_consent_location', "contact");
                     $dplr_wc_consent_text = get_option('dplr_wc_consent_text', '');
+                    $dplr_wc_open_graph = get_option('dplr_wc_open_graph_meta', 0);
                 ?>
                 <section class="col-sm-12 col-md-10 col-lg-7 m-t-36">
                     <h2 class="main-title">
                         <?php _e('Doppler for WooCommerce', 'doppler-for-woocommerce')?> <?php echo DOPPLER_FOR_WOOCOMMERCE_VERSION ?>
                     </h2>
-                    <header>
-                        <div class="dp-container">
-                            <div class="dp-rowflex space-between">
-                                <div class="col-sm-10 col-md-10 col-lg-10">
-                                    <h3><?php _e('Consent checkbox in Checkout', 'doppler-form')?></h3>
-                                </div>
-                                <div class="dp-switch">
-                                    <input type="hidden" name="dplr-consent-checkbox" value="0">
-                                    <input type="checkbox" id="dplr-consent-checkbox" name="dplr-consent-checkbox" <?php checked($dplr_wc_consent, 1); ?>>
-                                    <label for="dplr-consent-checkbox">
-                                        <span></span>
-                                    </label>
-                                </div>
-                                <div class="col-sm-10 col-md-10 col-lg-10">
-                                    <p><?php _e('Adds a checkbox in the checkout for users to consent to email marketing emails. Not available when using WooCommerce Checkout Block.','doppler-form') ?></p>
+                    <div>
+                        <header>
+                            <div class="dp-container">
+                                <div class="dp-rowflex space-between">
+                                    <div class="col-sm-10 col-md-10 col-lg-10">
+                                        <h3><?php _e('Consent checkbox in Checkout', 'doppler-form')?></h3>
+                                    </div>
+                                    <div class="dp-switch">
+                                        <input type="hidden" name="dplr-consent-checkbox" value="0">
+                                        <input type="checkbox" id="dplr-consent-checkbox" name="dplr-consent-checkbox" <?php checked($dplr_wc_consent, 1); ?>>
+                                        <label for="dplr-consent-checkbox">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-10 col-md-10 col-lg-10">
+                                        <p><?php _e('Adds a checkbox in the checkout for users to consent to email marketing emails. Not available when using WooCommerce Checkout Block.','doppler-form') ?></p>
+                                    </div>
                                 </div>
                             </div>
+                        </header>
+                        <div class="dplr-tab-content m-t-12">
+                            <div class="awa-form col-sm-12 col-md-12 col-lg-12">
+                                <label for="dplr-consent-location" class="labelcontrol d-flex align-center" <?php echo $dplr_wc_consent ? '' : 'aria-disabled="true"'; ?>>
+                                    <span class="col-sm-3 col-md-3 col-lg-3"><?php _e('Location', 'doppler-form'); ?>:</span>
+                                    <div class="dp-select col-sm-8 col-md-8 col-lg-8 pl-0 pr-0">
+                                        <span class="dropdown-arrow"></span>
+                                        <select id="dplr-consent-location" name="dplr-consent-location" <?php echo $dplr_wc_consent ? '' : 'disabled'; ?>>
+                                            <option value="contact" <?php selected($dplr_wc_consent_location, "contact"); ?>><?php _e('Bellow contact Email', 'doppler-form'); ?></option>
+                                            <option value="order" <?php selected($dplr_wc_consent_location, "order"); ?>><?php _e('Checkout notes', 'doppler-form'); ?></option>
+                                        </select>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="awa-form col-sm-12 col-md-12 col-lg-12">
+                                <label for="dplr-consent-text" class="labelcontrol d-flex align-center" <?php echo $dplr_wc_consent ? '' : 'aria-disabled="true"'; ?>>
+                                    <span class="col-sm-3 col-md-3 col-lg-3"><?php _e('Consent', 'doppler-form'); ?>:</span>
+                                    <input type="text" id="dplr-consent-text" class="col-sm-8 col-md-8 col-lg-8 box-shado-0"
+                                        name="dplr-consent-text" placeholder="<?php _e('Your consent text', 'doppler-form'); ?>" 
+                                        value="<?php echo esc_attr($dplr_wc_consent_text); ?>" <?php echo $dplr_wc_consent ? '' : 'disabled'; ?>>
+                                </label>
+                            </div>
                         </div>
-                    </header>
-                    <div class="dplr-tab-content m-t-12">
-                        <div class="awa-form col-sm-12 col-md-12 col-lg-12">
-                            <label for="dplr-consent-location" class="labelcontrol d-flex align-center" <?php echo $dplr_wc_consent ? '' : 'aria-disabled="true"'; ?>>
-                                <span class="col-sm-3 col-md-3 col-lg-3"><?php _e('Location', 'doppler-form'); ?>:</span>
-                                <div class="dp-select col-sm-8 col-md-8 col-lg-8 pl-0 pr-0">
-                                    <span class="dropdown-arrow"></span>
-                                    <select id="dplr-consent-location" name="dplr-consent-location" <?php echo $dplr_wc_consent ? '' : 'disabled'; ?>>
-                                        <option value="contact" <?php selected($dplr_wc_consent_location, "contact"); ?>><?php _e('Bellow contact Email', 'doppler-form'); ?></option>
-                                        <option value="order" <?php selected($dplr_wc_consent_location, "order"); ?>><?php _e('Checkout notes', 'doppler-form'); ?></option>
-                                    </select>
+                    </div>
+                    <div class="m-t-36">
+                        <header>
+                            <div class="dp-container">
+                                <div class="dp-rowflex space-between">
+                                    <div class="col-sm-10 col-md-10 col-lg-10">
+                                        <h3><?php _e('Open Graph Metadata', 'doppler-form')?></h3>
+                                    </div>
+                                    <div class="dp-switch">
+                                        <input type="hidden" name="dplr-wc-open-graph-checkbox" value="0">
+                                        <input type="checkbox" id="dplr-wc-open-graph-checkbox" name="dplr-wc-open-graph-checkbox" <?php checked($dplr_wc_open_graph, 1); ?>>
+                                        <label for="dplr-wc-open-graph-checkbox">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-10 col-md-10 col-lg-10">
+                                        <p><?php _e('Adds Open Graph Metadata to product pages to improve performance for Automation and Onsite widgets features.','doppler-form') ?></p>
+                                        <p class="m-t-6"><?php _e('The properties added are:','doppler-form') ?></p>
+                                        <ul class="settings-list m-t-6">
+                                            <li><p>og:type</p></li>
+                                            <li><p>og:title</p></li>
+                                            <li><p>og:description</p></li>
+                                            <li><p>og:url</p></li>
+                                            <li><p>og:image</p></li>
+                                            <li><p>og:price</p></li>
+                                            <li><p>og:currency</p></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </label>
-                        </div>
-                        <div class="awa-form col-sm-12 col-md-12 col-lg-12">
-                            <label for="dplr-consent-text" class="labelcontrol d-flex align-center" <?php echo $dplr_wc_consent ? '' : 'aria-disabled="true"'; ?>>
-                                <span class="col-sm-3 col-md-3 col-lg-3"><?php _e('Consent', 'doppler-form'); ?>:</span>
-                                <input type="text" id="dplr-consent-text" class="col-sm-8 col-md-8 col-lg-8 box-shado-0"
-                                    name="dplr-consent-text" placeholder="<?php _e('Your consent text', 'doppler-form'); ?>" 
-                                    value="<?php echo esc_attr($dplr_wc_consent_text); ?>" <?php echo $dplr_wc_consent ? '' : 'disabled'; ?>>
-                            </label>
-                        </div>
+                            </div>
+                        </header>
                     </div>
                 </section>
                 <?php endif; ?>
