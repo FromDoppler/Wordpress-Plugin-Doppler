@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-05-26 08:20-0300\n"
+"POT-Creation-Date: 2025-06-10 08:29-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Hernán Galván\n"
@@ -310,28 +310,36 @@ msgstr ""
 msgid "Consent checkbox is invalid"
 msgstr ""
 
-#: admin/doppler-admin.php:451
+#: admin/doppler-admin.php:457
+msgid "Failed activating Open Graph checkbox"
+msgstr ""
+
+#: admin/doppler-admin.php:465
 msgid "Settings saved successfully"
 msgstr ""
 
-#: admin/doppler-admin.php:466
+#: admin/doppler-admin.php:480
 msgid ""
 "You've updated the <strong>Doppler Forms</strong> plugin into the "
 "<strong>2.0.0</strong> version. Please,"
 msgstr ""
 
-#: admin/doppler-admin.php:468
+#: admin/doppler-admin.php:482
 msgid "enter your Username"
 msgstr ""
 
-#: admin/doppler-admin.php:469
+#: admin/doppler-admin.php:483
 msgid "in addition to the API Key and re-connect your Doppler account."
 msgstr ""
 
-#: admin/doppler-admin.php:629
+#: admin/doppler-admin.php:653
 msgid ""
 "Ouch! The List is being used in a form or an extension, so it cannot be "
 "deleted."
+msgstr ""
+
+#: admin/doppler-admin.php:737
+msgid "Unauthorized"
 msgstr ""
 
 #: admin/partials/api-connection.php:14
@@ -448,7 +456,7 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: admin/partials/api-connection.php:312 admin/partials/settings.php:58
+#: admin/partials/api-connection.php:312 admin/partials/settings.php:59
 msgid "Doppler for WooCommerce"
 msgstr ""
 
@@ -817,7 +825,7 @@ msgid ""
 msgstr ""
 
 #: admin/partials/forms-create.php:343 admin/partials/forms-edit.php:387
-#: admin/partials/settings.php:105
+#: admin/partials/settings.php:139
 msgid "Save"
 msgstr ""
 
@@ -934,34 +942,48 @@ msgid ""
 "link\">HELP</a>"
 msgstr ""
 
-#: admin/partials/settings.php:64
+#: admin/partials/settings.php:66
 msgid "Consent checkbox in Checkout"
 msgstr ""
 
-#: admin/partials/settings.php:74
+#: admin/partials/settings.php:76
 msgid ""
 "Adds a checkbox in the checkout for users to consent to email marketing "
 "emails. Not available when using WooCommerce Checkout Block."
 msgstr ""
 
-#: admin/partials/settings.php:82
+#: admin/partials/settings.php:84
 msgid "Location"
 msgstr ""
 
-#: admin/partials/settings.php:86
+#: admin/partials/settings.php:88
 msgid "Bellow contact Email"
 msgstr ""
 
-#: admin/partials/settings.php:87
+#: admin/partials/settings.php:89
 msgid "Checkout notes"
 msgstr ""
 
-#: admin/partials/settings.php:94
+#: admin/partials/settings.php:96
 msgid "Consent"
 msgstr ""
 
-#: admin/partials/settings.php:96
+#: admin/partials/settings.php:98
 msgid "Your consent text"
+msgstr ""
+
+#: admin/partials/settings.php:109
+msgid "Improve tracking of visited products"
+msgstr ""
+
+#: admin/partials/settings.php:119
+msgid ""
+"Adds Open Graph Metadata to product pages to improve performance for "
+"Automation and Onsite widgets features."
+msgstr ""
+
+#: admin/partials/settings.php:120
+msgid "The properties added are:"
 msgstr ""
 
 #: doppler-form.php:43

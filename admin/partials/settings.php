@@ -106,7 +106,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
                             <div class="dp-container">
                                 <div class="dp-rowflex space-between">
                                     <div class="col-sm-10 col-md-10 col-lg-10">
-                                        <h3><?php _e('Open Graph Metadata', 'doppler-form')?></h3>
+                                        <h3><?php _e('Improve tracking of visited products', 'doppler-form')?></h3>
                                     </div>
                                     <div class="dp-switch">
                                         <input type="hidden" name="dplr-wc-open-graph-checkbox" value="0">

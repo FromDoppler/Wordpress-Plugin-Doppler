@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-06-03 08:51-0300\n"
-"PO-Revision-Date: 2025-06-03 08:51-0300\n"
+"POT-Creation-Date: 2025-06-10 08:31-0300\n"
+"PO-Revision-Date: 2025-06-10 08:31-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Guatemala\n"
 "Language: es_GT\n"
@@ -334,11 +334,15 @@ msgstr "El código de seguimiento es incorrecto"
 msgid "Consent checkbox is invalid"
 msgstr "Checkbox de consentimiento inválido"
 
-#: admin/doppler-admin.php:451
+#: admin/doppler-admin.php:457
+msgid "Failed activating Open Graph checkbox"
+msgstr "Error al activar checkbox de metadatos Open Graph"
+
+#: admin/doppler-admin.php:465
 msgid "Settings saved successfully"
 msgstr "Configuración guardada correctamente"
 
-#: admin/doppler-admin.php:466
+#: admin/doppler-admin.php:480
 msgid ""
 "You've updated the <strong>Doppler Forms</strong> plugin into the "
 "<strong>2.0.0</strong> version. Please,"
@@ -346,15 +350,15 @@ msgstr ""
 "Has actualizado el plugin <strong>Formularios Doppler</strong> a la versión "
 "<strong>2.0.0</strong>. Para continuar utilizándolo,"
 
-#: admin/doppler-admin.php:468
+#: admin/doppler-admin.php:482
 msgid "enter your Username"
 msgstr "ingresa tu Email de Usuario"
 
-#: admin/doppler-admin.php:469
+#: admin/doppler-admin.php:483
 msgid "in addition to the API Key and re-connect your Doppler account."
 msgstr "además del API Key y vuelve a conectar tu cuenta de Doppler."
 
-#: admin/doppler-admin.php:639
+#: admin/doppler-admin.php:653
 msgid ""
 "Ouch! The List is being used in a form or an extension, so it cannot be "
 "deleted."
@@ -362,7 +366,7 @@ msgstr ""
 "¡Ouch! La Lista está siendo utilizada en un Formulario o en una extensión de "
 "Doppler y no puede ser eliminada."
 
-#: admin/doppler-admin.php:723
+#: admin/doppler-admin.php:737
 msgid "Unauthorized"
 msgstr "No autorizado"
 
@@ -482,7 +486,7 @@ msgstr "Youtube"
 msgid "Extensions"
 msgstr "Extensiones"
 
-#: admin/partials/api-connection.php:312 admin/partials/settings.php:58
+#: admin/partials/api-connection.php:312 admin/partials/settings.php:59
 msgid "Doppler for WooCommerce"
 msgstr "Doppler para WooCommerce"
 
@@ -879,7 +883,7 @@ msgstr ""
 "\"&lt;/a&gt;) con el atributo: href=[[[ConfirmationLink]]]"
 
 #: admin/partials/forms-create.php:343 admin/partials/forms-edit.php:387
-#: admin/partials/settings.php:131
+#: admin/partials/settings.php:139
 msgid "Save"
 msgstr "Guardar"
 
@@ -1004,11 +1008,11 @@ msgstr ""
 "<a href=\"https://help.fromdoppler.com/es/crear-automation-por-"
 "comportamiento-en-sitio\" class=\"green-link\">HELP</a>"
 
-#: admin/partials/settings.php:65
+#: admin/partials/settings.php:66
 msgid "Consent checkbox in Checkout"
 msgstr "Checkbox de consentimiento en Checkout"
 
-#: admin/partials/settings.php:75
+#: admin/partials/settings.php:76
 msgid ""
 "Adds a checkbox in the checkout for users to consent to email marketing "
 "emails. Not available when using WooCommerce Checkout Block."
@@ -1017,31 +1021,31 @@ msgstr ""
 "envío de emails promocionales. No disponible cuando se utiliza el bloque de "
 "pago de Woocommerce."
 
-#: admin/partials/settings.php:83
+#: admin/partials/settings.php:84
 msgid "Location"
 msgstr "Ubicación"
 
-#: admin/partials/settings.php:87
+#: admin/partials/settings.php:88
 msgid "Bellow contact Email"
 msgstr "Debajo del email de contacto"
 
-#: admin/partials/settings.php:88
+#: admin/partials/settings.php:89
 msgid "Checkout notes"
 msgstr "Notas en checkout"
 
-#: admin/partials/settings.php:95
+#: admin/partials/settings.php:96
 msgid "Consent"
 msgstr "Consentimiento"
 
-#: admin/partials/settings.php:97
+#: admin/partials/settings.php:98
 msgid "Your consent text"
 msgstr "Tú texto de consentimiento"
 
-#: admin/partials/settings.php:108
-msgid "Open Graph Metadata"
-msgstr "Metadatos de Open Graph"
+#: admin/partials/settings.php:109
+msgid "Improve tracking of visited products"
+msgstr "Mejorar seguimiento de productos visitados"
 
-#: admin/partials/settings.php:111
+#: admin/partials/settings.php:119
 msgid ""
 "Adds Open Graph Metadata to product pages to improve performance for "
 "Automation and Onsite widgets features."
@@ -1049,7 +1053,7 @@ msgstr ""
 "Agrega los metadatos de Open Graph en las paginas de producto para mejorar "
 "las funcionalidades de Automation y Onsite widgets."
 
-#: admin/partials/settings.php:112
+#: admin/partials/settings.php:120
 msgid "The properties added are:"
 msgstr "Las propiedades añadidas son:"
 
@@ -1096,6 +1100,9 @@ msgstr "Ingrese una fecha valida."
 #: public/doppler-forms-public.php:108
 msgid "Invalid Format."
 msgstr "Formato Inválido."
+
+#~ msgid "Open Graph Metadata"
+#~ msgstr "Metadatos de Open Graph"
 
 #~ msgid "Enjoy our extensions"
 #~ msgstr "Disfruta nuestras extensiones"
