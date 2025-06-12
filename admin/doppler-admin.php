@@ -570,7 +570,7 @@ class Doppler_Admin {
 	 * the form submission and save the settings.
 	 */
 	public function ajax_connect() {
-		check_admin_permissions();
+		$this->check_admin_permissions();
 
 		if( empty($_POST['key']) || empty($_POST['user']) ) return false;
 		$this->doppler_service->setCredentials(['api_key' => $_POST['key'], 'user_account' => $_POST['user']]);
@@ -604,7 +604,7 @@ class Doppler_Admin {
 	 * Deletes a Form.
 	 */
 	public function ajax_delete_form() {
-		check_admin_permissions();
+		$this->check_admin_permissions();
 
 		if(empty($_POST['listId'])) return false;
 		$this->set_credentials();
@@ -620,7 +620,7 @@ class Doppler_Admin {
 	  * Get Lists.
 	  */
 	public function ajax_get_lists() {
-		check_admin_permissions();
+		$this->check_admin_permissions();
 
 		$this->set_credentials();
 		echo json_encode($this->get_lists_by_page($_POST['per_page'], $_POST['page']));
@@ -631,7 +631,7 @@ class Doppler_Admin {
 	 * Validates before creating list through ajax call.
 	 */
 	public function ajax_save_list() {
-		check_admin_permissions();
+		$this->check_admin_permissions();
 
 		if(empty($_POST['listName'])) return false;
 		$this->set_credentials();
@@ -644,7 +644,7 @@ class Doppler_Admin {
 	 * and then delete.
 	 */
 	public function ajax_delete_list() {
-		check_admin_permissions();
+		$this->check_admin_permissions();
 
 		if(empty($_POST['listId'])) return false;
 		if(!$this->allow_delete_list($_POST['listId'])){
