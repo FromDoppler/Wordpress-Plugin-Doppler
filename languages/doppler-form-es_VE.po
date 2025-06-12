@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-06-10 08:33-0300\n"
-"PO-Revision-Date: 2025-06-10 08:33-0300\n"
+"POT-Creation-Date: 2025-06-11 08:55-0300\n"
+"PO-Revision-Date: 2025-06-11 08:56-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Venezuela\n"
 "Language: es_VE\n"
@@ -1042,16 +1042,19 @@ msgid "Your consent text"
 msgstr "Tú texto de consentimiento"
 
 #: admin/partials/settings.php:109
-msgid "Improve tracking of visited products"
-msgstr "Mejorar seguimiento de productos visitados"
+msgid "Boost your site's shared content with Open Graph"
+msgstr "Potencia con Open Graph el contenido compartido de tu sitio"
 
 #: admin/partials/settings.php:119
 msgid ""
-"Adds Open Graph Metadata to product pages to improve performance for "
-"Automation and Onsite widgets features."
+"Open Graph is a protocol that makes your pages look better when shared on "
+"social media. At Doppler, they help you track your product pages more "
+"effectively, optimizing the Automation and OnSite widgets features."
 msgstr ""
-"Agrega los metadatos de Open Graph en las paginas de producto para mejorar "
-"las funcionalidades de Automation y Onsite widgets."
+"Open Graph es un protocolo que ayuda a que tus páginas se vean mejor cuando "
+"las compartes en redes sociales. En Doppler ayudarán a realizar un "
+"seguimiento más preciso de tus páginas de producto, optimizando las "
+"funcionalidades de Automation y OnSite widgets."
 
 #: admin/partials/settings.php:120
 msgid "The properties added are:"
@@ -1100,6 +1103,16 @@ msgstr "Ingrese una fecha valida."
 #: public/doppler-forms-public.php:108
 msgid "Invalid Format."
 msgstr "Formato Inválido."
+
+#~ msgid "Improve tracking of visited products"
+#~ msgstr "Mejorar seguimiento de productos visitados"
+
+#~ msgid ""
+#~ "Adds Open Graph Metadata to product pages to improve performance for "
+#~ "Automation and Onsite widgets features."
+#~ msgstr ""
+#~ "Agrega los metadatos de Open Graph en las paginas de producto para "
+#~ "mejorar las funcionalidades de Automation y Onsite widgets."
 
 #~ msgid "Open Graph Metadata"
 #~ msgstr "Metadatos de Open Graph"

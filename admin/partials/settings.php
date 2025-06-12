@@ -106,7 +106,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
                             <div class="dp-container">
                                 <div class="dp-rowflex space-between">
                                     <div class="col-sm-10 col-md-10 col-lg-10">
-                                        <h3><?php _e('Improve tracking of visited products', 'doppler-form')?></h3>
+                                        <h3><?php _e('Boost your site\'s shared content with Open Graph', 'doppler-form')?></h3>
                                     </div>
                                     <div class="dp-switch">
                                         <input type="hidden" name="dplr-wc-open-graph-checkbox" value="0">
@@ -116,7 +116,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
                                         </label>
                                     </div>
                                     <div class="col-sm-10 col-md-10 col-lg-10">
-                                        <p><?php _e('Adds Open Graph Metadata to product pages to improve performance for Automation and Onsite widgets features.','doppler-form') ?></p>
+                                        <p><?php _e('Open Graph is a protocol that makes your pages look better when shared on social media. At Doppler, they help you track your product pages more effectively, optimizing the Automation and OnSite widgets features.','doppler-form') ?></p>
                                         <p class="m-t-6"><?php _e('The properties added are:','doppler-form') ?></p>
                                         <ul class="settings-list m-t-6">
                                             <li><p>og:type</p></li>
