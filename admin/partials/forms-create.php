@@ -239,8 +239,9 @@
                   'tinymce' => array(
                   'init_instance_callback' => 'function(editor) {
                               editor.on("blur", function(){
-                                validateEmailContent();
-                          });
+                                var content = tinymce.activeEditor.getContent();
+                                validateEmailContent(null, content);
+                            });
                       }'
                   )
                 );
@@ -395,7 +396,9 @@ document.getElementById('wp-content-wrap').addEventListener("click", function(){
 document.getElementById("submit_button").addEventListener("click", function(){
   document.getElementById('content').value = document.getElementById('content').value.replaceHtmlEntites();
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){
-    validateEmailContent(event);
+    jQuery(".wp-editor-wrap .switch-tmce").trigger("click");
+    var content = tinymce.activeEditor.getContent();
+    validateEmailContent(event, content);
   }
 });
 
