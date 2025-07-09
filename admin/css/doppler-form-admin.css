@@ -1368,10 +1368,15 @@
 	border: transparent !important;
 }
 
+/* override Wordpress's styles */
 #dplr-consent-location {
 	/* override wp styles for this component*/
 	background-image: none;
 }
 #dplr-consent-text:disabled::placeholder {
 	color: #999;
+}
+
+.dplr_settings select {
+    background: white;
 }

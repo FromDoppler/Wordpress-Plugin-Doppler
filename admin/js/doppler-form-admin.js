@@ -523,6 +523,15 @@
 				bindto: "#doppler-forms-chart"
 			});
 		}
+
+		$('#content-html').on('click', function() {
+			setTimeout(function() {
+				$('#content').off('blur').on('blur', function() {
+					var content = document.getElementById("content").value
+					validateEmailContent(null, content);
+				});
+			}, 100);
+		});
 	});
 
 	function listsLoading() {
@@ -698,14 +707,7 @@ function generateErrorMsg(body) {
 	return err;
 }
 
-function validateEmailContent(e) {
-	var content = "";
-
-	if (!tinyMCE.activeEditor)
-		jQuery(".wp-editor-wrap .switch-tmce").trigger("click");
-
-	content = tinymce.activeEditor.getContent();
-
+function validateEmailContent(e, content) {
 	content = content.replace(
 		'href="[[[ConfirmationLink]]]"',
 		"href=[[[ConfirmationLink]]]"
