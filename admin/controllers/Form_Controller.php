@@ -63,7 +63,7 @@ class DPLR_Form_Controller
           $method["route"] = "DobleOptinTemplate/" . $form_to_update["settings"]["form_plantilla_id"] . '/content';
           $method["httpMethod"] = "put";
           unset($form_data);
-          $form_data = $form["content"];
+          $form_data = wp_unslash($form["content"]);
 
           $response2 = $this->doppler_service->call($method, '', $form_data);
         } else {
@@ -186,7 +186,7 @@ class DPLR_Form_Controller
           $method["httpMethod"] = "put";
           unset($form_data);
           // $form_data = $form_to_update["settings"]["form_email_confirmacion_email_contenido"];
-          $form_data = $form_to_update["content"];
+          $form_data = wp_unslash($form_to_update["content"]);
           $form_to_update["settings"]["form_email_confirmacion_email_contenido"] = $form_data; 
          
 
