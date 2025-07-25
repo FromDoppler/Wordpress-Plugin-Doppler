@@ -184,8 +184,72 @@ class Doppler_Admin {
 		wp_enqueue_script('billboard-js', 'https://cdnjs.cloudflare.com/ajax/libs/billboard.js/3.14.3/billboard.min.js', array($this->plugin_name, 'd3-js'), '3.14.3', true);
 
 		$data = $this->get_Chart_Data();
-
 		wp_localize_script($this->plugin_name, 'chartData', ['data' => $data]);
+	}
+
+	public function enqueDopplerFieldsForElementor() {
+		$fields = $this->doppler_service->getResource('fields')->getAllFields();
+
+		if (empty($fields) || !is_array($fields->items)) {
+			return;
+		}
+		
+		wp_localize_script('doppler-elementor', 'dopplerFields', $this->map_fields_for_elementor($fields));
+	}
+
+	private function map_fields_for_elementor($fields) {
+		$type_map = [
+			'string'     => 'text',
+			'email'      => 'email',
+			'phone'      => 'tel',
+			'boolean'    => 'acceptance',
+			'number'     => 'number',
+			'date'       => 'date',
+			'permission' => 'acceptance',
+		];
+		$excluded_fields = ['GENDER', 'COUNTRY'];
+
+		// Filter out excluded_fieldsor or read-only fields (Except for EMAIL).
+		$filtered_fields = array_values(array_filter($fields->items, function ($field) use ($excluded_fields) {
+			return !in_array($field->name, $excluded_fields) 
+				&& (!property_exists($field, 'readonly') || $field->readonly != 1 || $field->name === 'EMAIL');
+		}));
+
+		//Map fields to the format required by Elementor.
+		$mapped = array_map(function($field) use ($type_map) {
+			return [
+				'remote_label'    => $field->name,
+				'remote_type'     => $type_map[$field->type] ?? 'text',
+				'doppler_type'    => $field->type,
+				'remote_id'       => $field->fieldId,
+				'remote_required' => (bool) $field->required,
+			];
+		}, $filtered_fields);
+
+		// Sort fields by priority. Basic Fields should be shown first.
+		$priority = ['EMAIL', 'FIRSTNAME', 'LASTNAME', 'BIRTHDAY'];
+
+		$prioritized = [];
+		$others = [];
+
+		foreach ($mapped as $item) {
+			$fieldName = $item['remote_label'];
+			if (in_array($fieldName, $priority)) {
+				$prioritized[$fieldName] = $item;
+			} else {
+				$others[] = $item;
+			}
+		}
+
+		// Order priority fields.
+		$ordered_prioritized = [];
+		foreach ($priority as $key) {
+			if (isset($prioritized[$key])) {
+				$ordered_prioritized[] = $prioritized[$key];
+			}
+		}
+
+		return array_merge($ordered_prioritized, $others);
 	}
 
 	public function init_widget() {
@@ -292,17 +356,14 @@ class Doppler_Admin {
 	  if (!empty($options['dplr_option_apikey'])) {
 
 		try{
-				//Credentials are saved. Check against API only in connection screen.
-				if($this->doppler_service->setCredentials(['api_key' => $options['dplr_option_apikey'], 'user_account' => $options['dplr_option_useraccount']])){
-					//neccesary check against api here?
-					$connection_status = $this->doppler_service->connectionStatus();
+				$connection_status = $this->doppler_service->connectionStatus();
 
-					if( is_array($connection_status) && $connection_status['response']['code'] === 200 ){
-						$connected = true;
+				if( is_array($connection_status) && $connection_status['response']['code'] === 200 ){
+					$connected = true;
 
-						$forms = $this->form_controller->getAll(true, true);
-					}
+					$forms = $this->form_controller->getAll(true, true);
 				}
+				
 				//If saved credentials don't pass API test, unset them, disconnect and show error.
 				if ($connected !== true) {
 					$this->doppler_service->unsetCredentials();

@@ -193,6 +193,7 @@ class DPLR_Doppler {
 		$this->loader->add_action( 'wp_ajax_dplr_delete_list',  $plugin_admin, 'ajax_delete_list' );
 		$this->loader->add_action( 'wp_ajax_install_extension', $extension_manager, 'install_extension' );
 		$this->loader->add_elementor_action( 'elementor_pro/forms/actions/register', $extension_manager, 'add_elementor_action' );
+		$this->loader->add_action( 'elementor/editor/after_enqueue_scripts', $plugin_admin, 'enqueDopplerFieldsForElementor' );
 	}
 
 	/**
