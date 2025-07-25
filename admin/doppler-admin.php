@@ -41,7 +41,7 @@ class Doppler_Admin {
 		$this->success_message = false;
 		$this->error_message = false;
 		$this->form_controller = new DPLR_Form_Controller($doppler_service);
-		$this->extension_manager = new Doppler_Extension_Manager();
+		$this->extension_manager = new Doppler_Extension_Manager($doppler_service);
 		$this->connection_status = false;
 	}
 
