@@ -2,6 +2,12 @@
 
 class Doppler_Extension_Manager {
 
+    private $doppler_service;
+
+    public function __construct(  $doppler_service ) {
+        $this->doppler_service = $doppler_service;
+    }
+
     public $extensions = array( 
         'doppler-for-woocommerce' => array( 'class_name' => 'Doppler_For_Woocommerce',
 											'dependency' => 'WooCommerce',
@@ -141,5 +147,10 @@ class Doppler_Extension_Manager {
         } else {
             return true;
         }
+    }
+
+    public function add_elementor_action( $form_actions_registrar ) {
+        include_once( __DIR__ .  '/class-doppler-elementor-integration.php' );
+        $form_actions_registrar->register( new Doppler_Elementor_Integration($this->doppler_service) );
     }
 }

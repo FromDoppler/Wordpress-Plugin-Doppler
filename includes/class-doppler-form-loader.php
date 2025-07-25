@@ -81,6 +81,12 @@ class Doppler_Form_Loader {
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
 	}
 
+	public function add_elementor_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+		add_action('elementor/init', function() use ($hook, $component, $callback, $priority, $accepted_args) {
+			add_action($hook, array($component, $callback), $priority, $accepted_args);
+		});
+	}
+
 	/**
 	 * A utility function that is used to register the actions and hooks into a single
 	 * collection.

@@ -72,6 +72,16 @@ function deactivate_doppler() {
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-doppler-form.php';
 
+//This action has to be added to the main plugin file to ensure that the Elementor integration script is loaded correctly.
+add_action('elementor/editor/after_enqueue_scripts', function() {
+    wp_enqueue_script(
+        'doppler-elementor',
+        plugin_dir_url(__FILE__) . 'admin/js/doppler-elementor.js',
+        array('jquery'),
+        '1.0.0',
+        true
+    );
+});
 /**
  * Begins execution of the plugin.
  *
