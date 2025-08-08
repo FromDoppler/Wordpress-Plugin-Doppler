@@ -66,7 +66,8 @@ class Doppler_Elementor_Integration extends \ElementorPro\Modules\Forms\Classes\
             $error = '';
 
             if (json_last_error() === JSON_ERROR_NONE && !empty($error_body['errors'])) {
-                $error = array_column($error_body['errors'], 'detail');
+                $error_details = array_column($error_body['errors'], 'detail');
+                $error = implode(' - ', $error_details);
             }
             if (empty($error)) {
                 $error = 'An error occurred while submitting the form.';
