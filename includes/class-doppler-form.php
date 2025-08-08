@@ -81,7 +81,15 @@ class DPLR_Doppler {
 			'dplr_option_useraccount' => ''
 			]);
 
-		$this->doppler_service->setCredentials(['api_key' => $options['dplr_option_apikey'], 'user_account' => $options['dplr_option_useraccount']]);
+		if (
+			!empty($options['dplr_option_apikey']) &&
+			!empty($options['dplr_option_useraccount'])
+		) {
+			$this->doppler_service->setCredentials([
+				'api_key' => $options['dplr_option_apikey'],
+				'user_account' => $options['dplr_option_useraccount']
+			]);
+		}
 
 		$this->load_shortcodes();
 		$this->load_dependencies();
