@@ -190,7 +190,12 @@ class Doppler_Admin {
 	public function enqueDopplerFieldsForElementor() {
 		$fields = $this->doppler_service->getResource('fields')->getAllFields();
 
-		if (empty($fields) || !is_array($fields->items)) {
+		if (
+			empty($fields) ||
+			!is_object($fields) ||
+			!property_exists($fields, 'items') ||
+			!is_array($fields->items)
+		) {
 			return;
 		}
 		
