@@ -90,14 +90,22 @@ class Doppler_Elementor_Integration extends \ElementorPro\Modules\Forms\Classes\
         $lists_resource = $this->doppler_service->getResource('lists');
         $lists = $lists_resource->getAllLists();
 
+        if (!is_array($lists)) {
+            return [];
+        }
+
         if (is_array($lists) && isset($lists[0]) && is_array($lists[0])) {
             $lists = $lists[0];
         }
 
-        return array_reduce($lists, function($carry, $list) {
+        $list_options = array_reduce($lists, function($carry, $list) {
             $carry[$list->listId] = $list->name;
             return $carry;
         }, []);
+
+        asort($list_options, SORT_NATURAL | SORT_FLAG_CASE);
+
+        return $list_options;
     }
 
     /**
