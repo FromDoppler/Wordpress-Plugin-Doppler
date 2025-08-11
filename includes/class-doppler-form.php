@@ -81,6 +81,16 @@ class DPLR_Doppler {
 			'dplr_option_useraccount' => ''
 			]);
 
+		if (
+			!empty($options['dplr_option_apikey']) &&
+			!empty($options['dplr_option_useraccount'])
+		) {
+			$this->doppler_service->setCredentials([
+				'api_key' => $options['dplr_option_apikey'],
+				'user_account' => $options['dplr_option_useraccount']
+			]);
+		}
+
 		$this->load_shortcodes();
 		$this->load_dependencies();
 		$this->set_locale(); 
@@ -174,8 +184,8 @@ class DPLR_Doppler {
 	private function define_admin_hooks() {
 		
 		$plugin_admin = new Doppler_Admin( $this->get_plugin_name(), $this->get_version(), $this->doppler_service);
-		$extension_manager = new Doppler_Extension_Manager();
-
+		$extension_manager = new Doppler_Extension_Manager($this->doppler_service);
+		
 		$this->loader->add_action( 'admin_enqueue_scripts', 	$plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', 	$plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_init', 				$plugin_admin, 'init_settings' );
@@ -190,7 +200,8 @@ class DPLR_Doppler {
 		$this->loader->add_action( 'wp_ajax_dplr_save_list', 	$plugin_admin, 'ajax_save_list' );
 		$this->loader->add_action( 'wp_ajax_dplr_delete_list',  $plugin_admin, 'ajax_delete_list' );
 		$this->loader->add_action( 'wp_ajax_install_extension', $extension_manager, 'install_extension' );
-
+		$this->loader->add_elementor_action( 'elementor_pro/forms/actions/register', $extension_manager, 'add_elementor_action' );
+		$this->loader->add_action( 'elementor/editor/after_enqueue_scripts', $plugin_admin, 'enqueDopplerFieldsForElementor' );
 	}
 
 	/**

@@ -333,7 +333,7 @@
 										<?php endif; ?>
 									<?php else:
 										if(!$this->extension_manager->has_latest_plugin_version('doppler-for-woocommerce')): ?>
-											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12 button--loading" 
+											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12" 
 													data-extension="doppler-for-woocommerce" data-click-action=<?php _e('Updating', 'doppler-form') ?>>
 												<?php _e('Update Version', 'doppler-form') ?>
 											</button>
