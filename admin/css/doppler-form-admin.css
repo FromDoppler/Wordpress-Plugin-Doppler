@@ -1368,6 +1368,19 @@
 	border: transparent !important;
 }
 
+.dplr_settings .dp-carousel-dots .dp-carousel-dot {
+	border: none !important;
+	background: none !important;
+}
+
+.dplr_settings .dp-carousel-slide {
+	min-height: 0 !important;
+}
+
+.dplr_settings .dp-carousel-dots {
+	justify-content: center !important;
+}
+
 /* override Wordpress's styles */
 #dplr-consent-location {
 	/* override wp styles for this component*/
