@@ -37,6 +37,32 @@
 								</div>
 							</div>
 						</div>
+						<div class="dp-carousel m-t-24" id="dp-notification-carousel">
+							<div class="dp-carousel-wrapper dp-carousel-orange">
+								<div class="dp-carousel-content">
+									<?php if (!empty($notification_messages)) :
+										foreach ($notification_messages as $index => $notification) :
+										?>
+											<div class="dp-carousel-slide<?php echo ($index === 0) ? ' active' : ''; ?>" data-order="<?php echo $index; ?>">
+												<p><?php echo esc_html($notification['title']); ?></p>
+												<a href="<?php echo esc_url($notification['url']); ?>" target="_blank" rel="noopener">
+													<span class="ms-icon icon-arrow-next"></span>
+													<?php _e('Ver más', 'doppler-form'); ?>
+												</a>
+											</div>
+										<?php endforeach;
+									endif; ?>
+								</div>
+							</div>
+							<div class="dp-carousel-dots">
+								<?php if (!empty($notification_messages)) :
+									foreach ($notification_messages as $index => $notification) :
+								?>
+										<input class="dp-carousel-dot" <?php echo ($index === 0) ? 'checked="checked"' : ''; ?> type="radio" value="<?php echo $index; ?>" id="carousel-dot-<?php echo $index; ?>" name="carousel">
+								<?php endforeach;
+								endif; ?>
+							</div>
+						</div>
 						<!-- KPIs -->
 						<div class="dp-wrapper-as-kpi">
 							<ul class="kpi-ul">
