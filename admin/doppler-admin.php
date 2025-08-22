@@ -389,9 +389,17 @@ class Doppler_Admin {
 				$errorMessages['user_account'] = __("Ouch! The field is empty.", "doppler-form");
 			
 			}
-		
 		}
-		
+
+		$response = wp_remote_get('https://cdn.fromdoppler.com/wordpress/notifications.json');
+
+		if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+			$data = json_decode(wp_remote_retrieve_body($response), true);
+			if (is_array($data) && !empty($data)) {
+				$notification_messages = $data;
+			}
+		}
+
 		require_once("partials/loading.php");
 		include "partials/api-connection.php";
 	}
