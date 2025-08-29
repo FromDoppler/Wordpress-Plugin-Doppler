@@ -683,11 +683,13 @@
 		}
 
 		const slides = carousel.find(".dp-carousel-slide");
-		const dots = carousel.find(".dp-carousel-dot");
+		const dots = carousel
+			.siblings(".dp-carousel-dots")
+			.find(".dp-carousel-dot");
 		const wrapper = carousel.find(".dp-carousel-wrapper");
 		const slideCount = slides.length;
 		let autoPlayInterval;
-		const autoPlayDelay = 10000; // 10 seconds
+		const autoPlayDelay = 5000; // 5 seconds
 
 		function moveToSlide(index) {
 			const colorClasses = ["dp-carousel-orange", "dp-carousel-purple"];
