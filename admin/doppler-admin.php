@@ -391,12 +391,32 @@ class Doppler_Admin {
 			}
 		}
 
+		$notification_messages = [];
 		$response = wp_remote_get('https://cdn.fromdoppler.com/wordpress/notifications.json');
 
 		if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
 			$data = json_decode(wp_remote_retrieve_body($response), true);
 			if (is_array($data) && !empty($data)) {
-				$notification_messages = $data;
+				$locale = get_user_locale();
+				$lang = substr($locale, 0, 2);
+
+				foreach ($data as $notification) {
+					$title_key = "title_{$lang}";
+					$url_key = "url_{$lang}";
+
+					if (!isset($notification[$title_key]) || !isset($notification[$url_key])) {
+						$title_key = 'title_en';
+						$url_key = 'url_en';
+					}
+
+					if (isset($notification[$title_key]) && isset($notification[$url_key])) {
+						$notification_messages[] = [ 
+							'title' => $notification[$title_key],
+							'url' => $notification[$url_key],
+							'icon' => $notification['icon'] ?? ''
+						];
+					}
+				}
 			}
 		}
 
