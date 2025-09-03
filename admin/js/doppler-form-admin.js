@@ -37,8 +37,8 @@
 	}
 
 	$(document).ready(function () {
-		$("#doppler-loading-screen").hide();
-		$("#dplr_body_content").show();
+		$('#doppler-loading-screen').hide();
+		$('#dplr_body_content').show();
 		var colorSelector = $(".color-selector");
 		var default_page_size = 200;
 
@@ -335,19 +335,11 @@
 			}
 
 			$("#dplr-consent-checkbox").change(function () {
-				const isChecked = $(this).is(":checked");
-
-				$("#dplr-consent-location, #dplr-consent-text").prop(
-					"disabled",
-					!isChecked
-				);
-				$("#dplr-consent-location, #dplr-consent-text").prop(
-					"required",
-					isChecked
-				);
-				$(
-					'label[for="dplr-consent-location"], label[for="dplr-consent-text"]'
-				).attr("aria-disabled", !isChecked);
+				const isChecked = $(this).is(':checked');
+        
+				$('#dplr-consent-location, #dplr-consent-text').prop('disabled', !isChecked);
+				$('#dplr-consent-location, #dplr-consent-text').prop('required', isChecked);
+				$('label[for="dplr-consent-location"], label[for="dplr-consent-text"]').attr('aria-disabled', !isChecked);
 			});
 		});
 
@@ -357,9 +349,7 @@
 			var button = $(this);
 			var extension = button.attr("data-extension");
 			var action = button.attr("data-click-action");
-			button
-				.addClass("button--loading")
-				.html(action ? action : object_string.installing);
+			button.addClass("button--loading").html(action ? action : object_string.installing);
 			button
 				.closest(".dplr-extensions")
 				.find("button")
@@ -471,13 +461,12 @@
 			const singleOptinForms = [object_string.SimpleOptIn];
 			const doubleOptinForms = [object_string.DoubleOptIn];
 
-			chartData.data.forEach((form) => {
+			chartData.data.forEach(form => {
 				formNames.push(form.name);
 
 				const displays = parseInt(form.events?.Display) || 0;
 				const submits = parseInt(form.events?.Submit) || 0;
-				const ratio =
-					displays > 0 ? ((submits / displays) * 100).toFixed(2) : 0;
+				const ratio = displays > 0 ? ((submits / displays) * 100).toFixed(2) : 0;
 
 				if (form.settings?.form_doble_optin === "yes") {
 					doubleOptinForms.push(parseFloat(ratio));
@@ -495,19 +484,19 @@
 					type: "bar",
 					colors: {
 						[object_string.SimpleOptIn]: "#A783C7",
-						[object_string.DoubleOptIn]: "#F5B128",
+						[object_string.DoubleOptIn]: "#F5B128"
 					},
 					groups: [[object_string.SimpleOptIn, object_string.DoubleOptIn]],
-					labels: true,
+					labels: true
 				},
 				size: {
-					width: 800,
+					width: 800
 				},
 				axis: {
 					x: { type: "category" },
 					y: {
-						tick: { format: (d) => d + "%" },
-					},
+						tick: { format: d => d + "%" }
+					}
 				},
 				tooltip: {
 					grouped: false,
@@ -515,15 +504,12 @@
 						let data = d[0];
 						let formIndex = data.index;
 						let form = chartData.data[formIndex];
-
+			
 						let rate = data.value + "%";
 						let displays = form.events?.Display || 0;
 						let submits = form.events?.Submit || 0;
-						let type =
-							form.settings?.form_doble_optin === "yes"
-								? object_string.DoubleOptIn
-								: object_string.SimpleOptIn;
-
+						let type = form.settings?.form_doble_optin === "yes" ? object_string.DoubleOptIn : object_string.SimpleOptIn;
+			
 						return `
 						<div class="bb-tooltip p-t-12 p-b-12 p-l-12 p-r-12">
 									<strong>${form.name}</strong><br>
@@ -532,24 +518,20 @@
 									${object_string.Subscribed}: <strong>${submits}</strong><br>
 									${object_string.formType}: <strong>${type}</strong>
 								</div>`;
-					},
+					}
 				},
-				bindto: "#doppler-forms-chart",
+				bindto: "#doppler-forms-chart"
 			});
 		}
 
-		$("#content-html").on("click", function () {
-			setTimeout(function () {
-				$("#content")
-					.off("blur")
-					.on("blur", function () {
-						var content = document.getElementById("content").value;
-						validateEmailContent(null, content);
-					});
+		$('#content-html').on('click', function() {
+			setTimeout(function() {
+				$('#content').off('blur').on('blur', function() {
+					var content = document.getElementById("content").value
+					validateEmailContent(null, content);
+				});
 			}, 100);
 		});
-
-		loadCarousel();
 	});
 
 	function listsLoading() {
@@ -675,54 +657,6 @@
 
 		$("#dplr-dialog-confirm").dialog("open");
 	}
-
-	function loadCarousel() {
-		const carousel = $("#dp-notification-carousel");
-		if (carousel.length === 0) {
-			return;
-		}
-
-		const slides = carousel.find(".dp-carousel-slide");
-		const dots = carousel.find(".dp-carousel-dot");
-		const wrapper = carousel.find(".dp-carousel-wrapper");
-		const slideCount = slides.length;
-		let autoPlayInterval;
-		const autoPlayDelay = 10000; // 10 seconds
-
-		function moveToSlide(index) {
-			const colorClasses = ["dp-carousel-orange", "dp-carousel-purple"];
-			slides.removeClass("active");
-
-			slides.filter('[data-order="' + index + '"]').addClass("active");
-			dots.filter('[value="' + index + '"]').prop("checked", true);
-
-			wrapper.removeClass(colorClasses.join(" "));
-			wrapper.addClass(colorClasses[index % colorClasses.length]);
-		}
-
-		function startAutoPlay() {
-			clearInterval(autoPlayInterval);
-
-			autoPlayInterval = setInterval(function () {
-				const currentActive = carousel.find(".dp-carousel-slide.active");
-				const currentIndex = parseInt(currentActive.data("order"), 10);
-
-				const nextIndex = (currentIndex + 1) % slideCount;
-
-				moveToSlide(nextIndex);
-			}, autoPlayDelay);
-		}
-
-		dots.on("click", function () {
-			const index = parseInt($(this).val(), 10);
-			moveToSlide(index);
-			startAutoPlay();
-		});
-
-		if (slideCount > 1) {
-			startAutoPlay();
-		}
-	}
 })(jQuery);
 
 function displayErrors(body) {
@@ -737,6 +671,7 @@ function clearResponseMessages() {
 		.addClass("d-none")
 		.find(".dp-content-message")
 		.html("");
+		
 }
 
 function generateErrorMsg(body) {
