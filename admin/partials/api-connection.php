@@ -4,6 +4,8 @@
 	<div class="dplr_connect" id="dplr_body_content" style="display: none;">
 		<?php
 		if ($connected) {
+			$dplr_woocommerce_plugin_is_active = $this->extension_manager->is_active('doppler-for-woocommerce');
+			$dplr_learnpress_plugin_is_active = $this->extension_manager->is_active('doppler-for-learnpress');
 		?>
 			<div class="dp-container m-t-24">
 				<div class="dp-rowflex">
@@ -38,7 +40,11 @@
 							</div>
 						</div>
 						<!-- KPIs -->
-						<div class="dp-wrapper-as-kpi">
+						<div class="dp-wrapper-as-kpi<?php
+							echo ($dplr_woocommerce_plugin_is_active && $dplr_learnpress_plugin_is_active ? "col-lg-12"
+								: ($dplr_woocommerce_plugin_is_active || $dplr_learnpress_plugin_is_active ? "col-lg-10"
+								: "col-lg-8")) ?> col-md-12 col-sm-12"
+						>
 							<ul class="kpi-ul">
 								<li>
 									<div class="dp-kpi-card dp-white">
@@ -85,7 +91,7 @@
 										</div>
 									</div>
 								</li>
-								<?php if($this->extension_manager->is_active('doppler-for-woocommerce')):
+								<?php if($dplr_woocommerce_plugin_is_active):
 									$woocommerce_synch = get_option('dplrwoo_last_synch');
 								?>
 									<li>
@@ -103,7 +109,7 @@
 										</div>
 									</li>
 								<?php endif; ?>
-								<?php if($this->extension_manager->is_active('doppler-for-learnpress')):
+								<?php if($dplr_learnpress_plugin_is_active):
 									$learnpress_synch = get_option('dplr_learnpress_subscribers_list');
 								?>
 								<li>
@@ -228,7 +234,7 @@
 												<a href="<?php echo admin_url('admin.php?page=doppler_list_management')?>"><?php _e("Access","doppler-form");?> →</a>
 											</div>
 										</div>
-										<?php if($this->extension_manager->is_active('doppler-for-learnpress')):  
+										<?php if($dplr_learnpress_plugin_is_active):  
 											$learnpress_synch = get_option('dplr_learnpress_subscribers_list');
 										?>
 										<div class="dplr-item">
@@ -241,7 +247,7 @@
 											</div>
 										</div>
 										<?php endif; ?>
-										<?php if($this->extension_manager->is_active('doppler-for-woocommerce')):
+										<?php if($dplr_woocommerce_plugin_is_active):
 											$woocommerce_synch = get_option('dplrwoo_last_synch');	
 										?>
 										<div class="dplr-item">
@@ -312,7 +318,7 @@
 											<h4><?php _e('Doppler for WooCommerce', 'doppler-form')?></h4>
 											<p>
 												<?php 
-													if($this->extension_manager->is_active('doppler-for-woocommerce')):  
+													if($dplr_woocommerce_plugin_is_active):  
 														_e('Successfully Instaled', 'doppler-form'); ?>
 													<?php else:
 														_e('Extension deactivated', 'doppler-form');
@@ -322,7 +328,7 @@
 										</div>
 									</div>
 									<?php 
-									if(!$this->extension_manager->is_active('doppler-for-woocommerce')): ?>
+									if(!$dplr_woocommerce_plugin_is_active): ?>
 										<?php if(!$this->extension_manager->has_dependency('doppler-for-woocommerce')): ?>
 											<p class="text-italic"><?php _e('You should have <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce plugin</a> installed and active first.', 'doppler-form')?></p>
 										<?php else: ?>
@@ -349,7 +355,7 @@
 											<h4><?php _e('Doppler for LearnPress', 'doppler-form');?></h4>
 											<p>
 												<?php 
-													if($this->extension_manager->is_active('doppler-for-learnpress')):  
+													if($dplr_learnpress_plugin_is_active):  
 														_e('Successfully Instaled', 'doppler-form'); ?>
 													<?php else:
 														_e('Extension deactivated', 'doppler-form');
@@ -359,7 +365,7 @@
 										</div>
 									</div>
 									<?php 
-									if(!$this->extension_manager->is_active('doppler-for-learnpress')): ?>
+									if(!$dplr_learnpress_plugin_is_active): ?>
 										<?php if(!$this->extension_manager->has_dependency('doppler-for-learnpress')): ?>
 											<p class="text-italic"><?php _e('You should have <a href="https://wordpress.org/plugins/learnpress/">LearnPress plugin</a> installed and active first.', 'doppler-form')?></p>
 										<?php else: ?>
