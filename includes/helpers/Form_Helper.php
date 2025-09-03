@@ -48,7 +48,7 @@ class DPLR_Form_helper
 						<?php echo self::printInput($field, $form, $label, $form_orientation_horizontal);
 					endif;
 				endforeach;
-				if ($form->settings['use_consent_field'] === 'yes'): ?>
+				if (isset($form->settings['use_consent_field']) && $form->settings['use_consent_field'] === 'yes'): ?>
 					<div class="input-field consent_field" required>
 						<input type="checkbox" name="fields-CONSENT" value="true" required/>
 						<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? $form->settings['consent_field_text'] : _e("I've read and accept the privacy policy", "doppler-form");
@@ -57,7 +57,7 @@ class DPLR_Form_helper
 						<?php endif; ?>
 					</div>
 				<?php endif;
-				if ($form->settings['use_thankyou_page'] === 'yes'): ?>
+				if (isset($form->settings['use_thankyou_page']) && $form->settings['use_thankyou_page'] === 'yes'): ?>
 					<input type="hidden" value="<?php echo $form->settings['thankyou_page_url'] ?>" name="thankyou"/>
 				<?php endif;
 			else: ?>
@@ -90,11 +90,36 @@ class DPLR_Form_helper
 						<input type="hidden" value="<?php echo $form->settings['thankyou_page_url'] ?>" name="thankyou"/>
 					<?php endif; ?>
 				</div>
-			<?php endif; ?>
+			<?php endif;
+			if(!isset($form->settings['use_consent_field']) 
+			&& isset($form->settings['consent_field_text']) 
+			&& isset($form->settings['consent_field_url'])
+			) {
+				$consentTextArray = explode("||", $form->settings["consent_field_text"]);
+				$consentUrlArray = explode("||", $form->settings["consent_field_url"]);
+
+				foreach ($consentTextArray as $key => $value)
+				{ 
+					if (!empty($value))
+					{  ?>
+					<div class="input-field consent_field" required>
+						<input type="checkbox" name="fields-CONSENT" value="true" required/>
+						<?php echo $value ?>
+						<a href="<?= $consentUrlArray[$key] ?>"><?php _e('Read more', 'doppler-form')?></a>
+					</div>
+					<?php }
+				}
+			}?>
+
 			<input type="text" name="secondary-dplrEmail" value="" class="dplr-secondary-email"/>
 			<label class="msg-data-sending"><?php echo isset($form->settings["message_success"]) ? $form->settings["message_success"] : __('Thanks for subscribing', 'doppler-form'); ?></label>
 			<div class="input-button">
-				<button type="submit" name="submit" class="<?php echo isset($form->settings["button_position"]) ? $form->settings["button_position"] : 'left'; ?>">
+				<button 
+				type="submit" 
+				name="submit" 
+				class="<?php echo isset($form->settings["button_position"]) ? $form->settings["button_position"] : 'left'; ?>"
+				style="<?php echo isset($form->settings["button_color"]) && !empty(trim($form->settings["button_color"])) ? "background: ". $form->settings["button_color"] .";" : ""; ?>"
+				>
 					<img src="<?php echo plugin_dir_url(__FILE__) ?>../../public/img/spinner.svg"/>
 					<span><?php echo isset($form->settings["button_text"]) ? $form->settings["button_text"] : __('Submit', 'doppler-form'); ?></span>
 				</button>
