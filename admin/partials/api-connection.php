@@ -40,7 +40,7 @@
 							</div>
 						</div>
 						<!-- KPIs -->
-						<div class="dp-wrapper-as-kpi<?php
+						<div class="dp-wrapper-as-kpi <?php
 							echo ($dplr_woocommerce_plugin_is_active && $dplr_learnpress_plugin_is_active ? "col-lg-12"
 								: ($dplr_woocommerce_plugin_is_active || $dplr_learnpress_plugin_is_active ? "col-lg-10"
 								: "col-lg-8")) ?> col-md-12 col-sm-12"
