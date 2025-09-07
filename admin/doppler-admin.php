@@ -389,9 +389,43 @@ class Doppler_Admin {
 				$errorMessages['user_account'] = __("Ouch! The field is empty.", "doppler-form");
 			
 			}
-		
 		}
-		
+
+		$notification_messages = [];
+		$response = wp_remote_get('https://cdn.fromdoppler.com/wordpress/notifications.json');
+
+		if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+			$data = json_decode(wp_remote_retrieve_body($response), true);
+			if (is_array($data) && !empty($data)) {
+				$locale = get_user_locale();
+				$lang = substr($locale, 0, 2);
+
+				foreach ($data as $notification) {
+					$title_key = "title_{$lang}";
+					$description_key = "description_{$lang}";
+					$url_key = "url_{$lang}";
+					$url_text_key = "url_text_{$lang}";
+
+					if (!isset($notification[$title_key]) || !isset($notification[$url_key])) {
+						$title_key = 'title_es';
+						$description_key = 'description_es';
+						$url_key = 'url_es';
+						$url_text_key = 'url_text_es';
+					}
+
+					if (isset($notification[$title_key]) && isset($notification[$url_key])) {
+						$notification_messages[] = [ 
+							'title' => $notification[$title_key],
+							'description' => $notification[$description_key],
+							'url' => $notification[$url_key],
+							'icon' => $notification['icon'] ?? '',
+							'url_text' => $notification[$url_text_key]
+						];
+					}
+				}
+			}
+		}
+
 		require_once("partials/loading.php");
 		include "partials/api-connection.php";
 	}

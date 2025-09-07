@@ -39,6 +39,37 @@
 								</div>
 							</div>
 						</div>
+						<?php if (!empty($notification_messages)) : 
+						?>
+							<div class="dp-carousel col-lg-8 col-md-10 col-sm-12 m-t-24" id="dp-notification-carousel">
+								<div class="dp-carousel-wrapper dp-carousel-orange">
+									<div class="dp-carousel-content">
+										<?php foreach ($notification_messages as $index => $notification) : ?>
+											<div class="dp-carousel-slide<?php echo ($index === 0) ? ' active' : ''; ?>" data-order="<?php echo $index; ?>">
+												<div class="dp-carousel-slide-title">
+												<h3><?php echo esc_html($notification['title']); ?></h3>
+												<?php if (isset($notification['icon']) && !empty($notification['icon'])) : ?>
+													<img class="dp-carousel-icon m-l-12" src="<?php echo esc_url($notification['icon']); ?>" alt="" />
+												<?php endif; ?>
+												</div>
+												<div class="dp-carousel-slide-header">
+													<p><?php echo esc_html($notification['description']); ?></p>
+												</div>
+												<a href="<?php echo esc_url($notification['url']); ?>" target="_blank" rel="noopener">
+													<span class="ms-icon icon-arrow-next"></span>
+													<?php echo esc_html($notification['url_text']); ?>
+												</a>
+											</div>
+										<?php endforeach; ?>
+									</div>
+								</div>
+								<div class="dp-carousel-dots">
+									<?php foreach ($notification_messages as $index => $notification) : ?>
+										<input class="dp-carousel-dot" <?php echo ($index === 0) ? 'checked="checked"' : ''; ?> type="radio" value="<?php echo $index; ?>" id="carousel-dot-<?php echo $index; ?>" name="carousel">
+									<?php endforeach; ?>
+								</div>
+							</div>
+						<?php endif; ?>
 						<!-- KPIs -->
 						<div class="dp-wrapper-as-kpi <?php
 							echo ($dplr_woocommerce_plugin_is_active && $dplr_learnpress_plugin_is_active ? "col-lg-12"
