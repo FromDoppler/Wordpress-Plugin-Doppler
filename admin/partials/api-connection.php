@@ -41,7 +41,7 @@
 						</div>
 						<?php if (!empty($notification_messages)) : 
 						?>
-							<div class="dp-carousel col-lg-8 col-md-10 col-sm-12 m-t-24" id="dp-notification-carousel">
+							<div class="dp-carousel m-t-24" id="dp-notification-carousel">
 								<div class="dp-carousel-wrapper dp-carousel-orange">
 									<div class="dp-carousel-content">
 										<?php foreach ($notification_messages as $index => $notification) : ?>
