@@ -1338,7 +1338,7 @@
 }
 
 .dplr_settings .dp-carousel-icon {
-	max-width: 3%;
+	max-width: 2%;
 }
 
 /* override doppler's styles */
@@ -1388,9 +1388,12 @@
 	background: none !important;
 }
 
-.dplr_settings .dp-carousel {
-	padding-left: 0 !important;
-	padding-right: 0 !important;
+.dplr_settings .dp-carousel-slide {
+	min-height: auto !important;
+}
+
+.dplr_settings .dp-carousel-slide-header {
+	margin-bottom: 0 !important;
 }
 
 /* override Wordpress's styles */
