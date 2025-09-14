@@ -47,10 +47,10 @@
 										<?php foreach ($notification_messages as $index => $notification) : ?>
 											<div class="dp-carousel-slide<?php echo ($index === 0) ? ' active' : ''; ?>" data-order="<?php echo $index; ?>">
 												<div class="dp-carousel-slide-title">
-												<h3><?php echo esc_html($notification['title']); ?></h3>
-												<?php if (isset($notification['icon']) && !empty($notification['icon'])) : ?>
-													<img class="dp-carousel-icon m-l-12" src="<?php echo esc_url($notification['icon']); ?>" alt="" />
-												<?php endif; ?>
+													<?php if (isset($notification['icon']) && !empty($notification['icon'])) : ?>
+														<img class="dp-carousel-icon m-r-12" src="<?php echo esc_url($notification['icon']); ?>" alt="" />
+													<?php endif; ?>
+													<h3><?php echo esc_html($notification['title']); ?></h3>
 												</div>
 												<div class="dp-carousel-slide-header">
 													<p><?php echo esc_html($notification['description']); ?></p>
