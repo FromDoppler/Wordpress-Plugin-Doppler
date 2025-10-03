@@ -157,7 +157,15 @@ class DPLR_Doppler_Form_Public {
 	public function add_tracking_script() {
 		$script = get_option('dplr_hub_script');
 		if(!empty($script)){
-			echo stripslashes(html_entity_decode($script));
+			echo wp_kses(
+				stripslashes(html_entity_decode($script)),
+				array(
+					'script'      => array(
+						'type'  => array(),
+						'async' => array(),
+						'src' => array(),
+					)
+				));
 		}
 	}
 

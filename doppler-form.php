@@ -41,7 +41,7 @@ if( is_plugin_active('Plugin/doppler-form.php') ) {
 	deactivate_plugins( plugin_basename( __FILE__ ) );
 	// Throw an error in the WordPress admin console.
 	$error_message = '<p style="font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,Oxygen-Sans,Ubuntu,Cantarell,\'Helvetica Neue\',sans-serif;font-size: 13px;line-height: 1.5;color:#444;">' . esc_html__( 'You have to uninstall version 1.1 of Doppler Form before installing version 2.0 ', 'doppler-form' ) . '</p>';
-	die( $error_message ); // WPCS: XSS ok.
+	die( esc_html($error_message) ); // WPCS: XSS ok.
 
 }
 

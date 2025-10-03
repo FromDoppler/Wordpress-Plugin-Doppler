@@ -19,75 +19,75 @@ class DPLR_Form_helper
 		ob_start();
 	
 		?>
-		<form class="dplr_form <?php echo $form_class; ?>">
+		<form class="dplr_form <?php echo esc_attr($form_class); ?>">
 			<?php if ($form_orientation_horizontal): ?>
 				<div class="container">
-					<input type="hidden" name="list_id" value="<?php echo $form->list_id; ?>">
-					<input type="hidden" name="form_id" value="<?php echo $form->id; ?>">
+					<input type="hidden" name="list_id" value="<?php echo esc_attr($form->list_id); ?>">
+					<input type="hidden" name="form_id" value="<?php echo esc_attr($form->id); ?>">
 					<?php foreach ($fields as $field) :
 						$label = isset($field->settings['label']) ? $field->settings['label'] : $field->name; ?>
 						<div class="<?php echo ($field->type !== "permission") ? "flex-item" : ""; ?> input-field <?php echo isset($field->settings['required']) ? 'required' : ''; ?>">
 							<?php if ($label !== ''): ?>
 								<?php if ($field->type !== 'permission'): ?>
-									<label for="<?php echo $field->name; ?>" class="horizontal_label">
-										<?php echo $label; ?>
+									<label for="<?php echo esc_attr($field->name); ?>" class="horizontal_label">
+										<?php echo esc_html($label);; ?>
 									</label>
 								<?php endif; ?>
 							<?php endif;
 							if ($field->type !== 'permission'):
-								echo self::printInput($field, $form, $label, $form_orientation_horizontal);
+								echo esc_html(self::printInput($field, $form, $label, $form_orientation_horizontal));
 							endif; ?>
 						</div>
 					<?php endforeach; ?>
 				</div>
 				<?php foreach ($fields as $field):
 					if ($field->type === "permission"): ?>
-						<label for="<?php echo $field->name; ?>">
-							<?php echo $field->settings["label"]; ?>
+						<label for="<?php echo esc_attr($field->name); ?>">
+							<?php echo esc_html($field->settings["label"]); ?>
 						</label>
-						<?php echo self::printInput($field, $form, $label, $form_orientation_horizontal);
+						<?php echo esc_html(self::printInput($field, $form, $label, $form_orientation_horizontal));
 					endif;
 				endforeach;
 				if (isset($form->settings['use_consent_field']) && $form->settings['use_consent_field'] === 'yes'): ?>
 					<div class="input-field consent_field" required>
 						<input type="checkbox" name="fields-CONSENT" value="true" required/>
-						<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? $form->settings['consent_field_text'] : _e("I've read and accept the privacy policy", "doppler-form");
+						<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? esc_html($form->settings['consent_field_text']) : esc_html_e("I've read and accept the privacy policy", "doppler-form");
 						if (isset($form->settings['consent_field_url']) && !empty($form->settings['consent_field_url'])): ?>
-							<a href="<?= $form->settings['consent_field_url'] ?>"><?php _e('Read more', 'doppler-form') ?></a>
+							<a href="<?= esc_url($form->settings['consent_field_url']) ?>"><?php esc_html_e('Read more', 'doppler-form') ?></a>
 						<?php endif; ?>
 					</div>
 				<?php endif;
 				if (isset($form->settings['use_thankyou_page']) && $form->settings['use_thankyou_page'] === 'yes'): ?>
-					<input type="hidden" value="<?php echo $form->settings['thankyou_page_url'] ?>" name="thankyou"/>
+					<input type="hidden" value="<?php echo esc_attr($form->settings['thankyou_page_url']) ?>" name="thankyou"/>
 				<?php endif;
 			else: ?>
 				<div>
-					<input type="hidden" name="list_id" value="<?php echo $form->list_id; ?>">
-					<input type="hidden" name="form_id" value="<?php echo $form->id; ?>">
+					<input type="hidden" name="list_id" value="<?php echo esc_attr($form->list_id); ?>">
+					<input type="hidden" name="form_id" value="<?php echo esc_attr($form->id); ?>">
 					<?php foreach ($fields as $field) :
 						$label = isset($field->settings['label']) ? $field->settings['label'] : $field->name; ?>
 						<div class="input-field <?php echo isset($field->settings['required']) ? 'required' : ''; ?>">
 							<?php if ($label !== ''): ?>
 								<?php if ($field->type !== 'permission'): ?>
-									<label for="<?php echo $field->name; ?>">
-										<?php echo $label; ?>
+									<label for="<?php echo esc_attr($field->name); ?>">
+										<?php echo esc_html($label); ?>
 									</label>
 								<?php endif; ?>
 							<?php endif;
-							echo self::printInput($field, $form, $label, $form_orientation_horizontal); ?>
+							echo esc_html(self::printInput($field, $form, $label, $form_orientation_horizontal)); ?>
 						</div>
 					<?php endforeach;
 					if (isset($form->settings['use_consent_field']) && $form->settings['use_consent_field'] === 'yes'): ?>
 						<div class="input-field consent_field" required>
 							<input type="checkbox" name="fields-CONSENT" value="true" required/>
-							<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? $form->settings['consent_field_text'] : _e("I've read and accept the privacy policy", "doppler-form");
+							<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? esc_html($form->settings['consent_field_text']) : esc_html_e("I've read and accept the privacy policy", "doppler-form");
 							if (isset($form->settings['consent_field_url']) && !empty($form->settings['consent_field_url'])): ?>
-								<a href="<?= $form->settings['consent_field_url'] ?>"><?php _e('Read more', 'doppler-form') ?></a>
+								<a href="<?= esc_url($form->settings['consent_field_url']) ?>"><?php esc_html_e('Read more', 'doppler-form') ?></a>
 							<?php endif; ?>
 						</div>
 					<?php endif;
 					if (isset($form->settings['use_thankyou_page']) && $form->settings['use_thankyou_page'] === 'yes'): ?>
-						<input type="hidden" value="<?php echo $form->settings['thankyou_page_url'] ?>" name="thankyou"/>
+						<input type="hidden" value="<?php echo esc_url($form->settings['thankyou_page_url']) ?>" name="thankyou"/>
 					<?php endif; ?>
 				</div>
 			<?php endif;
@@ -104,24 +104,24 @@ class DPLR_Form_helper
 					{  ?>
 					<div class="input-field consent_field" required>
 						<input type="checkbox" name="fields-CONSENT" value="true" required/>
-						<?php echo $value ?>
-						<a href="<?= $consentUrlArray[$key] ?>"><?php _e('Read more', 'doppler-form')?></a>
+						<?php echo esc_html($value) ?>
+						<a href="<?= esc_url($consentUrlArray[$key]) ?>"><?php esc_html_e('Read more', 'doppler-form')?></a>
 					</div>
 					<?php }
 				}
 			}?>
 
 			<input type="text" name="secondary-dplrEmail" value="" class="dplr-secondary-email"/>
-			<label class="msg-data-sending"><?php echo isset($form->settings["message_success"]) ? $form->settings["message_success"] : __('Thanks for subscribing', 'doppler-form'); ?></label>
+			<label class="msg-data-sending"><?php echo isset($form->settings["message_success"]) ? esc_html($form->settings["message_success"]) : esc_html_e('Thanks for subscribing', 'doppler-form'); ?></label>
 			<div class="input-button">
 				<button 
 				type="submit" 
 				name="submit" 
-				class="<?php echo isset($form->settings["button_position"]) ? $form->settings["button_position"] : 'left'; ?>"
-				style="<?php echo isset($form->settings["button_color"]) && !empty(trim($form->settings["button_color"])) ? "background: ". $form->settings["button_color"] .";" : ""; ?>"
+				class="<?php echo isset($form->settings["button_position"]) ? esc_attr($form->settings["button_position"]) : 'left'; ?>"
+				style="<?php echo isset($form->settings["button_color"]) && !empty(trim($form->settings["button_color"])) ? "background: ". esc_attr($form->settings["button_color"]) .";" : ""; ?>"
 				>
-					<img src="<?php echo plugin_dir_url(__FILE__) ?>../../public/img/spinner.svg"/>
-					<span><?php echo isset($form->settings["button_text"]) ? $form->settings["button_text"] : __('Submit', 'doppler-form'); ?></span>
+					<img src="<?php echo esc_url(plugin_dir_url(__FILE__)) ?>../../public/img/spinner.svg"/>
+					<span><?php echo isset($form->settings["button_text"]) ? esc_html($form->settings["button_text"]) : esc_html_e('Submit', 'doppler-form'); ?></span>
 				</button>
 			</div>
 		</form>
@@ -138,9 +138,9 @@ class DPLR_Form_helper
 			if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'multi')
 			{
 				?>
-					<textarea <?=$required?>
-						name="fields-<?php echo $input->name . '-' . $form->id; ?>"
-						placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
+					<textarea <?=esc_attr($required)?>
+						name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
+						placeholder="<?php echo isset($input->settings['placeholder']) ? esc_attr($input->settings['placeholder']) : ''; ?>"
 						rows="3"
 						cols="80"
 						maxlength="150">
@@ -150,16 +150,16 @@ class DPLR_Form_helper
 			else if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'options')
 			{
 				?>
-					<select <?=$required?>
-						name="fields-<?php echo $input->name . '-' . $form->id; ?>">
+					<select <?=esc_attr($required)?>
+						name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>">
 						<?php echo (isset($input->settings['placeholder']) && $input->settings['placeholder'] !== '' )
-							? '<option value="">' . $input->settings['placeholder'] . '</option>' 
+							? '<option value="">' . esc_html($input->settings['placeholder']) . '</option>' 
 							: ''; 
 						?>
 						<?php if (isset($input->settings['text_options']) && $input->settings['text_options'] !== '') {
 							$lines = explode("\n", $input->settings['text_options']);
 							foreach (array_map('trim', $lines) as $line) {
-								echo '<option value="' . $line . '">' . $line . '</option>';
+								echo '<option value="' . esc_attr($line) . '">' . esc_html($line) . '</option>';
 							}
 						} ?>
 					</select>
@@ -168,40 +168,40 @@ class DPLR_Form_helper
 			else 
 			{
 				?>
-					<input <?=$required?>
+					<input <?=esc_attr($required)?>
 					type="text"
-					name="fields-<?php echo $input->name . '-' . $form->id; ?>"
-					placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>"
+					name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
+					placeholder="<?php echo isset($input->settings['placeholder']) ? esc_attr($input->settings['placeholder']) : ''; ?>"
 					maxlength="150"/>
 				<?php
 			}
 			break;
 		case 'number':?>
-			<input <?=$required?>
+			<input <?=esc_attr($required)?>
 			type="number"
-			oninvalid="this.setCustomValidity('<?php _e('Please enter only numbers.', 'doppler-form') ?>')"
+			oninvalid="this.setCustomValidity('<?php esc_html_e('Please enter only numbers.', 'doppler-form') ?>')"
 			pattern="[0-9]"
-			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 			oninput="this.setCustomValidity('')"
 			value=""
-			placeholder="<?php echo $form_orientation_horizontal ? isset($input->settings['placeholder']) ?
-				$input->settings['placeholder'] 
-				: ''
-			: $label ?>"
+			placeholder="<?php echo $form_orientation_horizontal ? esc_attr(isset($input->settings['placeholder'])) 
+					? esc_attr($input->settings['placeholder'])
+					: ''
+				: esc_attr($label) ?>"
 			maxlength="27"/>
 			<?php
 			break;
 		case 'phone':?>
-				<input <?=$required?>
+				<input <?=esc_attr($required)?>
 				type="tel"
 				class = "phone-doppler"
-				name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+				name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 				oninput="this.setCustomValidity('')"
 				value=""
 				placeholder="<?php echo $form_orientation_horizontal ?
-					$label
+					esc_attr($label)
 					: (isset($input->settings['placeholder']) ?
-						$input->settings['placeholder']
+						esc_attr($input->settings['placeholder'])
 						: '')
 				?>"
 				maxlength="150"/>
@@ -209,78 +209,78 @@ class DPLR_Form_helper
 			<?php
 			break;
 		case 'consent':?>
-			<input <?=$required?>
+			<input <?=esc_attr($required)?>
 			type="checkbox"
-			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 			value = "true"/>
 			<?php
 			break;
 		case 'permission':?>
 			<div class="permission-field permission-form-container">
-				<input <?=$required?>
+				<input <?=esc_attr($required)?>
 				type="checkbox"
-				name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+				name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 				value = "true"/>
-				<label for="fields-<?php echo $input->name; ?>">
-					<?php echo $input->name; ?>
+				<label for="fields-<?php echo esc_attr($input->name); ?>">
+					<?php echo esc_html($input->name); ?>
 				</label>
 			</div>
 			<?php
 			break;
 		case 'boolean':
 			?>
-			<input <?=$required?>
+			<input <?=esc_attr($required)?>
 			type="radio"
-			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 			value="true">Si
-			<input <?=$required?>
+			<input <?=esc_attr($required)?>
 			type="radio"
-			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 			value="false">No
 			<br/>
 			<?php
 			break;
 		case 'email':
 			?>
-			<input <?=$required?>
+			<input <?=esc_attr($required)?>
 			type="email"
-			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid email address.', 'doppler-form') ?>')"
+			oninvalid="this.setCustomValidity('<?php esc_html_e('Please enter a valid email address.', 'doppler-form') ?>')"
 			pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$"
-			name="<?php echo $input->name; ?>"
+			name="<?php echo esc_attr($input->name); ?>"
 			oninput="this.setCustomValidity('')"
 			value=""
 			maxlength="150"
-			placeholder="<?php echo isset($input->settings['placeholder']) ? $input->settings['placeholder'] : ''; ?>">
+			placeholder="<?php echo isset($input->settings['placeholder']) ? esc_attr($input->settings['placeholder']) : ''; ?>">
 			<?php
 			break;
 		case 'date':
 			?>
-			<input <?=$required?>
+			<input <?=esc_attr($required)?>
 			type="text"
-			name="<?php echo $input->name; ?>"
-			data-form-id="<?php echo $form->id; ?>"
-			data-date-format="<?php echo ($input->settings['dateFormat'] ?? '"dd/mm/yy'); ?>"
-			oninvalid="this.setCustomValidity('<?php _e('Please enter a valid date.', 'doppler-form') ?>')"
+			name="<?php echo esc_attr($input->name); ?>"
+			data-form-id="<?php echo esc_attr($form->id); ?>"
+			data-date-format="<?php echo esc_attr($input->settings['dateFormat'] ?? '"dd/mm/yy'); ?>"
+			oninvalid="this.setCustomValidity('<?php esc_html_e('Please enter a valid date.', 'doppler-form') ?>')"
 			pattern="^((\d{1,2}(\/|-| )){2}\d{4,4})|(\d{2,4}(\/|-| )\d{1,2}(\/|-| )\d{1,2})$"
 			value=""
 			class="date"
 			maxlength="150"
 			placeholder= "<?php echo isset($input->settings['placeholder']) ?
-				$input->settings['placeholder'] 
+				esc_attr($input->settings['placeholder'])
 				: "" ?>">
 			<input type="hidden"
-			name="fields-<?php echo $input->name . '-' . $form->id; ?>"
+			name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 			value="">
 			<?php
 			break;
 		case 'gender':
 		?>
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name . '-' . $form->id; ?>" value="M">M
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name . '-' . $form->id; ?>" value="F">F
-			<input <?=$required?> type="radio" name="fields-<?php echo $input->name . '-' . $form->id; ?>" value="N/A">N/A<?php
+			<input <?=esc_attr($required)?> type="radio" name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>" value="M">M
+			<input <?=esc_attr($required)?> type="radio" name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>" value="F">F
+			<input <?=esc_attr($required)?> type="radio" name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>" value="N/A">N/A<?php
 			break;
 		case 'country':
-			?><select <?php echo $required; ?> name="fields-<?php echo $input->name . '-' . $form->id; ?>">
+			?><select <?php echo esc_attr($required); ?> name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>">
 				<option value="AF">Afghanistan</option>
 				<option value="AX">Åland Islands</option>
 				<option value="AL">Albania</option>

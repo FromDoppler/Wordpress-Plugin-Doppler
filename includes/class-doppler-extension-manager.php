@@ -47,6 +47,8 @@ class Doppler_Extension_Manager {
      * Install extensions.
      */
     public function install_extension() {
+        $this->check_admin_permissions();
+
         if(empty($_POST['extensionName'])) return false;
 
         $slug = $_POST['extensionName'];
@@ -153,4 +155,11 @@ class Doppler_Extension_Manager {
         include_once( __DIR__ .  '/class-doppler-elementor-integration.php' );
         $form_actions_registrar->register( new Doppler_Elementor_Integration($this->doppler_service) );
     }
+
+    private function check_admin_permissions() {
+		if ( ! current_user_can('manage_options') ) {
+			wp_send_json_error(['message' => __('Unauthorized', 'doppler-form')]);
+			wp_die();
+    	}
+	}
 }

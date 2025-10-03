@@ -80,7 +80,7 @@ class Doppler_Admin {
 			<div id="displayErrorMessage" class="dp-wrap-message dp-wrap-cancel m-b-12">
 				<span class="dp-message-icon"></span>
 				<div class="dp-content-message">
-					<p><?php echo $this->get_error_message(); ?></p>
+					<p><?php echo esc_html($this->get_error_message()); ?></p>
 				</div>
 			</div>
 		</div>
@@ -95,7 +95,7 @@ class Doppler_Admin {
 			<div id="displaySuccessMessage" class="dp-wrap-message dp-wrap-success m-b-12">
 				<span class="dp-message-icon"></span>
 				<div class="dp-content-message">
-					<p><?php echo $this->get_success_message(); ?></p>
+					<p><?php echo esc_html($this->get_success_message()); ?></p>
 				</div>
 			</div>
 		</div>
@@ -431,11 +431,11 @@ class Doppler_Admin {
 	}
 
 	public function doppler_forms_screen() {
+		(!isset($_GET['tab'])) ? $active_tab = 'forms' : $active_tab = wp_unslash($_GET['tab']);
 
-		(!isset($_GET['tab']))? $active_tab = 'forms' : $active_tab = $_GET['tab'];
+		if ( ! empty( $_POST ) && check_admin_referer( 'dplr-create-edit-form' ) ) {
 
-		if(!empty($_POST)){
-			if( isset($_POST['settings']) && $_POST['settings']['change_button_bg'] === 'no') $_POST['settings']['button_color'] = '';
+			if( isset($_POST['settings']) && isset($_POST['settings']['change_button_bg']) && $_POST['settings']['change_button_bg'] === 'no') $_POST['settings']['button_color'] = '';
 			if(isset($_POST['form-create'])){
 				$result_code = $this->form_controller->create($_POST);
 				if($result_code == 0){
@@ -476,7 +476,7 @@ class Doppler_Admin {
 			}
 		}
 
-		if( !empty($_GET['action']) && $_GET['action'] === 'delete' ){
+		if( !empty($_GET['action']) && $_GET['action'] === 'delete' && check_admin_referer('dplr-delete-form_' . $_GET['form_id']) ){
 			if( !empty($_GET['form_id']) && $this->form_controller->delete($_GET['form_id']) == 1 ){
 				$this->set_success_message(__('The Form has been deleted correctly.','doppler-form'));
 			}else{
@@ -488,8 +488,7 @@ class Doppler_Admin {
 		if($active_tab == 'forms'){
 			$forms = $this->form_controller->getAll();
 			$create_form_url = admin_url( 'admin.php?page=doppler_forms_main&tab=new');
-			$edit_form_url = admin_url( 'admin.php?page=doppler_forms_main&tab=edit&form_id=[FORM_ID]' );
-			$delete_form_url = admin_url( 'admin.php?page=doppler_forms_main&action=delete&form_id=[FORM_ID]' );
+			$edit_form_url = admin_url( 'admin.php?page=doppler_forms_main&tab=edit&form_id=[FORM_ID]');
 			$list_resource = $this->doppler_service->getResource('lists');
 			$dplr_lists = $list_resource->getAllLists();
 			if(is_array($dplr_lists)){
@@ -577,10 +576,10 @@ class Doppler_Admin {
 		?>	
 			<div class="notice notice-warning is-dismissible">
 				<p>
-					<?php _e( 'You\'ve updated the <strong>Doppler Forms</strong> plugin into the <strong>2.0.0</strong> version. Please,', 'doppler-form');?>
-					<a href="<?= admin_url( 'admin.php?page=doppler_forms_menu' )?>">
-						<?php _e('enter your Username', 'doppler-form')?>
-					</a> <?php _e('in addition to the API Key and re-connect your Doppler account.', 'doppler-form' ); ?>
+					<?php esc_html_e( 'You\'ve updated the <strong>Doppler Forms</strong> plugin into the <strong>2.0.0</strong> version. Please,', 'doppler-form');?>
+					<a href="<?php echo esc_url(admin_url( 'admin.php?page=doppler_forms_menu' ))?>">
+						<?php esc_html_e('enter your Username', 'doppler-form')?>
+					</a> <?php esc_html_e('in addition to the API Key and re-connect your Doppler account.', 'doppler-form' ); ?>
 				</p>
 			</div>
 		<?php
@@ -708,7 +707,7 @@ class Doppler_Admin {
 
 		if(empty($_POST['listId'])) return false;
 		$this->set_credentials();
-		echo $this->form_controller->delete($_POST['listId']);
+		echo wp_kses($this->form_controller->delete($_POST['listId']));
 		wp_die();
 	}
 
@@ -735,7 +734,7 @@ class Doppler_Admin {
 
 		if(empty($_POST['listName'])) return false;
 		$this->set_credentials();
-		echo $this->create_list($_POST['listName']);
+		echo wp_kses($this->create_list($_POST['listName']));
 		wp_die();
 	}
 
@@ -774,8 +773,10 @@ class Doppler_Admin {
 		$woocommerce_lists = get_option('dplr_subscribers_list');
 		$learnpress_lists = get_option('dplr_learnpress_subscribers_list');
 		
-		$list_count = $wpdb->get_var("SELECT count(*) FROM ".$wpdb->prefix."dplr_form
-		WHERE list_id = '".$list_id."'");
+		$list_count = $wpdb->get_var( $wpdb->prepare(
+			"SELECT count(*) FROM {$wpdb->prefix}dplr_form WHERE list_id = %d",
+			$list_id
+		) );
 
 		if($list_count>0) return false;
 

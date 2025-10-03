@@ -56,17 +56,17 @@ class Dplr_Subscription_Widget extends WP_Widget {
 	 ?>
 		<?php if (count($forms) > 0) { ?>
 		<p>
-			<label for="form_id"><?php _e('Select the Form that you want to publish', 'doppler-form')?></label>
-			<select id="<?php echo $this->get_field_id( 'form_id' ); ?>" name="<?php echo $this->get_field_name( 'form_id' ); ?>">
+			<label for="form_id"><?php esc_html_e('Select the Form that you want to publish', 'doppler-form')?></label>
+			<select id="<?php echo esc_attr($this->get_field_id( 'form_id' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'form_id' )); ?>">
 				<option> </option>
 				<?php for ($i=0; $i < count($forms); $i++) { ?>
-				<option <?php echo isset($instance['form_id']) &&  $instance['form_id'] == $forms[$i]->id ? "selected='selected'" : ""; ?> value="<?php echo $forms[$i]->id; ?>"><?php echo $forms[$i]->name; ?></option>
+				<option <?php echo isset($instance['form_id']) &&  $instance['form_id'] == $forms[$i]->id ? "selected='selected'" : ""; ?> value="<?php echo esc_attr($forms[$i]->id); ?>"><?php echo esc_html($forms[$i]->name); ?></option>
 				<?php } ?>
 			</select>
 		</p>
 	 	<?php
 	} else {?>
-		<p><?php _e('You don\'t have Forms yet!', 'doppler-form')?></p>
+		<p><?php _esc_html_e('You don\'t have Forms yet!', 'doppler-form')?></p>
 	<?php }
 	}
 }

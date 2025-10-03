@@ -25,10 +25,10 @@ class DPLR_Form_Shortcode{
                 $form['fields'] = DPLR_Field_Model::getBy(['form_id'=>$forms[$i]->id], ['sort_order'], true);
                 $form['classes'] = explode(" ", $atts[self::FORM_CLASS]);
                 ob_start();
-                $formContainer = "<div> <h2 class='widget-title subheading heading-size-3'>" . $form['form']->title . "</h2>";
+                $formContainer = "<div> <h2 class='widget-title subheading heading-size-3'>" . esc_html($form['form']->title) . "</h2>";
                 $formContainer .= DPLR_Form_Helper::generate($form);
                 $formContainer .= "</div>";
-                echo $formContainer;
+               echo $formContainer;
                 
                 $found = true;
             }
