@@ -27,13 +27,17 @@ class Dplr_Subscription_Widget extends WP_Widget {
 		$form = array('form' => DPLR_Form_Model::get($instance['form_id'], true));
 		
 		if($form['form'] != NULL) {
-			echo $before_widget;
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $before_widget; 
 			$title = apply_filters('widget_title', $form["form"]->title);
-			echo $args['before_title'] . $title . $args['after_title'];
+			if ( ! empty( $title ) ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $args['before_title'] . $title . $args['after_title'];
+			}
 
 			$form['fields'] = DPLR_Field_Model::getBy(['form_id' => $instance['form_id']],['sort_order'], true);
-			echo DPLR_Form_Helper::generate($form);
-
+			echo wp_kses( DPLR_Form_Helper::generate($form), DPLR_Form_Helper::get_allowed_tags() );
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $after_widget;
 		}
 
@@ -66,7 +70,7 @@ class Dplr_Subscription_Widget extends WP_Widget {
 		</p>
 	 	<?php
 	} else {?>
-		<p><?php _esc_html_e('You don\'t have Forms yet!', 'doppler-form')?></p>
+		<p><?php esc_html_e('You don\'t have Forms yet!', 'doppler-form')?></p>
 	<?php }
 	}
 }

@@ -80,7 +80,7 @@ class Doppler_Admin {
 			<div id="displayErrorMessage" class="dp-wrap-message dp-wrap-cancel m-b-12">
 				<span class="dp-message-icon"></span>
 				<div class="dp-content-message">
-					<p><?php echo esc_html($this->get_error_message()); ?></p>
+					<p><?php echo wp_kses_post($this->get_error_message()); ?></p>
 				</div>
 			</div>
 		</div>
@@ -95,7 +95,7 @@ class Doppler_Admin {
 			<div id="displaySuccessMessage" class="dp-wrap-message dp-wrap-success m-b-12">
 				<span class="dp-message-icon"></span>
 				<div class="dp-content-message">
-					<p><?php echo esc_html($this->get_success_message()); ?></p>
+					<p><?php echo wp_kses_post($this->get_success_message()); ?></p>
 				</div>
 			</div>
 		</div>

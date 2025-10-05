@@ -1,6 +1,6 @@
 <?php
 require_once(plugin_dir_path( __FILE__ ) . "../enums/EventType.php");
-
+ 
 class DPLR_Form_helper
 {
 	public static function generate($context, $options = NULL) {
@@ -10,7 +10,7 @@ class DPLR_Form_helper
 		}
 	
 		$form = $context['form'];
-		$fields = isset($context['fields']) ? $context['fields'] : [];
+		$fields = isset($context['fields']) ? $context['fields'] : array();
 		$form_class = isset($context['classes']) ? implode(" ", $context['classes']) : "";
 		$form_orientation_horizontal = isset($form->settings["form_orientation"]) && $form->settings["form_orientation"] === 'horizontal';
 
@@ -545,5 +545,61 @@ class DPLR_Form_helper
 			'event_date' => DPLR_Form_Model::now()
 		]);
 	}
+
+	public static function get_allowed_tags() {
+        $allowed_tags = wp_kses_allowed_html('post');
+        $allowed_tags['form'] = array(
+            'id' => array(),
+            'class' => array(),
+            'method' => array(),
+            'action' => array(),
+        );
+        $allowed_tags['input'] = array(
+            'id' => array(),
+            'class' => array(),
+            'type' => array(),
+            'name' => array(),
+            'value' => array(),
+            'pattern' => array(),
+            'oninvalid' => array(),
+            'oninput' => array(),
+            'data-form-id' => array(),
+            'data-date-format' => array(),
+            'placeholder' => array(),
+            'required' => array(),
+        );
+        $allowed_tags['label'] = array(
+            'for' => array(),
+            'class' => array(),
+        );
+        $allowed_tags['button'] = array(
+            'type' => array(),
+            'class' => array(),
+            'style' => array(),
+            'name' => array(),
+        );
+        $allowed_tags['textarea'] = array(
+            'name' => array(),
+            'placeholder' => array(),
+            'rows' => array(),
+            'cols' => array(),
+            'maxlength' => array(),
+            'required' => array(),
+        );
+        $allowed_tags['select'] = array(
+            'name' => array(),
+            'required' => array(),
+        );
+        $allowed_tags['option'] = array(
+            'value' => array(),
+            'selected' => array(),
+        );
+		$allowed_tags['img'] = array(
+			'src' => array(),
+			'alt' => array(),
+		);
+
+        return $allowed_tags;
+    }
 }
 ?>
