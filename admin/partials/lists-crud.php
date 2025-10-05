@@ -36,6 +36,7 @@
                 <div id="showSuccessResponse" class="messages-container info d-none"></div>
 
                 <form id="dplr-form-list-crud" class="mb-1" action="" method="post">
+                    <?php wp_nonce_field( 'dplr-create-lists-nonce', 'dplr_create_lists_nonce' ); ?>
                     <div class="dp-rowflex" style="align-items:center;">
                         <div class="col-sm-10 col-md-10 col-lg-10 m-b-12">
                             <div class="awa-form">
@@ -52,7 +53,10 @@
                             </div>
                         </div>
                         <div class="col-sm-2 col-md-2 col-lg-2">
-                            <button id="dplr-save-list" class="dp-button button-big primary-green button-medium" disabled="disabled">
+                            <button id="dplr-save-list"
+                                class="dp-button button-big primary-green button-medium"
+                                disabled="disabled"
+                                data-nonce="<?php echo esc_attr(wp_create_nonce('dplr-create-lists-nonce')); ?>">
                                 <?php esc_html_e('Create List', 'doppler-form') ?>
                             </button>
                         </div>
@@ -64,7 +68,12 @@
                     </div>
                 </div>
                 
-                <table class="dp-c-table" id="dplr-tbl-lists" aria-label="List grid" summary="List grid">
+                <table class="dp-c-table"
+                    id="dplr-tbl-lists"
+                    aria-label="List grid"
+                    summary="List grid"
+                    data-nonce="<?php echo esc_attr(wp_create_nonce('dplr-get-lists-nonce')); ?>"
+                    data-delete-nonce="<?php echo esc_attr(wp_create_nonce('dplr-delete-lists-nonce')); ?>">
                 <thead>
                     <tr>
                         <th aria-label="List name" scope="col">

@@ -29,6 +29,7 @@ class Doppler_Activator {
 		DPLR_Field_Model::init();
 
 		//Activate the tracking
+		// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript
 		$script = '<script type="text/javascript" async="async" src="https://hub.fromdoppler.com/public/dhtrack.js" ></script>';
 		update_option( 'dplr_hub_script', sanitize_text_field(htmlentities(trim($script))));
 

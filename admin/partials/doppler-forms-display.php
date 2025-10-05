@@ -43,7 +43,18 @@ $response =  $this->doppler_service->connectionStatus();
                     break;
                 case 'edit':
                     $this->display_error_message();
-                    $form_id = isset($_GET['form_id']) ? $_GET['form_id'] : $_POST['form_id'];
+                    check_admin_referer('dplr-create-edit-form');
+                    $form_id = 0;
+
+                    if(isset($_GET['form_id'])){
+                        $form_id = absint(wp_unslash($_GET['form_id']));
+                    }
+                    elseif(isset($_POST['form_id'])){
+                        $form_id = absint(wp_unslash($_POST['form_id']));
+                    }
+                    else{
+                        die(esc_html__('Form ID is required','doppler-form'));
+                    }
                     $this->form_controller->showCreateEditForm($form_id);
                     break;
                 default:

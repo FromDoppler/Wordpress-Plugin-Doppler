@@ -132,6 +132,7 @@
 				action: "dplr_ajax_connect",
 				user: userfield.val(),
 				key: keyfield.val(),
+				nonce: $("#dplr_nonce_field").val(),
 			};
 
 			$.post(ajaxurl, data, function (response) {
@@ -270,7 +271,11 @@
 				{
 					text: object_string.Delete,
 					click: function () {
-						var data = { action: "dplr_delete_form", listId: listId };
+						var data = {
+							action: "dplr_delete_form",
+							listId: listId,
+							nonce: a.data("nonce"),
+						};
 						$(this).dialog("close");
 						row.addClass("deleting");
 						$.post(ajaxurl, data, function (resp) {
@@ -301,6 +306,7 @@
 				var data = {
 					action: "dplr_save_list",
 					listName: listName,
+					nonce: $("#dplr-save-list").data("nonce"),
 				};
 				listsLoading();
 				$.post(ajaxurl, data, function (response) {
@@ -367,6 +373,7 @@
 			var data = {
 				action: "install_extension",
 				extensionName: extension,
+				nonce: button.data("nonce"),
 			};
 			$.post(ajaxurl, data, function (resp) {
 				window.location.reload(false);
@@ -569,6 +576,7 @@
 			action: "dplr_get_lists",
 			page: page,
 			per_page: per_page,
+			nonce: $("#dplr-tbl-lists").data("nonce"),
 		};
 
 		if (page == 1) {
@@ -585,11 +593,14 @@
 				var html = "";
 				for (const key in items) {
 					var value = items[key];
+					var deleteNonce = $("#dplr-tbl-lists").data("delete-nonce");
 					html += "<tr>";
 					html += "<td><strong>" + value.name + "</strong></td>";
 					html += "<td>" + value.subscribersCount + "</td>";
 					html +=
-						'<td><div class="dp-icons-group"><a href="#" class="dplr-remove" data-list-id="' +
+						'<td><div class="dp-icons-group"><a href="#" class="dplr-remove" data-nonce="' +
+						deleteNonce +
+						'" data-list-id="' +
 						value.listId +
 						'">' +
 						'<div class="dp-tooltip-container"> \
@@ -626,11 +637,13 @@
 		e.preventDefault();
 
 		var a = $(this);
+		console.log(a.data("nonce"));
 		var tr = a.closest("tr");
 		var listId = a.attr("data-list-id");
 		var data = {
 			action: "dplr_delete_list",
 			listId: listId,
+			nonce: a.data("nonce"),
 		};
 
 		clearResponseMessages();

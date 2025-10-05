@@ -20,6 +20,8 @@ class DPLR_Form_helper
 	
 		?>
 		<form class="dplr_form <?php echo esc_attr($form_class); ?>">
+			<?php wp_nonce_field( 'dplr_form_submit_nonce_action', 'dplr_form_submit_nonce' ); ?>
+			
 			<?php if ($form_orientation_horizontal): ?>
 				<div class="container">
 					<input type="hidden" name="list_id" value="<?php echo esc_attr($form->list_id); ?>">
@@ -51,9 +53,9 @@ class DPLR_Form_helper
 				if (isset($form->settings['use_consent_field']) && $form->settings['use_consent_field'] === 'yes'): ?>
 					<div class="input-field consent_field" required>
 						<input type="checkbox" name="fields-CONSENT" value="true" required/>
-						<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? esc_html($form->settings['consent_field_text']) : esc_html_e("I've read and accept the privacy policy", "doppler-form");
+						<?php echo isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? esc_html($form->settings['consent_field_text']) : esc_html_e("I've read and accept the privacy policy", "doppler-form");
 						if (isset($form->settings['consent_field_url']) && !empty($form->settings['consent_field_url'])): ?>
-							<a href="<?= esc_url($form->settings['consent_field_url']) ?>"><?php esc_html_e('Read more', 'doppler-form') ?></a>
+							<a href="<?php echo esc_url($form->settings['consent_field_url']) ?>"><?php esc_html_e('Read more', 'doppler-form') ?></a>
 						<?php endif; ?>
 					</div>
 				<?php endif;
@@ -80,9 +82,9 @@ class DPLR_Form_helper
 					if (isset($form->settings['use_consent_field']) && $form->settings['use_consent_field'] === 'yes'): ?>
 						<div class="input-field consent_field" required>
 							<input type="checkbox" name="fields-CONSENT" value="true" required/>
-							<?= isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? esc_html($form->settings['consent_field_text']) : esc_html_e("I've read and accept the privacy policy", "doppler-form");
+							<?php echo isset($form->settings['consent_field_text']) && !empty($form->settings['consent_field_text']) ? esc_html($form->settings['consent_field_text']) : esc_html_e("I've read and accept the privacy policy", "doppler-form");
 							if (isset($form->settings['consent_field_url']) && !empty($form->settings['consent_field_url'])): ?>
-								<a href="<?= esc_url($form->settings['consent_field_url']) ?>"><?php esc_html_e('Read more', 'doppler-form') ?></a>
+								<a href="<?php echo esc_url($form->settings['consent_field_url']) ?>"><?php esc_html_e('Read more', 'doppler-form') ?></a>
 							<?php endif; ?>
 						</div>
 					<?php endif;
@@ -105,7 +107,7 @@ class DPLR_Form_helper
 					<div class="input-field consent_field" required>
 						<input type="checkbox" name="fields-CONSENT" value="true" required/>
 						<?php echo esc_html($value) ?>
-						<a href="<?= esc_url($consentUrlArray[$key]) ?>"><?php esc_html_e('Read more', 'doppler-form')?></a>
+						<a href="<?php echo esc_url($consentUrlArray[$key]) ?>"><?php esc_html_e('Read more', 'doppler-form')?></a>
 					</div>
 					<?php }
 				}
@@ -138,7 +140,7 @@ class DPLR_Form_helper
 			if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'multi')
 			{
 				?>
-					<textarea <?=esc_attr($required)?>
+					<textarea <?php echo esc_attr($required)?>
 						name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 						placeholder="<?php echo isset($input->settings['placeholder']) ? esc_attr($input->settings['placeholder']) : ''; ?>"
 						rows="3"
@@ -150,7 +152,7 @@ class DPLR_Form_helper
 			else if (isset($input->settings['text_lines']) && $input->settings['text_lines'] == 'options')
 			{
 				?>
-					<select <?=esc_attr($required)?>
+					<select <?php echo esc_attr($required)?>
 						name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>">
 						<?php echo (isset($input->settings['placeholder']) && $input->settings['placeholder'] !== '' )
 							? '<option value="">' . esc_html($input->settings['placeholder']) . '</option>' 
@@ -168,7 +170,7 @@ class DPLR_Form_helper
 			else 
 			{
 				?>
-					<input <?=esc_attr($required)?>
+					<input <?php echo esc_attr($required)?>
 					type="text"
 					name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 					placeholder="<?php echo isset($input->settings['placeholder']) ? esc_attr($input->settings['placeholder']) : ''; ?>"
@@ -177,7 +179,7 @@ class DPLR_Form_helper
 			}
 			break;
 		case 'number':?>
-			<input <?=esc_attr($required)?>
+			<input <?php echo esc_attr($required)?>
 			type="number"
 			oninvalid="this.setCustomValidity('<?php esc_html_e('Please enter only numbers.', 'doppler-form') ?>')"
 			pattern="[0-9]"
@@ -192,7 +194,7 @@ class DPLR_Form_helper
 			<?php
 			break;
 		case 'phone':?>
-				<input <?=esc_attr($required)?>
+				<input <?php echo esc_attr($required)?>
 				type="tel"
 				class = "phone-doppler"
 				name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
@@ -209,7 +211,7 @@ class DPLR_Form_helper
 			<?php
 			break;
 		case 'consent':?>
-			<input <?=esc_attr($required)?>
+			<input <?php echo esc_attr($required)?>
 			type="checkbox"
 			name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 			value = "true"/>
@@ -217,7 +219,7 @@ class DPLR_Form_helper
 			break;
 		case 'permission':?>
 			<div class="permission-field permission-form-container">
-				<input <?=esc_attr($required)?>
+				<input <?php echo esc_attr($required)?>
 				type="checkbox"
 				name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 				value = "true"/>
@@ -229,11 +231,11 @@ class DPLR_Form_helper
 			break;
 		case 'boolean':
 			?>
-			<input <?=esc_attr($required)?>
+			<input <?php echo esc_attr($required)?>
 			type="radio"
 			name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 			value="true">Si
-			<input <?=esc_attr($required)?>
+			<input <?php echo esc_attr($required)?>
 			type="radio"
 			name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>"
 			value="false">No
@@ -242,7 +244,7 @@ class DPLR_Form_helper
 			break;
 		case 'email':
 			?>
-			<input <?=esc_attr($required)?>
+			<input <?php echo esc_attr($required)?>
 			type="email"
 			oninvalid="this.setCustomValidity('<?php esc_html_e('Please enter a valid email address.', 'doppler-form') ?>')"
 			pattern="[A-Za-z0-9&#46;&#95;&#37;&#43;&minus;]+@[A-Za-z0-9&#46;&minus;]+\.[A-Za-z]{1,63}$"
@@ -255,7 +257,7 @@ class DPLR_Form_helper
 			break;
 		case 'date':
 			?>
-			<input <?=esc_attr($required)?>
+			<input <?php echo esc_attr($required)?>
 			type="text"
 			name="<?php echo esc_attr($input->name); ?>"
 			data-form-id="<?php echo esc_attr($form->id); ?>"
@@ -275,9 +277,9 @@ class DPLR_Form_helper
 			break;
 		case 'gender':
 		?>
-			<input <?=esc_attr($required)?> type="radio" name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>" value="M">M
-			<input <?=esc_attr($required)?> type="radio" name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>" value="F">F
-			<input <?=esc_attr($required)?> type="radio" name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>" value="N/A">N/A<?php
+			<input <?php echo esc_attr($required)?> type="radio" name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>" value="M">M
+			<input <?php echo esc_attr($required)?> type="radio" name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>" value="F">F
+			<input <?php echo esc_attr($required)?> type="radio" name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>" value="N/A">N/A<?php
 			break;
 		case 'country':
 			?><select <?php echo esc_attr($required); ?> name="fields-<?php echo esc_attr($input->name . '-' . $form->id); ?>">

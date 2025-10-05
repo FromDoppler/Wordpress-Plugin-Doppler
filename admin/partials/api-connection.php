@@ -204,20 +204,20 @@
 														?>
 														<tr>
 															<td>
-																<?php esc_html($form->name) ?>
+																<?php echo esc_html($form->name) ?>
 															</td>
 															<td>
 																<?php echo $form->settings['form_doble_optin'] == 'yes' ? esc_html_e("Double Opt-In", "doppler-form" ) : esc_html_e("Simple Opt-In", "doppler-form" ); ?>
 															</td>
 															<td>
-																<?php esc_html($form->events['Display'] ?? '0') ?>
+																<?php echo esc_html($form->events['Display'] ?? '0') ?>
 															</td>
 															<td>
-																<?php esc_html($form->events['Submit'] ?? '0') ?>
+																<?php echo esc_html($form->events['Submit'] ?? '0') ?>
 															</td>
 															<td>
 																<?php echo esc_html(($form->events['Display'] ?? 0) > 0 
-																	? rtrim(rtrim(number_format(($form->events['Submit'] / $form->events['Display']) * 100, 2), '0'), '.') . '%'
+																	? rtrim(rtrim(number_format((($form->events['Submit'] ?? 0) / $form->events['Display']) * 100, 2), '0'), '.') . '%'
 																	: '0%');
 																?>
 															</td>
@@ -364,14 +364,18 @@
 											<p class="text-italic"><?php esc_html_e('You should have <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce plugin</a> installed and active first.', 'doppler-form')?></p>
 										<?php else: ?>
 											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12"
-													data-extension="doppler-for-woocommerce" data-click-action=<?php $this->extension_manager->is_plugin_installed('doppler-for-woocommerce') ? esc_attr_e('Activating', 'doppler-form') : esc_attr_e('Installing', 'doppler-form') ?>>
+													data-extension="doppler-for-woocommerce"
+													data-nonce="<?php echo esc_attr(wp_create_nonce('dplr-install-extension-nonce')); ?>"
+													data-click-action=<?php $this->extension_manager->is_plugin_installed('doppler-for-woocommerce') ? esc_attr_e('Activating', 'doppler-form') : esc_attr_e('Installing', 'doppler-form') ?>>
 												<?php $this->extension_manager->is_plugin_installed('doppler-for-woocommerce') ? esc_html_e('Activate', 'doppler-form') : esc_html_e('Install', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
 									<?php else:
 										if(!$this->extension_manager->has_latest_plugin_version('doppler-for-woocommerce')): ?>
 											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12" 
-													data-extension="doppler-for-woocommerce" data-click-action=<?php esc_attr_e('Updating', 'doppler-form') ?>>
+													data-extension="doppler-for-woocommerce"
+													data-nonce="<?php echo esc_attr(wp_create_nonce('dplr-install-extension-nonce')); ?>"
+													data-click-action=<?php esc_attr_e('Updating', 'doppler-form') ?>>
 												<?php esc_html_e('Update Version', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
@@ -401,14 +405,18 @@
 											<p class="text-italic"><?php esc_html_e('You should have <a href="https://wordpress.org/plugins/learnpress/">LearnPress plugin</a> installed and active first.', 'doppler-form')?></p>
 										<?php else: ?>
 											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12" 
-													data-extension="doppler-for-learnpress" data-click-action=<?php $this->extension_manager->is_plugin_installed('doppler-for-learnpress') ? esc_attr_e('Activating', 'doppler-form') : esc_attr_e('Installing', 'doppler-form') ?>>
+													data-extension="doppler-for-learnpress"
+													data-nonce="<?php echo esc_attr(wp_create_nonce('dplr-install-extension-nonce')); ?>"
+													ata-click-action=<?php $this->extension_manager->is_plugin_installed('doppler-for-learnpress') ? esc_attr_e('Activating', 'doppler-form') : esc_attr_e('Installing', 'doppler-form') ?>>
 												<?php $this->extension_manager->is_plugin_installed('doppler-for-learnpress') ? esc_html_e('Activate', 'doppler-form') : esc_html_e('Install', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
 									<?php else:
 										if(!$this->extension_manager->has_latest_plugin_version('doppler-for-learnpress')): ?>
-											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12" 
-													data-extension="doppler-for-learnpress" data-click-action=<?php esc_attr_e('Updating', 'doppler-form') ?>>
+											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12"
+													data-extension="doppler-for-learnpress"
+													data-nonce="<?php echo esc_attr(wp_create_nonce('dplr-install-extension-nonce')); ?>"
+													data-click-action=<?php esc_attr_e('Updating', 'doppler-form') ?>>
 												<?php esc_html_e('Update Version', 'doppler-form') ?>
 											</button>
 										<?php endif; ?>
@@ -436,7 +444,10 @@
 			</header>
 			<div class="col-lg-6 col-lmd-6 col-sm-8 awa-form">
 				<form method="POST" action="options.php" id="dplr-connect-form" class="form-horizontal <?php echo $error?'error':''; ?>">
-					<?php settings_fields('dplr_plugin_options'); ?>
+					<?php 
+						wp_nonce_field( 'dplr-connect-nonce', 'dplr_nonce_field' );
+						settings_fields('dplr_plugin_options');
+					?>
 					<label for="email" class="labelcontrol">
 						<?php esc_html_e('Username', 'doppler-form');?>
 						<input type="email"

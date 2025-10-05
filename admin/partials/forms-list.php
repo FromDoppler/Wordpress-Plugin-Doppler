@@ -11,6 +11,7 @@
             <?php
             $form_count = count( $forms );
             $text = sprintf(
+                /* translators: %s: Number of forms. */
                 _n(
                     'Here you will find all your subscription forms. You currently have <strong>%s</strong> form',
                     'Here you will find all your subscription forms. You currently have <strong>%s</strong> forms',
@@ -67,10 +68,14 @@
         <tbody>
           <?php for ($i=0; $i <count($forms) ; $i++) {
               $form = DPLR_Form_Model::get($forms[$i]->id, true);
+              $edit_form_url = admin_url( 'admin.php?page=doppler_forms_main&tab=edit&form_id=' . $form->id );
+              $edit_nonce_url = wp_nonce_url( $edit_form_url, 'dplr-create-edit-form' );
               ?>
             <tr>
               <td aria-label="Form name">
-                <a href="<?php echo esc_url(str_replace('[FORM_ID]', $form->id , $edit_form_url)); ?>" role="link" rel="noopener" class="bold"><?php echo esc_html($form->name); ?></a>
+                <a href="<?php echo esc_url( $edit_nonce_url ); ?>" role="link" rel="noopener" class="bold">
+                  <?php echo esc_html($form->name); ?>
+                </a>
               </td>
               <td aria-label="Form Opt-In">
                 <span><?php echo ($form->settings["form_doble_optin"] == "yes") ? esc_html_e('Double Opt-In', 'doppler-form') : esc_html_e('Simple Opt-In', 'doppler-form') ?></span>
@@ -95,7 +100,7 @@
               </td>
               <td aria-label="Actions">
                 <div class="dp-icons-group">
-                  <a href="<?php echo esc_url(str_replace('[FORM_ID]', $form->id , $edit_form_url)); ?>" class="p-r-6">
+                  <a href="<?php echo esc_url( $edit_nonce_url ); ?>" class="p-r-6">
                     <div class="dp-tooltip-container">
                       <span class="ms-icon icon-edit"></span>
                       <div class="dp-tooltip-top">
@@ -109,6 +114,7 @@
                   ?>
                   <a href="<?php echo esc_url( $delete_nonce_url ); ?>"
                     data-list-id="<?php echo esc_attr($form->id) ?>"
+                    data-nonce="<?php echo esc_attr(wp_create_nonce('dplr-delete-form-nonce')); ?>"
                     class="dplr-remove">
                     <div class="dp-tooltip-container">
                       <span class="ms-icon icon-delete"></span>

@@ -48,10 +48,11 @@ class Doppler_Extension_Manager {
      */
     public function install_extension() {
         $this->check_admin_permissions();
+        check_ajax_referer( 'dplr-install-extension-nonce', 'nonce' );
 
         if(empty($_POST['extensionName'])) return false;
 
-        $slug = $_POST['extensionName'];
+        $slug = sanitize_text_field(wp_unslash($_POST['extensionName']));
         
         if(!$this->is_plugin_installed($slug)){
             include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
