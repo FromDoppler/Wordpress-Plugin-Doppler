@@ -548,12 +548,12 @@ class Doppler_Admin {
 			endif;
 		endif;
 
-		if(isset($_POST['dplr-consent-checkbox']) && isset($_POST['dplr-consent-location']) && isset($_POST['dplr-consent-text'])):
+		if(isset($_POST['dplr-consent-checkbox'])):
 			if(current_user_can('manage_options') && check_admin_referer('use-settings')):
 				if($_POST['dplr-consent-checkbox'] == 0):
 					update_option( 'dplr_wc_consent', 0);
 					$success++;
-				else:
+				elseif (isset($_POST['dplr-consent-location']) && isset($_POST['dplr-consent-text'])):
 					update_option( 'dplr_wc_consent', 1);
 					update_option( 'dplr_wc_consent_location', sanitize_text_field(wp_unslash($_POST['dplr-consent-location'])));
 					update_option( 'dplr_wc_consent_text', sanitize_text_field(wp_unslash($_POST['dplr-consent-text'])));

@@ -112,11 +112,9 @@ class DPLR_Doppler_Form_Public {
 	public function submit_form() {
 		check_ajax_referer( 'dplr_form_submit_nonce_action', 'dplr_form_submit_nonce' );
 
-		
-
 		try
 		{
-			if(!isset($_POST['subscriber']) || !isset($_POST['list_id']) || !isset($_POST['form_id'])){
+			if(isset($_POST['subscriber']) && isset($_POST['list_id']) && isset($_POST['form_id'])){
 				$this->doppler_service->pluginLogger(array( 'action' => 'init submit_form', 'data' => $_POST), 'submit_form');
 
 				$options = get_option('dplr_settings'); 
@@ -124,13 +122,14 @@ class DPLR_Doppler_Form_Public {
 	
 				$subscriber_resource = $this->doppler_service->getResource('subscribers');
 	
-				$subscriber = sanitize_text_field(wp_unslash($_POST['subscriber']));
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$subscriber = $_POST['subscriber'];
 				$form_id = absint(wp_unslash($_POST['form_id']));
 				$list_id = absint(wp_unslash($_POST['list_id']));
 	
 				$form = DPLR_Form_Model::get($form_id, true);
-				$subscriber["form_doble_optin"] = $form->settings["form_doble_optin"];
-				$subscriber["form_plantilla_id"] = $form->settings["form_plantilla_id"];
+				$subscriber["form_doble_optin"] = $form->settings["form_doble_optin"] ?? 'no';
+				$subscriber["form_plantilla_id"] = $form->settings["form_plantilla_id"] ?? null;
 	
 				if(isset($subscriber['hp']) && $subscriber['hp']==''){
 					unset($subscriber['hp']);

@@ -29,7 +29,7 @@ class DPLR_Form_Shortcode{
                 $form_html = "<div><h2 class='widget-title subheading heading-size-3'>" . esc_html($form['form']->title) . "</h2>";
                 $form_html .= DPLR_Form_Helper::generate($form);
                 $form_html .= "</div>";
-                $allowd_tags = PLR_Form_Helper::get_allowed_tags();
+                $allowd_tags = DPLR_Form_Helper::get_allowed_tags();
                 echo wp_kses($form_html, $allowd_tags);
                 
                 $found = true;

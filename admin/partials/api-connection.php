@@ -216,9 +216,11 @@
 																<?php echo esc_html($form->events['Submit'] ?? '0') ?>
 															</td>
 															<td>
-																<?php echo esc_html(($form->events['Display'] ?? 0) > 0 
+																<?php $conversion_rate = ($form->events['Display'] ?? 0) > 0 
 																	? rtrim(rtrim(number_format((($form->events['Submit'] ?? 0) / $form->events['Display']) * 100, 2), '0'), '.') . '%'
-																	: '0%');
+																	: '0%';
+																
+																	echo esc_html($conversion_rate);
 																?>
 															</td>
 														</tr>

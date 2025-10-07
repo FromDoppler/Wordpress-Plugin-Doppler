@@ -36,7 +36,11 @@ if ( ! current_user_can( 'manage_options' ) ) {
                                     </label>
                                 </div>
                                 <div class="col-sm-10 col-md-10 col-lg-10">
-                                    <p><?php esc_html_e('Adds Doppler\'s Site Tracking Code to your site to track your visitors activity. Not sure how it works? Press <a href="https://help.fromdoppler.com/en/create-onsite-tracking-automation" class="green-link">HELP</a>','doppler-form') ?>.</p>
+                                    <p><?php esc_html_e('Adds Doppler\'s Site Tracking Code to your site to track your visitors activity. Not sure how it works? Press', 'doppler-form')?>
+                                        <a href="<?php esc_attr_e('https://help.fromdoppler.com/en/create-onsite-tracking-automation', 'doppler-form')?>" class="green-link">
+                                            <?php esc_html_e('HELP', 'doppler-form')?>
+                                        </a>
+                                    </p>
                                 </div>
                                 <blockquote class="code-block">
                                     <p>
@@ -56,7 +60,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
                 ?>
                 <section class="col-sm-12 col-md-10 col-lg-7 m-t-36">
                     <h2 class="main-title">
-                        <?php esc_html_e('Doppler for WooCommerce', 'doppler-form')?> <?php echo esc_html($this->DOPPLER_FOR_WOOCOMMERCE_VERSION) ?>
+                        <?php esc_html_e('Doppler for WooCommerce', 'doppler-form')?> <?php echo esc_html(DOPPLER_FOR_WOOCOMMERCE_VERSION) ?>
                     </h2>
                     <div>
                         <header>
