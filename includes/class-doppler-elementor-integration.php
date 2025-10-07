@@ -74,7 +74,7 @@ class Doppler_Elementor_Integration extends \ElementorPro\Modules\Forms\Classes\
             }
 
             $code = $response['response']['code'];
-            throw new \Exception( "HTTP {$code} - {$error}" );
+            throw new \Exception( esc_html("HTTP {$code} - {$error}") );
         }
     }
 

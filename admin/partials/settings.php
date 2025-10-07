@@ -7,8 +7,8 @@ if ( ! current_user_can( 'manage_options' ) ) {
     <!-- This inline style is a hack to avoid loading content before the loading screen is hidden. -->
     <div class="dp-container" id="dplr_body_content" style="display: none;">
         <div class="dplr_settings">
-            <a href="<?php _e('https://www.fromdoppler.com/en/?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form')?>" target="_blank" class="dplr-logo-header">
-                <img id="" src="<?php echo DOPPLER_PLUGIN_URL?>admin/img/logo-doppler.svg" alt="Doppler logo"/>
+            <a href="<?php esc_attr_e('https://www.fromdoppler.com/en/?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress', 'doppler-form')?>" target="_blank" class="dplr-logo-header">
+                <img id="" src="<?php echo esc_url(DOPPLER_PLUGIN_URL)?>admin/img/logo-doppler.svg" alt="Doppler logo"/>
             </a>
 
             <?php $this->display_success_message() ?>
@@ -20,13 +20,13 @@ if ( ! current_user_can( 'manage_options' ) ) {
                 ?>
                 <section class="col-sm-12 col-md-10 col-lg-7">
                     <h2 class="main-title">
-                        <?php _e('Doppler Forms', 'doppler-form')?> <?php echo $this->get_version()?>
+                        <?php esc_html_e('Doppler Forms', 'doppler-form')?> <?php echo esc_html($this->get_version())?>
                     </h2>
                     <header>
                         <div class="dp-container">
                             <div class="dp-rowflex space-between">
                                 <div class="col-sm-10 col-md-10 col-lg-10">
-                                    <h3><?php _e('On-Site Tracking', 'doppler-form')?></h3>
+                                    <h3><?php esc_html_e('On-Site Tracking', 'doppler-form')?></h3>
                                 </div>
                                 <div class="dp-switch">
                                     <input type="hidden" name="dplr-tracking-checkbox" value="0">
@@ -36,7 +36,11 @@ if ( ! current_user_can( 'manage_options' ) ) {
                                     </label>
                                 </div>
                                 <div class="col-sm-10 col-md-10 col-lg-10">
-                                    <p><?php _e('Adds Doppler\'s Site Tracking Code to your site to track your visitors activity. Not sure how it works? Press <a href="https://help.fromdoppler.com/en/create-onsite-tracking-automation" class="green-link">HELP</a>','doppler-form') ?>.</p>
+                                    <p><?php esc_html_e('Adds Doppler\'s Site Tracking Code to your site to track your visitors activity. Not sure how it works? Press', 'doppler-form')?>
+                                        <a href="<?php esc_attr_e('https://help.fromdoppler.com/en/create-onsite-tracking-automation', 'doppler-form')?>" class="green-link">
+                                            <?php esc_html_e('HELP', 'doppler-form')?>
+                                        </a>
+                                    </p>
                                 </div>
                                 <blockquote class="code-block">
                                     <p>
@@ -56,14 +60,14 @@ if ( ! current_user_can( 'manage_options' ) ) {
                 ?>
                 <section class="col-sm-12 col-md-10 col-lg-7 m-t-36">
                     <h2 class="main-title">
-                        <?php _e('Doppler for WooCommerce', 'doppler-for-woocommerce')?> <?php echo DOPPLER_FOR_WOOCOMMERCE_VERSION ?>
+                        <?php esc_html_e('Doppler for WooCommerce', 'doppler-form')?> <?php echo esc_html(DOPPLER_FOR_WOOCOMMERCE_VERSION) ?>
                     </h2>
                     <div>
                         <header>
                             <div class="dp-container">
                                 <div class="dp-rowflex space-between">
                                     <div class="col-sm-10 col-md-10 col-lg-10">
-                                        <h3><?php _e('Consent checkbox in Checkout', 'doppler-form')?></h3>
+                                        <h3><?php esc_html_e('Consent checkbox in Checkout', 'doppler-form')?></h3>
                                     </div>
                                     <div class="dp-switch">
                                         <input type="hidden" name="dplr-consent-checkbox" value="0">
@@ -73,7 +77,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
                                         </label>
                                     </div>
                                     <div class="col-sm-10 col-md-10 col-lg-10">
-                                        <p><?php _e('Adds a checkbox in the checkout for users to consent to email marketing emails. Not available when using WooCommerce Checkout Block.','doppler-form') ?></p>
+                                        <p><?php esc_html_e('Adds a checkbox in the checkout for users to consent to email marketing emails. Not available when using WooCommerce Checkout Block.','doppler-form') ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -81,21 +85,21 @@ if ( ! current_user_can( 'manage_options' ) ) {
                         <div class="dplr-tab-content m-t-12">
                             <div class="awa-form col-sm-12 col-md-12 col-lg-12">
                                 <label for="dplr-consent-location" class="labelcontrol d-flex align-center" <?php echo $dplr_wc_consent ? '' : 'aria-disabled="true"'; ?>>
-                                    <span class="col-sm-3 col-md-3 col-lg-3"><?php _e('Location', 'doppler-form'); ?>:</span>
+                                    <span class="col-sm-3 col-md-3 col-lg-3"><?php esc_html_e('Location', 'doppler-form'); ?>:</span>
                                     <div class="dp-select col-sm-8 col-md-8 col-lg-8 pl-0 pr-0">
                                         <span class="dropdown-arrow"></span>
                                         <select id="dplr-consent-location" name="dplr-consent-location" <?php echo $dplr_wc_consent ? '' : 'disabled'; ?>>
-                                            <option value="contact" <?php selected($dplr_wc_consent_location, "contact"); ?>><?php _e('Bellow contact Email', 'doppler-form'); ?></option>
-                                            <option value="order" <?php selected($dplr_wc_consent_location, "order"); ?>><?php _e('Checkout notes', 'doppler-form'); ?></option>
+                                            <option value="contact" <?php selected($dplr_wc_consent_location, "contact"); ?>><?php esc_html_e('Bellow contact Email', 'doppler-form'); ?></option>
+                                            <option value="order" <?php selected($dplr_wc_consent_location, "order"); ?>><?php esc_html_e('Checkout notes', 'doppler-form'); ?></option>
                                         </select>
                                     </div>
                                 </label>
                             </div>
                             <div class="awa-form col-sm-12 col-md-12 col-lg-12">
                                 <label for="dplr-consent-text" class="labelcontrol d-flex align-center" <?php echo $dplr_wc_consent ? '' : 'aria-disabled="true"'; ?>>
-                                    <span class="col-sm-3 col-md-3 col-lg-3"><?php _e('Consent', 'doppler-form'); ?>:</span>
+                                    <span class="col-sm-3 col-md-3 col-lg-3"><?php esc_html_e('Consent', 'doppler-form'); ?>:</span>
                                     <input type="text" id="dplr-consent-text" class="col-sm-8 col-md-8 col-lg-8 box-shado-0"
-                                        name="dplr-consent-text" placeholder="<?php _e('Your consent text', 'doppler-form'); ?>" 
+                                        name="dplr-consent-text" placeholder="<?php esc_attr_e('Your consent text', 'doppler-form'); ?>" 
                                         value="<?php echo esc_attr($dplr_wc_consent_text); ?>" <?php echo $dplr_wc_consent ? '' : 'disabled'; ?>>
                                 </label>
                             </div>
@@ -106,7 +110,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
                             <div class="dp-container">
                                 <div class="dp-rowflex space-between">
                                     <div class="col-sm-10 col-md-10 col-lg-10">
-                                        <h3><?php _e('Boost your site\'s shared content with Open Graph', 'doppler-form')?></h3>
+                                        <h3><?php esc_html_e('Boost your site\'s shared content with Open Graph', 'doppler-form')?></h3>
                                     </div>
                                     <div class="dp-switch">
                                         <input type="hidden" name="dplr-wc-open-graph-checkbox" value="0">
@@ -116,8 +120,8 @@ if ( ! current_user_can( 'manage_options' ) ) {
                                         </label>
                                     </div>
                                     <div class="col-sm-10 col-md-10 col-lg-10">
-                                        <p><?php _e('Open Graph is a protocol that makes your pages look better when shared on social media. At Doppler, they help you track your product pages more effectively, optimizing the Automation and OnSite widgets features.','doppler-form') ?></p>
-                                        <p class="m-t-6"><?php _e('The properties added are:','doppler-form') ?></p>
+                                        <p><?php esc_html_e('Open Graph is a protocol that makes your pages look better when shared on social media. At Doppler, they help you track your product pages more effectively, optimizing the Automation and OnSite widgets features.','doppler-form') ?></p>
+                                        <p class="m-t-6"><?php esc_html_e('The properties added are:','doppler-form') ?></p>
                                         <ul class="settings-list m-t-6">
                                             <li><p>og:type</p></li>
                                             <li><p>og:title</p></li>
@@ -136,7 +140,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
                 <?php endif; ?>
                 <div class="col-sm-12 col-md-10 col-lg-7 m-t-36 d-flex justify-end">
                     <button id="dplrwoo-hub-btn" class="dp-button button-medium primary-green text-align--right">
-                        <?php _e('Save', 'doppler-form') ?>
+                        <?php esc_html_e('Save', 'doppler-form') ?>
                     </button>
                 </div>
             </form>

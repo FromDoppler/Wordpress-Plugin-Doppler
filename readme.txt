@@ -1,9 +1,9 @@
 === Doppler Forms ===
 Contributors: fromdoppler
 Donate link: --
-Tags: Doppler, Email marketing, integration, subscription, form, automation
-Requires at least: 4.9
-Tested up to: 6.8.1
+Tags: Doppler, Email marketing, integration, form, automation
+Requires at least: 5.6
+Tested up to: 6.8
 Requires PHP: 5.6.4
 Stable tag: 2.5.1
 License: GPLv2 or later

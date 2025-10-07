@@ -257,6 +257,11 @@ class DPLR_Form_Controller
   }
 
   public function showCreateEditForm($form_id = NULL) {
+
+    $is_post_request_valid = ( ! empty( $_POST ) && check_admin_referer( 'dplr-create-edit-form' ) );
+    if ( ! $is_post_request_valid ) {
+        $_POST = array();
+    }
     
     $options = get_option('dplr_settings');
     $list_resource = $this->doppler_service->getResource('lists');
@@ -279,59 +284,60 @@ class DPLR_Form_Controller
     if ($form_id != NULL) {
       $form = DPLR_Form_Model::get($form_id, true);
 
-      if($_POST) {
-      	if($form->settings["form_doble_optin"] == 'no' && $_POST['settings']['form_doble_optin'] == 'yes') {
+      if( ! empty( $_POST ) ) {
+      	if($form->settings["form_doble_optin"] == 'no' && isset($_POST['settings']['form_doble_optin']) && $_POST['settings']['form_doble_optin'] == 'yes') {
       		$form_doble_optin_enabled = true;
       	}
 
-      	$form->name = $_POST['name'];
-      	$form->list_id = $_POST['list_id'];
+      	$form->name = isset($_POST['name']) ? sanitize_text_field(wp_unslash($_POST['name'])) : '';
+      	$form->list_id = isset($_POST['list_id']) ? sanitize_text_field(wp_unslash($_POST['list_id'])) : '';
 
       	//get form fields
-		$field_position = 1;
-		$form_fields = isset($_POST['fields']) ? $_POST['fields'] : [];
-		$fields = [];
-		foreach ($form_fields as $k => $v) {
-			array_push($fields, ['name' => $k, 'type' => $v['type'], 'form_id' => 0, 'sort_order' => $field_position++, 'settings' => $v['settings']]);
-		}
+        $field_position = 1;
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $form_fields = isset($_POST['fields']) ? $this->_sanitize_fields_array(wp_unslash($_POST['fields'])) : [];
+        $fields = [];
+        foreach ($form_fields as $k => $v) {
+          array_push($fields, ['name' => $k, 'type' => $v['type'], 'form_id' => 0, 'sort_order' => $field_position++, 'settings' => $v['settings']]);
+        }
 
-      	$form->title = $_POST['title'];
-      	$form->settings["button_text"] = isset($_POST['settings']['button_text']) ? $_POST['settings']['button_text'] : '';
-      	$form->settings["button_position"] = isset($_POST['settings']['button_position']) ? $_POST['settings']['button_position'] : '';
-      	$form->settings["change_button_bg"] = isset($_POST['settings']['change_button_bg']) ? $_POST['settings']['change_button_bg'] : '';
-      	$form->settings["button_color"] = isset($_POST['settings']['button_color']) ? $_POST['settings']['button_color'] : '';
+      	$form->title = isset($_POST['title']) ? sanitize_text_field(wp_unslash($_POST['title'])) : '';
+      	$form->settings["button_text"] = isset($_POST['settings']['button_text']) ? sanitize_text_field(wp_unslash($_POST['settings']['button_text'])) : '';
+      	$form->settings["button_position"] = isset($_POST['settings']['button_position']) ? sanitize_text_field(wp_unslash($_POST['settings']['button_position'])) : '';
+      	$form->settings["change_button_bg"] = isset($_POST['settings']['change_button_bg']) ? sanitize_text_field(wp_unslash($_POST['settings']['change_button_bg'])) : '';
+      	$form->settings["button_color"] = isset($_POST['settings']['button_color']) ? sanitize_hex_color(wp_unslash($_POST['settings']['button_color'])) : '';
 
-      	$form->settings["use_thankyou_page"] = isset($_POST['settings']['use_thankyou_page']) ? $_POST['settings']['use_thankyou_page'] : '';
-      	$form->settings["thankyou_page_url"] = isset($_POST['settings']['thankyou_page_url']) ? $_POST['settings']['thankyou_page_url'] : '';
-      	$form->settings["message_success"] = isset($_POST['settings']['message_success']) ? $_POST['settings']['message_success'] : '';
+      	$form->settings["use_thankyou_page"] = isset($_POST['settings']['use_thankyou_page']) ? sanitize_text_field(wp_unslash($_POST['settings']['use_thankyou_page'])) : '';
+      	$form->settings["thankyou_page_url"] = isset($_POST['settings']['thankyou_page_url']) ? esc_url_raw(wp_unslash($_POST['settings']['thankyou_page_url'])) : '';
+      	$form->settings["message_success"] = isset($_POST['settings']['message_success']) ? sanitize_text_field(wp_unslash($_POST['settings']['message_success'])) : '';
 
-      	$form->settings["use_consent_field"] = isset($_POST['settings']['use_consent_field']) ? $_POST['settings']['use_consent_field'] : '';
-      	$form->settings["form_orientation"] = isset($_POST['settings']['form_orientation']) ? $_POST['settings']['form_orientation'] : '';
+      	$form->settings["use_consent_field"] = isset($_POST['settings']['use_consent_field']) ? sanitize_text_field(wp_unslash($_POST['settings']['use_consent_field'])) : '';
+      	$form->settings["form_orientation"] = isset($_POST['settings']['form_orientation']) ? sanitize_text_field(wp_unslash($_POST['settings']['form_orientation'])) : '';
 
-      	$form->settings["consent_field_text"] = isset($_POST['settings']['consent_field_text']) ? $_POST['settings']['consent_field_text'] : '';
-      	$form->settings["consent_field_url"] = isset($_POST['settings']['consent_field_url']) ? $_POST['settings']['consent_field_url'] : '';
+      	$form->settings["consent_field_text"] = isset($_POST['settings']['consent_field_text']) ? sanitize_text_field(wp_unslash($_POST['settings']['consent_field_text'])) : '';
+      	$form->settings["consent_field_url"] = isset($_POST['settings']['consent_field_url']) ? esc_url_raw(wp_unslash($_POST['settings']['consent_field_url'])) : '';
 
-      	$form->settings["form_doble_optin"] = isset($_POST['settings']['form_doble_optin']) ? $_POST['settings']['form_doble_optin'] : '';
+      	$form->settings["form_doble_optin"] = isset($_POST['settings']['form_doble_optin']) ? sanitize_text_field(wp_unslash($_POST['settings']['form_doble_optin'])) : '';
 
-      	$form->settings["form_email_confirmacion_asunto"] = isset($_POST['settings']['form_email_confirmacion_asunto']) ? $_POST['settings']['form_email_confirmacion_asunto'] : '';
-      	$form->settings["form_email_confirmacion_pre_encabezado"] = isset($_POST['settings']['form_email_confirmacion_pre_encabezado']) ? $_POST['settings']['form_email_confirmacion_pre_encabezado'] : '';
-      	$form->settings["form_email_confirmacion_email_remitente"] = isset($_POST['settings']['form_email_confirmacion_email_remitente']) ? $_POST['settings']['form_email_confirmacion_email_remitente'] : '';
-      	$form->settings["form_email_confirmacion_nombre_remitente"] = isset($_POST['settings']['form_email_confirmacion_nombre_remitente']) ? $_POST['settings']['form_email_confirmacion_nombre_remitente'] : '';
-      	$form->settings["form_name"] = isset($_POST['settings']['form_name']) ? $_POST['settings']['form_name'] : '';
-      	$form->settings["form_email_reply_to"] = isset($_POST['settings']['form_email_reply_to']) ? $_POST['settings']['form_email_reply_to'] : '';
+      	$form->settings["form_email_confirmacion_asunto"] = isset($_POST['settings']['form_email_confirmacion_asunto']) ? sanitize_text_field(wp_unslash($_POST['settings']['form_email_confirmacion_asunto'])) : '';
+      	$form->settings["form_email_confirmacion_pre_encabezado"] = isset($_POST['settings']['form_email_confirmacion_pre_encabezado']) ? sanitize_text_field(wp_unslash($_POST['settings']['form_email_confirmacion_pre_encabezado'])) : '';
+      	$form->settings["form_email_confirmacion_email_remitente"] = isset($_POST['settings']['form_email_confirmacion_email_remitente']) ? sanitize_email(wp_unslash($_POST['settings']['form_email_confirmacion_email_remitente'])) : '';
+      	$form->settings["form_email_confirmacion_nombre_remitente"] = isset($_POST['settings']['form_email_confirmacion_nombre_remitente']) ? sanitize_text_field(wp_unslash($_POST['settings']['form_email_confirmacion_nombre_remitente'])) : '';
+      	$form->settings["form_name"] = isset($_POST['settings']['form_name']) ? sanitize_text_field(wp_unslash($_POST['settings']['form_name'])) : '';
+      	$form->settings["form_email_reply_to"] = isset($_POST['settings']['form_email_reply_to']) ? sanitize_email(wp_unslash($_POST['settings']['form_email_reply_to'])) : '';
 
-      	$form->settings["form_email_confirmacion_email_contenido"] = isset($_POST['content']) ? $_POST['content'] : '';
+      	$form->settings["form_email_confirmacion_email_contenido"] = isset($_POST['content']) ? wp_kses_post(wp_unslash($_POST['content'])) : '';
 
-      	$form->settings["form_pagina_confirmacion"] = isset($_POST['settings']['form_pagina_confirmacion']) ? $_POST['settings']['form_pagina_confirmacion'] : '';
-      	$form->settings["form_pagina_confirmacion_select_landing"] = isset($_POST['settings']['form_pagina_confirmacion_select_landing']) ? $_POST['settings']['form_pagina_confirmacion_select_landing'] : '';
-      	$form->settings["form_pagina_confirmacion_url"] = isset($_POST['settings']['form_pagina_confirmacion_url']) ? $_POST['settings']['form_pagina_confirmacion_url'] : '';
+      	$form->settings["form_pagina_confirmacion"] = isset($_POST['settings']['form_pagina_confirmacion']) ? sanitize_text_field(wp_unslash($_POST['settings']['form_pagina_confirmacion'])) : '';
+      	$form->settings["form_pagina_confirmacion_select_landing"] = isset($_POST['settings']['form_pagina_confirmacion_select_landing']) ? sanitize_text_field(wp_unslash($_POST['settings']['form_pagina_confirmacion_select_landing'])) : '';
+      	$form->settings["form_pagina_confirmacion_url"] = isset($_POST['settings']['form_pagina_confirmacion_url']) ? esc_url_raw(wp_unslash($_POST['settings']['form_pagina_confirmacion_url'])) : '';
       } else {
     	$fields = DPLR_Field_Model::getBy(['form_id' => $form_id],['sort_order'], true);
 	  }
       
       include plugin_dir_path( __FILE__ ) . "../partials/forms-edit.php";
     } else {
-      $form = $_POST;
+      $form = ! empty( $_POST ) ? $_POST : array();
 
       //get form fields
       $field_position_counter = 1;
@@ -344,6 +350,34 @@ class DPLR_Form_Controller
       include plugin_dir_path( __FILE__ ) . "../partials/forms-create.php";
     }
 
+  }
+
+  private function _sanitize_fields_array( $fields_array ) {
+    $sanitized_array = [];
+    if ( ! is_array( $fields_array ) ) {
+        return $sanitized_array;
+    }
+
+    foreach ( $fields_array as $key => $value ) {
+        $sanitized_key = sanitize_text_field( $key );
+        $sanitized_value = [];
+
+        if ( is_array( $value ) ) {
+            if ( isset( $value['type'] ) ) {
+                $sanitized_value['type'] = sanitize_text_field( $value['type'] );
+            }
+
+            if ( isset( $value['settings'] ) && is_array( $value['settings'] ) ) {
+                $sanitized_value['settings'] = array_map( 'sanitize_text_field', $value['settings'] );
+            } else {
+                $sanitized_value['settings'] = [];
+            }
+        }
+
+        $sanitized_array[ $sanitized_key ] = $sanitized_value;
+    }
+
+    return $sanitized_array;
   }
 
 }

@@ -19,6 +19,8 @@ class Doppler_Service
 
   private $origin;
 
+  private $wp_filesystem;
+
   function __construct($credentials = null) {
     
     $this->config = ['credentials' => []];
@@ -31,6 +33,13 @@ class Doppler_Service
 
     if ($credentials)
       $this->setCredentials($credentials);
+
+    if ( ! function_exists( 'WP_Filesystem' ) ) {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+    }
+    WP_Filesystem();
+    global $wp_filesystem;
+    $this->wp_filesystem = $wp_filesystem;
     
     $this->resources = [
 	  'home'	=> new Doppler_Service_Home_Resource(
@@ -258,11 +267,14 @@ class Doppler_Service
             break;
       }
 
+      /* uncomment for debugging
       if(WP_DEBUG_LOG_DOPPLER_PLUGINS){
+        
 
         $msg1 = serialize($method);
         $msg2 = serialize($args);
         $msg3 = serialize($body);
+        
         error_log(
           "\n restapi call-> method: " . $msg1 . "\n args: " . $msg2 . "\n body: " . $msg3, 
           3, 
@@ -274,6 +286,7 @@ class Doppler_Service
           wp_upload_dir()['basedir'] . "/doppler-plugins.log"
         );
       }
+      */
 
       if(empty($response)){
         throw new Exception('Error.');
@@ -302,15 +315,14 @@ class Doppler_Service
     if ( is_array( $data ) ) { 
       $data = json_encode( $data );
     } 
-    $file  = $upload_dir . '/logs/' . $method. date('_d_m_Y') . '.log';
+    $file  = $upload_dir . '/logs/' . $method. gmdate('_d_m_Y') . '.log';
     $dirname = dirname($file);
-    if (!is_dir($dirname))
+    if (!$this->wp_filesystem->is_dir($dirname))
     {
-        mkdir($dirname, 0755, true);
+        $this->wp_filesystem->mkdir($dirname, 0755);
     }
-    $file  = fopen( $file, 'a' );
-    $bytes = fwrite( $file, current_time( 'mysql' ) . " - " . $data . "\n\n" ); 
-    fclose( $file ); 
+    $content = current_time( 'mysql' ) . " - " . $data . "\n\n";
+    $bytes = $this->wp_filesystem->put_contents($file, $content, FS_CHMOD_FILE | FILE_APPEND);
     return $bytes;
   }
 

@@ -15,6 +15,7 @@
 		var e = form.find("input[name='EMAIL']");
 		var honey = form.find("input[name='secondary-dplrEmail']");
 		var thankyou = form.find("input[name='thankyou']");
+		var nonce = form.find('input[name="dplr_form_submit_nonce"]').val();
 		let form_id = d.val();
 		var fields = form.find(
 			"input[name|='fields'], select[name|='fields'], textarea[name|='fields']" &&
@@ -62,6 +63,7 @@
 				subscriber: subscriber,
 				list_id: list_id,
 				form_id: form_id,
+				dplr_form_submit_nonce: nonce,
 			},
 			function (res) {
 				if (thankyou.length !== 0) {

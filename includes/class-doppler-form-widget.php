@@ -27,13 +27,17 @@ class Dplr_Subscription_Widget extends WP_Widget {
 		$form = array('form' => DPLR_Form_Model::get($instance['form_id'], true));
 		
 		if($form['form'] != NULL) {
-			echo $before_widget;
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $before_widget; 
 			$title = apply_filters('widget_title', $form["form"]->title);
-			echo $args['before_title'] . $title . $args['after_title'];
+			if ( ! empty( $title ) ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $args['before_title'] . $title . $args['after_title'];
+			}
 
 			$form['fields'] = DPLR_Field_Model::getBy(['form_id' => $instance['form_id']],['sort_order'], true);
-			echo DPLR_Form_Helper::generate($form);
-
+			echo wp_kses( DPLR_Form_Helper::generate($form), DPLR_Form_Helper::get_allowed_tags() );
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $after_widget;
 		}
 
@@ -56,17 +60,17 @@ class Dplr_Subscription_Widget extends WP_Widget {
 	 ?>
 		<?php if (count($forms) > 0) { ?>
 		<p>
-			<label for="form_id"><?php _e('Select the Form that you want to publish', 'doppler-form')?></label>
-			<select id="<?php echo $this->get_field_id( 'form_id' ); ?>" name="<?php echo $this->get_field_name( 'form_id' ); ?>">
+			<label for="form_id"><?php esc_html_e('Select the Form that you want to publish', 'doppler-form')?></label>
+			<select id="<?php echo esc_attr($this->get_field_id( 'form_id' )); ?>" name="<?php echo esc_attr($this->get_field_name( 'form_id' )); ?>">
 				<option> </option>
 				<?php for ($i=0; $i < count($forms); $i++) { ?>
-				<option <?php echo isset($instance['form_id']) &&  $instance['form_id'] == $forms[$i]->id ? "selected='selected'" : ""; ?> value="<?php echo $forms[$i]->id; ?>"><?php echo $forms[$i]->name; ?></option>
+				<option <?php echo isset($instance['form_id']) &&  $instance['form_id'] == $forms[$i]->id ? "selected='selected'" : ""; ?> value="<?php echo esc_attr($forms[$i]->id); ?>"><?php echo esc_html($forms[$i]->name); ?></option>
 				<?php } ?>
 			</select>
 		</p>
 	 	<?php
 	} else {?>
-		<p><?php _e('You don\'t have Forms yet!', 'doppler-form')?></p>
+		<p><?php esc_html_e('You don\'t have Forms yet!', 'doppler-form')?></p>
 	<?php }
 	}
 }

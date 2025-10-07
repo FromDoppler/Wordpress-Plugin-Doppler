@@ -12,7 +12,9 @@ final class DPLR_Form_Model extends DPLR_Base_Model {
 
     $tablemame = self::_table();
 
-    if($wpdb->get_var("SHOW TABLES LIKE '$tablemame'") != $tablemame) {
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
+    if( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $tablemame ) ) != $tablemame ) {
+      // phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
       $sql = "CREATE TABLE ". $tablemame . "("
   		 . "id mediumint(9) NOT NULL AUTO_INCREMENT,"
        . "title tinytext NOT NULL,"

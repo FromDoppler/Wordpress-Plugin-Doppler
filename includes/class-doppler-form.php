@@ -93,7 +93,6 @@ class DPLR_Doppler {
 
 		$this->load_shortcodes();
 		$this->load_dependencies();
-		$this->set_locale(); 
 		$this->define_admin_hooks();
 		$this->define_public_hooks(); 
 		$this->check_version_update();
@@ -129,12 +128,6 @@ class DPLR_Doppler {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-doppler-form-loader.php';
 
 		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-doppler-form-i18n.php';
-
-		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/doppler-admin.php';
@@ -154,23 +147,6 @@ class DPLR_Doppler {
 		require_once plugin_dir_path( dirname(__FILE__) ) . "includes/class-doppler-extension-manager.php";
 
 		$this->loader = new Doppler_Form_Loader();
-
-	}
-
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the Plugin_Name_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function set_locale() {
-
-		$plugin_i18n = new Plugin_Name_i18n();
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
 	}
 

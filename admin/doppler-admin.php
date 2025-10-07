@@ -80,7 +80,7 @@ class Doppler_Admin {
 			<div id="displayErrorMessage" class="dp-wrap-message dp-wrap-cancel m-b-12">
 				<span class="dp-message-icon"></span>
 				<div class="dp-content-message">
-					<p><?php echo $this->get_error_message(); ?></p>
+					<p><?php echo wp_kses_post($this->get_error_message()); ?></p>
 				</div>
 			</div>
 		</div>
@@ -95,7 +95,7 @@ class Doppler_Admin {
 			<div id="displaySuccessMessage" class="dp-wrap-message dp-wrap-success m-b-12">
 				<span class="dp-message-icon"></span>
 				<div class="dp-content-message">
-					<p><?php echo $this->get_success_message(); ?></p>
+					<p><?php echo wp_kses_post($this->get_success_message()); ?></p>
 				</div>
 			</div>
 		</div>
@@ -111,7 +111,7 @@ class Doppler_Admin {
 	public function enqueue_styles() {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/doppler-form-admin.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'jquery-ui-dialog', includes_url() . 'css/jquery-ui-dialog.min.css', array(), $this->version, 'all' );
-		wp_enqueue_script('billboard-css', 'https://cdnjs.cloudflare.com/ajax/libs/billboard.js/3.14.3/billboard.min.css', array(''), '3.14.3', 'all');
+		wp_enqueue_style('billboard-css', plugin_dir_url( __FILE__ ) . 'css/vendor/billboard.min.css', array(), '3.14.3', 'all');
 	}
 
 	/**
@@ -180,8 +180,8 @@ class Doppler_Admin {
 		wp_enqueue_script('jquery-ui-sortable');
 		wp_enqueue_script('jquery-ui-dialog');
 		wp_enqueue_script('iris');
-		wp_enqueue_script('d3-js', 'https://d3js.org/d3.v6.min.js',	array($this->plugin_name), '6.7.0', true);
-		wp_enqueue_script('billboard-js', 'https://cdnjs.cloudflare.com/ajax/libs/billboard.js/3.14.3/billboard.min.js', array($this->plugin_name, 'd3-js'), '3.14.3', true);
+		wp_enqueue_script('d3-js', plugin_dir_url( __FILE__ ) . 'js/vendor/d3.v6.min.js',	array($this->plugin_name), '6.7.0', true);
+		wp_enqueue_script('billboard-js', plugin_dir_url( __FILE__ ) . 'js/vendor/billboard.min.js', array($this->plugin_name, 'd3-js'), '3.14.3', true);
 
 		$data = $this->get_Chart_Data();
 		wp_localize_script($this->plugin_name, 'chartData', ['data' => $data]);
@@ -263,7 +263,26 @@ class Doppler_Admin {
 	}
 	
 	public function init_settings(){
-		register_setting('dplr_plugin_options', 'dplr_settings');
+		$args = array(
+			'type' => 'array',
+			'sanitize_callback' => array( $this, 'sanitize_doppler_settings' ),
+			'default' => NULL,
+			);
+		register_setting('dplr_plugin_options', 'dplr_settings', $args);
+	}
+
+	public function sanitize_doppler_settings( $input ) {
+		$new_input = array();
+
+		if ( isset( $input['dplr_option_apikey'] ) ) {
+			$new_input['dplr_option_apikey'] = sanitize_text_field( $input['dplr_option_apikey'] );
+		}
+
+		if ( isset( $input['dplr_option_useraccount'] ) ) {
+			$new_input['dplr_option_useraccount'] = sanitize_email( $input['dplr_option_useraccount'] );
+		}
+
+		return $new_input;
 	}
 
 	public function init_menu() {
@@ -431,11 +450,11 @@ class Doppler_Admin {
 	}
 
 	public function doppler_forms_screen() {
+		(!isset($_GET['tab'])) ? $active_tab = 'forms' : $active_tab = sanitize_text_field(wp_unslash($_GET['tab']));
 
-		(!isset($_GET['tab']))? $active_tab = 'forms' : $active_tab = $_GET['tab'];
+		if ( ! empty( $_POST ) && check_admin_referer( 'dplr-create-edit-form' ) ) {
 
-		if(!empty($_POST)){
-			if( isset($_POST['settings']) && $_POST['settings']['change_button_bg'] === 'no') $_POST['settings']['button_color'] = '';
+			if( isset($_POST['settings']) && isset($_POST['settings']['change_button_bg']) && $_POST['settings']['change_button_bg'] === 'no') $_POST['settings']['button_color'] = '';
 			if(isset($_POST['form-create'])){
 				$result_code = $this->form_controller->create($_POST);
 				if($result_code == 0){
@@ -455,8 +474,8 @@ class Doppler_Admin {
 					$active_tab = 'new';
 				}
 			}
-			if(isset($_POST['form-edit'])){
-				$result_code = $this->form_controller->update($_POST['form_id'], $_POST);
+			if(isset($_POST['form-edit']) && isset($_POST['form_id'])){
+				$result_code = $this->form_controller->update(absint(wp_unslash($_POST['form_id'])), $_POST);
 				if($result_code == 0){
 					$this->set_success_message(__('The Form has been edited correctly.','doppler-form'));
 				}else{
@@ -476,8 +495,8 @@ class Doppler_Admin {
 			}
 		}
 
-		if( !empty($_GET['action']) && $_GET['action'] === 'delete' ){
-			if( !empty($_GET['form_id']) && $this->form_controller->delete($_GET['form_id']) == 1 ){
+		if( !empty($_GET['action']) && 'delete' === $_GET['action'] && isset($_GET['form_id']) && check_admin_referer('dplr-delete-form_' . absint(wp_unslash($_GET['form_id']))) ){
+			if( $this->form_controller->delete(absint(wp_unslash($_GET['form_id']))) == 1 ){
 				$this->set_success_message(__('The Form has been deleted correctly.','doppler-form'));
 			}else{
 				$this->set_error_message(__('Ouch! An error ocurred and the Form couldn\'t be deleted. Try again later.','doppler-form'));
@@ -488,8 +507,6 @@ class Doppler_Admin {
 		if($active_tab == 'forms'){
 			$forms = $this->form_controller->getAll();
 			$create_form_url = admin_url( 'admin.php?page=doppler_forms_main&tab=new');
-			$edit_form_url = admin_url( 'admin.php?page=doppler_forms_main&tab=edit&form_id=[FORM_ID]' );
-			$delete_form_url = admin_url( 'admin.php?page=doppler_forms_main&action=delete&form_id=[FORM_ID]' );
 			$list_resource = $this->doppler_service->getResource('lists');
 			$dplr_lists = $list_resource->getAllLists();
 			if(is_array($dplr_lists)){
@@ -520,8 +537,11 @@ class Doppler_Admin {
 
 		if(isset($_POST['dplr-tracking-checkbox'])):
 			if(current_user_can('manage_options') && check_admin_referer('use-settings')):
-				$script = $_POST['dplr-tracking-checkbox'] == 0 ? '' : '<script type="text/javascript" async="async" src="https://hub.fromdoppler.com/public/dhtrack.js" ></script>';
+				// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript
+				$script = $_POST['dplr-tracking-checkbox'] == 0 ? '' : '<script type="text/javascript" async="async" src="https://hub.fromdoppler.com/public/dhtrack.js"></script>';
 				update_option( 'dplr_hub_script', sanitize_text_field(htmlentities(trim($script))));
+				$tracking_enabled = $_POST['dplr-tracking-checkbox'] == 0 ? 0 : 1;
+				update_option( 'dplr_tracking_enabled', $tracking_enabled );
 				$success++;
 			else:
 				$error_messages[] = __('Tracking code is invalid', 'doppler-form');
@@ -533,10 +553,10 @@ class Doppler_Admin {
 				if($_POST['dplr-consent-checkbox'] == 0):
 					update_option( 'dplr_wc_consent', 0);
 					$success++;
-				else:
+				elseif (isset($_POST['dplr-consent-location']) && isset($_POST['dplr-consent-text'])):
 					update_option( 'dplr_wc_consent', 1);
-					update_option( 'dplr_wc_consent_location', $_POST['dplr-consent-location']);
-					update_option( 'dplr_wc_consent_text', $_POST['dplr-consent-text']);
+					update_option( 'dplr_wc_consent_location', sanitize_text_field(wp_unslash($_POST['dplr-consent-location'])));
+					update_option( 'dplr_wc_consent_text', sanitize_text_field(wp_unslash($_POST['dplr-consent-text'])));
 					$success++;
 				endif;
 			else:
@@ -577,10 +597,10 @@ class Doppler_Admin {
 		?>	
 			<div class="notice notice-warning is-dismissible">
 				<p>
-					<?php _e( 'You\'ve updated the <strong>Doppler Forms</strong> plugin into the <strong>2.0.0</strong> version. Please,', 'doppler-form');?>
-					<a href="<?= admin_url( 'admin.php?page=doppler_forms_menu' )?>">
-						<?php _e('enter your Username', 'doppler-form')?>
-					</a> <?php _e('in addition to the API Key and re-connect your Doppler account.', 'doppler-form' ); ?>
+					<?php esc_html_e( 'You\'ve updated the <strong>Doppler Forms</strong> plugin into the <strong>2.0.0</strong> version. Please,', 'doppler-form');?>
+					<a href="<?php echo esc_url(admin_url( 'admin.php?page=doppler_forms_menu' ))?>">
+						<?php esc_html_e('enter your Username', 'doppler-form')?>
+					</a> <?php esc_html_e('in addition to the API Key and re-connect your Doppler account.', 'doppler-form' ); ?>
 				</p>
 			</div>
 		<?php
@@ -671,9 +691,10 @@ class Doppler_Admin {
 	 */
 	public function ajax_connect() {
 		$this->check_admin_permissions();
+		check_ajax_referer( 'dplr-connect-nonce', 'nonce' );
 
 		if( empty($_POST['key']) || empty($_POST['user']) ) return false;
-		$this->doppler_service->setCredentials(['api_key' => $_POST['key'], 'user_account' => $_POST['user']]);
+		$this->doppler_service->setCredentials(['api_key' => sanitize_text_field(wp_unslash($_POST['key'])), 'user_account' => sanitize_text_field(wp_unslash($_POST['user']))]);
 		$connection_status = $this->doppler_service->connectionStatus();
 		if( is_array($connection_status)){
 			echo json_encode($connection_status);
@@ -705,10 +726,11 @@ class Doppler_Admin {
 	 */
 	public function ajax_delete_form() {
 		$this->check_admin_permissions();
+		check_ajax_referer( 'dplr-delete-form-nonce', 'nonce' );
 
 		if(empty($_POST['listId'])) return false;
 		$this->set_credentials();
-		echo $this->form_controller->delete($_POST['listId']);
+		echo wp_kses_post($this->form_controller->delete(absint(wp_unslash($_POST['listId']))));
 		wp_die();
 	}
 
@@ -721,10 +743,13 @@ class Doppler_Admin {
 	  */
 	public function ajax_get_lists() {
 		$this->check_admin_permissions();
+		check_ajax_referer( 'dplr-get-lists-nonce', 'nonce' );
 
-		$this->set_credentials();
-		echo json_encode($this->get_lists_by_page($_POST['per_page'], $_POST['page']));
-		wp_die();
+		if(isset($_POST['per_page']) && isset($_POST['page'])){
+			$this->set_credentials();
+			echo json_encode($this->get_lists_by_page( absint( wp_unslash( $_POST['per_page'] ) ), absint( wp_unslash( $_POST['page'] ) )));
+			wp_die();
+		}
 	}
 
 	/**
@@ -732,10 +757,14 @@ class Doppler_Admin {
 	 */
 	public function ajax_save_list() {
 		$this->check_admin_permissions();
+		check_ajax_referer( 'dplr-create-lists-nonce', 'nonce' );
 
-		if(empty($_POST['listName'])) return false;
+		if ( empty( $_POST['listName'] ) ) {
+			wp_send_json_error( [ 'message' => 'List name cannot be empty.' ] );
+		}
+
 		$this->set_credentials();
-		echo $this->create_list($_POST['listName']);
+		echo wp_kses_post( $this->create_list( sanitize_text_field( wp_unslash( $_POST['listName'] ) ) ) );
 		wp_die();
 	}
 
@@ -745,9 +774,10 @@ class Doppler_Admin {
 	 */
 	public function ajax_delete_list() {
 		$this->check_admin_permissions();
+		check_ajax_referer( 'dplr-delete-lists-nonce', 'nonce' );
 
 		if(empty($_POST['listId'])) return false;
-		if(!$this->allow_delete_list($_POST['listId'])){
+		if(!$this->allow_delete_list( absint( wp_unslash($_POST['listId'] ) ) ) ){
 			echo json_encode(array('response'=>array(
 										'code'=>0,
 										'message'=>__('Ouch! The List is being used in a form or an extension, so it cannot be deleted.','doppler-form')
@@ -760,7 +790,7 @@ class Doppler_Admin {
 		$this->set_credentials();
 		$subscribers_lists = get_option('dplr_subscribers_list');
 		$subscriber_resource = $this->doppler_service->getResource('lists');
-		echo json_encode($subscriber_resource->deleteList( $_POST['listId'] ));
+		echo json_encode($subscriber_resource->deleteList( absint( wp_unslash( $_POST['listId'] ) ) ) );
 		wp_die();
 	}
 
@@ -769,13 +799,10 @@ class Doppler_Admin {
 	 */
 	private function allow_delete_list( $list_id ) {
 		
-		global $wpdb;
 		if(empty($list_id)) return false;
 		$woocommerce_lists = get_option('dplr_subscribers_list');
 		$learnpress_lists = get_option('dplr_learnpress_subscribers_list');
-		
-		$list_count = $wpdb->get_var("SELECT count(*) FROM ".$wpdb->prefix."dplr_form
-		WHERE list_id = '".$list_id."'");
+		$list_count = count( DPLR_Form_Model::getBy( [ 'list_id' => $list_id ] ) );
 
 		if($list_count>0) return false;
 
