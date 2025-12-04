@@ -509,7 +509,7 @@
 			</div>
 			<p class="m-t-24">
 				<?php esc_html_e("Do you have any doubts about how to connect your Forms with Doppler? Press", "doppler-form")?>
-				<?php echo  '<a href="' . esc_html_e('https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress','doppler-form') . '" target="blank">' . esc_html_e('HELP','doppler-form') . '</a>'?>.
+				<?php echo  '<a href="' . esc_html__('https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress','doppler-form') . '" target="_blank">' . esc_html__('HELP','doppler-form') . '</a>'?>.
 			</p>
 		<?php
 		}
@@ -520,3 +520,4 @@
 		</div>
 	</div>
 </section>
+
