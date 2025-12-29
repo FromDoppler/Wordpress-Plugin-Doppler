@@ -6,6 +6,11 @@
 		if ($connected) {
 			$dplr_woocommerce_plugin_is_active = $this->extension_manager->is_active('doppler-for-woocommerce');
 			$dplr_learnpress_plugin_is_active = $this->extension_manager->is_active('doppler-for-learnpress');
+			$dplr_woocommerce_lists = get_option('dplr_subscribers_list');
+        	$dplr_woocommerce_plugin_is_connected = is_array($dplr_woocommerce_lists) 
+				&& ( !empty($dplr_woocommerce_lists['contacts']) 
+					|| !empty($dplr_woocommerce_lists['buyers']) 
+				);
 		?>
 			<div class="dp-container m-t-24">
 				<div class="dp-rowflex">
@@ -37,6 +42,18 @@
 										<span> <?php esc_html_e("Active","doppler-form")?></span>
 									</span>
 								</div>
+								<?php if($dplr_woocommerce_plugin_is_active && $dplr_woocommerce_plugin_is_connected): ?>
+									<div class="col-sm-12 dp-icon-wrapper m-t-24" id="dplrwoo-status-wrapper">
+										<span>
+											<strong><?php esc_html_e("WooCommerce integration","doppler-form");?>:</strong>
+											<span id="dplrwoo-status-text"><?php esc_html_e("Checking status...","doppler-form");?></span>
+											<span id="dplrwoo-status-detail" class="m-t-6"></span>
+											<a href="<?php echo esc_url(admin_url('admin.php?page=doppler_woocommerce_menu'))?>" class="d-none" id="dplrwoo-status-link">
+												<?php esc_html_e("Here","doppler-form"); ?>
+											</a>
+										</span>
+									</div>
+								<?php endif; ?>
 							</div>
 						</div>
 						<?php if (!empty($notification_messages)) : 
@@ -509,7 +526,7 @@
 			</div>
 			<p class="m-t-24">
 				<?php esc_html_e("Do you have any doubts about how to connect your Forms with Doppler? Press", "doppler-form")?>
-				<?php echo  '<a href="' . esc_html_e('https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress','doppler-form') . '" target="blank">' . esc_html_e('HELP','doppler-form') . '</a>'?>.
+				<a href="<?php esc_attr('https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress','doppler-form') ?>" target="blank"><?php esc_html_e('HELP','doppler-form') ?></a>.
 			</p>
 		<?php
 		}

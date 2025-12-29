@@ -187,25 +187,6 @@
 
 		$(".sortable").disableSelection();
 
-		/*
-	var fields = {
-		container: $("ul#formFields"),
-
-		items: [],
-		addItem: function(item) {
-			var domElement = $(item.renderItem());
-			var _this = this;
-			this.items.push(item);
-			domElement.find(".icon-close").on("click", function(){
-				$(this).parent().remove();
-			});
-			this.container.append(domElement);
-		},
-		removeItem: function(element) {
-
-		}
-	};*/
-
 		$("body").on("click", "li .alt-toggle", function (e) {
 			$(this).closest("li").toggleClass("active");
 		});
@@ -555,6 +536,52 @@
 					});
 			}, 100);
 		});
+
+		var $status = $("#dplrwoo-status-text");
+		var $detail = $("#dplrwoo-status-detail");
+		const wooStrings = {
+			checking: object_string.WooCheckingStatus,
+			connected: object_string.WooConnected,
+			disconnected: object_string.WooDisconnected,
+			disconnectedDetail: object_string.WooDisconnectedDetail,
+			checkError: object_string.WooCheckError,
+			error: object_string.WooError,
+		};
+
+		function setState(label, description) {
+			$status.text(label);
+			$detail.text(description || "");
+		}
+
+		function checkWooStatus() {
+			const wrapper = $("#dplrwoo-status-wrapper");
+			if (wrapper.length === 0) {
+				return;
+			}
+
+			setState(wooStrings.checking, "");
+			$.post(ajaxurl, { action: "dplrwoo_ajax_check_status" })
+				.done(function (resp) {
+					if (resp && resp.success && resp.data) {
+						if (resp.data.connected) {
+							setState(wooStrings.connected, "");
+						} else {
+							setState(
+								wooStrings.disconnected,
+								" - " + wooStrings.disconnectedDetail
+							);
+							$("#dplrwoo-status-link").removeClass("d-none");
+						}
+					} else {
+						setState(wooStrings.error, " - " + wooStrings.checkError);
+					}
+				})
+				.fail(function () {
+					setState(wooStrings.error, " - " + wooStrings.checkError);
+				});
+		}
+
+		checkWooStatus();
 
 		loadCarousel();
 	});

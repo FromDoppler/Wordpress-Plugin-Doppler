@@ -160,6 +160,12 @@ class Doppler_Admin {
 			'Impressions' => __('Impressions', 'doppler-form'),
 			'Subscribed' => __('Subscribed', 'doppler-form'),
 			'formType' => __('Form Type', 'doppler-form'),
+			'WooCheckingStatus' => __('Checking status...', 'doppler-form'),
+			'WooConnected' => __('Connected', 'doppler-form'),
+			'WooDisconnected' => __('Disconnected', 'doppler-form'),
+			'WooDisconnectedDetail' => __('WooCommerce integration is not properly configured. Click ', 'doppler-form'),
+			'WooCheckError' => __('Could not check the WooCommerce integration, please try again.', 'doppler-form'),
+			'WooError' => __('Error', 'doppler-form'),
 		) ); 
 		wp_enqueue_script('field-module', plugin_dir_url( __FILE__ ) . 'js/field-module.js', array($this->plugin_name), $this->version, false);
 		wp_localize_script( 'field-module', 'ObjStr', array( 
