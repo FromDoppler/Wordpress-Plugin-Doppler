@@ -42,7 +42,9 @@
 										<span> <?php esc_html_e("Active","doppler-form")?></span>
 									</span>
 								</div>
-								<?php if($dplr_woocommerce_plugin_is_active && $dplr_woocommerce_plugin_is_connected): ?>
+								<?php if($dplr_woocommerce_plugin_is_active &&
+									$dplr_woocommerce_plugin_is_connected &&
+									has_action('wp_ajax_dplrwoo_ajax_check_status')): ?>
 									<div class="col-sm-12 dp-icon-wrapper m-t-24" id="dplrwoo-status-wrapper">
 										<span>
 											<strong><?php esc_html_e("WooCommerce integration","doppler-form");?>:</strong>
