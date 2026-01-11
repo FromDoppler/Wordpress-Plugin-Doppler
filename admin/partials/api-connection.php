@@ -55,6 +55,17 @@
 											</a>
 										</span>
 									</div>
+								<?php elseif ($dplr_woocommerce_plugin_is_active && !$dplr_woocommerce_plugin_is_connected): ?>
+									<div class="col-sm-12 dp-icon-wrapper m-t-24">
+										<span>
+											<strong><?php esc_html_e("WooCommerce integration","doppler-form");?>:</strong>
+											<span><?php esc_html_e("Disconnected","doppler-form");?> | </span>
+											<span><?php esc_html_e("To configure click ","doppler-form");?></span>
+											<a href="<?php echo esc_url(admin_url('admin.php?page=doppler_woocommerce_menu'))?>">
+												<?php esc_html_e("Here","doppler-form"); ?>
+											</a>
+										</span>
+									</div>
 								<?php endif; ?>
 							</div>
 						</div>
@@ -528,12 +539,11 @@
 			</div>
 			<p class="m-t-24">
 				<?php esc_html_e("Do you have any doubts about how to connect your Forms with Doppler? Press", "doppler-form")?>
-				<a href="<?php esc_attr('https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress','doppler-form') ?>" target="blank"><?php esc_html_e('HELP','doppler-form') ?></a>.
+				<a href="<?php esc_attr_e('https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress','doppler-form') ?>" target="_blank"><?php esc_html_e('HELP','doppler-form') ?></a>.
 			</p>
 		<?php
 		}
 		?>
-
 		<div id="dplr-dialog-confirm" title="<?php esc_html_e('Are you sure you want to uninstall the extension?', 'doppler-form'); ?>">
 			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span> <?php esc_html_e('This will deactivate and uninstall the plugin.', 'doppler-form')?></p>
 		</div>

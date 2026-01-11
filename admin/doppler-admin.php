@@ -163,7 +163,7 @@ class Doppler_Admin {
 			'WooCheckingStatus' => __('Checking status...', 'doppler-form'),
 			'WooConnected' => __('Connected', 'doppler-form'),
 			'WooDisconnected' => __('Disconnected', 'doppler-form'),
-			'WooDisconnectedDetail' => __('WooCommerce integration is not properly configured. Click ', 'doppler-form'),
+			'WooDisconnectedDetail' => __('To configure click ', 'doppler-form'),
 			'WooCheckError' => __('Could not check the WooCommerce integration, please try again.', 'doppler-form'),
 			'WooError' => __('Error', 'doppler-form'),
 		) ); 
