@@ -51,7 +51,7 @@
 											<span id="dplrwoo-status-text"><?php esc_html_e("Checking status...","doppler-form");?></span>
 											<span id="dplrwoo-status-detail" class="m-t-6"></span>
 											<a href="<?php echo esc_url(admin_url('admin.php?page=doppler_woocommerce_menu'))?>" class="d-none" id="dplrwoo-status-link">
-												<?php esc_html_e("Here","doppler-form"); ?>
+												<?php esc_html_e("click here","doppler-form"); ?>
 											</a>
 										</span>
 									</div>
@@ -59,10 +59,10 @@
 									<div class="col-sm-12 dp-icon-wrapper m-t-24">
 										<span>
 											<strong><?php esc_html_e("WooCommerce integration","doppler-form");?>:</strong>
-											<span><?php esc_html_e("Disconnected","doppler-form");?> | </span>
-											<span><?php esc_html_e("To configure click ","doppler-form");?></span>
+											<span><?php esc_html_e("Offline","doppler-form");?> | </span>
+											<span><?php esc_html_e("To configure, ","doppler-form");?></span>
 											<a href="<?php echo esc_url(admin_url('admin.php?page=doppler_woocommerce_menu'))?>">
-												<?php esc_html_e("Here","doppler-form"); ?>
+												<?php esc_html_e("click here","doppler-form"); ?>
 											</a>
 										</span>
 									</div>
