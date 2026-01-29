@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-12-29 13:13-0300\n"
-"PO-Revision-Date: 2025-12-30 12:36-0300\n"
+"POT-Creation-Date: 2026-01-19 23:08-0300\n"
+"PO-Revision-Date: 2026-01-19 23:08-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Costa Rica\n"
 "Language: es_CR\n"
@@ -77,8 +77,8 @@ msgid "Ouch! There has been an error: cURL error 28, timeout error."
 msgstr ""
 "Ouch!  Ocurrió un error: cURL error 28, se acabó el tiempo para la petición."
 
-#: admin/doppler-admin.php:138 admin/partials/api-connection.php:388
-#: admin/partials/api-connection.php:429
+#: admin/doppler-admin.php:138 admin/partials/api-connection.php:401
+#: admin/partials/api-connection.php:442
 msgid "Installing"
 msgstr "Instalando"
 
@@ -164,35 +164,35 @@ msgstr "Texto para el checkbox"
 msgid "Edit Field"
 msgstr "Editar Campo"
 
-#: admin/doppler-admin.php:157 admin/partials/api-connection.php:227
+#: admin/doppler-admin.php:157 admin/partials/api-connection.php:240
 #: admin/partials/forms-list.php:81
 msgid "Simple Opt-In"
 msgstr "Simple Opt-In"
 
-#: admin/doppler-admin.php:158 admin/partials/api-connection.php:227
+#: admin/doppler-admin.php:158 admin/partials/api-connection.php:240
 #: admin/partials/forms-list.php:81
 msgid "Double Opt-In"
 msgstr "Doble Opt-in"
 
-#: admin/doppler-admin.php:159 admin/partials/api-connection.php:194
+#: admin/doppler-admin.php:159 admin/partials/api-connection.php:207
 msgid "Conversion Rate"
 msgstr "Ratio de Conversión"
 
-#: admin/doppler-admin.php:160 admin/partials/api-connection.php:121
-#: admin/partials/api-connection.php:213
+#: admin/doppler-admin.php:160 admin/partials/api-connection.php:134
+#: admin/partials/api-connection.php:226
 msgid "Impressions"
 msgstr "Impresiones"
 
-#: admin/doppler-admin.php:161 admin/partials/api-connection.php:138
-#: admin/partials/api-connection.php:214
+#: admin/doppler-admin.php:161 admin/partials/api-connection.php:151
+#: admin/partials/api-connection.php:227
 msgid "Subscribed"
 msgstr "Suscriptos"
 
-#: admin/doppler-admin.php:162 admin/partials/api-connection.php:212
+#: admin/doppler-admin.php:162 admin/partials/api-connection.php:225
 msgid "Form Type"
 msgstr "Tipo de Formulario"
 
-#: admin/doppler-admin.php:163 admin/partials/api-connection.php:49
+#: admin/doppler-admin.php:163 admin/partials/api-connection.php:51
 msgid "Checking status..."
 msgstr "Comprobando estado..."
 
@@ -200,14 +200,13 @@ msgstr "Comprobando estado..."
 msgid "Connected"
 msgstr "Conectado"
 
-#: admin/doppler-admin.php:165
-msgid "Disconnected"
+#: admin/doppler-admin.php:165 admin/partials/api-connection.php:62
+msgid "Offline"
 msgstr "Desconectado"
 
-#: admin/doppler-admin.php:166
-msgid "WooCommerce integration is not properly configured. Click "
-msgstr ""
-"La integración con WooCommerce no esta configurada correctamente. Haga clic "
+#: admin/doppler-admin.php:166 admin/partials/api-connection.php:63
+msgid "To configure, "
+msgstr "Para configurar, "
 
 #: admin/doppler-admin.php:167
 msgid "Could not check the WooCommerce integration, please try again."
@@ -278,7 +277,7 @@ msgid "Home"
 msgstr "Inicio"
 
 #: admin/doppler-admin.php:338 admin/doppler-admin.php:339
-#: admin/partials/api-connection.php:262 admin/partials/api-connection.php:265
+#: admin/partials/api-connection.php:275 admin/partials/api-connection.php:278
 #: admin/partials/doppler-forms-display.php:19 admin/partials/lists-crud.php:10
 #: admin/partials/settings.php:23
 msgid "Doppler Forms"
@@ -293,12 +292,12 @@ msgstr "Administración de Listas"
 msgid "Settings"
 msgstr "Ajustes"
 
-#: admin/doppler-admin.php:409 admin/partials/api-connection.php:477
-#: admin/partials/api-connection.php:482 admin/partials/api-connection.php:512
+#: admin/doppler-admin.php:409 admin/partials/api-connection.php:490
+#: admin/partials/api-connection.php:495 admin/partials/api-connection.php:525
 msgid "Ouch! Enter a valid Email."
 msgstr "¡Ouch! Escribe un Email válido."
 
-#: admin/doppler-admin.php:414 admin/partials/api-connection.php:505
+#: admin/doppler-admin.php:414 admin/partials/api-connection.php:518
 msgid "Ouch! The field is empty."
 msgstr "¡Ouch! El campo está vacío."
 
@@ -427,119 +426,119 @@ msgstr "Estado"
 msgid "Active"
 msgstr "Activa"
 
-#: admin/partials/api-connection.php:48
+#: admin/partials/api-connection.php:50 admin/partials/api-connection.php:61
 msgid "WooCommerce integration"
 msgstr "Integración con Woocommerce"
 
-#: admin/partials/api-connection.php:52
-msgid "Here"
-msgstr "Aquí"
+#: admin/partials/api-connection.php:54 admin/partials/api-connection.php:65
+msgid "click here"
+msgstr "haz clic aquí"
 
-#: admin/partials/api-connection.php:104
+#: admin/partials/api-connection.php:117
 msgid "Forms"
 msgstr "Formularios"
 
-#: admin/partials/api-connection.php:155
+#: admin/partials/api-connection.php:168
 msgid "Woocommerce contacts"
 msgstr "Contactos Woocommerce"
 
-#: admin/partials/api-connection.php:173
+#: admin/partials/api-connection.php:186
 msgid "Learnpress contacts"
 msgstr "Contactos Learnpress"
 
-#: admin/partials/api-connection.php:187
+#: admin/partials/api-connection.php:200
 msgid "Forms Report"
 msgstr "Reporte de Formularios"
 
-#: admin/partials/api-connection.php:188
+#: admin/partials/api-connection.php:201
 msgid "Here you can see the performance of your forms"
 msgstr "Aquí puedes ver el rendimiento de tus formularios"
 
-#: admin/partials/api-connection.php:197
+#: admin/partials/api-connection.php:210
 msgid "All Forms"
 msgstr "Todos los formularios"
 
-#: admin/partials/api-connection.php:211 admin/partials/forms-create.php:13
+#: admin/partials/api-connection.php:224 admin/partials/forms-create.php:13
 #: admin/partials/forms-edit.php:14 admin/partials/lists-crud.php:80
 msgid "Name"
 msgstr "Nombre"
 
-#: admin/partials/api-connection.php:215
+#: admin/partials/api-connection.php:228
 msgid "Conversion"
 msgstr "Conversión"
 
-#: admin/partials/api-connection.php:230 admin/partials/api-connection.php:233
+#: admin/partials/api-connection.php:243 admin/partials/api-connection.php:246
 msgid "0"
 msgstr "0"
 
-#: admin/partials/api-connection.php:257
+#: admin/partials/api-connection.php:270
 msgid "Quick Access"
 msgstr "Accesos rápidos"
 
-#: admin/partials/api-connection.php:258
+#: admin/partials/api-connection.php:271
 msgid "Access all the features from here"
 msgstr "Ingresa a todas las funcionalidades desde aquí"
 
-#: admin/partials/api-connection.php:266 admin/partials/api-connection.php:275
-#: admin/partials/api-connection.php:284 admin/partials/api-connection.php:296
-#: admin/partials/api-connection.php:309
+#: admin/partials/api-connection.php:279 admin/partials/api-connection.php:288
+#: admin/partials/api-connection.php:297 admin/partials/api-connection.php:309
+#: admin/partials/api-connection.php:322
 msgid "Access"
 msgstr "Acceder"
 
-#: admin/partials/api-connection.php:271 admin/partials/api-connection.php:274
+#: admin/partials/api-connection.php:284 admin/partials/api-connection.php:287
 msgid "On-site tracking"
 msgstr "Seguimiento en sitio"
 
-#: admin/partials/api-connection.php:280 admin/partials/api-connection.php:283
+#: admin/partials/api-connection.php:293 admin/partials/api-connection.php:296
 msgid "List Management"
 msgstr "Administración de Listas"
 
-#: admin/partials/api-connection.php:292 admin/partials/api-connection.php:295
+#: admin/partials/api-connection.php:305 admin/partials/api-connection.php:308
 msgid "Doppler for Learnpress"
 msgstr "Doppler para LearnPress"
 
-#: admin/partials/api-connection.php:305 admin/partials/api-connection.php:308
-#: admin/partials/api-connection.php:365
+#: admin/partials/api-connection.php:318 admin/partials/api-connection.php:321
+#: admin/partials/api-connection.php:378
 msgid "Doppler for Woocommerce"
 msgstr "Doppler para WooCommerce"
 
-#: admin/partials/api-connection.php:324
+#: admin/partials/api-connection.php:337
 msgid "https://help.fromdoppler.com/en/"
 msgstr "https://help.fromdoppler.com/es/"
 
-#: admin/partials/api-connection.php:326 admin/partials/api-connection.php:328
+#: admin/partials/api-connection.php:339 admin/partials/api-connection.php:341
 msgid "Help Center"
 msgstr "Help Center"
 
-#: admin/partials/api-connection.php:334 admin/partials/api-connection.php:336
+#: admin/partials/api-connection.php:347 admin/partials/api-connection.php:349
 msgid "Academy"
 msgstr "Academy"
 
-#: admin/partials/api-connection.php:342 admin/partials/api-connection.php:344
+#: admin/partials/api-connection.php:355 admin/partials/api-connection.php:357
 msgid "Blog"
 msgstr "Blog"
 
-#: admin/partials/api-connection.php:350 admin/partials/api-connection.php:352
+#: admin/partials/api-connection.php:363 admin/partials/api-connection.php:365
 msgid "Youtube"
 msgstr "Youtube"
 
-#: admin/partials/api-connection.php:361
+#: admin/partials/api-connection.php:374
 msgid "Extensions"
 msgstr "Extensiones"
 
-#: admin/partials/api-connection.php:368 admin/partials/settings.php:63
+#: admin/partials/api-connection.php:381 admin/partials/settings.php:63
 msgid "Doppler for WooCommerce"
 msgstr "Doppler para WooCommerce"
 
-#: admin/partials/api-connection.php:372 admin/partials/api-connection.php:413
+#: admin/partials/api-connection.php:385 admin/partials/api-connection.php:426
 msgid "Successfully Instaled"
 msgstr "Instalada correctamente"
 
-#: admin/partials/api-connection.php:374 admin/partials/api-connection.php:415
+#: admin/partials/api-connection.php:387 admin/partials/api-connection.php:428
 msgid "Extension deactivated"
 msgstr "Extensión desactivada"
 
-#: admin/partials/api-connection.php:383
+#: admin/partials/api-connection.php:396
 msgid ""
 "You should have <a href=\"https://wordpress.org/plugins/woocommerce/"
 "\">WooCommerce plugin</a> installed and active first."
@@ -547,31 +546,31 @@ msgstr ""
 "Deberías tener <a href=\"https://wordpress.org/plugins/woocommerce/\">el "
 "plugin WooCommerce</a> instalado y activo primero."
 
-#: admin/partials/api-connection.php:388 admin/partials/api-connection.php:429
+#: admin/partials/api-connection.php:401 admin/partials/api-connection.php:442
 msgid "Activating"
 msgstr "Activando"
 
-#: admin/partials/api-connection.php:389 admin/partials/api-connection.php:430
+#: admin/partials/api-connection.php:402 admin/partials/api-connection.php:443
 msgid "Activate"
 msgstr "Activar"
 
-#: admin/partials/api-connection.php:389 admin/partials/api-connection.php:430
+#: admin/partials/api-connection.php:402 admin/partials/api-connection.php:443
 msgid "Install"
 msgstr "Instalar"
 
-#: admin/partials/api-connection.php:397 admin/partials/api-connection.php:438
+#: admin/partials/api-connection.php:410 admin/partials/api-connection.php:451
 msgid "Updating"
 msgstr "Actualizando"
 
-#: admin/partials/api-connection.php:398 admin/partials/api-connection.php:439
+#: admin/partials/api-connection.php:411 admin/partials/api-connection.php:452
 msgid "Update Version"
 msgstr "Actualizar versión"
 
-#: admin/partials/api-connection.php:406 admin/partials/api-connection.php:409
+#: admin/partials/api-connection.php:419 admin/partials/api-connection.php:422
 msgid "Doppler for LearnPress"
 msgstr "Doppler para LearnPress"
 
-#: admin/partials/api-connection.php:424
+#: admin/partials/api-connection.php:437
 msgid ""
 "You should have <a href=\"https://wordpress.org/plugins/learnpress/"
 "\">LearnPress plugin</a> installed and active first."
@@ -579,11 +578,11 @@ msgstr ""
 "Deberías tener <a href=\"https://wordpress.org/plugins/learnpress/\">el "
 "plugin LearnPress</a> instalado y activo primero."
 
-#: admin/partials/api-connection.php:456
+#: admin/partials/api-connection.php:469
 msgid "Connect your WordPress Forms with Doppler"
 msgstr "Conecta tus Formularios de WordPress con Doppler"
 
-#: admin/partials/api-connection.php:459
+#: admin/partials/api-connection.php:472
 msgid ""
 "Create Subscription Forms that respect your Website styles and automatically "
 "send your new Subscribers from WordPress to Doppler Lists."
@@ -592,15 +591,15 @@ msgstr ""
 "envía automáticamente tus nuevos Suscriptores desde WordPress a Listas de "
 "Doppler."
 
-#: admin/partials/api-connection.php:471
+#: admin/partials/api-connection.php:484
 msgid "Username"
 msgstr "Email de Usuario"
 
-#: admin/partials/api-connection.php:494
+#: admin/partials/api-connection.php:507
 msgid "How do you find your API Key? Press"
 msgstr "¿Dónde encontrar el API Key de tu cuenta? Presiona"
 
-#: admin/partials/api-connection.php:495
+#: admin/partials/api-connection.php:508
 msgid ""
 "https://help.fromdoppler.com/en/where-do-i-find-my-api-key/?"
 "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
@@ -608,7 +607,7 @@ msgstr ""
 "https://help.fromdoppler.com/es/api-interfaz-de-programacion-de-aplicaciones?"
 "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
 
-#: admin/partials/api-connection.php:496 admin/partials/api-connection.php:529
+#: admin/partials/api-connection.php:509 admin/partials/api-connection.php:542
 #: admin/partials/forms-create.php:43 admin/partials/forms-create.php:204
 #: admin/partials/forms-create.php:325 admin/partials/forms-edit.php:48
 #: admin/partials/forms-edit.php:207 admin/partials/forms-edit.php:332
@@ -616,21 +615,29 @@ msgstr ""
 msgid "HELP"
 msgstr "HELP"
 
-#: admin/partials/api-connection.php:516
+#: admin/partials/api-connection.php:529
 msgid "Connect"
 msgstr "Conectar"
 
-#: admin/partials/api-connection.php:528
+#: admin/partials/api-connection.php:541
 msgid ""
 "Do you have any doubts about how to connect your Forms with Doppler? Press"
 msgstr ""
 "¿Tienes dudas sobre cómo conectar tus Formularios con Doppler? Presiona"
 
-#: admin/partials/api-connection.php:535
+#: admin/partials/api-connection.php:542
+msgid ""
+"https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-"
+"doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
+msgstr ""
+"https://help.fromdoppler.com/es/como-integrar-formularios-de-wordpress-con-"
+"doppler/?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
+
+#: admin/partials/api-connection.php:547
 msgid "Are you sure you want to uninstall the extension?"
 msgstr "¿Estás seguro de que deseas quitar la extensión?"
 
-#: admin/partials/api-connection.php:536
+#: admin/partials/api-connection.php:548
 msgid "This will deactivate and uninstall the plugin."
 msgstr "Esto desactivará y desinstalará la extensión."
 
@@ -1148,13 +1155,16 @@ msgstr "Ingrese una fecha valida."
 msgid "Invalid Format."
 msgstr "Formato Inválido."
 
-#~ msgid ""
-#~ "https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-"
-#~ "doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
+#~ msgid "Disconnected"
+#~ msgstr "Desconectado"
+
+#~ msgid "WooCommerce integration is not properly configured. Click "
 #~ msgstr ""
-#~ "https://help.fromdoppler.com/es/como-integrar-formularios-de-wordpress-"
-#~ "con-doppler/?"
-#~ "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
+#~ "La integración con WooCommerce no esta configurada correctamente. Haga "
+#~ "clic "
+
+#~ msgid "Here"
+#~ msgstr "Aquí"
 
 #~ msgid "Improve tracking of visited products"
 #~ msgstr "Mejorar seguimiento de productos visitados"
