@@ -167,4 +167,39 @@ class Doppler_Extension_Manager {
 			wp_die();
     	}
 	}
+
+    public function add_elementor_widget_categories( $elements_manager ) {
+
+        $elements_manager->add_category(
+            'doppler-category',
+            [
+                'title' => 'Doppler',
+                'icon' => 'fa fa-plug',
+            ]
+        );
+    }
+
+    public function register_elementor_widgets( $widgets_manager = null ) {
+		if ( ! did_action( 'elementor/loaded' ) ) {
+			return;
+		}
+
+		if ( ! class_exists( '\Elementor\Widget_Base' ) ) {
+			return;
+		}
+
+		if ( ! $widgets_manager && class_exists( '\Elementor\Plugin' ) ) {
+			$widgets_manager = \Elementor\Plugin::instance()->widgets_manager;
+		}
+
+		if ( ! $widgets_manager ) {
+			return;
+		}
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-doppler-elementor-form-widget.php';
+
+		if ( class_exists( 'DPLR_Elementor_Form_Widget' ) ) {
+			$widgets_manager->register( new DPLR_Elementor_Form_Widget() );
+		}
+	}
 }
