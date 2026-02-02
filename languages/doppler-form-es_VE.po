@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2026-01-19 23:11-0300\n"
-"PO-Revision-Date: 2026-01-19 23:11-0300\n"
+"POT-Creation-Date: 2026-02-01 21:46-0300\n"
+"PO-Revision-Date: 2026-02-01 21:47-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Venezuela\n"
 "Language: es_VE\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-KeywordsList: "
 "__;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;esc_html\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Loco-Version: 2.6.9; wp-6.5.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -626,6 +626,7 @@ msgstr ""
 "¿Tienes dudas sobre cómo conectar tus Formularios con Doppler? Presiona"
 
 #: admin/partials/api-connection.php:542
+#: includes/class-doppler-elementor-form-widget.php:33
 msgid ""
 "https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-"
 "doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
@@ -1114,6 +1115,35 @@ msgstr ""
 "Debes desinstalar la versión 1.1 de Doppler Forms antes de instalar la "
 "versión 2.0 "
 
+#: includes/class-doppler-elementor-form-widget.php:17
+#: includes/class-doppler-form-widget.php:13
+msgid "Doppler Form"
+msgstr "Formulario de Doppler"
+
+#: includes/class-doppler-elementor-form-widget.php:48
+msgid "Form"
+msgstr "Formulario"
+
+#: includes/class-doppler-elementor-form-widget.php:56
+msgid "Select Form"
+msgstr "Elegir Formulario"
+
+#: includes/class-doppler-elementor-form-widget.php:60
+msgid "Choose which Doppler form to display."
+msgstr "Elige que formulario de Doppler quieres usar."
+
+#: includes/class-doppler-elementor-form-widget.php:72
+msgid "Select a Doppler form to display."
+msgstr "Selecciona un formulario de  Doppler que quieres mostrar aquí."
+
+#: includes/class-doppler-elementor-form-widget.php:78
+msgid "The selected form could not be found."
+msgstr "El formulario seleccionado no fue encontrado."
+
+#: includes/class-doppler-elementor-form-widget.php:101
+msgid "Select a form"
+msgstr "Elige un formulario"
+
 #: includes/class-doppler-elementor-integration.php:35
 msgid "List"
 msgstr "Lista"
@@ -1121,10 +1151,6 @@ msgstr "Lista"
 #: includes/class-doppler-form-widget.php:12
 msgid "Your Doppler Subscription Forms"
 msgstr "Tus Formularios de Suscripción de Doppler"
-
-#: includes/class-doppler-form-widget.php:13
-msgid "Doppler Form"
-msgstr "Formulario de Doppler"
 
 #: includes/class-doppler-form-widget.php:63
 msgid "Select the Form that you want to publish"
