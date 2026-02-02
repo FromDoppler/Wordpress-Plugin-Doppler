@@ -178,6 +178,9 @@ class DPLR_Doppler {
 		$this->loader->add_action( 'wp_ajax_install_extension', $extension_manager, 'install_extension' );
 		$this->loader->add_elementor_action( 'elementor_pro/forms/actions/register', $extension_manager, 'add_elementor_action' );
 		$this->loader->add_action( 'elementor/editor/after_enqueue_scripts', $plugin_admin, 'enqueDopplerFieldsForElementor' );
+		$this->loader->add_action( 'elementor/elements/categories_registered', $extension_manager, 'add_elementor_widget_categories' );
+		$this->loader->add_action( 'elementor/widgets/register', $extension_manager, 'register_elementor_widgets');
+		
 	}
 
 	/**
