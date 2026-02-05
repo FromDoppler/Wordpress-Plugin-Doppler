@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
 "POT-Creation-Date: 2026-01-19 23:09-0300\n"
-"PO-Revision-Date: 2026-01-19 23:10-0300\n"
+"PO-Revision-Date: 2026-02-04 21:36-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Guatemala\n"
 "Language: es_GT\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-KeywordsList: "
 "__;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;esc_html\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Loco-Version: 2.6.9; wp-6.5.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -194,7 +194,7 @@ msgstr "Tipo de Formulario"
 
 #: admin/doppler-admin.php:163 admin/partials/api-connection.php:51
 msgid "Checking status..."
-msgstr "Comprobando estado..."
+msgstr "Verificando estado..."
 
 #: admin/doppler-admin.php:164
 msgid "Connected"
@@ -411,8 +411,8 @@ msgid ""
 "Here you can view information about the performance of your forms and the "
 "status of your integrations."
 msgstr ""
-"Aquí podrás visualizar información acerca del rendimiento de tus formularios "
-"y el estado de tus integraciones."
+"Aquí podrás visualizar información acerca del rendimiento de tus Formularios "
+"y el estado de tus Integraciones."
 
 #: admin/partials/api-connection.php:37
 msgid "Account"
@@ -452,7 +452,7 @@ msgstr "Reporte de Formularios"
 
 #: admin/partials/api-connection.php:201
 msgid "Here you can see the performance of your forms"
-msgstr "Aquí puedes ver el rendimiento de tus formularios"
+msgstr "Encuentra aquí la información de rendimiento por  cada Formulario."
 
 #: admin/partials/api-connection.php:210
 msgid "All Forms"
