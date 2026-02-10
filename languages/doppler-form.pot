@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2026-02-01 21:47-0300\n"
+"POT-Creation-Date: 2026-02-10 20:21-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Hernán Galván\n"
@@ -1049,19 +1049,19 @@ msgid "Form"
 msgstr ""
 
 #: includes/class-doppler-elementor-form-widget.php:56
-msgid "Select Form"
+msgid "Choose Form"
 msgstr ""
 
 #: includes/class-doppler-elementor-form-widget.php:60
-msgid "Choose which Doppler form to display."
+msgid "Select the Form you want to use"
 msgstr ""
 
 #: includes/class-doppler-elementor-form-widget.php:72
-msgid "Select a Doppler form to display."
+msgid "Select the Doppler Form you want to display here."
 msgstr ""
 
 #: includes/class-doppler-elementor-form-widget.php:78
-msgid "The selected form could not be found."
+msgid "The selected form was not found."
 msgstr ""
 
 #: includes/class-doppler-elementor-form-widget.php:101

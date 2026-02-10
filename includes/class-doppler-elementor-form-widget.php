@@ -53,11 +53,11 @@ if ( class_exists( '\Elementor\Widget_Base' ) && ! class_exists( 'DPLR_Elementor
 			$this->add_control(
 				'form_id',
 				[
-					'label'       => esc_html__( 'Select Form', 'doppler-form' ),
+					'label'       => esc_html__( 'Choose Form', 'doppler-form' ),
 					'type'        => \Elementor\Controls_Manager::SELECT,
 					'options'     => $this->get_forms_options(),
 					'default'     => '',
-					'description' => esc_html__( 'Choose which Doppler form to display.', 'doppler-form' ),
+					'description' => esc_html__( 'Select the Form you want to use', 'doppler-form' ),
 				]
 			);
 
@@ -69,13 +69,13 @@ if ( class_exists( '\Elementor\Widget_Base' ) && ! class_exists( 'DPLR_Elementor
 			$form_id = isset( $settings['form_id'] ) ? absint( $settings['form_id'] ) : 0;
 
 			if ( ! $form_id ) {
-				echo esc_html__( 'Select a Doppler form to display.', 'doppler-form' );
+				echo esc_html__( 'Select the Doppler Form you want to display here.', 'doppler-form' );
 				return;
 			}
 
 			$form = DPLR_Form_Model::get( $form_id, true );
 			if ( !$form ) {
-				echo esc_html__( 'The selected form could not be found.', 'doppler-form' );
+				echo esc_html__( 'The selected form was not found.', 'doppler-form' );
 				return;
 			}
 

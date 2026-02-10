@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2026-01-19 23:08-0300\n"
-"PO-Revision-Date: 2026-02-04 21:36-0300\n"
+"POT-Creation-Date: 2026-02-10 20:16-0300\n"
+"PO-Revision-Date: 2026-02-10 20:16-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Colombia\n"
 "Language: es_CO\n"
@@ -626,6 +626,7 @@ msgstr ""
 "¿Tienes dudas sobre cómo conectar tus Formularios con Doppler? Presiona"
 
 #: admin/partials/api-connection.php:542
+#: includes/class-doppler-elementor-form-widget.php:33
 msgid ""
 "https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-"
 "doppler?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
@@ -1114,6 +1115,35 @@ msgstr ""
 "Debes desinstalar la versión 1.1 de Doppler Forms antes de instalar la "
 "versión 2.0 "
 
+#: includes/class-doppler-elementor-form-widget.php:17
+#: includes/class-doppler-form-widget.php:13
+msgid "Doppler Form"
+msgstr "Formulario de Doppler"
+
+#: includes/class-doppler-elementor-form-widget.php:48
+msgid "Form"
+msgstr "Formulario"
+
+#: includes/class-doppler-elementor-form-widget.php:56
+msgid "Choose Form"
+msgstr "Elige el formulario"
+
+#: includes/class-doppler-elementor-form-widget.php:60
+msgid "Select the Form you want to use"
+msgstr "Elige el Formulario que quieres usar"
+
+#: includes/class-doppler-elementor-form-widget.php:72
+msgid "Select the Doppler Form you want to display here."
+msgstr "Selecciona el Formulario de Doppler que quieres mostrar aquí."
+
+#: includes/class-doppler-elementor-form-widget.php:78
+msgid "The selected form was not found."
+msgstr "El formulario seleccionado no fue encontrado."
+
+#: includes/class-doppler-elementor-form-widget.php:101
+msgid "Select a form"
+msgstr "Selecciona un formulario"
+
 #: includes/class-doppler-elementor-integration.php:35
 msgid "List"
 msgstr "Lista"
@@ -1121,10 +1151,6 @@ msgstr "Lista"
 #: includes/class-doppler-form-widget.php:12
 msgid "Your Doppler Subscription Forms"
 msgstr "Tus Formularios de Suscripción de Doppler"
-
-#: includes/class-doppler-form-widget.php:13
-msgid "Doppler Form"
-msgstr "Formulario de Doppler"
 
 #: includes/class-doppler-form-widget.php:63
 msgid "Select the Form that you want to publish"
