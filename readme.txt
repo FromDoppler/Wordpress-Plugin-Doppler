@@ -5,7 +5,7 @@ Tags: Doppler, Email marketing, integration, form, automation
 Requires at least: 5.6
 Tested up to: 6.9
 Requires PHP: 5.6.4
-Stable tag: 2.6.0
+Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,9 @@ En [este artículo](https://help.fromdoppler.com/es/api-interfaz-de-programacion
 8. Formulario de Suscripción.
 
 == Changelog ==
+= 2.7.0 =
+* Feat: Add Doppler-for-WooCommerce integration status in dashboard
+
 = 2.6.0 =
 * Fix: Applied modifications reported by "Plugin Check".
 * Feat: Added notification banner to dashboard.
