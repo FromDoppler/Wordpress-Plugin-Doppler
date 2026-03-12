@@ -852,7 +852,8 @@
 	display: none;
 }
 
-.dplr_settings .panel ul.accordion > li.active .accordion-content {
+.dplr_settings .panel ul.accordion > li.active .accordion-content,
+.dplr_settings ul.dp-accordion > li.active .dp-accordion-panel {
 	display: block;
 }
 
@@ -1339,6 +1340,10 @@
 
 .dplr_settings .dp-carousel-icon {
 	max-width: 2%;
+}
+
+#dplr-sign-up .iti {
+	width: 100%;
 }
 
 /* override doppler's styles */
