@@ -5,7 +5,7 @@
 
 		if (
 			email.match(
-				/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 			)
 		) {
 			emailInput.attr("aria-invalid", "false");
@@ -162,13 +162,13 @@
 			});
 		});
 
-		$("#dplr-connect-form.error label input[type='text']").keyup(function (
-			event
-		) {
-			$(".error").each(function (index, el) {
-				$(this).removeClass("error");
-			});
-		});
+		$("#dplr-connect-form.error label input[type='text']").keyup(
+			function (event) {
+				$(".error").each(function (index, el) {
+					$(this).removeClass("error");
+				});
+			},
+		);
 
 		$(".multiple-selec").each(function () {
 			var elem = $(this);
@@ -327,14 +327,14 @@
 
 			$("#dplr-consent-location, #dplr-consent-text").prop(
 				"disabled",
-				!isChecked
+				!isChecked,
 			);
 			$("#dplr-consent-location, #dplr-consent-text").prop(
 				"required",
-				isChecked
+				isChecked,
 			);
 			$(
-				'label[for="dplr-consent-location"], label[for="dplr-consent-text"]'
+				'label[for="dplr-consent-location"], label[for="dplr-consent-text"]',
 			).attr("aria-disabled", !isChecked);
 		});
 
@@ -568,7 +568,7 @@
 						} else {
 							setState(
 								wooStrings.disconnected,
-								" - " + wooStrings.disconnectedDetail
+								" - " + wooStrings.disconnectedDetail,
 							);
 							$("#dplrwoo-status-link").removeClass("d-none");
 						}
@@ -679,7 +679,7 @@
 			create: function (event, ui) {
 				$(".ui-dialog-title").css(
 					"max-width",
-					$(this).closest(".ui-dialog").width() - 50 + "px"
+					$(this).closest(".ui-dialog").width() - 50 + "px",
 				);
 			},
 			buttons: [
@@ -814,11 +814,11 @@ function generateErrorMsg(body) {
 function validateEmailContent(e, content) {
 	content = content.replace(
 		'href="[[[ConfirmationLink]]]"',
-		"href=[[[ConfirmationLink]]]"
+		"href=[[[ConfirmationLink]]]",
 	);
 	content = content.replace(
 		'href="http://[[[ConfirmationLink]]]"',
-		"href=[[[ConfirmationLink]]]"
+		"href=[[[ConfirmationLink]]]",
 	);
 
 	if (!tinyMCE.activeEditor) {
@@ -866,7 +866,7 @@ function removeQuoteMarksFromConfirmationLink() {
 		if (content.includes('href="[[[ConfirmationLink]]]"')) {
 			content = content.replace(
 				'href="[[[ConfirmationLink]]]"',
-				"href=[[[ConfirmationLink]]]"
+				"href=[[[ConfirmationLink]]]",
 			);
 			document.getElementById("content").value = content;
 		}
@@ -875,7 +875,7 @@ function removeQuoteMarksFromConfirmationLink() {
 		if (content.includes('href="[[[ConfirmationLink]]]"')) {
 			content = content.replace(
 				'href="[[[ConfirmationLink]]]"',
-				"href=[[[ConfirmationLink]]]"
+				"href=[[[ConfirmationLink]]]",
 			);
 			tinyMCE.activeEditor.setContent(content);
 		}

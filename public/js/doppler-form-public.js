@@ -24,7 +24,7 @@
 					"'], select[name$='-",
 					"'], textarea[name$='-",
 					"']",
-				].join(form_id)
+				].join(form_id),
 		);
 
 		s.attr("disabled", "disabled");
@@ -78,7 +78,7 @@
 						f[0].reset();
 					}, 8000);
 				}
-			}
+			},
 		);
 	}
 
@@ -103,7 +103,7 @@
 				.on("blur", function () {
 					if (
 						this.value.match(
-							/((\d{1,2}(\/|-| )){2}\d{4,4})|(\d{2,4}(\/|-| )\d{1,2}(\/|-| )\d{1,2})/gi
+							/((\d{1,2}(\/|-| )){2}\d{4,4})|(\d{2,4}(\/|-| )\d{1,2}(\/|-| )\d{1,2})/gi,
 						) == null
 					) {
 						this.reportValidity();
@@ -128,7 +128,7 @@
 					separateDialCode: true,
 					customPlaceholder: function (
 						selectedCountryPlaceholder,
-						selectedCountryData
+						selectedCountryData,
 					) {
 						return selectedCountryPlaceholder;
 					},
