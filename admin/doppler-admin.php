@@ -707,8 +707,8 @@ class Doppler_Admin {
 		$email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
 		$password = isset($_POST['password']) ? sanitize_text_field(wp_unslash($_POST['password'])) : '';
 		$phone = isset($_POST['phone']) ? sanitize_text_field(wp_unslash($_POST['phone'])) : '';
-		$terms_and_conditions_active = $this->parse_checkbox_value(isset($_POST['accept_privacy_policies']) ? wp_unslash($_POST['accept_privacy_policies']) : false);
-		$promotions_enabled = $this->parse_checkbox_value(isset($_POST['accept_promotions']) ? wp_unslash($_POST['accept_promotions']) : false);
+		$terms_and_conditions_active = $this->parse_checkbox_value(isset($_POST['accept_privacy_policies']) ? sanitize_text_field(wp_unslash($_POST['accept_privacy_policies'])) : '');
+		$promotions_enabled = $this->parse_checkbox_value(isset($_POST['accept_promotions']) ? sanitize_text_field(wp_unslash($_POST['accept_promotions'])) : '');
 
 		$phone = preg_replace('/[^0-9\+]/', '', $phone);
 

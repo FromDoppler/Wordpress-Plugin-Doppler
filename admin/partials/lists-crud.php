@@ -1,3 +1,11 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+?>
+
 <div class="dp-library">
     <!-- This inline style is a hack to avoid loading content before the loading screen is hidden. -->
     <div class="dp-container" id="dplr_body_content" style="display: none;">

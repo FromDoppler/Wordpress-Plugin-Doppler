@@ -1,3 +1,10 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+?>
 
 <section class="dplr_settings dp-library">
 	<!-- This inline style is a hack to avoid loading content before the loading screen is hidden. -->
@@ -74,28 +81,28 @@
 							<div class="dp-carousel m-t-24" id="dp-notification-carousel">
 								<div class="dp-carousel-wrapper dp-carousel-orange">
 									<div class="dp-carousel-content p-l-24 p-r-24">
-										<?php foreach ($notification_messages as $index => $notification) : ?>
-											<div class="dp-carousel-slide<?php echo ($index === 0) ? ' active' : ''; ?>" data-order="<?php echo esc_html($index); ?>">
+										<?php foreach ($notification_messages as $dplr_index => $dplr_notification) : ?>
+											<div class="dp-carousel-slide<?php echo ($dplr_index === 0) ? ' active' : ''; ?>" data-order="<?php echo esc_html($dplr_index); ?>">
 												<div class="dp-carousel-slide-title">
-													<?php if (isset($notification['icon']) && !empty($notification['icon'])) : ?>
-														<img class="dp-carousel-icon m-r-12" src="<?php echo esc_url($notification['icon']); ?>" alt="" />
+													<?php if (isset($dplr_notification['icon']) && !empty($dplr_notification['icon'])) : ?>
+														<img class="dp-carousel-icon m-r-12" src="<?php echo esc_url($dplr_notification['icon']); ?>" alt="" />
 													<?php endif; ?>
-													<h3><?php echo esc_html($notification['title']); ?></h3>
+													<h3><?php echo esc_html($dplr_notification['title']); ?></h3>
 												</div>
 												<div class="dp-carousel-slide-header">
-													<p><?php echo esc_html($notification['description']); ?></p>
+													<p><?php echo esc_html($dplr_notification['description']); ?></p>
 												</div>
-												<a href="<?php echo esc_url($notification['url']); ?>" target="_blank" rel="noopener">
+												<a href="<?php echo esc_url($dplr_notification['url']); ?>" target="_blank" rel="noopener">
 													<span class="ms-icon icon-arrow-next"></span>
-													<?php echo esc_html($notification['url_text']); ?>
+													<?php echo esc_html($dplr_notification['url_text']); ?>
 												</a>
 											</div>
 										<?php endforeach; ?>
 									</div>
 								</div>
 								<div class="dp-carousel-dots">
-									<?php foreach ($notification_messages as $index => $notification) : ?>
-										<input class="dp-carousel-dot" <?php echo ($index === 0) ? 'checked="checked"' : ''; ?> type="radio" value="<?php echo esc_attr($index); ?>" id="carousel-dot-<?php echo esc_attr($index); ?>" name="carousel">
+									<?php foreach ($notification_messages as $dplr_index => $dplr_notification) : ?>
+										<input class="dp-carousel-dot" <?php echo ($dplr_index === 0) ? 'checked="checked"' : ''; ?> type="radio" value="<?php echo esc_attr($dplr_index); ?>" id="carousel-dot-<?php echo esc_attr($dplr_index); ?>" name="carousel">
 									<?php endforeach; ?>
 								</div>
 							</div>
@@ -124,11 +131,11 @@
 										<div class="dp-assisted-sales-text">
 											<h3>
 												<?php 
-													$totalDisplays = 0;
-													foreach ($forms as $form) {
-														$totalDisplays += $form->events['Display'] ?? 0;
+													$dplr_totalDisplays = 0;
+													foreach ($forms as $dplr_form) {
+														$dplr_totalDisplays += $dplr_form->events['Display'] ?? 0;
 													}
-													echo esc_html($this->sanitize_kpi_values($totalDisplays));
+													echo esc_html($this->sanitize_kpi_values($dplr_totalDisplays));
 												?>
 											</h3>
 											<span><?php esc_html_e("Impressions", "doppler-form" ); ?></span>
@@ -141,11 +148,11 @@
 										<div class="dp-assisted-sales-text">
 											<h3>
 											<?php 
-													$totalSubmits = 0;
-													foreach ($forms as $form) {
-														$totalSubmits += $form->events['Submit'] ?? 0;
+													$dplr_totalSubmits = 0;
+													foreach ($forms as $dplr_form) {
+														$dplr_totalSubmits += $dplr_form->events['Submit'] ?? 0;
 													}
-													echo esc_html($this->sanitize_kpi_values($totalSubmits));
+													echo esc_html($this->sanitize_kpi_values($dplr_totalSubmits));
 												?>
 											</h3>
 											<span><?php esc_html_e("Subscribed", "doppler-form" ); ?></span>
@@ -153,15 +160,15 @@
 									</div>
 								</li>
 								<?php if($dplr_woocommerce_plugin_is_active):
-									$woocommerce_synch = get_option('dplrwoo_last_synch');
+									$dplr_woocommerce_synch = get_option('dplrwoo_last_synch');
 								?>
 									<li>
 										<div class="dp-kpi-card dp-white">
 											<span class="dp-assisted-sales-icon dpicon iconapp-job-transfer"></span>
 											<div class="dp-assisted-sales-text">
 												<h3>
-													<?php echo esc_html($woocommerce_synch != null
-															? $this->sanitize_kpi_values(($woocommerce_synch['contacts']['counter'] ?? 0) + ($woocommerce_synch['buyers']['counter'] ?? 0))
+													<?php echo esc_html($dplr_woocommerce_synch != null
+															? $this->sanitize_kpi_values(($dplr_woocommerce_synch['contacts']['counter'] ?? 0) + ($dplr_woocommerce_synch['buyers']['counter'] ?? 0))
 															: 0);
 													?>
 												</h3>
@@ -171,7 +178,7 @@
 									</li>
 								<?php endif; ?>
 								<?php if($dplr_learnpress_plugin_is_active):
-									$learnpress_synch = get_option('dplr_learnpress_subscribers_list');
+									$dplr_learnpress_synch = get_option('dplr_learnpress_subscribers_list');
 								?>
 								<li>
 									<div class="dp-kpi-card dp-white">
@@ -179,8 +186,8 @@
 										<div class="dp-assisted-sales-text">
 											<h3>
 												<?php
-													echo esc_html($learnpress_synch != null 
-														? $this->sanitize_kpi_values($learnpress_synch['count'] ?? 0)
+													echo esc_html($dplr_learnpress_synch != null 
+														? $this->sanitize_kpi_values($dplr_learnpress_synch['count'] ?? 0)
 														: 0);
 												?></h3>
 											<span><?php esc_html_e("Learnpress contacts", "doppler-form" ); ?></span>
@@ -230,27 +237,27 @@
 												</thead>
 												<tbody>
 													<?php
-													foreach ($forms as $form) {
+													foreach ($forms as $dplr_form) {
 														?>
 														<tr>
 															<td>
-																<?php echo esc_html($form->name) ?>
+																<?php echo esc_html($dplr_form->name) ?>
 															</td>
 															<td>
-																<?php echo $form->settings['form_doble_optin'] == 'yes' ? esc_html_e("Double Opt-In", "doppler-form" ) : esc_html_e("Simple Opt-In", "doppler-form" ); ?>
+																<?php echo $dplr_form->settings['form_doble_optin'] == 'yes' ? esc_html_e("Double Opt-In", "doppler-form" ) : esc_html_e("Simple Opt-In", "doppler-form" ); ?>
 															</td>
 															<td>
-																<?php echo esc_html($form->events['Display'] ?? '0') ?>
+																<?php echo esc_html($dplr_form->events['Display'] ?? '0') ?>
 															</td>
 															<td>
-																<?php echo esc_html($form->events['Submit'] ?? '0') ?>
+																<?php echo esc_html($dplr_form->events['Submit'] ?? '0') ?>
 															</td>
 															<td>
-																<?php $conversion_rate = ($form->events['Display'] ?? 0) > 0 
-																	? rtrim(rtrim(number_format((($form->events['Submit'] ?? 0) / $form->events['Display']) * 100, 2), '0'), '.') . '%'
+																<?php $dplr_conversion_rate = ($dplr_form->events['Display'] ?? 0) > 0 
+																	? rtrim(rtrim(number_format((($dplr_form->events['Submit'] ?? 0) / $dplr_form->events['Display']) * 100, 2), '0'), '.') . '%'
 																	: '0%';
 																
-																	echo esc_html($conversion_rate);
+																	echo esc_html($dplr_conversion_rate);
 																?>
 															</td>
 														</tr>
@@ -298,7 +305,7 @@
 											</div>
 										</div>
 										<?php if($dplr_learnpress_plugin_is_active):  
-											$learnpress_synch = get_option('dplr_learnpress_subscribers_list');
+											$dplr_learnpress_synch = get_option('dplr_learnpress_subscribers_list');
 										?>
 										<div class="dplr-item">
 											<div class="dplr-circle">
@@ -311,7 +318,7 @@
 										</div>
 										<?php endif; ?>
 										<?php if($dplr_woocommerce_plugin_is_active):
-											$woocommerce_synch = get_option('dplrwoo_last_synch');	
+											$dplr_woocommerce_synch = get_option('dplrwoo_last_synch');	
 										?>
 										<div class="dplr-item">
 											<div class="dplr-circle">

@@ -1,7 +1,9 @@
 <?php
-/**
- *
- */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class DPLR_Public_Ajax
 {
   private $doppler_service;

@@ -1,3 +1,11 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+?>
+
 <div class="dplr dplr-tab-conmethod<=tent dplr-tab-content--form-edit">
   
   <form method="post" action="<?php admin_url() ?>admin.php?page=doppler_forms_main">
@@ -22,10 +30,10 @@
                   <select name="list_id" id="list-id" required>
                     <option value=""><?php esc_html_e('Select the destination List where your your new Subscribers will be sent', 'doppler-form'); ?></option>
                     <?php
-                      for ($i=0; $i < count($dplr_lists); $i++) {
+                      for ($dplr_i=0; $dplr_i < count($dplr_lists); $dplr_i++) {
                         ?>
-                        <option <?php echo $form->list_id == $dplr_lists[$i]->listId ? 'selected="selected"' : ''; ?> value="<?php echo esc_attr($dplr_lists[$i]->listId); ?>"><?php
-                          echo esc_html($dplr_lists[$i]->name);
+                        <option <?php echo $form->list_id == $dplr_lists[$dplr_i]->listId ? 'selected="selected"' : ''; ?> value="<?php echo esc_attr($dplr_lists[$dplr_i]->listId); ?>"><?php
+                          echo esc_html($dplr_lists[$dplr_i]->name);
                         ?></option>
                       <?php
                       }
@@ -80,14 +88,14 @@
             <div class="dplr_input_section awa-form">
               <label for="settings[button_position]">
                 <?php esc_html_e('Button alignment', 'doppler-form')?>
-                <?php $button_position = isset($form->settings["button_position"]) ? $form->settings["button_position"] : ''; ?>
+                <?php $dplr_button_position = isset($form->settings["button_position"]) ? $form->settings["button_position"] : ''; ?>
                 <div class="dp-select">
                   <span class="dropdown-arrow"></span>
                   <select name="settings[button_position]" id="settings[button_position]" required>
-                  <option <?php if($button_position == 'left') echo 'selected="selected"';?> value="left"><?php esc_html_e('Left', 'doppler-form')?></option>
-                  <option <?php if($button_position == 'center') echo 'selected="selected"';?> value="center"><?php esc_html_e('Center', 'doppler-form')?></option>
-                  <option <?php if($button_position == 'right') echo 'selected="selected"';?> value="right"><?php esc_html_e('Right', 'doppler-form')?></option>
-                  <option <?php if($button_position == 'fill') echo 'selected="selected"';?> value="fill"><?php esc_html_e('Full width', 'doppler-form')?></option>
+                  <option <?php if($dplr_button_position == 'left') echo 'selected="selected"';?> value="left"><?php esc_html_e('Left', 'doppler-form')?></option>
+                  <option <?php if($dplr_button_position == 'center') echo 'selected="selected"';?> value="center"><?php esc_html_e('Center', 'doppler-form')?></option>
+                  <option <?php if($dplr_button_position == 'right') echo 'selected="selected"';?> value="right"><?php esc_html_e('Right', 'doppler-form')?></option>
+                  <option <?php if($dplr_button_position == 'fill') echo 'selected="selected"';?> value="fill"><?php esc_html_e('Full width', 'doppler-form')?></option>
                   </select>
                 </div>
               </label>
@@ -238,7 +246,7 @@
                 <?php 
                   // wp_tiny_mce($form->settings["form_email_confirmacion_email_contenido"], 'settings_form_email_confirmacion_email_contenidotings[form_email_confirmacion_email_contenido]');
                   // the_editor(); 
-                  $settings = array(
+                  $dplr_settings = array(
                     'textarea_name' => 'content',
                     'media_buttons' => true,
                     'tinymce' => array(
@@ -250,7 +258,7 @@
                         }'
                     )
                   );
-                  wp_editor( isset($form->settings["form_email_confirmacion_email_contenido"])?stripslashes(html_entity_decode($form->settings["form_email_confirmacion_email_contenido"])):'', 'content', $settings );
+                  wp_editor( isset($form->settings["form_email_confirmacion_email_contenido"])?stripslashes(html_entity_decode($form->settings["form_email_confirmacion_email_contenido"])):'', 'content', $dplr_settings );
                 ?>
               </div>
             </div>
@@ -339,33 +347,33 @@
               <?php
                 if(isset($form->settings["consent_field_text"]) && isset($form->settings["consent_field_url"]))
                 {
-                  $consentTextArray = explode("||", $form->settings["consent_field_text"]);
-                  $consentUrlArray = explode("||", $form->settings["consent_field_url"]);
+                  $dplr_consentTextArray = explode("||", $form->settings["consent_field_text"]);
+                  $dplr_consentUrlArray = explode("||", $form->settings["consent_field_url"]);
     
-                  foreach ($consentTextArray as $key => $value)
+                  foreach ($dplr_consentTextArray as $dplr_key => $dplr_value)
                   { 
-                    if (!empty($value))
+                    if (!empty($dplr_value))
                     {  ?>
-                    <li id="gdpr_input_section_<?php echo esc_attr($key) ?>">
+                    <li id="gdpr_input_section_<?php echo esc_attr($dplr_key) ?>">
                       <div class="ms-icon icon-close gdpr_remove_button_class" id="gdpr_remove_button">
                       </div>
-                      <?php echo esc_html($value) ?>
+                      <?php echo esc_html($dplr_value) ?>
                       <a class="alt-toggle"><?php echo esc_html_e('Edit Field', 'doppler-form')  ?><i></i></a>
                       <div class="accordion-content field-settings">
                         <div class="dplr_input_section">
-                          <label for="settings[consent_field_text][<?php echo esc_attr($key) ?>]">
+                          <label for="settings[consent_field_text][<?php echo esc_attr($dplr_key) ?>]">
                             <?php esc_html_e('Checkbox label', 'doppler-form') ?>
                           </label>
-                          <input type="text" name="settings[consent_field_text][<?php echo esc_attr($key) ?>]"
-                          value="<?php echo esc_attr($value) ?>" placeholder="<?php esc_attr_e("I've read and accept the privacy policy", "doppler-form") ?>"
+                          <input type="text" name="settings[consent_field_text][<?php echo esc_attr($dplr_key) ?>]"
+                          value="<?php echo esc_attr($dplr_value) ?>" placeholder="<?php esc_attr_e("I've read and accept the privacy policy", "doppler-form") ?>"
                           maxlength="150" required/>
                         </div>
                         <div class="dplr_input_section">
-                          <label for="settings[consent_field_url][<?php echo esc_attr($key) ?>]">
+                          <label for="settings[consent_field_url][<?php echo esc_attr($dplr_key) ?>]">
                             <?php esc_html_e('Enter the URL of your privacy policy', 'doppler-form') ?>
                           </label>
-                          <input type="url" name="settings[consent_field_url][<?php echo esc_attr($key) ?>]" pattern="https?://.+"
-                          value="<?php echo esc_attr($consentUrlArray[$key]) ?>" placeholder="" maxlength="150" required/>
+                          <input type="url" name="settings[consent_field_url][<?php echo esc_attr($dplr_key) ?>]" pattern="https?://.+"
+                          value="<?php echo esc_attr($dplr_consentUrlArray[$dplr_key]) ?>" placeholder="" maxlength="150" required/>
                         </div>
                       </div>
                     </li>
@@ -391,7 +399,7 @@
 
 </div>
 <script type="text/javascript">
-var gdprAmount = <?php echo count($consentTextArray ?? []); ?>;
+var gdprAmount = <?php echo count($dplr_consentTextArray ?? []); ?>;
 
 function hideShowConfigDobleOptIn(){
   if(document.getElementById("settings[form_doble_optin]").value === 'yes'){

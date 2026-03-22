@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class DPLR_Form_Shortcode{
 
     const FORM_CLASS = 'form_class';
