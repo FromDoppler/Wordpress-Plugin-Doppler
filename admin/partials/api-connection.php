@@ -557,10 +557,10 @@
 						<div class="col-sm-6">
 							<header class="hero-banner">
 								<div class="dp-rowflex">
-									<div class="col-sm-12 col-md-12 col-lg-12">
+									<div class="col-sm-12">
 										<h2><?php esc_html_e("Connect your WordPress Forms with Doppler", "doppler-form" ); ?></h2>
 									</div>
-									<div class="col-sm-10">
+									<div class="col-sm-12">
 										<p><?php esc_html_e("Create Subscription Forms that respect your Website styles and automatically send your new Subscribers from WordPress to Doppler Lists.","doppler-form") ;?></p>
 										<p><?php esc_html_e("Already have an account?","doppler-form") ;?> <a href="#" id="dplr-sign-in-link" target="_blank"><?php esc_html_e("LOG IN", "doppler-form"); ?></a></p>
 									</div>

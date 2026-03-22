@@ -426,6 +426,7 @@
 							$("#dplr-created-account").text(requestData.email);
 							$("#dplr-sign-up").addClass("d-none");
 							$("#dplr-sign-up-success").removeClass("d-none");
+							scrollTo({ top: 0, behavior: "instant" });
 							return;
 						}
 
