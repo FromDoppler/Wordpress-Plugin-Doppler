@@ -719,7 +719,7 @@ class Doppler_Admin {
 
 		if (!$is_name_valid || !$is_email_valid || !$is_password_valid || !$is_phone_valid || !$terms_and_conditions_active) {
 			wp_send_json_error(
-				['message' => esc_html_e('Please review the form fields and try again.', 'doppler-form')],
+				['message' => esc_html__('Please review the form fields and try again.', 'doppler-form')],
 				400
 			);
 		}
@@ -748,7 +748,7 @@ class Doppler_Admin {
 
 			if ($response_code >= 200 && $response_code < 300) {
 				wp_send_json_success([
-					'message' => esc_html_e('Account created successfully.', 'doppler-form'),
+					'message' => esc_html__('Account created successfully.', 'doppler-form'),
 				]);
 			}
 
