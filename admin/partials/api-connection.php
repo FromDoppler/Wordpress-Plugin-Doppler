@@ -683,7 +683,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							</ul>
 							<footer>
 								<small>
-									<p><?php esc_html_e("© 2026 Doppler LLC. All rights reserved.", "doppler-form"); ?> <a target="_blank" href="<?php esc_attr_e("https://www.fromdoppler.com/en/legal/privacy","doppler-form") ;?>"><?php esc_html_e("Privacy Policy & Legals", "doppler-form"); ?></a>.</p>
+									<p>© <?php esc_html(gmdate('Y')); ?> <?php esc_html_e("Doppler LLC. All rights reserved.", "doppler-form"); ?> <a target="_blank" href="<?php esc_attr_e("https://www.fromdoppler.com/en/legal/privacy","doppler-form") ;?>"><?php esc_html_e("Privacy Policy & Legals", "doppler-form"); ?></a>.</p>
 								</small>
 							</footer>
 						</div>

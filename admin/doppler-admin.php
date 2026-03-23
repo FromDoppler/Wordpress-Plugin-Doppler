@@ -770,23 +770,23 @@ class Doppler_Admin {
 			);
 		}
 
-		$error_message = esc_html__('Ouch! An error ocurred while trying to create the account. Try again later.', 'doppler-form');
+		$error_message = esc_html__('Ouch! There seems to be a connection problem. Please try again in a few minutes.', 'doppler-form');
 
 		if ($response_code == 429) {
-			$error_message = esc_html__('Ouch! You have exceeded the maximum number of accounts you can create.', 'doppler-form');
+			$error_message = esc_html__('Hold on! You\'ve reached the maximum accounts allowed.', 'doppler-form');
 		}
 
 		if ($response_code == 400 && isset($decoded_body['errorCode'])) {
 			$error_code = (int) $decoded_body['errorCode'];
 			switch($error_code) {
 				case 4:
-					$error_message = esc_html__('Ouch! The email you entered is not allowed by Doppler\'s policies.', 'doppler-form');
+					$error_message = esc_html__('Ouch! Invalid Email to create an account.', 'doppler-form');
 					break;
 				case 37:
-					$error_message = esc_html__('Ouch! The email is used by another user.', 'doppler-form');
+					$error_message = esc_html__('Ouch! You already have a Doppler account.', 'doppler-form');
 					break;
 				case 50:
-					$error_message = esc_html__('Ouch! Expecting international phone number format.', 'doppler-form');
+					$error_message = esc_html__('Ouch! The phone number is invalid.', 'doppler-form');
 					break;
 			}
 		}
