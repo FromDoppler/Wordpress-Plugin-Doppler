@@ -1,11 +1,15 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ! current_user_can( 'manage_options' ) ) {
     return;
 }
 
 //Makes call to API.
-$response =  $this->doppler_service->connectionStatus();
+$dplr_response =  $this->doppler_service->connectionStatus();
 ?>
 <div class="dp-library">
     <!-- This inline style is a hack to avoid loading content before the loading screen is hidden. -->
@@ -18,7 +22,7 @@ $response =  $this->doppler_service->connectionStatus();
 
             <h2 class="main-title"><?php esc_html_e('Doppler Forms', 'doppler-form')?> <?php echo esc_html($this->get_version())?></h2> 
             <?php
-            if( is_array($response) && $response['response']['code']>=400 && true ){
+            if( is_array($dplr_response) && $dplr_response['response']['code']>=400 && true ){
                 ?>
                 <div class="mt-1">
                     <?php
@@ -44,18 +48,18 @@ $response =  $this->doppler_service->connectionStatus();
                 case 'edit':
                     $this->display_error_message();
                     check_admin_referer('dplr-create-edit-form');
-                    $form_id = 0;
+                    $dplr_form_id = 0;
 
                     if(isset($_GET['form_id'])){
-                        $form_id = absint(wp_unslash($_GET['form_id']));
+                        $dplr_form_id = absint(wp_unslash($_GET['form_id']));
                     }
                     elseif(isset($_POST['form_id'])){
-                        $form_id = absint(wp_unslash($_POST['form_id']));
+                        $dplr_form_id = absint(wp_unslash($_POST['form_id']));
                     }
                     else{
                         die(esc_html__('Form ID is required','doppler-form'));
                     }
-                    $this->form_controller->showCreateEditForm($form_id);
+                    $this->form_controller->showCreateEditForm($dplr_form_id);
                     break;
                 default:
                     break;

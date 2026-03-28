@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Doppler Service v2.0.0
  */
@@ -28,6 +32,8 @@ class Doppler_Service
     $this->error = 0;
 
     $this->origin = 'Wordpress';
+
+    $this->dopplerAPIUrl = 'http://restapi.fromdoppler.com/';
 
     $usr_account = '';
 
@@ -185,8 +191,33 @@ class Doppler_Service
 	  return $response;
   }
 
+  public function signup_account( $payload ) {
+    $url = $this->dopplerAPIUrl . 'accounts';
+    $headers = array(
+      "Accept" => "application/json",
+      "Content-Type" => "application/json",
+    );
+
+    try{
+      $response = wp_remote_post($url, array(
+        'headers' => $headers,
+        'timeout' => 40,
+        'body' => wp_json_encode($payload),
+      ));
+    }
+    catch(\Exception $e){
+      return $this->throwConnectionErr($e->getMessage());
+    }
+
+    if ( is_wp_error( $response ) ) {
+      return $this->throwConnectionErr($response->get_error_message());
+    }
+
+    return $response;
+  }
+
   function call( $method, $args=null, $body=null ) {
-    $url = 'https://restapi.fromdoppler.com/accounts/'. $this->config['credentials']['user_account'] . '/';
+    $url = $this->dopplerAPIUrl . 'accounts/'. $this->config['credentials']['user_account'] . '/';
 
     $url .= $method[ 'route' ];
   

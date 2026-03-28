@@ -53,7 +53,7 @@ class DPLR_Base_Model {
     $table = self::_table();
     // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
     $query = $wpdb->prepare( "SELECT *, NULL AS settings FROM {$table} {$where_sql} {$order_by_sql}", $where_values );
-    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
     $result = $wpdb->get_results( $query );
     
     if ($with_settings) self::groupSettings($result);
@@ -78,7 +78,7 @@ class DPLR_Base_Model {
     $primary_key = static::$primary_key;
     // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
     $query = $wpdb->prepare( "SELECT *, NULL AS settings FROM {$table} WHERE `{$primary_key}` = %s", $value );
-    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
     $result = $wpdb->get_row( $query );
 
     if($with_settings) {
@@ -113,7 +113,7 @@ class DPLR_Base_Model {
     $primary_key = static::$primary_key;
     // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
     $query = $wpdb->prepare( "DELETE FROM {$table} WHERE `{$primary_key}` = %d", $value );
-    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
     $result = $wpdb->query( $query );
     wp_cache_flush_group( self::_table() );
 
@@ -139,7 +139,7 @@ class DPLR_Base_Model {
     wp_cache_flush_group( self::_table() );
     // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
     $query = $wpdb->prepare( "DELETE FROM {$table} WHERE {$where_sql}", $where_values );
-    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
     return $wpdb->query( $query );
   }
 
@@ -161,7 +161,7 @@ class DPLR_Base_Model {
 
     $table = self::_table();
     $query = "SELECT *, NULL AS settings, NULL AS events FROM {$table} {$order_by_sql}";
-    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
     $result = $wpdb->get_results( $query );
 
     if($with_settings) {
@@ -215,7 +215,7 @@ class DPLR_Base_Model {
         $table = self::_settings_table();
         // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $query = $wpdb->prepare( "SELECT setting_key, value FROM {$table} WHERE parent_id = %d", $to_attach->id );
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
         $settings_result = $wpdb->get_results( $query, 'ARRAY_N' );
 
         foreach ($settings_result as $setting_result) {
@@ -235,7 +235,7 @@ class DPLR_Base_Model {
         $table = self::_eventTable();
         // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $query = $wpdb->prepare( "SELECT event_type, COUNT(1) FROM {$table} WHERE parent_id = %d GROUP BY event_type", $to_attach->id );
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter
         $events_result = $wpdb->get_results( $query, 'ARRAY_N' );
       
         $result = [];

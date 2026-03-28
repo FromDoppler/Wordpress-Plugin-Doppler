@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The file that defines the core plugin class
  *
@@ -170,6 +174,7 @@ class DPLR_Doppler {
 		$this->loader->add_action( 'widgets_init', 				$plugin_admin, 'init_widget' );
 		$this->loader->add_action( 'admin_notices', 			$plugin_admin, 'show_admin_notices' );
 		$this->loader->add_action( 'wp_ajax_dplr_ajax_connect', $plugin_admin, 'ajax_connect' );
+		$this->loader->add_action( 'wp_ajax_dplr_ajax_signup', $plugin_admin, 'ajax_signup' );
 		$this->loader->add_action( 'wp_ajax_dplr_ajax_disconnect', $plugin_admin, 'ajax_disconnect' );
 		$this->loader->add_action( 'wp_ajax_dplr_delete_form',  $plugin_admin, 'ajax_delete_form' );
 		$this->loader->add_action( 'wp_ajax_dplr_get_lists',	$plugin_admin, 'ajax_get_lists' );

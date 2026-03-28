@@ -1,3 +1,11 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+?>
+
 <div class="dplr dplr-tab-content dplr-tab-content--list">
 
   <header class="hero-banner">
@@ -9,19 +17,19 @@
         <div class="col-sm-7">
           <p>
             <?php
-            $form_count = count( $forms );
-            $text = sprintf(
+            $dplr_form_count = count( $forms );
+            $dplr_text = sprintf(
                 /* translators: %s: Number of forms. */
                 _n(
                     'Here you will find all your subscription forms. You currently have <strong>%s</strong> form',
                     'Here you will find all your subscription forms. You currently have <strong>%s</strong> forms',
-                    $form_count,
+                    $dplr_form_count,
                     'doppler-form'
                 ),
-                number_format_i18n( $form_count )
+                number_format_i18n( $dplr_form_count )
             );
-            $allowed_html = array( 'strong' => array() );
-            echo wp_kses( $text, $allowed_html );
+            $dplr_allowed_html = array( 'strong' => array() );
+            echo wp_kses( $dplr_text, $dplr_allowed_html );
             ?>
           </p>
         </div>
@@ -66,26 +74,26 @@
           </tr>
         </thead>
         <tbody>
-          <?php for ($i=0; $i <count($forms) ; $i++) {
-              $form = DPLR_Form_Model::get($forms[$i]->id, true);
-              $edit_form_url = admin_url( 'admin.php?page=doppler_forms_main&tab=edit&form_id=' . $form->id );
-              $edit_nonce_url = wp_nonce_url( $edit_form_url, 'dplr-create-edit-form' );
+          <?php for ($dplr_i=0; $dplr_i <count($forms) ; $dplr_i++) {
+              $dplr_form = DPLR_Form_Model::get($forms[$dplr_i]->id, true);
+              $dplr_edit_form_url = admin_url( 'admin.php?page=doppler_forms_main&tab=edit&form_id=' . $dplr_form->id );
+              $dplr_edit_nonce_url = wp_nonce_url( $dplr_edit_form_url, 'dplr-create-edit-form' );
               ?>
             <tr>
               <td aria-label="Form name">
-                <a href="<?php echo esc_url( $edit_nonce_url ); ?>" role="link" rel="noopener" class="bold">
-                  <?php echo esc_html($form->name); ?>
+                <a href="<?php echo esc_url( $dplr_edit_nonce_url ); ?>" role="link" rel="noopener" class="bold">
+                  <?php echo esc_html($dplr_form->name); ?>
                 </a>
               </td>
               <td aria-label="Form Opt-In">
-                <span><?php echo ($form->settings["form_doble_optin"] == "yes") ? esc_html_e('Double Opt-In', 'doppler-form') : esc_html_e('Simple Opt-In', 'doppler-form') ?></span>
+                <span><?php echo ($dplr_form->settings["form_doble_optin"] == "yes") ? esc_html_e('Double Opt-In', 'doppler-form') : esc_html_e('Simple Opt-In', 'doppler-form') ?></span>
               </td>
               <td aria-label="List Name">
-                <span><?php echo isset($dplr_lists_arr[$form->list_id]) ? esc_html($dplr_lists_arr[$form->list_id]) : '' ?></span>
+                <span><?php echo isset($dplr_lists_arr[$dplr_form->list_id]) ? esc_html($dplr_lists_arr[$dplr_form->list_id]) : '' ?></span>
               </td>
               <td aria-label="Shortcode">
                 <div class="dp-rowflex">
-                  <span>[doppler-form id='<?php echo esc_html($form->id) ?>']</span>
+                  <span>[doppler-form id='<?php echo esc_html($dplr_form->id) ?>']</span>
                   <div class="dp-icons-group col-lg-2 col-sm-2 col-md-2">
                     <a class="copy-shortcode">
                       <div class="dp-tooltip-container">
@@ -100,7 +108,7 @@
               </td>
               <td aria-label="Actions">
                 <div class="dp-icons-group">
-                  <a href="<?php echo esc_url( $edit_nonce_url ); ?>" class="p-r-6">
+                  <a href="<?php echo esc_url( $dplr_edit_nonce_url ); ?>" class="p-r-6">
                     <div class="dp-tooltip-container">
                       <span class="ms-icon icon-edit"></span>
                       <div class="dp-tooltip-top">
@@ -109,11 +117,11 @@
                     </div>
                   </a>
                   <?php
-                    $delete_form_url = admin_url( 'admin.php?page=doppler_forms_main&action=delete&form_id=' . $form->id );
-                    $delete_nonce_url = wp_nonce_url( $delete_form_url, 'dplr-delete-form_' . $form->id );
+                    $dplr_delete_form_url = admin_url( 'admin.php?page=doppler_forms_main&action=delete&form_id=' . $dplr_form->id );
+                    $dplr_delete_nonce_url = wp_nonce_url( $dplr_delete_form_url, 'dplr-delete-form_' . $dplr_form->id );
                   ?>
-                  <a href="<?php echo esc_url( $delete_nonce_url ); ?>"
-                    data-list-id="<?php echo esc_attr($form->id) ?>"
+                  <a href="<?php echo esc_url( $dplr_delete_nonce_url ); ?>"
+                    data-list-id="<?php echo esc_attr($dplr_form->id) ?>"
                     data-nonce="<?php echo esc_attr(wp_create_nonce('dplr-delete-form-nonce')); ?>"
                     class="dplr-remove">
                     <div class="dp-tooltip-container">

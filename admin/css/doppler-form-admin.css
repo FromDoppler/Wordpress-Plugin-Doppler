@@ -852,8 +852,13 @@
 	display: none;
 }
 
-.dplr_settings .panel ul.accordion > li.active .accordion-content {
+.dplr_settings .panel ul.accordion > li.active .accordion-content,
+.dplr_settings ul.dp-accordion > li.active .dp-accordion-panel {
 	display: block;
+}
+
+.dplr_settings ul.dp-accordion {
+	text-align: left;
 }
 
 .dplr_settings .panel ul.accordion > li.active a.alt-toggle > i::after {
@@ -1341,6 +1346,14 @@
 	max-width: 2%;
 }
 
+#dplr-sign-up .iti {
+	width: 100%;
+}
+
+.dplr_settings main.confirmation-main footer p {
+	text-align: left;
+}
+
 /* override doppler's styles */
 .wp-core-ui .wp-editor-tools .wp-media-buttons > button,
 .wp-core-ui .wp-editor-container .ed_button {
@@ -1394,6 +1407,10 @@
 
 .dplr_settings .dp-carousel-slide-header {
 	margin-bottom: 0 !important;
+}
+
+.dplr_settings .btn-login > button.dp-button.button--loading {
+	display: inline-block !important;
 }
 
 /* override Wordpress's styles */

@@ -1,3 +1,11 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+?>
+
 <div class="dplr dplr-tab-content dplr-tab-content--form-create">
   <form method="post" action="<?php admin_url() ?>admin.php?page=doppler_forms_main">
     <?php wp_nonce_field( 'dplr-create-edit-form' ); ?>
@@ -21,8 +29,8 @@
                 <select name="list_id" id="list-id" required>
                   <option value=""><?php esc_html_e('Select the destination List where your new Subscribers will be sent', 'doppler-form'); ?></option>
                   <?php 
-                    for ($i=0; $i < count($dplr_lists); $i++) { 
-                    ?><option <?php echo isset($form['list_id']) && intval($form['list_id']) == intval($dplr_lists[$i]->listId) ? 'selected="selected"' : ''; ?> value="<?php echo esc_attr($dplr_lists[$i]->listId); ?>"><?php echo esc_html(trim($dplr_lists[$i]->name)); ?></option><?php
+                    for ($dplr_i=0; $dplr_i < count($dplr_lists); $dplr_i++) { 
+                    ?><option <?php echo isset($form['list_id']) && intval($form['list_id']) == intval($dplr_lists[$dplr_i]->listId) ? 'selected="selected"' : ''; ?> value="<?php echo esc_attr($dplr_lists[$dplr_i]->listId); ?>"><?php echo esc_html(trim($dplr_lists[$dplr_i]->name)); ?></option><?php
                     }
                   ?>
                 </select>
@@ -233,7 +241,7 @@
               <?php 
                 // wp_tiny_mce($form->settings["form_email_confirmacion_email_contenido"], 'settings_form_email_confirmacion_email_contenidotings[form_email_confirmacion_email_contenido]');
                 // the_editor(); 
-                $settings = array(
+                $dplr_settings = array(
                   'textarea_name' => 'content',
                   'media_buttons' => true,
                   'tinymce' => array(
@@ -245,7 +253,7 @@
                       }'
                   )
                 );
-                wp_editor( isset($form["content"])?stripslashes(html_entity_decode($form["content"])):'', 'content', $settings );
+                wp_editor( isset($form["content"])?stripslashes(html_entity_decode($form["content"])):'', 'content', $dplr_settings );
               ?>
             </div>
           </div>

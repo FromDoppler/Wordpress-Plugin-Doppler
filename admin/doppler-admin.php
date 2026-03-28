@@ -112,6 +112,7 @@ class Doppler_Admin {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/doppler-form-admin.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'jquery-ui-dialog', includes_url() . 'css/jquery-ui-dialog.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style('billboard-css', plugin_dir_url( __FILE__ ) . 'css/vendor/billboard.min.css', array(), '3.14.3', 'all');
+		wp_enqueue_style('css-input-tel-admin', plugin_dir_url( __FILE__ ) . 'css/vendor/intlTelInput.css', array(), '18.2.1', 'all');
 	}
 
 	/**
@@ -123,7 +124,9 @@ class Doppler_Admin {
 		
 		wp_enqueue_script('doppler-loader', 'https://cdn.fromdoppler.com/mfe-loader/loader-v2.0.0.js', array($this->plugin_name), $this->version, false);
 		wp_enqueue_script('doppler-styles', plugin_dir_url( __FILE__ ) . 'js/doppler-styles.js', array($this->plugin_name, 'doppler-loader'), $this->version, false);
+		wp_enqueue_script('js-input-tel-admin', plugin_dir_url( __FILE__ ) . 'js/vendor/intlTelInput.min.js', array('jquery'), '18.2.1', false);
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/doppler-form-admin.js', array( 'jquery', 'jquery-ui-sortable' ), $this->version, false );
+		wp_enqueue_script( 'doppler-signup-admin', plugin_dir_url( __FILE__ ) . 'js/doppler-signup-admin.js', array( 'jquery', 'js-input-tel-admin' ), $this->version, false );
 		wp_localize_script( $this->plugin_name, 'object_string', array( 
 			'Delete'   	=> __( 'Delete', 'doppler-form' ),
 			'Cancel'    => __( 'Cancel', 'doppler-form'),
@@ -166,6 +169,7 @@ class Doppler_Admin {
 			'WooDisconnectedDetail' => __('To configure, ', 'doppler-form'),
 			'WooCheckError' => __('Could not check the WooCommerce integration, please try again.', 'doppler-form'),
 			'WooError' => __('Error', 'doppler-form'),
+			'invalidPhone' => __('Invalid Format.', 'doppler-form'),
 		) ); 
 		wp_enqueue_script('field-module', plugin_dir_url( __FILE__ ) . 'js/field-module.js', array($this->plugin_name), $this->version, false);
 		wp_localize_script( 'field-module', 'ObjStr', array( 
@@ -691,6 +695,106 @@ class Doppler_Admin {
 	}
 
 	/**
+	 * Called upon user pressing the signup button.
+	 * Creates a Doppler account using Doppler's API.
+	 */
+	public function ajax_signup() {
+		$this->check_admin_permissions();
+		check_ajax_referer( 'dplr-signup-nonce', 'nonce' );
+
+		$firstname = isset($_POST['firstname']) ? sanitize_text_field(wp_unslash($_POST['firstname'])) : '';
+		$lastname = isset($_POST['lastname']) ? sanitize_text_field(wp_unslash($_POST['lastname'])) : '';
+		$email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
+		$password = isset($_POST['password']) ? sanitize_text_field(wp_unslash($_POST['password'])) : '';
+		$phone = isset($_POST['phone']) ? sanitize_text_field(wp_unslash($_POST['phone'])) : '';
+		$terms_and_conditions_active = $this->parse_checkbox_value(isset($_POST['accept_privacy_policies']) ? sanitize_text_field(wp_unslash($_POST['accept_privacy_policies'])) : '');
+		$promotions_enabled = $this->parse_checkbox_value(isset($_POST['accept_promotions']) ? sanitize_text_field(wp_unslash($_POST['accept_promotions'])) : '');
+
+		$phone = preg_replace('/[^0-9\+]/', '', $phone);
+
+		$is_name_valid = strlen(trim($firstname)) > 1 && strlen(trim($lastname)) > 1;
+		$is_email_valid = !empty($email) && is_email($email);
+		$is_password_valid = strlen($password) >= 8 && preg_match('/[A-Za-z]/', $password) && preg_match('/\d/', $password);
+		$is_phone_valid = !empty($phone);
+
+		if (!$is_name_valid || !$is_email_valid || !$is_password_valid || !$is_phone_valid || !$terms_and_conditions_active) {
+			wp_send_json_error(
+				['message' => esc_html__('Please review the form fields and try again.', 'doppler-form')],
+				400
+			);
+		}
+
+		$signup_payload = array(
+			'email' => $email,
+			'firstName' => $firstname,
+			'lastName' => $lastname,
+			'password' => $password,
+			'phone' => $phone,
+			'origin' => 'Wordpress',
+			'language' => $this->get_signup_language(),
+			'termsAndConditionsActive' => true,
+			'promotionsEnabled' => $promotions_enabled,
+		);
+
+		$log_payload = $signup_payload;
+		$log_payload['password'] = '***';
+
+		try {
+			$response = $this->doppler_service->signup_account($signup_payload);
+			$response_code = (int) wp_remote_retrieve_response_code($response);
+			$response_body = wp_remote_retrieve_body($response);
+			$decoded_body = json_decode($response_body, true);
+			$log_body = $decoded_body !== null ? $decoded_body : $response_body;
+
+			if ($response_code >= 200 && $response_code < 300) {
+				wp_send_json_success([
+					'message' => esc_html__('Account created successfully.', 'doppler-form'),
+				]);
+			}
+
+			$this->doppler_service->pluginLogger(
+				array(
+					'request' => $log_payload,
+					'response_code' => $response_code,
+					'response_body' => $log_body,
+				),
+				'signup_account_error'
+			);
+		} catch (\Exception $e) {
+			$this->doppler_service->pluginLogger(
+				array(
+					'request' => $log_payload,
+					'exception' => $e->getMessage(),
+				),
+				'signup_account_error'
+			);
+		}
+
+		$error_message = esc_html__('Ouch! There seems to be a connection problem. Please try again in a few minutes.', 'doppler-form');
+
+		if ($response_code == 429) {
+			$error_message = esc_html__('Hold on! You\'ve reached the maximum accounts allowed.', 'doppler-form');
+		}
+
+		if ($response_code == 400 && isset($decoded_body['errorCode'])) {
+			$error_code = (int) $decoded_body['errorCode'];
+			switch($error_code) {
+				case 4:
+					$error_message = esc_html__('Ouch! Invalid Email to create an account.', 'doppler-form');
+					break;
+				case 37:
+					$error_message = esc_html__('Ouch! You already have a Doppler account.', 'doppler-form');
+					break;
+				case 50:
+					$error_message = esc_html__('Ouch! The phone number is invalid.', 'doppler-form');
+					break;
+			}
+		}
+
+		wp_send_json_error(['message' => $error_message], 500);
+	}
+
+	/**
 	 * Called upon user pressing the connect button.
 	 * Check if user is valid, then it continues
 	 * the form submission and save the settings.
@@ -863,6 +967,25 @@ class Doppler_Admin {
 		$forms = $this->form_controller->getAll(true, true);
 
 		return $forms;
+	}
+
+	private function get_signup_language() {
+		$locale = strtolower((string) get_user_locale());
+		$prefix = substr($locale, 0, 2);
+		return $prefix === 'es' ? 'es' : 'en';
+	}
+
+	private function parse_checkbox_value($value) {
+		if (is_bool($value)) {
+			return $value;
+		}
+
+		if (is_string($value)) {
+			$normalized = strtolower(trim($value));
+			return in_array($normalized, array('1', 'true', 'on', 'yes'), true);
+		}
+
+		return !empty($value);
 	}
 
 	private function check_admin_permissions() {
