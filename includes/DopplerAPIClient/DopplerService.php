@@ -33,7 +33,7 @@ class Doppler_Service
 
     $this->origin = 'Wordpress';
 
-    $this->dopplerAPIUrl = 'http://restapi.fromdoppler.com/';
+    $this->dopplerAPIUrl = 'https://restapi.fromdoppler.com/';
 
     $usr_account = '';
 
