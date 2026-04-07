@@ -400,7 +400,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php 
 									if(!$dplr_woocommerce_plugin_is_active): ?>
 										<?php if(!$this->extension_manager->has_dependency('doppler-for-woocommerce')): ?>
-											<p class="text-italic"><?php esc_html_e('You should have <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce plugin</a> installed and active first.', 'doppler-form')?></p>
+											<?php /* translators: %s: plugin name with link. */ ?>
+											<p class="text-italic"><?php echo wp_kses_post( sprintf( __( 'You should have %s installed and active first.', 'doppler-form' ), '<a href="https://wordpress.org/plugins/woocommerce/">WooCommerce plugin</a>' ) ); ?></p>
 										<?php else: ?>
 											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12"
 													data-extension="doppler-for-woocommerce"
@@ -441,7 +442,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php 
 									if(!$dplr_learnpress_plugin_is_active): ?>
 										<?php if(!$this->extension_manager->has_dependency('doppler-for-learnpress')): ?>
-											<p class="text-italic"><?php esc_html_e('You should have <a href="https://wordpress.org/plugins/learnpress/">LearnPress plugin</a> installed and active first.', 'doppler-form')?></p>
+											<?php /* translators: %s: plugin name with link. */ ?>
+											<p class="text-italic"><?php echo wp_kses_post( sprintf( __( 'You should have %s installed and active first.', 'doppler-form' ), '<a href="https://wordpress.org/plugins/learnpress/">LearnPress plugin</a>' ) ); ?></p>
 										<?php else: ?>
 											<button type="button" class="dp-button button-big primary-green button-small dp-install m-t-12 col-sm-12" 
 													data-extension="doppler-for-learnpress"
