@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2026-03-23 19:38-0300\n"
-"PO-Revision-Date: 2026-03-23 20:54-0300\n"
+"POT-Creation-Date: 2026-04-07 22:06-0300\n"
+"PO-Revision-Date: 2026-04-07 22:06-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Colombia\n"
 "Language: es_CO\n"
@@ -77,8 +77,8 @@ msgid "Ouch! There has been an error: cURL error 28, timeout error."
 msgstr ""
 "Ouch!  Ocurrió un error: cURL error 28, se acabó el tiempo para la petición."
 
-#: admin/doppler-admin.php:141 admin/partials/api-connection.php:408
-#: admin/partials/api-connection.php:449
+#: admin/doppler-admin.php:141 admin/partials/api-connection.php:409
+#: admin/partials/api-connection.php:451
 msgid "Installing"
 msgstr "Instalando"
 
@@ -296,13 +296,13 @@ msgstr "Administración de Listas"
 msgid "Settings"
 msgstr "Ajustes"
 
-#: admin/doppler-admin.php:413 admin/partials/api-connection.php:499
-#: admin/partials/api-connection.php:504 admin/partials/api-connection.php:534
+#: admin/doppler-admin.php:413 admin/partials/api-connection.php:501
+#: admin/partials/api-connection.php:506 admin/partials/api-connection.php:536
 msgid "Ouch! Enter a valid Email."
 msgstr "¡Ouch! Escribe un Email válido."
 
-#: admin/doppler-admin.php:418 admin/partials/api-connection.php:527
-#: admin/partials/api-connection.php:585 admin/partials/api-connection.php:594
+#: admin/doppler-admin.php:418 admin/partials/api-connection.php:529
+#: admin/partials/api-connection.php:587 admin/partials/api-connection.php:596
 msgid "Ouch! The field is empty."
 msgstr "¡Ouch! El campo está vacío."
 
@@ -567,59 +567,48 @@ msgstr "Extensiones"
 msgid "Doppler for WooCommerce"
 msgstr "Doppler para WooCommerce"
 
-#: admin/partials/api-connection.php:392 admin/partials/api-connection.php:433
+#: admin/partials/api-connection.php:392 admin/partials/api-connection.php:434
 msgid "Successfully Instaled"
 msgstr "Instalada correctamente"
 
-#: admin/partials/api-connection.php:394 admin/partials/api-connection.php:435
+#: admin/partials/api-connection.php:394 admin/partials/api-connection.php:436
 msgid "Extension deactivated"
 msgstr "Extensión desactivada"
 
-#: admin/partials/api-connection.php:403
-msgid ""
-"You should have <a href=\"https://wordpress.org/plugins/woocommerce/"
-"\">WooCommerce plugin</a> installed and active first."
-msgstr ""
-"Deberías tener <a href=\"https://wordpress.org/plugins/woocommerce/\">el "
-"plugin WooCommerce</a> instalado y activo primero."
+#: admin/partials/api-connection.php:404 admin/partials/api-connection.php:446
+#, php-format
+msgid "You should have %s installed and active first."
+msgstr "Deberías tener %s instalado y activo primero."
 
-#: admin/partials/api-connection.php:408 admin/partials/api-connection.php:449
+#: admin/partials/api-connection.php:409 admin/partials/api-connection.php:451
 msgid "Activating"
 msgstr "Activando"
 
-#: admin/partials/api-connection.php:409 admin/partials/api-connection.php:450
+#: admin/partials/api-connection.php:410 admin/partials/api-connection.php:452
 msgid "Activate"
 msgstr "Activar"
 
-#: admin/partials/api-connection.php:409 admin/partials/api-connection.php:450
+#: admin/partials/api-connection.php:410 admin/partials/api-connection.php:452
 msgid "Install"
 msgstr "Instalar"
 
-#: admin/partials/api-connection.php:417 admin/partials/api-connection.php:458
+#: admin/partials/api-connection.php:418 admin/partials/api-connection.php:460
 msgid "Updating"
 msgstr "Actualizando"
 
-#: admin/partials/api-connection.php:418 admin/partials/api-connection.php:459
+#: admin/partials/api-connection.php:419 admin/partials/api-connection.php:461
 msgid "Update Version"
 msgstr "Actualizar versión"
 
-#: admin/partials/api-connection.php:426 admin/partials/api-connection.php:429
+#: admin/partials/api-connection.php:427 admin/partials/api-connection.php:430
 msgid "Doppler for LearnPress"
 msgstr "Doppler para LearnPress"
 
-#: admin/partials/api-connection.php:444
-msgid ""
-"You should have <a href=\"https://wordpress.org/plugins/learnpress/"
-"\">LearnPress plugin</a> installed and active first."
-msgstr ""
-"Deberías tener <a href=\"https://wordpress.org/plugins/learnpress/\">el "
-"plugin LearnPress</a> instalado y activo primero."
-
-#: admin/partials/api-connection.php:477 admin/partials/api-connection.php:568
+#: admin/partials/api-connection.php:479 admin/partials/api-connection.php:570
 msgid "Connect your WordPress Forms with Doppler"
 msgstr "Conecta tus Formularios de WordPress con Doppler"
 
-#: admin/partials/api-connection.php:480 admin/partials/api-connection.php:571
+#: admin/partials/api-connection.php:482 admin/partials/api-connection.php:573
 msgid ""
 "Create Subscription Forms that respect your Website styles and automatically "
 "send your new Subscribers from WordPress to Doppler Lists."
@@ -628,23 +617,23 @@ msgstr ""
 "envía automáticamente tus nuevos Suscriptores desde WordPress a Listas de "
 "Doppler."
 
-#: admin/partials/api-connection.php:481
+#: admin/partials/api-connection.php:483
 msgid "Don't have an account yet?"
 msgstr "¿Aún no tienes una cuenta?"
 
-#: admin/partials/api-connection.php:481
+#: admin/partials/api-connection.php:483
 msgid "Sign up for free"
 msgstr "Regístrate gratis"
 
-#: admin/partials/api-connection.php:493
+#: admin/partials/api-connection.php:495
 msgid "Username"
 msgstr "Email de Usuario"
 
-#: admin/partials/api-connection.php:516
+#: admin/partials/api-connection.php:518
 msgid "How do you find your API Key? Press"
 msgstr "¿Dónde encontrar el API Key de tu cuenta? Presiona"
 
-#: admin/partials/api-connection.php:517
+#: admin/partials/api-connection.php:519
 msgid ""
 "https://help.fromdoppler.com/en/where-do-i-find-my-api-key/?"
 "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
@@ -652,7 +641,7 @@ msgstr ""
 "https://help.fromdoppler.com/es/api-interfaz-de-programacion-de-aplicaciones?"
 "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
 
-#: admin/partials/api-connection.php:518 admin/partials/api-connection.php:551
+#: admin/partials/api-connection.php:520 admin/partials/api-connection.php:553
 #: admin/partials/forms-create.php:51 admin/partials/forms-create.php:212
 #: admin/partials/forms-create.php:333 admin/partials/forms-edit.php:56
 #: admin/partials/forms-edit.php:215 admin/partials/forms-edit.php:340
@@ -660,17 +649,17 @@ msgstr ""
 msgid "HELP"
 msgstr "HELP"
 
-#: admin/partials/api-connection.php:538
+#: admin/partials/api-connection.php:540
 msgid "Connect"
 msgstr "Conectar"
 
-#: admin/partials/api-connection.php:550
+#: admin/partials/api-connection.php:552
 msgid ""
 "Do you have any doubts about how to connect your Forms with Doppler? Press"
 msgstr ""
 "¿Tienes dudas sobre cómo conectar tus Formularios con Doppler? Presiona"
 
-#: admin/partials/api-connection.php:551
+#: admin/partials/api-connection.php:553
 #: includes/class-doppler-elementor-form-widget.php:33
 msgid ""
 "https://help.fromdoppler.com/en/how-to-integrate-wordpress-forms-with-"
@@ -679,116 +668,116 @@ msgstr ""
 "https://help.fromdoppler.com/es/como-integrar-formularios-de-wordpress-con-"
 "doppler/?utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
 
-#: admin/partials/api-connection.php:572
+#: admin/partials/api-connection.php:574
 msgid "Already have an account?"
 msgstr "¿Ya tienes una cuenta?"
 
-#: admin/partials/api-connection.php:572
+#: admin/partials/api-connection.php:574
 msgid "LOG IN"
 msgstr "INGRESA"
 
-#: admin/partials/api-connection.php:583
+#: admin/partials/api-connection.php:585
 msgid "First name"
 msgstr "Nombre"
 
-#: admin/partials/api-connection.php:584
+#: admin/partials/api-connection.php:586
 msgid "Enter your first name"
 msgstr "Escribe tu nombre"
 
-#: admin/partials/api-connection.php:586 admin/partials/api-connection.php:595
+#: admin/partials/api-connection.php:588 admin/partials/api-connection.php:597
 msgid "Ouch! Write at least two characters."
 msgstr "¡Ouch! Escribe al menos dos caracteres."
 
-#: admin/partials/api-connection.php:592
+#: admin/partials/api-connection.php:594
 msgid "Last name"
 msgstr "Apellido"
 
-#: admin/partials/api-connection.php:593
+#: admin/partials/api-connection.php:595
 msgid "Enter your last name"
 msgstr "Escribe tu apellido"
 
-#: admin/partials/api-connection.php:601
+#: admin/partials/api-connection.php:603
 msgid "Phone number"
 msgstr "Teléfono"
 
-#: admin/partials/api-connection.php:603
+#: admin/partials/api-connection.php:605
 msgid "Enter a valid phone."
 msgstr "Ingresa un teléfono válido."
 
-#: admin/partials/api-connection.php:604
+#: admin/partials/api-connection.php:606
 msgid "Ouch! The phone number is too short."
 msgstr "¡Ouch! El número de teléfono es demasiado corto."
 
-#: admin/partials/api-connection.php:605
+#: admin/partials/api-connection.php:607
 msgid "Ouch! The phone number is too long."
 msgstr "¡Ouch! El número de teléfono es demasiado largo."
 
-#: admin/partials/api-connection.php:616
+#: admin/partials/api-connection.php:618
 msgid "Business email"
 msgstr "Email"
 
-#: admin/partials/api-connection.php:617
+#: admin/partials/api-connection.php:619
 msgid "Enter your email. You must have access"
 msgstr "¡Psst! Es tu Email"
 
-#: admin/partials/api-connection.php:619
+#: admin/partials/api-connection.php:621
 msgid "Enter a valid Email."
 msgstr "Ingresa un email válido."
 
-#: admin/partials/api-connection.php:626
+#: admin/partials/api-connection.php:628
 msgid "Password"
 msgstr "Contraseña"
 
-#: admin/partials/api-connection.php:630
+#: admin/partials/api-connection.php:632
 msgid "Create your password"
 msgstr "Crea tu contraseña"
 
-#: admin/partials/api-connection.php:633
+#: admin/partials/api-connection.php:635
 msgid "8 characters minimum"
 msgstr "8 caracteres mínimo"
 
-#: admin/partials/api-connection.php:634
+#: admin/partials/api-connection.php:636
 msgid "One letter"
 msgstr "Una letra"
 
-#: admin/partials/api-connection.php:635
+#: admin/partials/api-connection.php:637
 msgid "One number"
 msgstr "Un número"
 
-#: admin/partials/api-connection.php:636
+#: admin/partials/api-connection.php:638
 msgid "Your Password is secure!"
 msgstr "¡Tu Contraseña es segura!"
 
-#: admin/partials/api-connection.php:649
+#: admin/partials/api-connection.php:651
 msgid "I accept the"
 msgstr "Acepto la"
 
-#: admin/partials/api-connection.php:649 admin/partials/api-connection.php:680
-#: admin/partials/api-connection.php:686
+#: admin/partials/api-connection.php:651 admin/partials/api-connection.php:682
+#: admin/partials/api-connection.php:688
 msgid "https://www.fromdoppler.com/en/legal/privacy"
 msgstr "https://www.fromdoppler.com/es/legal/privacidad"
 
-#: admin/partials/api-connection.php:649 admin/partials/api-connection.php:680
+#: admin/partials/api-connection.php:651 admin/partials/api-connection.php:682
 msgid "Privacy Policy"
 msgstr "Política de Privacidad"
 
-#: admin/partials/api-connection.php:651
+#: admin/partials/api-connection.php:653
 msgid "Ouch! You haven't accepted the Doppler's Privacy Policy."
 msgstr "¡Ouch! No has aceptado la Política de Privacidad de Doppler."
 
-#: admin/partials/api-connection.php:656
+#: admin/partials/api-connection.php:658
 msgid "I want to receive news and promotions."
 msgstr "Quiero recibir novedades y promociones."
 
-#: admin/partials/api-connection.php:662
+#: admin/partials/api-connection.php:664
 msgid "CREATE FREE ACCOUNT"
 msgstr "CREAR CUENTA GRATIS"
 
-#: admin/partials/api-connection.php:674
+#: admin/partials/api-connection.php:676
 msgid "Read about data protection in Doppler."
 msgstr "Lee sobre protección de datos en Doppler."
 
-#: admin/partials/api-connection.php:676
+#: admin/partials/api-connection.php:678
 msgid ""
 "Doppler informs you that the personal data you provide by completing this "
 "form will be treated by Doppler LLC as responsible for this web site."
@@ -797,30 +786,30 @@ msgstr ""
 "al rellenar el presente formulario serán tratados por Doppler LLC como "
 "responsable de esta web."
 
-#: admin/partials/api-connection.php:677
+#: admin/partials/api-connection.php:679
 msgid "Purpose"
 msgstr "Finalidad"
 
-#: admin/partials/api-connection.php:677
+#: admin/partials/api-connection.php:679
 msgid ""
 "Sign you up into our platform and provide the services that you require."
 msgstr ""
 "Darte de alta en nuestra plataforma y brindarte los servicios que nos "
 "requieras."
 
-#: admin/partials/api-connection.php:678
+#: admin/partials/api-connection.php:680
 msgid "Legitimation"
 msgstr "Legitimación"
 
-#: admin/partials/api-connection.php:678
+#: admin/partials/api-connection.php:680
 msgid "Consent of the applicant."
 msgstr "Consentimiento del interesado."
 
-#: admin/partials/api-connection.php:679
+#: admin/partials/api-connection.php:681
 msgid "Recipients"
 msgstr "Destinatarios"
 
-#: admin/partials/api-connection.php:679
+#: admin/partials/api-connection.php:681
 msgid ""
 "Your data will be saved by Doppler, Zoho as CRM, Google as the provider of "
 "reCAPTCHA service, Digital Ocean, Cogeco Peer1 and Rackspace as hosting "
@@ -830,15 +819,15 @@ msgstr ""
 "del servicio de reCAPTCHA,\n"
 "Digital Ocean, Cogeco Peer1 y Rackspace como empresas de hosting."
 
-#: admin/partials/api-connection.php:680
+#: admin/partials/api-connection.php:682
 msgid "Additional information"
 msgstr "Información adicional"
 
-#: admin/partials/api-connection.php:680
+#: admin/partials/api-connection.php:682
 msgid "In Doppler's"
 msgstr "En la"
 
-#: admin/partials/api-connection.php:680
+#: admin/partials/api-connection.php:682
 msgid ""
 "you'll find additional information about the data storage and use of your "
 "personal information, including information on access, conservation, "
@@ -850,72 +839,72 @@ msgstr ""
 "incluida información sobre acceso, conservación, rectificación,\n"
 "eliminación, seguridad, transferencias transfronterizas y otros temas."
 
-#: admin/partials/api-connection.php:686
+#: admin/partials/api-connection.php:688
 msgid "Doppler LLC. All rights reserved."
 msgstr "Doppler LLC. Todos los derechos reservados."
 
-#: admin/partials/api-connection.php:686
+#: admin/partials/api-connection.php:688
 msgid "Privacy Policy & Legals"
 msgstr "Política de Privacidad y Legales"
 
-#: admin/partials/api-connection.php:701
+#: admin/partials/api-connection.php:703
 msgid "You’re just one step away from scaling your strategy"
 msgstr "Estás a un paso de escalar tu Estrategia"
 
-#: admin/partials/api-connection.php:704
+#: admin/partials/api-connection.php:706
 msgid "Check your email"
 msgstr "Revisa tu Email para continuar"
 
-#: admin/partials/api-connection.php:706
+#: admin/partials/api-connection.php:708
 msgid "We sent an email to"
 msgstr "Enviamos un email a"
 
-#: admin/partials/api-connection.php:706
+#: admin/partials/api-connection.php:708
 msgid "to validate your account."
 msgstr "para validar tu cuenta."
 
-#: admin/partials/api-connection.php:708
+#: admin/partials/api-connection.php:710
 msgid ""
 "You just need to open it and click the confirmation button to activate it."
 msgstr ""
 "Solo tienes que abrirlo y hacer clic en el botón de confirmación para "
 "activarla."
 
-#: admin/partials/api-connection.php:710
+#: admin/partials/api-connection.php:712
 msgid ""
 "Once activated, you can start creating Campaigns, Automations and exploring"
 msgstr ""
 "Una vez activo, podrás empezar a crear Campañas, Automatizaciones y explorar"
 
-#: admin/partials/api-connection.php:711
+#: admin/partials/api-connection.php:713
 msgid "all the features of"
 msgstr "todas las funcionalidades de"
 
-#: admin/partials/api-connection.php:713
+#: admin/partials/api-connection.php:715
 msgid "Go back to"
 msgstr "Volver a"
 
-#: admin/partials/api-connection.php:713
+#: admin/partials/api-connection.php:715
 msgid "sign in"
 msgstr "iniciar sesión"
 
-#: admin/partials/api-connection.php:723
+#: admin/partials/api-connection.php:725
 msgid "Do you have doubts?"
 msgstr "¿Necesitas ayuda?"
 
-#: admin/partials/api-connection.php:723
+#: admin/partials/api-connection.php:725
 msgid "Contact us"
 msgstr "Contáctanos"
 
-#: admin/partials/api-connection.php:723
+#: admin/partials/api-connection.php:725
 msgid "and we will help you"
 msgstr "y te acompañaremos en el proceso"
 
-#: admin/partials/api-connection.php:730
+#: admin/partials/api-connection.php:732
 msgid "Are you sure you want to uninstall the extension?"
 msgstr "¿Estás seguro de que deseas quitar la extensión?"
 
-#: admin/partials/api-connection.php:731
+#: admin/partials/api-connection.php:733
 msgid "This will deactivate and uninstall the plugin."
 msgstr "Esto desactivará y desinstalará la extensión."
 
@@ -1453,6 +1442,20 @@ msgstr "Ingrese un Email válido."
 #: includes/helpers/Form_Helper.php:265
 msgid "Please enter a valid date."
 msgstr "Ingrese una fecha valida."
+
+#~ msgid ""
+#~ "You should have <a href=\"https://wordpress.org/plugins/woocommerce/"
+#~ "\">WooCommerce plugin</a> installed and active first."
+#~ msgstr ""
+#~ "Deberías tener <a href=\"https://wordpress.org/plugins/woocommerce/\">el "
+#~ "plugin WooCommerce</a> instalado y activo primero."
+
+#~ msgid ""
+#~ "You should have <a href=\"https://wordpress.org/plugins/learnpress/"
+#~ "\">LearnPress plugin</a> installed and active first."
+#~ msgstr ""
+#~ "Deberías tener <a href=\"https://wordpress.org/plugins/learnpress/\">el "
+#~ "plugin LearnPress</a> instalado y activo primero."
 
 #~ msgid "Disconnected"
 #~ msgstr "Desconectado"
