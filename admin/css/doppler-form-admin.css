@@ -1413,6 +1413,11 @@
 	display: inline-block !important;
 }
 
+.dplr_settings .confirmation-main h1 {
+	font-size: 30px;
+	line-height: 20px;
+}
+
 /* override Wordpress's styles */
 #dplr-consent-location {
 	background-image: none;
