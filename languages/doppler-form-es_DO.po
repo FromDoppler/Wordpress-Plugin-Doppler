@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2026-04-07 22:06-0300\n"
-"PO-Revision-Date: 2026-04-07 22:06-0300\n"
+"POT-Creation-Date: 2026-04-21 08:46-0300\n"
+"PO-Revision-Date: 2026-04-21 08:46-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de República Dominicana\n"
 "Language: es_DO\n"
@@ -714,7 +714,7 @@ msgstr "¡Ouch! El número de teléfono es demasiado largo."
 
 #: admin/partials/api-connection.php:618
 msgid "Business email"
-msgstr "Email"
+msgstr "Email empresarial"
 
 #: admin/partials/api-connection.php:619
 msgid "Enter your email. You must have access"
