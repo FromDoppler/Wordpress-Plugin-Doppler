@@ -31,7 +31,7 @@ class Doppler_Service
 
     $this->error = 0;
 
-    $this->origin = 'Wordpress';
+    $this->origin = 'Wordpress_Plugin';
 
     $this->dopplerAPIUrl = 'https://restapi.fromdoppler.com/';
 
