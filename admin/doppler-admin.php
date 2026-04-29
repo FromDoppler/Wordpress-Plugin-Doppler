@@ -888,7 +888,7 @@ class Doppler_Admin {
 			'lastName' => $lastname,
 			'password' => $password,
 			'phone' => $phone,
-			'origin' => 'Wordpress',
+			'origin' => 'Wordpress_Plugin',
 			'language' => $this->get_signup_language(),
 			'termsAndConditionsActive' => true,
 			'promotionsEnabled' => $promotions_enabled,
