@@ -64,6 +64,8 @@ class DPLR_Doppler {
 
 	protected $doppler_service;
 
+	protected $smtp_manager;
+
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -97,6 +99,8 @@ class DPLR_Doppler {
 
 		$this->load_shortcodes();
 		$this->load_dependencies();
+		$this->smtp_manager = new DPLR_SMTP_Manager();
+		$this->define_smtp_hooks();
 		$this->define_admin_hooks();
 		$this->define_public_hooks(); 
 		$this->check_version_update();
@@ -150,7 +154,21 @@ class DPLR_Doppler {
 		
 		require_once plugin_dir_path( dirname(__FILE__) ) . "includes/class-doppler-extension-manager.php";
 
+		require_once plugin_dir_path( dirname(__FILE__) ) . 'includes/class-doppler-smtp-manager.php';
+
 		$this->loader = new Doppler_Form_Loader();
+
+	}
+
+	/**
+	 * Register all hooks related to SMTP configuration.
+	 */
+	private function define_smtp_hooks() {
+
+		$this->loader->add_action( 'admin_init', $this->smtp_manager, 'register_settings' );
+		$this->loader->add_action( 'phpmailer_init', $this->smtp_manager, 'configure_phpmailer' );
+		$this->loader->add_filter( 'wp_mail_from', $this->smtp_manager, 'filter_mail_from' );
+		$this->loader->add_filter( 'wp_mail_from_name', $this->smtp_manager, 'filter_mail_from_name' );
 
 	}
 
@@ -163,7 +181,7 @@ class DPLR_Doppler {
 	 */
 	private function define_admin_hooks() {
 		
-		$plugin_admin = new Doppler_Admin( $this->get_plugin_name(), $this->get_version(), $this->doppler_service);
+		$plugin_admin = new Doppler_Admin( $this->get_plugin_name(), $this->get_version(), $this->doppler_service, $this->smtp_manager );
 		$extension_manager = new Doppler_Extension_Manager($this->doppler_service);
 		
 		$this->loader->add_action( 'admin_enqueue_scripts', 	$plugin_admin, 'enqueue_styles' );
@@ -180,6 +198,9 @@ class DPLR_Doppler {
 		$this->loader->add_action( 'wp_ajax_dplr_get_lists',	$plugin_admin, 'ajax_get_lists' );
 		$this->loader->add_action( 'wp_ajax_dplr_save_list', 	$plugin_admin, 'ajax_save_list' );
 		$this->loader->add_action( 'wp_ajax_dplr_delete_list',  $plugin_admin, 'ajax_delete_list' );
+		$this->loader->add_action( 'admin_post_dplr_connect_relay', $plugin_admin, 'handle_relay_connect' );
+		$this->loader->add_action( 'admin_post_dplr_disconnect_relay', $plugin_admin, 'handle_relay_disconnect' );
+		$this->loader->add_action( 'admin_post_dplr_send_smtp_test', $plugin_admin, 'handle_smtp_test_email' );
 		$this->loader->add_action( 'wp_ajax_install_extension', $extension_manager, 'install_extension' );
 		$this->loader->add_elementor_action( 'elementor_pro/forms/actions/register', $extension_manager, 'add_elementor_action' );
 		$this->loader->add_action( 'elementor/editor/after_enqueue_scripts', $plugin_admin, 'enqueDopplerFieldsForElementor' );
