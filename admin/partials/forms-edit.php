@@ -387,8 +387,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     
       <div id="error-message" class="dp-wrap-message dp-wrap-cancel m-b-12 d-none">
         <span class="dp-message-icon"></span>
-        <div class="dp-content-message">
+        <div class="dp-content-message dp-content-full">
           <p><?php esc_html_e('Error! Remember that the email\'s content must obligatorily have an anchor element with the attribute: href=[[[ConfirmationLink]]]', 'doppler-form'); ?></p>
+          <a href="#" class="dp-message-link dplr-message-dismiss"><?php echo esc_html( strtoupper( __( 'Got it', 'doppler-form' ) ) ); ?></a>
         </div>
       </div>
 

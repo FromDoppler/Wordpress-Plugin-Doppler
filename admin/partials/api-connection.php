@@ -664,9 +664,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<button type="submit" class="dp-button button-medium primary-green button--round"><?php esc_html_e("CREATE FREE ACCOUNT", "doppler-form"); ?></button>
 									</fieldset>
 									<div id="dplr-signup-server-error" class="m-t-12 dp-wrap-message dp-wrap-cancel d-none" role="alert" aria-label="cancel">
-										<span className="dp-message-icon" />
-										<div className="dp-content-message">
+										<span class="dp-message-icon"></span>
+										<div class="dp-content-message dp-content-full">
 											<p></p>
+											<a href="#" class="dp-message-link dplr-message-dismiss"><?php echo esc_html( strtoupper( __( 'Got it', 'doppler-form' ) ) ); ?></a>
 										</div>
 									</div>
 								</form>
