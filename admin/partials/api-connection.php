@@ -495,7 +495,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php esc_html_e('Username', 'doppler-form');?>
 							<input type="email"
 								id="user-account"
-								class="validation visible"
+								class="validation visible box-shado-0"
 								name="dplr_settings[dplr_option_useraccount];"
 								aria-invalid="<?php echo (isset($errorMessages['user_account']) || $error) ? "true" : "false" ?>"
 								data-validation-email="<?php esc_attr_e("Ouch! Enter a valid Email.", "doppler-form"); ?>"
@@ -527,7 +527,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								id="api-key"
 								name="dplr_settings[dplr_option_apikey];"
 								data-validation-required="<?php esc_attr_e("Ouch! The field is empty.", "doppler-form"); ?>"
-								class="visible"
+								class="visible box-shado-0"
 								autocomplete="off"
 								placeholder=""
 								aria-invalid="<?php echo (isset($errorMessages['api_key']) || $error) ? "true" : "false" ?>"
@@ -586,7 +586,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 													<input name="firstname" type="text" id="firstname" maxlength="100" placeholder="<?php esc_attr_e("Enter your first name","doppler-form") ;?>" required
 														data-validation-required="<?php esc_attr_e("Ouch! The field is empty.", "doppler-form"); ?>"
 														data-validation-minlength="<?php esc_attr_e("Ouch! Write at least two characters.", "doppler-form"); ?>"
-														aria-invalid="false">
+														aria-invalid="false" class="box-shado-0">
 													<div class="assistance-wrap d-none"><span></span></div>
 												</label>
 											</li>
@@ -595,13 +595,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 													<input name="lastname" type="text" id="lastname" maxlength="100" placeholder="<?php esc_attr_e("Enter your last name","doppler-form") ;?>" required
 														data-validation-required="<?php esc_attr_e("Ouch! The field is empty.", "doppler-form"); ?>"
 														data-validation-minlength="<?php esc_attr_e("Ouch! Write at least two characters.", "doppler-form"); ?>"
-														aria-invalid="false">
+														aria-invalid="false" class="box-shado-0">
 													<div class="assistance-wrap d-none"><span></span></div>
 												</label>
 											</li>
 											<li class="field-item awa-form">
 												<label for="phone" class="labelcontrol"><?php esc_html_e("Phone number","doppler-form") ;?>:
-													<input type="tel" class="phone-doppler" name="phone" placeholder="011 15-2345-6789"
+													<input type="tel" class="phone-doppler box-shado-0" name="phone" placeholder="011 15-2345-6789"
 														data-validation-phone-invalid="<?php esc_attr_e('Enter a valid phone.', 'doppler-form'); ?>"
 														data-validation-phone-short="<?php esc_attr_e('Ouch! The phone number is too short.', 'doppler-form'); ?>"
 														data-validation-phone-long="<?php esc_attr_e('Ouch! The phone number is too long.', 'doppler-form'); ?>"
@@ -619,7 +619,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 													<input name="email" type="text" id="email" placeholder="<?php esc_attr_e("Enter your email. You must have access","doppler-form") ;?>"
 														autocomplete="off" maxlength="200" required
 														data-validation-email-invalid="<?php esc_attr_e("Enter a valid Email.", "doppler-form"); ?>"
-														aria-invalid="false">
+														aria-invalid="false" class="box-shado-0">
 													<div class="assistance-wrap d-none"><span></span></div>
 												</label>
 											</li>
@@ -628,7 +628,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 													<?php esc_html_e("Password","doppler-form") ;?>: 
 													<div class="dp-wrap-eyed">
 														<button type="button" id="dplr-hide-show-pw" class="show-hide ms-icon icon-view" tabindex="-1"></button>
-														<input name="password" type="password" autocomplete="new-password" id="dplr-sign-up-password"
+														<input name="password" type="password" autocomplete="new-password" id="dplr-sign-up-password" class="box-shado-0"
 															placeholder="<?php esc_attr_e("Create your password","doppler-form") ;?>" spellcheck="false" badinput="false" autocapitalize="off" required>
 														<div class="wrapper-password">
 															<p class="password-message">
