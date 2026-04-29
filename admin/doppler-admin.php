@@ -29,6 +29,10 @@ class Doppler_Admin {
 
 	private $error_message;
 
+	private $warning_message;
+
+	private $warning_message_title;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -69,6 +73,11 @@ class Doppler_Admin {
 		$this->success_message = $message;
 	}
 
+	public function set_warning_message($message, $title = '') {
+		$this->warning_message = $message;
+		$this->warning_message_title = $title;
+	}
+
 	public function get_error_message() {
 		return $this->error_message;
 	}
@@ -77,14 +86,23 @@ class Doppler_Admin {
 		return $this->success_message;
 	}
 
+	public function get_warning_message() {
+		return $this->warning_message;
+	}
+
+	public function get_warning_message_title() {
+		return $this->warning_message_title;
+	}
+
 	public function display_error_message() {
 		if($this->get_error_message()!=''):
 		?>
 		<div class="dp-rowflex">
 			<div id="displayErrorMessage" class="dp-wrap-message dp-wrap-cancel m-b-12">
 				<span class="dp-message-icon"></span>
-				<div class="dp-content-message">
+				<div class="dp-content-message dp-content-full">
 					<p><?php echo wp_kses_post($this->get_error_message()); ?></p>
+					<a href="#" id="ErrorMessageDismiss" class="dp-message-link dplr-message-dismiss"><?php echo esc_html(strtoupper(__('Got it', 'doppler-form'))); ?></a>
 				</div>
 			</div>
 		</div>
@@ -98,8 +116,32 @@ class Doppler_Admin {
 		<div class="dp-rowflex">
 			<div id="displaySuccessMessage" class="dp-wrap-message dp-wrap-success m-b-12">
 				<span class="dp-message-icon"></span>
-				<div class="dp-content-message">
+				<div class="dp-content-message dp-content-full">
 					<p><?php echo wp_kses_post($this->get_success_message()); ?></p>
+					<a href="#" id="SuccessMessageDismiss" class="dp-message-link dplr-message-dismiss"><?php echo esc_html(strtoupper(__('Got it', 'doppler-form'))); ?></a>
+				</div>
+			</div>
+		</div>
+		<?php
+		endif;
+	}
+
+	public function display_warning_message() {
+		if($this->get_warning_message()!=''):
+		?>
+		<div class="dp-rowflex">
+			<div id="displayWarningMessage" class="dp-wrap-message dp-wrap-warning m-b-12">
+				<span class="dp-message-icon"></span>
+				<div class="dp-content-message dp-content-full">
+					<div>
+						<?php if($this->get_warning_message_title()!=''): ?>
+							<strong><?php echo esc_html($this->get_warning_message_title()); ?></strong>
+							<p style="color:grey"><?php echo wp_kses_post($this->get_warning_message()); ?></p>
+						<?php else: ?>
+							<p><?php echo wp_kses_post($this->get_warning_message()); ?></p>
+						<?php endif; ?>
+					</div>
+					<a href="#" id="WarningMessageDismiss" class="dp-message-link dplr-message-dismiss"><?php echo esc_html(strtoupper(__('Got it', 'doppler-form'))); ?></a>
 				</div>
 			</div>
 		</div>
@@ -174,6 +216,7 @@ class Doppler_Admin {
 			'WooCheckError' => __('Could not check the WooCommerce integration, please try again.', 'doppler-form'),
 			'WooError' => __('Error', 'doppler-form'),
 			'invalidPhone' => __('Invalid Format.', 'doppler-form'),
+			'GotIt' => strtoupper(__('Got it', 'doppler-form')),
 		) ); 
 		wp_enqueue_script('field-module', plugin_dir_url( __FILE__ ) . 'js/field-module.js', array($this->plugin_name), $this->version, false);
 		wp_localize_script( 'field-module', 'ObjStr', array( 
