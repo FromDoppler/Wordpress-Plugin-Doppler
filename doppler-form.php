@@ -13,7 +13,7 @@
  * @package           Doppler
  *
  * @wordpress-plugin
- * Plugin Name:       Doppler Forms
+ * Plugin Name:       Doppler Easy Multichannel Marketing enhanced with IA
  * Description:       Crea Formularios de Suscripción con la misma estética de tu sitio web o blog en minutos. Conéctalo con Doppler y envía a tus nuevos contactos automáticamente a una Lista de Suscriptores.
  * Version:           2.8.0
  * Author:            Doppler LLC

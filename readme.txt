@@ -1,4 +1,4 @@
-=== Doppler Forms ===
+=== Doppler Easy Multichannel Marketing enhanced with IA ===
 Contributors: fromdoppler
 Donate link: --
 Tags: Doppler, Email marketing, integration, form, automation
