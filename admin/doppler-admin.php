@@ -29,20 +29,28 @@ class Doppler_Admin {
 
 	private $error_message;
 
+	private $warning_message;
+
+	private $warning_message_title;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct( $plugin_name, $version,  $doppler_service ) {
+	public function __construct( $plugin_name, $version,  $doppler_service, $smtp_manager ) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		$this->doppler_service = $doppler_service;
+		$this->smtp_manager = $smtp_manager;
 		$this->success_message = false;
 		$this->error_message = false;
+		$this->warning_message = false;
+		$this->warning_message_title = false;
 		$this->form_controller = new DPLR_Form_Controller($doppler_service);
 		$this->extension_manager = new Doppler_Extension_Manager($doppler_service);
 		$this->connection_status = false;
+		$this->smtp_test_error = null;
 	}
 
 	public function get_version() {
@@ -65,6 +73,11 @@ class Doppler_Admin {
 		$this->success_message = $message;
 	}
 
+	public function set_warning_message($message, $title = '') {
+		$this->warning_message = $message;
+		$this->warning_message_title = $title;
+	}
+
 	public function get_error_message() {
 		return $this->error_message;
 	}
@@ -73,14 +86,23 @@ class Doppler_Admin {
 		return $this->success_message;
 	}
 
+	public function get_warning_message() {
+		return $this->warning_message;
+	}
+
+	public function get_warning_message_title() {
+		return $this->warning_message_title;
+	}
+
 	public function display_error_message() {
 		if($this->get_error_message()!=''):
 		?>
 		<div class="dp-rowflex">
 			<div id="displayErrorMessage" class="dp-wrap-message dp-wrap-cancel m-b-12">
 				<span class="dp-message-icon"></span>
-				<div class="dp-content-message">
+				<div class="dp-content-message dp-content-full">
 					<p><?php echo wp_kses_post($this->get_error_message()); ?></p>
+					<a href="#" id="ErrorMessageDismiss" class="dp-message-link dplr-message-dismiss"><?php echo esc_html(strtoupper(__('Got it', 'doppler-form'))); ?></a>
 				</div>
 			</div>
 		</div>
@@ -94,8 +116,32 @@ class Doppler_Admin {
 		<div class="dp-rowflex">
 			<div id="displaySuccessMessage" class="dp-wrap-message dp-wrap-success m-b-12">
 				<span class="dp-message-icon"></span>
-				<div class="dp-content-message">
+				<div class="dp-content-message dp-content-full">
 					<p><?php echo wp_kses_post($this->get_success_message()); ?></p>
+					<a href="#" id="SuccessMessageDismiss" class="dp-message-link dplr-message-dismiss"><?php echo esc_html(strtoupper(__('Got it', 'doppler-form'))); ?></a>
+				</div>
+			</div>
+		</div>
+		<?php
+		endif;
+	}
+
+	public function display_warning_message() {
+		if($this->get_warning_message()!=''):
+		?>
+		<div class="dp-rowflex">
+			<div id="displayWarningMessage" class="dp-wrap-message dp-wrap-warning m-b-12">
+				<span class="dp-message-icon"></span>
+				<div class="dp-content-message dp-content-full">
+					<div>
+						<?php if($this->get_warning_message_title()!=''): ?>
+							<strong><?php echo esc_html($this->get_warning_message_title()); ?></strong>
+							<p style="color:grey"><?php echo wp_kses_post($this->get_warning_message()); ?></p>
+						<?php else: ?>
+							<p><?php echo wp_kses_post($this->get_warning_message()); ?></p>
+						<?php endif; ?>
+					</div>
+					<a href="#" id="WarningMessageDismiss" class="dp-message-link dplr-message-dismiss"><?php echo esc_html(strtoupper(__('Got it', 'doppler-form'))); ?></a>
 				</div>
 			</div>
 		</div>
@@ -170,6 +216,7 @@ class Doppler_Admin {
 			'WooCheckError' => __('Could not check the WooCommerce integration, please try again.', 'doppler-form'),
 			'WooError' => __('Error', 'doppler-form'),
 			'invalidPhone' => __('Invalid Format.', 'doppler-form'),
+			'GotIt' => strtoupper(__('Got it', 'doppler-form')),
 		) ); 
 		wp_enqueue_script('field-module', plugin_dir_url( __FILE__ ) . 'js/field-module.js', array($this->plugin_name), $this->version, false);
 		wp_localize_script( 'field-module', 'ObjStr', array( 
@@ -333,6 +380,15 @@ class Doppler_Admin {
 			'manage_options',
 			'doppler_forms_menu',
 			array($this, 'display_connection_screen')
+		);
+
+		add_submenu_page(
+			'doppler_forms_menu',
+			'Doppler Relay',
+			'Doppler Relay',
+			'manage_options',
+			'doppler-smtp-configuration',
+			array($this, 'smtp_settings_screen')
 		);
 
 		if ( $this->is_api_connected() && $options['dplr_option_apikey'] != '' &&  !empty($options['dplr_option_useraccount']) ){
@@ -599,6 +655,73 @@ class Doppler_Admin {
 		require_once('partials/settings.php');
 	}
 
+	public function smtp_settings_screen() {
+		$smtp_settings      = $this->smtp_manager->get_settings();
+		$smtp_test_notice   = $this->get_smtp_test_notice();
+		$smtp_page_notice   = $this->get_smtp_page_notice();
+		$relay_connection   = $this->smtp_manager->get_relay_connection();
+		$relay_connected    = $this->smtp_manager->has_relay_connection();
+		$relay_domains_data = false;
+		$relay_domains_error = '';
+		$verified_domains   = array();
+		$selected_domain    = '';
+		$relay_blocked      = true;
+		$relay_signup_url   = 'https://app.dopplerrelay.com/signup';
+		$relay_host         = $this->smtp_manager->get_fixed_host();
+		$relay_port         = $this->smtp_manager->get_fixed_port();
+		$relay_encryption   = $this->smtp_manager->get_fixed_encryption_label();
+
+		if ( $relay_connected ) {
+			$relay_domains_data = $this->smtp_manager->get_relay_domains_data();
+
+			if ( is_wp_error( $relay_domains_data ) ) {
+				$relay_domains_error = $relay_domains_data->get_error_message();
+			} else {
+				$verified_domains = $this->smtp_manager->get_verified_domains( $relay_domains_data );
+				$selected_domain  = $this->smtp_manager->get_selected_domain( $smtp_settings, $relay_domains_data );
+				$relay_blocked    = empty( $verified_domains );
+			}
+		}
+
+		require_once("partials/loading.php");
+		require_once('partials/doppler-relay-settings.php');
+	}
+
+	public function handle_relay_connect() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'doppler-form' ), '', array( 'response' => 403 ) );
+		}
+
+		check_admin_referer( 'dplr-connect-relay', 'dplr_relay_nonce' );
+
+		$account_name = isset( $_POST['dplr_relay_account_name'] ) ? sanitize_text_field( wp_unslash( $_POST['dplr_relay_account_name'] ) ) : '';
+		$api_key      = isset( $_POST['dplr_relay_api_key'] ) ? sanitize_text_field( wp_unslash( $_POST['dplr_relay_api_key'] ) ) : '';
+		$result       = $this->smtp_manager->connect_relay( $account_name, $api_key );
+
+		if ( is_wp_error( $result ) ) {
+			$this->set_smtp_page_notice( 'error', $result->get_error_message() );
+		} else {
+			$this->set_smtp_page_notice( 'success', __( 'Doppler Relay account connected successfully.', 'doppler-form' ) );
+		}
+
+		wp_safe_redirect( $this->get_smtp_redirect_url() );
+		exit;
+	}
+
+	public function handle_relay_disconnect() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'doppler-form' ), '', array( 'response' => 403 ) );
+		}
+
+		check_admin_referer( 'dplr-disconnect-relay', 'dplr_relay_disconnect_nonce' );
+
+		$this->smtp_manager->disconnect_relay();
+		$this->set_smtp_page_notice( 'success', __( 'Doppler Relay account disconnected successfully.', 'doppler-form' ) );
+
+		wp_safe_redirect( $this->get_smtp_redirect_url() );
+		exit;
+	}
+
 	public function show_admin_notices() {
 
 		$options = get_option('dplr_settings');
@@ -695,6 +818,84 @@ class Doppler_Admin {
 	}
 
 	/**
+	 * Sends an SMTP test email through wp_mail().
+	 */
+	public function handle_smtp_test_email() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'doppler-form' ), '', array( 'response' => 403 ) );
+		}
+
+		check_admin_referer( 'dplr-send-smtp-test', 'dplr_smtp_test_nonce' );
+
+		$redirect_url = $this->get_smtp_redirect_url();
+
+		if ( ! $this->smtp_manager->has_relay_connection() ) {
+			$this->set_smtp_test_notice( 'error', __( 'Connect your Doppler Relay account before sending a test email.', 'doppler-form' ) );
+			wp_safe_redirect( $redirect_url );
+			exit;
+		}
+
+		$relay_domains_data = $this->smtp_manager->get_relay_domains_data();
+		if ( is_wp_error( $relay_domains_data ) ) {
+			$this->set_smtp_test_notice( 'error', $relay_domains_data->get_error_message() );
+			wp_safe_redirect( $redirect_url );
+			exit;
+		}
+
+		if ( empty( $this->smtp_manager->get_verified_domains( $relay_domains_data ) ) ) {
+			$this->set_smtp_test_notice( 'error', __( 'You need at least one verified domain with DKIM, SPF and DMARC ready in Doppler Relay before sending a test email.', 'doppler-form' ) );
+			wp_safe_redirect( $redirect_url );
+			exit;
+		}
+
+		if ( ! $this->smtp_manager->is_enabled() ) {
+			$configuration_errors = $this->smtp_manager->get_configuration_errors();
+			$error_message        = ! empty( $configuration_errors ) ? reset( $configuration_errors ) : __( 'Enable SMTP and save a valid configuration before sending a test email.', 'doppler-form' );
+
+			$this->set_smtp_test_notice( 'error', $error_message );
+			wp_safe_redirect( $redirect_url );
+			exit;
+		}
+
+		$recipient = '';
+		if ( isset( $_POST['dplr_smtp_test_email'] ) ) {
+			$recipient = sanitize_email( wp_unslash( $_POST['dplr_smtp_test_email'] ) );
+		}
+
+		if ( empty( $recipient ) || ! is_email( $recipient ) ) {
+			$this->set_smtp_test_notice( 'error', __( 'Please enter a valid test email address.', 'doppler-form' ) );
+			wp_safe_redirect( $redirect_url );
+			exit;
+		}
+
+		$this->smtp_test_error = null;
+		add_action( 'wp_mail_failed', array( $this, 'capture_smtp_test_failure' ), 10, 1 );
+
+		$subject = sprintf(
+			/* translators: %s: Site name. */
+			__( 'SMTP test email from %s', 'doppler-form' ),
+			wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES )
+		);
+		$message = __( 'This is a test email sent from the Doppler Forms SMTP Configuration screen.', 'doppler-form' );
+		$sent    = wp_mail( $recipient, $subject, $message, array( 'Content-Type: text/plain; charset=UTF-8' ) );
+
+		remove_action( 'wp_mail_failed', array( $this, 'capture_smtp_test_failure' ), 10 );
+
+		if ( $sent ) {
+			$this->set_smtp_test_notice( 'success', sprintf(
+				/* translators: %s: Email address. */
+				__( 'Test email sent successfully to %s.', 'doppler-form' ),
+				$recipient
+			) );
+		} else {
+			$this->set_smtp_test_notice( 'error', $this->get_smtp_test_error_message() );
+		}
+
+		wp_safe_redirect( $redirect_url );
+		exit;
+	}
+
+	/**
 	 * Called upon user pressing the signup button.
 	 * Creates a Doppler account using Doppler's API.
 	 */
@@ -730,7 +931,7 @@ class Doppler_Admin {
 			'lastName' => $lastname,
 			'password' => $password,
 			'phone' => $phone,
-			'origin' => 'Wordpress',
+			'origin' => 'Wordpress_Plugin',
 			'language' => $this->get_signup_language(),
 			'termsAndConditionsActive' => true,
 			'promotionsEnabled' => $promotions_enabled,
@@ -993,5 +1194,106 @@ class Doppler_Admin {
 			wp_send_json_error(['message' => __('Unauthorized', 'doppler-form')]);
 			wp_die();
     	}
+	}
+
+	/**
+	 * Captures wp_mail() failures for SMTP test requests.
+	 *
+	 * @param WP_Error $wp_error Failure payload.
+	 */
+	public function capture_smtp_test_failure( $wp_error ) {
+		$this->smtp_test_error = $wp_error;
+	}
+
+	/**
+	 * Stores an SMTP test notice between redirects.
+	 *
+	 * @param string $type Notice type.
+	 * @param string $message Notice message.
+	 */
+	private function set_smtp_test_notice( $type, $message ) {
+		set_transient(
+			'dplr_smtp_test_notice',
+			array(
+				'type'    => sanitize_key( $type ),
+				'message' => sanitize_text_field( $message ),
+			),
+			MINUTE_IN_SECONDS
+		);
+	}
+
+	/**
+	 * Returns the stored SMTP test notice, if any.
+	 *
+	 * @return array|null
+	 */
+	private function get_smtp_test_notice() {
+		$notice = get_transient( 'dplr_smtp_test_notice' );
+
+		if ( false === $notice ) {
+			return null;
+		}
+
+		delete_transient( 'dplr_smtp_test_notice' );
+
+		if ( ! is_array( $notice ) || empty( $notice['message'] ) ) {
+			return null;
+		}
+
+		$notice['type'] = in_array( $notice['type'], array( 'success', 'error' ), true ) ? $notice['type'] : 'error';
+
+		return $notice;
+	}
+
+	/**
+	 * Returns a readable SMTP test failure message.
+	 *
+	 * @return string
+	 */
+	private function get_smtp_test_error_message() {
+		if ( is_wp_error( $this->smtp_test_error ) ) {
+			$error_messages = $this->smtp_test_error->get_error_messages();
+
+			if ( ! empty( $error_messages ) ) {
+				$error_messages = array_map( 'sanitize_text_field', $error_messages );
+
+				return implode( ' ', $error_messages );
+			}
+		}
+
+		return __( 'The test email could not be sent. Please review your SMTP configuration and try again.', 'doppler-form' );
+	}
+
+	private function get_smtp_redirect_url() {
+		return admin_url( 'admin.php?page=doppler-smtp-configuration' );
+	}
+
+	private function set_smtp_page_notice( $type, $message ) {
+		set_transient(
+			'dplr_smtp_page_notice',
+			array(
+				'type'    => sanitize_key( $type ),
+				'message' => sanitize_text_field( $message ),
+			),
+			MINUTE_IN_SECONDS
+		);
+	}
+
+	private function get_smtp_page_notice() {
+		$notice = get_transient( 'dplr_smtp_page_notice' );
+
+		if ( false === $notice ) {
+			return null;
+		}
+
+		delete_transient( 'dplr_smtp_page_notice' );
+
+		if ( ! is_array( $notice ) || empty( $notice['message'] ) ) {
+			return null;
+		}
+
+		$notice['type'] = in_array( $notice['type'], array( 'success', 'error' ), true ) ? $notice['type'] : 'error';
+
+		return $notice;
 	}
 }
