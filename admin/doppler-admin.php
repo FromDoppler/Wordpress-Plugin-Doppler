@@ -850,7 +850,7 @@ class Doppler_Admin {
 
 		if ( ! $this->smtp_manager->is_enabled() ) {
 			$configuration_errors = $this->smtp_manager->get_configuration_errors();
-			$error_message        = ! empty( $configuration_errors ) ? reset( $configuration_errors ) : __( 'Enable SMTP and save a valid configuration before sending a test email.', 'doppler-form' );
+			$error_message        = ! empty( $configuration_errors ) ? reset( $configuration_errors ) : __( 'Save a valid SMTP configuration before sending a test email.', 'doppler-form' );
 
 			$this->set_smtp_test_notice( 'error', $error_message );
 			wp_safe_redirect( $redirect_url );

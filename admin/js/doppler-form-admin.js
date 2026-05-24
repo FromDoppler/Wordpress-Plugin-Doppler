@@ -800,7 +800,13 @@ function displayErrors(body) {
 	jQuery("#ListErrorMessage")
 		.removeClass("d-none")
 		.find(".dp-content-message")
-		.html("<p>" + generateErrorMsg(body) + "</p>");
+		.html(
+			"<p>" +
+				generateErrorMsg(body) +
+				'</p><a href="#" id="ListErrorMessageDismiss" class="dp-message-link dplr-message-dismiss">' +
+				object_string.GotIt +
+				"</a>"
+		);
 }
 
 function clearResponseMessages() {

@@ -23,6 +23,12 @@
 	width: 100%;
 }
 
+.dplr_settings .relay-logo-header {
+	max-width: 180px;
+	display: block;
+	margin-top: 50px;
+}
+
 .dplr_settings p {
 	color: #525845;
 }
@@ -919,6 +925,12 @@
 	position: absolute;
 }
 
+.dplr_settings .help-icon {
+	width: 18px;
+	height: 18px;
+	background-image: url("../img/help-icon.svg");
+}
+
 .dplr_settings .tooltip {
 	position: relative;
 }
@@ -1352,6 +1364,50 @@
 
 .dplr_settings main.confirmation-main footer p {
 	text-align: left;
+}
+
+.dplr_settings .relay_section .dp-box-shadow {
+	box-shadow: 0px 4px 4px 0px #0000001A;
+	border-radius: 4px;
+	background-color: white;
+}
+
+.dplr_settings .relay_section label[aria-disabled="true"] {
+	opacity: 0.7;
+}
+
+.dplr_settings .relay_section label > input[disabled] {
+	background-color: white;
+	font-weight: normal;
+}
+
+.dplr_settings .relay_section .dplr-relay-loading-form > label {
+	font-weight: 600;
+}
+
+.dplr_settings .relay_section .dplr-relay-loading-form > label > input::placeholder {
+	color: #838370;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.dplr_settings .relay_section label[for="dplr-smtp-from-local-part"] {
+	display: block;
+}
+
+.dplr_settings .relay_section .dplr-from-email-inline {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.dplr_settings .relay_section .dplr-from-email-inline > span {
+	color: #666;
+	line-height: 40px;
+}
+
+.dplr_settings .relay_section .dplr-from-email-inline > .dp-select  {
+	width: 100%;
 }
 
 /* override doppler's styles */

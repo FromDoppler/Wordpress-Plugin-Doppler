@@ -318,7 +318,6 @@ class DPLR_SMTP_Manager {
 		$has_errors         = false;
 		$invalid_from_alias = false;
 
-		$sanitized['enabled']         = empty( $input['enabled'] ) ? 0 : 1;
 		$sanitized['smtp_user']       = isset( $input['smtp_user'] ) ? sanitize_text_field( $input['smtp_user'] ) : '';
 		$sanitized['from_local_part'] = isset( $input['from_local_part'] ) ? trim( sanitize_text_field( $input['from_local_part'] ) ) : '';
 		$sanitized['from_name']       = isset( $input['from_name'] ) ? sanitize_text_field( $input['from_name'] ) : '';
@@ -345,9 +344,7 @@ class DPLR_SMTP_Manager {
 				$domains_data->get_error_message()
 			);
 
-			$sanitized['enabled'] = 0;
-
-			return $sanitized;
+			return $existing_settings;
 		}
 
 		$verified_domains = $this->get_verified_domains( $domains_data );
@@ -355,14 +352,10 @@ class DPLR_SMTP_Manager {
 			add_settings_error(
 				$this->option_name,
 				'dplr_smtp_no_verified_domains',
-				__( 'You need at least one verified domain with DKIM, SPF and DMARC ready in Doppler Relay before enabling SMTP.', 'doppler-form' )
+				__( 'You need at least one verified domain with DKIM, SPF and DMARC ready in Doppler Relay before configuring SMTP.', 'doppler-form' )
 			);
 
-			$sanitized['enabled']     = 0;
-			$sanitized['from_domain'] = '';
-			$sanitized['from_email']  = '';
-
-			return $sanitized;
+			return $existing_settings;
 		}
 
 		$requested_domain = isset( $input['from_domain'] ) ? sanitize_text_field( $input['from_domain'] ) : $this->get_selected_domain( $sanitized, $domains_data );
@@ -445,11 +438,13 @@ class DPLR_SMTP_Manager {
 			'updated'
 		);
 
+		$sanitized['enabled'] = 1;
+
 		return $sanitized;
 	}
 
 	/**
-	 * Returns true when SMTP is enabled and fully configured.
+	 * Returns true when SMTP is active and fully configured.
 	 *
 	 * @return bool
 	 */
@@ -532,7 +527,7 @@ class DPLR_SMTP_Manager {
 	}
 
 	/**
-	 * Forces the mail from address when SMTP is enabled.
+	 * Forces the mail from address when SMTP is active.
 	 *
 	 * @param string $from_email Existing from email.
 	 * @return string
@@ -546,7 +541,7 @@ class DPLR_SMTP_Manager {
 	}
 
 	/**
-	 * Forces the mail from name when SMTP is enabled.
+	 * Forces the mail from name when SMTP is active.
 	 *
 	 * @param string $from_name Existing from name.
 	 * @return string
@@ -570,19 +565,19 @@ class DPLR_SMTP_Manager {
 		$errors   = array();
 
 		if ( ! $this->has_relay_connection() ) {
-			$errors[] = __( 'Connect your Doppler Relay account before enabling SMTP.', 'doppler-form' );
+			$errors[] = __( 'Connect your Doppler Relay account before configuring SMTP.', 'doppler-form' );
 		}
 
 		if ( empty( $settings['smtp_user'] ) ) {
-			$errors[] = __( 'SMTP user is required when SMTP is enabled.', 'doppler-form' );
+			$errors[] = __( 'SMTP user is required.', 'doppler-form' );
 		}
 
 		if ( empty( $settings['from_name'] ) ) {
-			$errors[] = __( 'From name is required when SMTP is enabled.', 'doppler-form' );
+			$errors[] = __( 'From name is required.', 'doppler-form' );
 		}
 
 		if ( empty( $settings['from_email'] ) || ! is_email( $settings['from_email'] ) ) {
-			$errors[] = __( 'A valid From email address is required when SMTP is enabled.', 'doppler-form' );
+			$errors[] = __( 'A valid From email address is required.', 'doppler-form' );
 		}
 
 		return array_unique( $errors );
