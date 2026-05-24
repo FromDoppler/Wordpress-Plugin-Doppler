@@ -55,7 +55,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 								<div class="dp-tooltip-top dp-tooltip-top-bubble">
 									<span>
 										<?php esc_html_e("How do you find your API Key? Press", "doppler-form"); ?>
-										<a href="<?php esc_html_e('https://help.dopplerrelay.com/en/where-can-i-find-my-api-key-and-smtp-credentials', 'doppler-form')?>">
+										<a href="<?php esc_html_e('https://help.dopplerrelay.com/en/where-can-i-find-my-api-key-and-smtp-credentials', 'doppler-form')?>" target="_blank" rel="noopener noreferrer">
 											<?php esc_html_e("HELP", "doppler-form"); ?>
 										</a>
 									</span>
@@ -105,26 +105,16 @@ if ( ! current_user_can( 'manage_options' ) ) {
 			if ( ! empty( $smtp_test_notice ) && ! empty( $smtp_test_notice['message'] ) ) {
 				$smtp_notices[] = $smtp_test_notice;
 			}
+
+			$smtp_configuration_errors = $this->smtp_manager->get_configuration_errors( $smtp_settings );
+			$smtp_test_blocked         = $relay_blocked
+				|| ! empty( $smtp_configuration_errors )
+				|| empty( $smtp_settings['smtp_user'] )
+				|| empty( $smtp_settings['from_email'] );
+			$smtp_settings_save_blocked = $relay_blocked || ! empty( $relay_domains_error );
 			?>
 			<div class="dp-container m-t-24">
 				<div class="dp-rowflex">
-					<?php foreach ( $smtp_notices as $smtp_notice ) : ?>
-						<?php
-						$smtp_notice_type  = ! empty( $smtp_notice['type'] ) ? $smtp_notice['type'] : 'error';
-						$smtp_notice_type  = 'updated' === $smtp_notice_type ? 'success' : $smtp_notice_type;
-						$smtp_notice_class = 'success' === $smtp_notice_type ? 'dp-wrap-success' : 'dp-wrap-cancel';
-						$smtp_notice_class = 'warning' === $smtp_notice_type ? 'dp-wrap-warning' : $smtp_notice_class;
-						?>
-						<div class="dp-rowflex">
-							<div class="dp-wrap-message <?php echo esc_attr( $smtp_notice_class ); ?> m-b-12">
-								<span class="dp-message-icon"></span>
-								<div class="dp-content-message dp-content-full">
-									<p><?php echo esc_html( $smtp_notice['message'] ); ?></p>
-									<a href="#" class="dp-message-link dplr-message-dismiss"><?php echo esc_html( strtoupper( __( 'Got it', 'doppler-form' ) ) ); ?></a>
-								</div>
-							</div>
-						</div>
-					<?php endforeach; ?>
 					<section class="col-sm-12 dp-box-shadow">
 						<header>
 							<div class="dp-rowflex space-between p-l-24">
@@ -164,27 +154,40 @@ if ( ! current_user_can( 'manage_options' ) ) {
 						</header>
 					</section>
 
+					<?php foreach ( $smtp_notices as $smtp_notice ) : ?>
+						<?php
+						$smtp_notice_type  = ! empty( $smtp_notice['type'] ) ? $smtp_notice['type'] : 'error';
+						$smtp_notice_type  = 'updated' === $smtp_notice_type ? 'success' : $smtp_notice_type;
+						$smtp_notice_class = 'success' === $smtp_notice_type ? 'dp-wrap-success' : 'dp-wrap-cancel';
+						$smtp_notice_class = 'warning' === $smtp_notice_type ? 'dp-wrap-warning' : $smtp_notice_class;
+						?>
+						<div class="m-t-24">
+							<div class="dp-wrap-message <?php echo esc_attr( $smtp_notice_class ); ?> m-b-12">
+								<span class="dp-message-icon"></span>
+								<div class="dp-content-message dp-content-full">
+									<p><?php echo esc_html( $smtp_notice['message'] ); ?></p>
+									<a href="#" class="dp-message-link dplr-message-dismiss"><?php echo esc_html( strtoupper( __( 'Got it', 'doppler-form' ) ) ); ?></a>
+								</div>
+							</div>
+						</div>
+					<?php endforeach; ?>
 					<?php if ( ! empty( $relay_domains_error ) ) : ?>
-						<div class="col-sm-12 m-l-24">
-							<div class="dp-rowflex m-t-24">
-								<div class="dp-wrap-message dp-wrap-cancel m-b-12">
-									<span class="dp-message-icon"></span>
-									<div class="dp-content-message dp-content-full">
-										<p><?php echo esc_html( "$relay_domains_error" ); ?></p>
-										<a href="#" class="dp-message-link dplr-message-dismiss"><?php echo esc_html( strtoupper( __( 'Got it', 'doppler-form' ) ) ); ?></a>
-									</div>
+						<div class="m-t-24">
+							<div class="dp-wrap-message dp-wrap-cancel m-b-12">
+								<span class="dp-message-icon"></span>
+								<div class="dp-content-message dp-content-full">
+									<p><?php echo esc_html( "$relay_domains_error" ); ?></p>
+									<a href="#" class="dp-message-link dplr-message-dismiss"><?php echo esc_html( strtoupper( __( 'Got it', 'doppler-form' ) ) ); ?></a>
 								</div>
 							</div>
 						</div>
 					<?php elseif ( $relay_blocked ) : ?>
-						<div class="col-sm-12 m-l-24">
-							<div class="dp-rowflex m-t-24">
-								<div class="dp-wrap-message dp-wrap-cancel m-b-12">
-									<span class="dp-message-icon"></span>
-									<div class="dp-content-message dp-content-full">
-										<p><?php esc_html_e( 'You need at least one verified domain with DKIM, SPF and DMARC ready in Doppler Relay before configuring SMTP.', 'doppler-form' ); ?></p>
-										<a href="#" class="dp-message-link dplr-message-dismiss"><?php echo esc_html( strtoupper( __( 'Got it', 'doppler-form' ) ) ); ?></a>
-									</div>
+						<div class="m-t-24">
+							<div class="dp-wrap-message dp-wrap-cancel m-b-12">
+								<span class="dp-message-icon"></span>
+								<div class="dp-content-message dp-content-full">
+									<p><?php esc_html_e( 'You need at least one verified domain with DKIM, SPF and DMARC ready in Doppler Relay before configuring SMTP.', 'doppler-form' ); ?></p>
+									<a href="#" class="dp-message-link dplr-message-dismiss"><?php echo esc_html( strtoupper( __( 'Got it', 'doppler-form' ) ) ); ?></a>
 								</div>
 							</div>
 						</div>
@@ -194,13 +197,9 @@ if ( ! current_user_can( 'manage_options' ) ) {
 						<form action="options.php" method="post" class="dplr-relay-loading-form m-l-12">
 							<?php settings_fields( $this->smtp_manager->get_option_group() ); ?>	
 							<header>
-								<div class="dp-container">
-									<div class="dp-rowflex space-between">
-										<div class="col-sm-8 m-t-24">
-											<h3><?php esc_html_e( 'SMTP configuration', 'doppler-form' ); ?></h3>
-											<p><?php esc_html_e( 'Send your Emails through Doppler Relay\'s SMTP provider without needing your own email servers, and send large campaigns without ending up in spam.', 'doppler-form' ); ?></p>
-										</div>
-									</div>
+								<div class="col-sm-9 m-t-24">
+									<h3><?php esc_html_e( 'SMTP configuration', 'doppler-form' ); ?></h3>
+									<p><?php esc_html_e( 'Send your Emails through Doppler Relay\'s SMTP provider without needing your own email servers, and send large campaigns without ending up in spam.', 'doppler-form' ); ?></p>
 								</div>
 							</header>
 							<div class="col-sm-8">
@@ -214,6 +213,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 												class="col-sm-8 col-md-8 col-lg-8 box-shado-0"
 												name="dplr_smtp_settings[smtp_user]"
 												value="<?php echo esc_attr( $smtp_settings['smtp_user'] ); ?>"
+												placeholder="<?php esc_attr_e( 'Example: info@fromdoppler.com', 'doppler-form' ); ?>"
 												autocomplete="off"
 												required="required"
 												aria-required="true"
@@ -259,7 +259,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 								</div>
 							</div>
 							<header class="m-t-24">
-								<div class="col-sm-8">
+								<div class="col-sm-9">
 									<h3><?php esc_html_e( 'Sender email', 'doppler-form' ); ?></h3>
 									<p><?php esc_html_e( 'Enter the sender name and email address you want to use to deliver your emails. Remember that it must belong to a verified Doppler Relay domain.', 'doppler-form' ); ?></p>
 								</div>
@@ -292,7 +292,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 													name="dplr_smtp_settings[from_local_part]"
 													value="<?php echo esc_attr( $smtp_settings['from_local_part'] ); ?>"
 													autocomplete="off"
-													placeholder="<?php esc_attr_e( 'notifications', 'doppler-form' ); ?>"
+													placeholder="<?php esc_attr_e( 'Example: notifications', 'doppler-form' ); ?>"
 													pattern="[^@\s]+"
 													title="<?php esc_attr_e( 'Enter only the email alias, without @ or domain.', 'doppler-form' ); ?>"
 													required="required"
@@ -318,10 +318,10 @@ if ( ! current_user_can( 'manage_options' ) ) {
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-8 m-t-42 m-b-30">
+							<div class="col-sm-9 m-t-42 m-b-30">
 								<div class="dp-h-divider"></div>
 							</div>
-							<button class="dp-button button-medium secondary-green m-l-12 m-b-30" <?php disabled( $relay_blocked, true ); ?>>
+							<button class="dp-button button-medium secondary-green m-l-12 m-b-30" <?php disabled( $smtp_settings_save_blocked, true ); ?>>
 								<?php esc_html_e( 'Save changes', 'doppler-form' ); ?>
 							</button>
 						</form>
@@ -351,7 +351,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 										<?php disabled( $relay_blocked, true ); ?>>
 								</label>
 
-								<button class="dp-button button-medium secondary-green text-align--right m-t-18 m-b-6" <?php disabled( $relay_blocked, true ); ?>>
+								<button class="dp-button button-medium secondary-green text-align--right m-t-18 m-b-6" <?php disabled( $smtp_test_blocked, true ); ?>>
 									<span class="m-r-48 m-l-48"><?php esc_html_e( 'Send', 'doppler-form' ); ?></span>
 								</button>
 							</div>

@@ -1385,7 +1385,7 @@
 	font-weight: 600;
 }
 
-.dplr_settings .relay_section .dplr-relay-loading-form > label > input::placeholder {
+.dplr_settings .relay_section label input::placeholder {
 	color: #838370;
 	font-weight: 400;
 	font-style: italic;
