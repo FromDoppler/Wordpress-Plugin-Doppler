@@ -84,34 +84,34 @@ if ( ! current_user_can( 'manage_options' ) ) {
 			</div>
 		<?php else : ?>
 			<?php
-			$smtp_notices = array();
+			$dplr_smtp_notices = array();
 
-			foreach ( get_settings_errors( $this->smtp_manager->get_option_name() ) as $smtp_settings_error ) {
-				if ( empty( $smtp_settings_error['message'] ) ) {
+			foreach ( get_settings_errors( $this->smtp_manager->get_option_name() ) as $dplr_smtp_settings_error ) {
+				if ( empty( $dplr_smtp_settings_error['message'] ) ) {
 					continue;
 				}
 
-				$smtp_notices[] = array(
-					'type'    => isset( $smtp_settings_error['type'] ) ? $smtp_settings_error['type'] : 'error',
-					'code'    => isset( $smtp_settings_error['code'] ) ? $smtp_settings_error['code'] : '',
-					'message' => $smtp_settings_error['message'],
+				$dplr_smtp_notices[] = array(
+					'type'    => isset( $dplr_smtp_settings_error['type'] ) ? $dplr_smtp_settings_error['type'] : 'error',
+					'code'    => isset( $dplr_smtp_settings_error['code'] ) ? $dplr_smtp_settings_error['code'] : '',
+					'message' => $dplr_smtp_settings_error['message'],
 				);
 			}
 
 			if ( ! empty( $smtp_page_notice ) && ! empty( $smtp_page_notice['message'] ) ) {
-				$smtp_notices[] = $smtp_page_notice;
+				$dplr_smtp_notices[] = $smtp_page_notice;
 			}
 
 			if ( ! empty( $smtp_test_notice ) && ! empty( $smtp_test_notice['message'] ) ) {
-				$smtp_notices[] = $smtp_test_notice;
+				$dplr_smtp_notices[] = $smtp_test_notice;
 			}
 
-			$smtp_configuration_errors = $this->smtp_manager->get_configuration_errors( $smtp_settings );
-			$smtp_test_blocked         = $relay_blocked
-				|| ! empty( $smtp_configuration_errors )
+			$dplr_smtp_configuration_errors = $this->smtp_manager->get_configuration_errors( $smtp_settings );
+			$dplr_smtp_test_blocked         = $relay_blocked
+				|| ! empty( $dplr_smtp_configuration_errors )
 				|| empty( $smtp_settings['smtp_user'] )
 				|| empty( $smtp_settings['from_email'] );
-			$smtp_settings_save_blocked = $relay_blocked || ! empty( $relay_domains_error );
+			$dplr_smtp_settings_save_blocked = $relay_blocked || ! empty( $relay_domains_error );
 			?>
 			<div class="dp-container m-t-24">
 				<div class="dp-rowflex">
@@ -154,18 +154,18 @@ if ( ! current_user_can( 'manage_options' ) ) {
 						</header>
 					</section>
 
-					<?php foreach ( $smtp_notices as $smtp_notice ) : ?>
+					<?php foreach ( $dplr_smtp_notices as $dplr_smtp_notice ) : ?>
 						<?php
-						$smtp_notice_type  = ! empty( $smtp_notice['type'] ) ? $smtp_notice['type'] : 'error';
-						$smtp_notice_type  = 'updated' === $smtp_notice_type ? 'success' : $smtp_notice_type;
-						$smtp_notice_class = 'success' === $smtp_notice_type ? 'dp-wrap-success' : 'dp-wrap-cancel';
-						$smtp_notice_class = 'warning' === $smtp_notice_type ? 'dp-wrap-warning' : $smtp_notice_class;
+						$dplr_smtp_notice_type  = ! empty( $dplr_smtp_notice['type'] ) ? $dplr_smtp_notice['type'] : 'error';
+						$dplr_smtp_notice_type  = 'updated' === $dplr_smtp_notice_type ? 'success' : $dplr_smtp_notice_type;
+						$dplr_smtp_notice_class = 'success' === $dplr_smtp_notice_type ? 'dp-wrap-success' : 'dp-wrap-cancel';
+						$dplr_smtp_notice_class = 'warning' === $dplr_smtp_notice_type ? 'dp-wrap-warning' : $dplr_smtp_notice_class;
 						?>
 						<div class="m-t-24">
-							<div class="dp-wrap-message <?php echo esc_attr( $smtp_notice_class ); ?> m-b-12">
+							<div class="dp-wrap-message <?php echo esc_attr( $dplr_smtp_notice_class ); ?> m-b-12">
 								<span class="dp-message-icon"></span>
 								<div class="dp-content-message dp-content-full">
-									<p><?php echo esc_html( $smtp_notice['message'] ); ?></p>
+									<p><?php echo esc_html( $dplr_smtp_notice['message'] ); ?></p>
 									<a href="#" class="dp-message-link dplr-message-dismiss"><?php echo esc_html( strtoupper( __( 'Got it', 'doppler-form' ) ) ); ?></a>
 								</div>
 							</div>
@@ -213,7 +213,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 												class="col-sm-8 col-md-8 col-lg-8 box-shado-0"
 												name="dplr_smtp_settings[smtp_user]"
 												value="<?php echo esc_attr( $smtp_settings['smtp_user'] ); ?>"
-												placeholder="<?php esc_attr_e( 'Example: info@fromdoppler.com', 'doppler-form' ); ?>"
+												placeholder="<?php esc_attr_e( 'Example', 'doppler-form' ); ?>: info@fromdoppler.com"
 												autocomplete="off"
 												required="required"
 												aria-required="true"
@@ -305,9 +305,9 @@ if ( ! current_user_can( 'manage_options' ) ) {
 														<?php if ( empty( $verified_domains ) ) : ?>
 															<option value=""><?php esc_html_e( 'No verified domains available', 'doppler-form' ); ?></option>
 														<?php else : ?>
-															<?php foreach ( $verified_domains as $domain_name ) : ?>
-																<option value="<?php echo esc_attr( $domain_name ); ?>" <?php selected( $selected_domain, $domain_name ); ?>>
-																	<?php echo esc_html( $domain_name ); ?>
+															<?php foreach ( $verified_domains as $dplr_domain_name ) : ?>
+																<option value="<?php echo esc_attr( $dplr_domain_name ); ?>" <?php selected( $selected_domain, $dplr_domain_name ); ?>>
+																	<?php echo esc_html( $dplr_domain_name ); ?>
 																</option>
 															<?php endforeach; ?>
 														<?php endif; ?>
@@ -321,7 +321,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 							<div class="col-sm-9 m-t-42 m-b-30">
 								<div class="dp-h-divider"></div>
 							</div>
-							<button class="dp-button button-medium secondary-green m-l-12 m-b-30" <?php disabled( $smtp_settings_save_blocked, true ); ?>>
+							<button class="dp-button button-medium secondary-green m-l-12 m-b-30" <?php disabled( $dplr_smtp_settings_save_blocked, true ); ?>>
 								<?php esc_html_e( 'Save changes', 'doppler-form' ); ?>
 							</button>
 						</form>
@@ -347,11 +347,10 @@ if ( ! current_user_can( 'manage_options' ) ) {
 										class="col-sm-8 col-md-8 col-lg-8 box-shado-0"
 										name="dplr_smtp_test_email"
 										value="<?php echo esc_attr( wp_get_current_user()->user_email ); ?>"
-										placeholder="<?php esc_attr_e( 'name@example.com', 'doppler-form' ); ?>"
 										<?php disabled( $relay_blocked, true ); ?>>
 								</label>
 
-								<button class="dp-button button-medium secondary-green text-align--right m-t-18 m-b-6" <?php disabled( $smtp_test_blocked, true ); ?>>
+								<button class="dp-button button-medium secondary-green text-align--right m-t-18 m-b-6" <?php disabled( $dplr_smtp_test_blocked, true ); ?>>
 									<span class="m-r-48 m-l-48"><?php esc_html_e( 'Send', 'doppler-form' ); ?></span>
 								</button>
 							</div>

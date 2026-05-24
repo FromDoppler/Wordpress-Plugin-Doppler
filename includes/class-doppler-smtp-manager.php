@@ -484,11 +484,6 @@ class DPLR_SMTP_Manager {
 			$phpmailer->SMTPAutoTLS = true;
 		}
 
-		if ( defined( 'WP_DEBUG_LOG_DOPPLER_PLUGINS' ) && WP_DEBUG_LOG_DOPPLER_PLUGINS ) {
-			$phpmailer->SMTPDebug   = 2;
-			$phpmailer->Debugoutput = array( $this, 'log_smtp_debug' );
-		}
-
 		$from_email = $this->get_from_email( $settings );
 		$from_name  = $this->get_from_name( $settings );
 
@@ -500,30 +495,6 @@ class DPLR_SMTP_Manager {
 				$phpmailer->FromName = $from_name;
 			}
 		}
-	}
-
-	/**
-	 * Logs SMTP debug output when plugin debug is enabled.
-	 *
-	 * @param string $line Debug line.
-	 * @param int    $level Debug level.
-	 */
-	public function log_smtp_debug( $line, $level ) {
-		if ( false !== stripos( $line, 'CLIENT -> SERVER:' ) ) {
-			return;
-		}
-
-		$upload_dir = wp_upload_dir();
-		$dir        = trailingslashit( $upload_dir['basedir'] ) . 'logs';
-
-		if ( ! is_dir( $dir ) ) {
-			wp_mkdir_p( $dir );
-		}
-
-		$file  = trailingslashit( $dir ) . 'smtp-debug' . gmdate( '_d_m_Y' ) . '.log';
-		$entry = current_time( 'mysql' ) . ' [' . absint( $level ) . '] ' . sanitize_text_field( $line ) . PHP_EOL;
-
-		error_log( $entry, 3, $file );
 	}
 
 	/**
