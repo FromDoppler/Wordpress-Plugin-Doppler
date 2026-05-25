@@ -13,7 +13,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 	<div class="dplr_connect relay_section" id="dplr_body_content" style="display: none;">
 		<?php if ( ! $relay_connected ) : ?>
 			<a href="<?php echo esc_url( 'https://www.dopplerrelay.com/' ); ?>" target="_blank" class="relay-logo-header" rel="noopener noreferrer">
-				<img src="<?php echo esc_url( DOPPLER_PLUGIN_URL ); ?>admin/img/logo-dopplerrelay.svg" alt="<?php esc_attr_e( 'Doppler logo', 'doppler-form' ); ?>"/>
+				<img src="<?php echo esc_url( DOPPLER_PLUGIN_URL ); ?>admin/img/logo-dopplerrelay.svg" alt="Doppler Relay logo"/>
 			</a>
 			<header class="hero-banner">
 				<div class="dp-rowflex">
