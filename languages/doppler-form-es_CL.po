@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2026-04-07 22:05-0300\n"
-"PO-Revision-Date: 2026-04-21 08:46-0300\n"
+"POT-Creation-Date: 2026-05-24 21:20-0300\n"
+"PO-Revision-Date: 2026-05-24 23:35-0300\n"
 "Last-Translator: \n"
 "Language-Team: Español de Chile\n"
 "Language: es_CL\n"
@@ -23,35 +23,45 @@ msgstr ""
 "X-Loco-Version: 2.6.7; wp-6.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/doppler-admin.php:131 admin/partials/forms-list.php:130
+#: admin/doppler-admin.php:108 admin/doppler-admin.php:124
+#: admin/doppler-admin.php:147 admin/doppler-admin.php:222
+#: admin/partials/api-connection.php:670
+#: admin/partials/doppler-relay-settings.php:169
+#: admin/partials/doppler-relay-settings.php:180
+#: admin/partials/doppler-relay-settings.php:190
+#: admin/partials/forms-create.php:348 admin/partials/forms-edit.php:392
+msgid "Got it"
+msgstr "Entendido"
+
+#: admin/doppler-admin.php:180 admin/partials/forms-list.php:130
 msgid "Delete"
 msgstr "Eliminar"
 
-#: admin/doppler-admin.php:132 admin/partials/forms-create.php:354
-#: admin/partials/forms-edit.php:396
+#: admin/doppler-admin.php:181 admin/partials/forms-create.php:355
+#: admin/partials/forms-edit.php:397
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: admin/doppler-admin.php:133 admin/doppler-admin.php:143
-#: admin/doppler-admin.php:405
+#: admin/doppler-admin.php:182 admin/doppler-admin.php:192
+#: admin/doppler-admin.php:464
 msgid ""
 "Ouch! There's something wrong with your Username or API Key. Please, try "
 "again."
 msgstr "¡Ouch! Hay un error en tu Usuario o API Key. Vuelve a intentarlo."
 
-#: admin/doppler-admin.php:134
+#: admin/doppler-admin.php:183
 msgid "The List has been created correctly."
 msgstr "La Lista se ha creado correctamente."
 
-#: admin/doppler-admin.php:135
+#: admin/doppler-admin.php:184
 msgid "Ouch! You've reached the maximum number of Lists created."
 msgstr "¡Ouch! Has alcanzado el número máximo de Listas creadas."
 
-#: admin/doppler-admin.php:136
+#: admin/doppler-admin.php:185
 msgid "Ouch! You've already used this name for another List."
 msgstr "¡Ouch! Ya has utilizado este nombre para otra Lista."
 
-#: admin/doppler-admin.php:137
+#: admin/doppler-admin.php:186
 msgid ""
 "Ouch! You've made several actions in a short period of time. Please wait a "
 "few minutes before making another one."
@@ -59,12 +69,12 @@ msgstr ""
 "¡Ouch! Has realizado varias acciones en un periodo corto de tiempo. Por "
 "favor, espera unos minutos antes de realizar otra."
 
-#: admin/doppler-admin.php:138
+#: admin/doppler-admin.php:187
 msgid "Ouch! The List name is invalid. Please choose another."
 msgstr ""
 "¡Ouch! Ocurrió un error al validar los datos . Por favor intenta nuevamente."
 
-#: admin/doppler-admin.php:139 admin/partials/doppler-forms-display.php:29
+#: admin/doppler-admin.php:188 admin/partials/doppler-forms-display.php:29
 msgid ""
 "Ouch! An error ocurred while trying to communicate with the API. Try again "
 "later."
@@ -72,25 +82,25 @@ msgstr ""
 "¡Ouch! Ocurrió un error al intentar comunicarse con la API. Intenta "
 "nuevamente."
 
-#: admin/doppler-admin.php:140
+#: admin/doppler-admin.php:189
 msgid "Ouch! There has been an error: cURL error 28, timeout error."
 msgstr ""
 "Ouch!  Ocurrió un error: cURL error 28, se acabó el tiempo para la petición."
 
-#: admin/doppler-admin.php:141 admin/partials/api-connection.php:409
+#: admin/doppler-admin.php:190 admin/partials/api-connection.php:409
 #: admin/partials/api-connection.php:451
 msgid "Installing"
 msgstr "Instalando"
 
-#: admin/doppler-admin.php:142
+#: admin/doppler-admin.php:191
 msgid "Uninstalling"
 msgstr "Desinstalando"
 
-#: admin/doppler-admin.php:144
+#: admin/doppler-admin.php:193
 msgid "Please enter a valid color code, i.e: #000000."
 msgstr "Por favor, ingresa un código de color válido."
 
-#: admin/doppler-admin.php:145
+#: admin/doppler-admin.php:194
 msgid ""
 "Ouch! The List is associated with a Form. To delete it, go to Doppler and "
 "disassociate them."
@@ -98,11 +108,11 @@ msgstr ""
 "¡Ouch! La Lista está asociada a un Formulario. Para poder eliminarla, debes "
 "ir a Doppler y desasociarla."
 
-#: admin/doppler-admin.php:146
+#: admin/doppler-admin.php:195
 msgid "Ouch! The List is associated to a Campaign in sending process."
 msgstr "¡Ouch! La Lista está asociada a una Campaña en proceso de envío."
 
-#: admin/doppler-admin.php:147
+#: admin/doppler-admin.php:196
 msgid ""
 "Ouch! The List has associated Segments. To delete it, go to Doppler and "
 "disassociate them."
@@ -110,7 +120,7 @@ msgstr ""
 "¡Ouch! La Lista tiene Segmentos asociados. Para poder eliminarla, debes ir a "
 "Doppler y desasociarla."
 
-#: admin/doppler-admin.php:148
+#: admin/doppler-admin.php:197
 msgid ""
 "Ouch! The List is associated with an active Automation. To delete it, go to "
 "Doppler and disassociate them."
@@ -118,7 +128,7 @@ msgstr ""
 "¡Ouch! La Lista está asociada a un Automation activo. Para poder eliminarla, "
 "debes ir a Doppler y desasociarla."
 
-#: admin/doppler-admin.php:149
+#: admin/doppler-admin.php:198
 msgid ""
 "Ouch! The List is associated with an active integration. To delete it, go to "
 "Doppler and disconnect the integration."
@@ -126,139 +136,139 @@ msgstr ""
 "¡Ouch! La Lista está asociada a una integración activa. Para poder "
 "eliminarla, debes ir a Doppler y desconectar la integración."
 
-#: admin/doppler-admin.php:150
+#: admin/doppler-admin.php:199
 msgid "Ouch! The List is in the process of union with another one."
 msgstr "¡Ouch! La Lista está en proceso de unión con otra."
 
-#: admin/doppler-admin.php:151
+#: admin/doppler-admin.php:200
 msgid "Ouch! The List is still in the process of being created."
 msgstr "¡¡Ouch! La Lista aún está en proceso de creación."
 
-#: admin/doppler-admin.php:152
+#: admin/doppler-admin.php:201
 msgid "Ouch! The List is in the process of loading."
 msgstr "¡Ouch! La Lista está en proceso de carga."
 
-#: admin/doppler-admin.php:153
+#: admin/doppler-admin.php:202
 msgid "Ouch! the list is in process of being exported."
 msgstr "¡Ouch! La Lista está en proceso de exportación."
 
-#: admin/doppler-admin.php:154
+#: admin/doppler-admin.php:203
 msgid "Ouch! The List is in the process of being deleted."
 msgstr "¡Ouch! La Lista está en proceso de eliminación."
 
-#: admin/doppler-admin.php:155 admin/partials/forms-edit.php:368
+#: admin/doppler-admin.php:204 admin/partials/forms-edit.php:368
 #: includes/helpers/Form_Helper.php:56 includes/helpers/Form_Helper.php:85
 msgid "I've read and accept the privacy policy"
 msgstr "He leído y acepto la política de privacidad"
 
-#: admin/doppler-admin.php:156 admin/partials/forms-edit.php:373
+#: admin/doppler-admin.php:205 admin/partials/forms-edit.php:373
 msgid "Enter the URL of your privacy policy"
 msgstr "URL de tu política de privacidad"
 
-#: admin/doppler-admin.php:157 admin/partials/forms-edit.php:365
+#: admin/doppler-admin.php:206 admin/partials/forms-edit.php:365
 msgid "Checkbox label"
 msgstr "Texto para el checkbox"
 
-#: admin/doppler-admin.php:159 admin/doppler-admin.php:176
+#: admin/doppler-admin.php:208 admin/doppler-admin.php:226
 #: admin/partials/forms-edit.php:361
 msgid "Edit Field"
 msgstr "Editar Campo"
 
-#: admin/doppler-admin.php:160 admin/partials/api-connection.php:247
+#: admin/doppler-admin.php:209 admin/partials/api-connection.php:247
 #: admin/partials/forms-list.php:89
 msgid "Simple Opt-In"
 msgstr "Simple Opt-In"
 
-#: admin/doppler-admin.php:161 admin/partials/api-connection.php:247
+#: admin/doppler-admin.php:210 admin/partials/api-connection.php:247
 #: admin/partials/forms-list.php:89
 msgid "Double Opt-In"
 msgstr "Doble Opt-in"
 
-#: admin/doppler-admin.php:162 admin/partials/api-connection.php:214
+#: admin/doppler-admin.php:211 admin/partials/api-connection.php:214
 msgid "Conversion Rate"
 msgstr "Ratio de Conversión"
 
-#: admin/doppler-admin.php:163 admin/partials/api-connection.php:141
+#: admin/doppler-admin.php:212 admin/partials/api-connection.php:141
 #: admin/partials/api-connection.php:233
 msgid "Impressions"
 msgstr "Impresiones"
 
-#: admin/doppler-admin.php:164 admin/partials/api-connection.php:158
+#: admin/doppler-admin.php:213 admin/partials/api-connection.php:158
 #: admin/partials/api-connection.php:234
 msgid "Subscribed"
 msgstr "Suscriptos"
 
-#: admin/doppler-admin.php:165 admin/partials/api-connection.php:232
+#: admin/doppler-admin.php:214 admin/partials/api-connection.php:232
 msgid "Form Type"
 msgstr "Tipo de Formulario"
 
-#: admin/doppler-admin.php:166 admin/partials/api-connection.php:58
+#: admin/doppler-admin.php:215 admin/partials/api-connection.php:58
 msgid "Checking status..."
 msgstr "Verificando estado..."
 
-#: admin/doppler-admin.php:167
+#: admin/doppler-admin.php:216
 msgid "Connected"
 msgstr "Conectado"
 
-#: admin/doppler-admin.php:168 admin/partials/api-connection.php:69
+#: admin/doppler-admin.php:217 admin/partials/api-connection.php:69
 msgid "Offline"
 msgstr "Desconectado"
 
-#: admin/doppler-admin.php:169 admin/partials/api-connection.php:70
+#: admin/doppler-admin.php:218 admin/partials/api-connection.php:70
 msgid "To configure, "
 msgstr "Para configurar, "
 
-#: admin/doppler-admin.php:170
+#: admin/doppler-admin.php:219
 msgid "Could not check the WooCommerce integration, please try again."
 msgstr ""
 "No pudimos comprobar el estado de la integración con WooCommerce, por favor "
 "intenta de nuevo."
 
-#: admin/doppler-admin.php:171
+#: admin/doppler-admin.php:220
 msgid "Error"
 msgstr "Error"
 
-#: admin/doppler-admin.php:172 public/doppler-forms-public.php:107
+#: admin/doppler-admin.php:221 public/doppler-forms-public.php:107
 msgid "Invalid Format."
 msgstr "Formato Inválido."
 
-#: admin/doppler-admin.php:177
+#: admin/doppler-admin.php:227
 msgid "Required"
 msgstr "Requerido"
 
-#: admin/doppler-admin.php:178
+#: admin/doppler-admin.php:228
 msgid "Label to be shown"
 msgstr "Nombre a mostrar"
 
-#: admin/doppler-admin.php:179
+#: admin/doppler-admin.php:229
 msgid "Placeholder"
 msgstr "Texto de ejemplo"
 
-#: admin/doppler-admin.php:180
+#: admin/doppler-admin.php:230
 msgid "Description"
 msgstr "Descripción"
 
-#: admin/doppler-admin.php:181
+#: admin/doppler-admin.php:231
 msgid "Input Type"
 msgstr "Tipo de ingreso"
 
-#: admin/doppler-admin.php:182
+#: admin/doppler-admin.php:232
 msgid "Simple"
 msgstr "Simple"
 
-#: admin/doppler-admin.php:183
+#: admin/doppler-admin.php:233
 msgid "Multiple"
 msgstr "Múltiple"
 
-#: admin/doppler-admin.php:184
+#: admin/doppler-admin.php:234
 msgid "Drop-down List"
 msgstr "Lista desplegable"
 
-#: admin/doppler-admin.php:185
+#: admin/doppler-admin.php:235
 msgid "Options"
 msgstr "Opciones"
 
-#: admin/doppler-admin.php:186
+#: admin/doppler-admin.php:236
 msgid ""
 "Write the options you want to show in your Drop-down List, separating them "
 "by a line break."
@@ -266,66 +276,66 @@ msgstr ""
 "Escribe las opciones que quieres que aparezcan en la Lista desplegable, "
 "separándolas por un salto de línea."
 
-#: admin/doppler-admin.php:188
+#: admin/doppler-admin.php:238
 msgid "Date format"
 msgstr "Formato de fecha"
 
-#: admin/doppler-admin.php:300 admin/doppler-admin.php:301
+#: admin/doppler-admin.php:350 admin/doppler-admin.php:351
 #: includes/class-doppler-elementor-integration.php:18
 #: includes/class-doppler-elementor-integration.php:25
 msgid "Doppler"
 msgstr "Doppler"
 
-#: admin/doppler-admin.php:331 admin/doppler-admin.php:332
+#: admin/doppler-admin.php:381 admin/doppler-admin.php:382
 msgid "Home"
 msgstr "Inicio"
 
-#: admin/doppler-admin.php:342 admin/doppler-admin.php:343
+#: admin/doppler-admin.php:401 admin/doppler-admin.php:402
 #: admin/partials/api-connection.php:282 admin/partials/api-connection.php:285
 #: admin/partials/doppler-forms-display.php:23 admin/partials/lists-crud.php:18
 #: admin/partials/settings.php:28
 msgid "Doppler Forms"
 msgstr "Formularios Doppler"
 
-#: admin/doppler-admin.php:351 admin/doppler-admin.php:352
+#: admin/doppler-admin.php:410 admin/doppler-admin.php:411
 #: admin/partials/lists-crud.php:24
 msgid "Lists Managment"
 msgstr "Administración de Listas"
 
-#: admin/doppler-admin.php:360 admin/doppler-admin.php:361
+#: admin/doppler-admin.php:419 admin/doppler-admin.php:420
 msgid "Settings"
 msgstr "Ajustes"
 
-#: admin/doppler-admin.php:413 admin/partials/api-connection.php:501
+#: admin/doppler-admin.php:472 admin/partials/api-connection.php:501
 #: admin/partials/api-connection.php:506 admin/partials/api-connection.php:536
 msgid "Ouch! Enter a valid Email."
 msgstr "¡Ouch! Escribe un Email válido."
 
-#: admin/doppler-admin.php:418 admin/partials/api-connection.php:529
+#: admin/doppler-admin.php:477 admin/partials/api-connection.php:529
 #: admin/partials/api-connection.php:587 admin/partials/api-connection.php:596
 msgid "Ouch! The field is empty."
 msgstr "¡Ouch! El campo está vacío."
 
-#: admin/doppler-admin.php:471
+#: admin/doppler-admin.php:530
 msgid "Pst! Go to"
 msgstr "¡Psst! Dirígete a"
 
-#: admin/doppler-admin.php:471
+#: admin/doppler-admin.php:530
 msgid "Appearance > Widgets"
 msgstr "Apariencia > Widgets"
 
-#: admin/doppler-admin.php:471
+#: admin/doppler-admin.php:530
 msgid "to choose the place on your Website where you want your Form to appear."
 msgstr ""
 "para elegir el lugar de tu Sitio Web donde quieres que aparezca tu "
 "Formulario."
 
-#: admin/doppler-admin.php:475 admin/doppler-admin.php:494
+#: admin/doppler-admin.php:534 admin/doppler-admin.php:553
 msgid ""
 "The urlLanding field is not a valid fully-qualified http, https, or ftp URL."
 msgstr "El campo urlLanding no es una URL http, https o ftp totalmente válida."
 
-#: admin/doppler-admin.php:478 admin/doppler-admin.php:497
+#: admin/doppler-admin.php:537 admin/doppler-admin.php:556
 msgid ""
 "You should validate the Email sender domain before using it. HELP: https://"
 "help.fromdoppler.com/en/from-email-domain-validation/"
@@ -333,49 +343,63 @@ msgstr ""
 "Debe validar el dominio del remitente del correo electrónico antes de "
 "usarlo. AYUDA: https://help.fromdoppler.com/en/from-email-domain-validation/"
 
-#: admin/doppler-admin.php:481
+#: admin/doppler-admin.php:540
 msgid ""
 "Ouch! An error ocurred and the Form couldn't be created. Try again later."
 msgstr ""
 "¡Ouch! Ocurrió un error y el Formulario no fue creado. Intenta nuevamente."
 
-#: admin/doppler-admin.php:490
+#: admin/doppler-admin.php:549
 msgid "The Form has been edited correctly."
 msgstr "El Formulario ha sido editado correctamente."
 
-#: admin/doppler-admin.php:500
+#: admin/doppler-admin.php:559
 msgid ""
 "Ouch! An error ocurred and the Form couldn't be edited. Try again later."
 msgstr ""
 "¡Ouch! Ocurrió un error y el Formulario no fue editado. Intenta nuevamente."
 
-#: admin/doppler-admin.php:510
+#: admin/doppler-admin.php:569
 msgid "The Form has been deleted correctly."
 msgstr "El Formulario ha sido eliminado correctamente."
 
-#: admin/doppler-admin.php:512
+#: admin/doppler-admin.php:571
 msgid ""
 "Ouch! An error ocurred and the Form couldn't be deleted. Try again later."
 msgstr ""
 "¡Ouch! Ocurrió un error y el Formulario no fue eliminado. Intenta nuevamente."
 
-#: admin/doppler-admin.php:557
+#: admin/doppler-admin.php:616
 msgid "Tracking code is invalid"
 msgstr "El código de seguimiento es incorrecto"
 
-#: admin/doppler-admin.php:573
+#: admin/doppler-admin.php:632
 msgid "Consent checkbox is invalid"
 msgstr "Checkbox de consentimiento inválido"
 
-#: admin/doppler-admin.php:587
+#: admin/doppler-admin.php:646
 msgid "Failed activating Open Graph checkbox"
 msgstr "Error al activar checkbox de metadatos Open Graph"
 
-#: admin/doppler-admin.php:595
+#: admin/doppler-admin.php:654
 msgid "Settings saved successfully"
 msgstr "Configuración guardada correctamente"
 
-#: admin/doppler-admin.php:610
+#: admin/doppler-admin.php:695 admin/doppler-admin.php:716
+#: admin/doppler-admin.php:828 admin/doppler-admin.php:1197
+#: includes/class-doppler-extension-manager.php:166
+msgid "Unauthorized"
+msgstr "No autorizado"
+
+#: admin/doppler-admin.php:707
+msgid "Doppler Relay account connected successfully."
+msgstr "Cuenta de Doppler Relay conectada con éxito."
+
+#: admin/doppler-admin.php:722
+msgid "Doppler Relay account disconnected successfully."
+msgstr "Cuenta de Doppler Relay desconectada."
+
+#: admin/doppler-admin.php:736
 msgid ""
 "You've updated the <strong>Doppler Forms</strong> plugin into the "
 "<strong>2.0.0</strong> version. Please,"
@@ -383,23 +407,62 @@ msgstr ""
 "Has actualizado el plugin <strong>Formularios Doppler</strong> a la versión "
 "<strong>2.0.0</strong>. Para continuar utilizándolo,"
 
-#: admin/doppler-admin.php:612
+#: admin/doppler-admin.php:738
 msgid "enter your Username"
 msgstr "ingresa tu Email de Usuario"
 
-#: admin/doppler-admin.php:613
+#: admin/doppler-admin.php:739
 msgid "in addition to the API Key and re-connect your Doppler account."
 msgstr "además del API Key y vuelve a conectar tu cuenta de Doppler."
 
-#: admin/doppler-admin.php:722
+#: admin/doppler-admin.php:836
+msgid "Connect your Doppler Relay account before sending a test email."
+msgstr ""
+"Conecta tu cuenta para enviar tus Emails a través de SMTP por WordPress."
+
+#: admin/doppler-admin.php:849
+msgid ""
+"You need at least one verified domain with DKIM, SPF and DMARC ready in "
+"Doppler Relay before sending a test email."
+msgstr ""
+"Necesitas al menos un dominio con DKIM, SPF y DMARC verificados en Doppler "
+"Relay antes de enviar un email de prueba."
+
+#: admin/doppler-admin.php:856
+msgid "Save a valid SMTP configuration before sending a test email."
+msgstr ""
+"Guarda una configuración válida de SMTP antes de enviar un mail de prueba."
+
+#: admin/doppler-admin.php:869
+msgid "Please enter a valid test email address."
+msgstr "Por favor ingresa un email válido."
+
+#: admin/doppler-admin.php:879
+#, php-format
+msgid "SMTP test email from %s"
+msgstr "Email de prueba SMTP desde %s"
+
+#: admin/doppler-admin.php:882
+msgid ""
+"This is a test email sent from the Doppler Forms SMTP Configuration screen."
+msgstr ""
+"Este es un email de prueba enviado desde la vista de configuración SMTP del "
+"plugin \"Doppler Easy Multichannel Marketing enhanced with IA\"."
+
+#: admin/doppler-admin.php:890
+#, php-format
+msgid "Test email sent successfully to %s."
+msgstr "Email de prueba enviado con éxito a %s."
+
+#: admin/doppler-admin.php:926
 msgid "Please review the form fields and try again."
 msgstr "Revisa los campos del formulario e inténtalo de nuevo."
 
-#: admin/doppler-admin.php:751
+#: admin/doppler-admin.php:955
 msgid "Account created successfully."
 msgstr "Cuenta creada con éxito."
 
-#: admin/doppler-admin.php:773
+#: admin/doppler-admin.php:977
 msgid ""
 "Ouch! There seems to be a connection problem. Please try again in a few "
 "minutes."
@@ -407,23 +470,23 @@ msgstr ""
 "¡Ouch! Detectamos un problema de conexión. Por favor inténtalo nuevamente en "
 "unos minutos."
 
-#: admin/doppler-admin.php:776
+#: admin/doppler-admin.php:980
 msgid "Hold on! You've reached the maximum accounts allowed."
 msgstr "¡Ouch! Has alcanzado el número máximo de cuentas que puedes crear."
 
-#: admin/doppler-admin.php:783
+#: admin/doppler-admin.php:987
 msgid "Ouch! Invalid Email to create an account."
 msgstr "¡Ouch! Email inválido para crear una cuenta."
 
-#: admin/doppler-admin.php:786
+#: admin/doppler-admin.php:990
 msgid "Ouch! You already have a Doppler account."
 msgstr "¡Ouch! Ya posees una cuenta en Doppler."
 
-#: admin/doppler-admin.php:789
+#: admin/doppler-admin.php:993
 msgid "Ouch! The phone number is invalid."
 msgstr "¡Ouch! El número de teléfono no es válido."
 
-#: admin/doppler-admin.php:893
+#: admin/doppler-admin.php:1097
 msgid ""
 "Ouch! The List is being used in a form or an extension, so it cannot be "
 "deleted."
@@ -431,15 +494,20 @@ msgstr ""
 "¡Ouch! La Lista está siendo utilizada en un Formulario o en una extensión de "
 "Doppler y no puede ser eliminada."
 
-#: admin/doppler-admin.php:993 includes/class-doppler-extension-manager.php:166
-msgid "Unauthorized"
-msgstr "No autorizado"
+#: admin/doppler-admin.php:1267
+msgid ""
+"The test email could not be sent. Please review your SMTP configuration and "
+"try again."
+msgstr ""
+"El email de prueba no se pudo enviar. Por favor revisa tu configuración y "
+"vuelve a probar."
 
 #: admin/partials/api-connection.php:28
 msgid "Welcome!"
 msgstr "¡Bienvenido!"
 
 #: admin/partials/api-connection.php:33
+#: admin/partials/doppler-relay-settings.php:130
 msgid "Disconnect"
 msgstr "Desconectar"
 
@@ -452,14 +520,17 @@ msgstr ""
 "y el estado de tus Integraciones."
 
 #: admin/partials/api-connection.php:44
+#: admin/partials/doppler-relay-settings.php:136
 msgid "Account"
 msgstr "Cuenta"
 
 #: admin/partials/api-connection.php:48
+#: admin/partials/doppler-relay-settings.php:140
 msgid "Status"
 msgstr "Estado"
 
 #: admin/partials/api-connection.php:49
+#: admin/partials/doppler-relay-settings.php:141
 msgid "Active"
 msgstr "Activa"
 
@@ -489,7 +560,7 @@ msgstr "Reporte de Formularios"
 
 #: admin/partials/api-connection.php:208
 msgid "Here you can see the performance of your forms"
-msgstr "Encuentra aquí la información de rendimiento por  cada Formulario."
+msgstr "Encuentra aquí la información de rendimiento por  cada Formulario"
 
 #: admin/partials/api-connection.php:217
 msgid "All Forms"
@@ -630,6 +701,7 @@ msgid "Username"
 msgstr "Email de Usuario"
 
 #: admin/partials/api-connection.php:518
+#: admin/partials/doppler-relay-settings.php:57
 msgid "How do you find your API Key? Press"
 msgstr "¿Dónde encontrar el API Key de tu cuenta? Presiona"
 
@@ -642,6 +714,7 @@ msgstr ""
 "utm_source=landing&utm_medium=integracion&utm_campaign=wordpress"
 
 #: admin/partials/api-connection.php:520 admin/partials/api-connection.php:553
+#: admin/partials/doppler-relay-settings.php:59
 #: admin/partials/forms-create.php:51 admin/partials/forms-create.php:212
 #: admin/partials/forms-create.php:333 admin/partials/forms-edit.php:56
 #: admin/partials/forms-edit.php:215 admin/partials/forms-edit.php:340
@@ -650,6 +723,7 @@ msgid "HELP"
 msgstr "HELP"
 
 #: admin/partials/api-connection.php:540
+#: admin/partials/doppler-relay-settings.php:74
 msgid "Connect"
 msgstr "Conectar"
 
@@ -752,12 +826,12 @@ msgstr "¡Tu Contraseña es segura!"
 msgid "I accept the"
 msgstr "Acepto la"
 
-#: admin/partials/api-connection.php:651 admin/partials/api-connection.php:682
-#: admin/partials/api-connection.php:688
+#: admin/partials/api-connection.php:651 admin/partials/api-connection.php:683
+#: admin/partials/api-connection.php:689
 msgid "https://www.fromdoppler.com/en/legal/privacy"
 msgstr "https://www.fromdoppler.com/es/legal/privacidad"
 
-#: admin/partials/api-connection.php:651 admin/partials/api-connection.php:682
+#: admin/partials/api-connection.php:651 admin/partials/api-connection.php:683
 msgid "Privacy Policy"
 msgstr "Política de Privacidad"
 
@@ -773,11 +847,11 @@ msgstr "Quiero recibir novedades y promociones."
 msgid "CREATE FREE ACCOUNT"
 msgstr "CREAR CUENTA GRATIS"
 
-#: admin/partials/api-connection.php:676
+#: admin/partials/api-connection.php:677
 msgid "Read about data protection in Doppler."
 msgstr "Lee sobre protección de datos en Doppler."
 
-#: admin/partials/api-connection.php:678
+#: admin/partials/api-connection.php:679
 msgid ""
 "Doppler informs you that the personal data you provide by completing this "
 "form will be treated by Doppler LLC as responsible for this web site."
@@ -786,30 +860,30 @@ msgstr ""
 "al rellenar el presente formulario serán tratados por Doppler LLC como "
 "responsable de esta web."
 
-#: admin/partials/api-connection.php:679
+#: admin/partials/api-connection.php:680
 msgid "Purpose"
 msgstr "Finalidad"
 
-#: admin/partials/api-connection.php:679
+#: admin/partials/api-connection.php:680
 msgid ""
 "Sign you up into our platform and provide the services that you require."
 msgstr ""
 "Darte de alta en nuestra plataforma y brindarte los servicios que nos "
 "requieras."
 
-#: admin/partials/api-connection.php:680
+#: admin/partials/api-connection.php:681
 msgid "Legitimation"
 msgstr "Legitimación"
 
-#: admin/partials/api-connection.php:680
+#: admin/partials/api-connection.php:681
 msgid "Consent of the applicant."
 msgstr "Consentimiento del interesado."
 
-#: admin/partials/api-connection.php:681
+#: admin/partials/api-connection.php:682
 msgid "Recipients"
 msgstr "Destinatarios"
 
-#: admin/partials/api-connection.php:681
+#: admin/partials/api-connection.php:682
 msgid ""
 "Your data will be saved by Doppler, Zoho as CRM, Google as the provider of "
 "reCAPTCHA service, Digital Ocean, Cogeco Peer1 and Rackspace as hosting "
@@ -819,15 +893,15 @@ msgstr ""
 "del servicio de reCAPTCHA,\n"
 "Digital Ocean, Cogeco Peer1 y Rackspace como empresas de hosting."
 
-#: admin/partials/api-connection.php:682
+#: admin/partials/api-connection.php:683
 msgid "Additional information"
 msgstr "Información adicional"
 
-#: admin/partials/api-connection.php:682
+#: admin/partials/api-connection.php:683
 msgid "In Doppler's"
 msgstr "En la"
 
-#: admin/partials/api-connection.php:682
+#: admin/partials/api-connection.php:683
 msgid ""
 "you'll find additional information about the data storage and use of your "
 "personal information, including information on access, conservation, "
@@ -839,72 +913,72 @@ msgstr ""
 "incluida información sobre acceso, conservación, rectificación,\n"
 "eliminación, seguridad, transferencias transfronterizas y otros temas."
 
-#: admin/partials/api-connection.php:688
+#: admin/partials/api-connection.php:689
 msgid "Doppler LLC. All rights reserved."
 msgstr "Doppler LLC. Todos los derechos reservados."
 
-#: admin/partials/api-connection.php:688
+#: admin/partials/api-connection.php:689
 msgid "Privacy Policy & Legals"
 msgstr "Política de Privacidad y Legales"
 
-#: admin/partials/api-connection.php:703
+#: admin/partials/api-connection.php:704
 msgid "You’re just one step away from scaling your strategy"
 msgstr "Estás a un paso de escalar tu Estrategia"
 
-#: admin/partials/api-connection.php:706
+#: admin/partials/api-connection.php:707
 msgid "Check your email"
 msgstr "Revisa tu Email para continuar"
 
-#: admin/partials/api-connection.php:708
+#: admin/partials/api-connection.php:709
 msgid "We sent an email to"
 msgstr "Enviamos un email a"
 
-#: admin/partials/api-connection.php:708
+#: admin/partials/api-connection.php:709
 msgid "to validate your account."
 msgstr "para validar tu cuenta."
 
-#: admin/partials/api-connection.php:710
+#: admin/partials/api-connection.php:711
 msgid ""
 "You just need to open it and click the confirmation button to activate it."
 msgstr ""
 "Solo tienes que abrirlo y hacer clic en el botón de confirmación para "
 "activarla."
 
-#: admin/partials/api-connection.php:712
+#: admin/partials/api-connection.php:713
 msgid ""
 "Once activated, you can start creating Campaigns, Automations and exploring"
 msgstr ""
 "Una vez activo, podrás empezar a crear Campañas, Automatizaciones y explorar"
 
-#: admin/partials/api-connection.php:713
+#: admin/partials/api-connection.php:714
 msgid "all the features of"
 msgstr "todas las funcionalidades de"
 
-#: admin/partials/api-connection.php:715
+#: admin/partials/api-connection.php:716
 msgid "Go back to"
 msgstr "Volver a"
 
-#: admin/partials/api-connection.php:715
+#: admin/partials/api-connection.php:716
 msgid "sign in"
 msgstr "iniciar sesión"
 
-#: admin/partials/api-connection.php:725
+#: admin/partials/api-connection.php:726
 msgid "Do you have doubts?"
 msgstr "¿Necesitas ayuda?"
 
-#: admin/partials/api-connection.php:725
+#: admin/partials/api-connection.php:726
 msgid "Contact us"
 msgstr "Contáctanos"
 
-#: admin/partials/api-connection.php:725
+#: admin/partials/api-connection.php:726
 msgid "and we will help you"
 msgstr "y te acompañaremos en el proceso"
 
-#: admin/partials/api-connection.php:732
+#: admin/partials/api-connection.php:733
 msgid "Are you sure you want to uninstall the extension?"
 msgstr "¿Estás seguro de que deseas quitar la extensión?"
 
-#: admin/partials/api-connection.php:733
+#: admin/partials/api-connection.php:734
 msgid "This will deactivate and uninstall the plugin."
 msgstr "Esto desactivará y desinstalará la extensión."
 
@@ -920,6 +994,160 @@ msgstr ""
 #: admin/partials/doppler-forms-display.php:60
 msgid "Form ID is required"
 msgstr "ID de formulario requerido"
+
+#: admin/partials/doppler-relay-settings.php:21
+msgid "Doppler Relay Account"
+msgstr "Cuenta Doppler Relay"
+
+#: admin/partials/doppler-relay-settings.php:24
+msgid ""
+"Connect to your Doppler Relay account to send emails using SMTP for "
+"Wordpress."
+msgstr ""
+"Conecta tu cuenta para enviar tus Emails a través de SMTP por WordPress."
+
+#: admin/partials/doppler-relay-settings.php:26
+msgid "Don't have a Doppler Relay account yet?"
+msgstr "¿Aún no tienes una cuenta?"
+
+#: admin/partials/doppler-relay-settings.php:28
+msgid "Sign up here"
+msgstr "Regístrate aquí"
+
+#: admin/partials/doppler-relay-settings.php:40
+msgid "Account Name"
+msgstr "Nombre de la cuenta"
+
+#: admin/partials/doppler-relay-settings.php:46
+msgid "Example: dopplerrelay"
+msgstr "EJ: dopplerrelay"
+
+#: admin/partials/doppler-relay-settings.php:58
+msgid ""
+"https://help.dopplerrelay.com/en/where-can-i-find-my-api-key-and-smtp-"
+"credentials"
+msgstr ""
+"https://help.dopplerrelay.com/es/donde-puedo-encontrar-la-clave-de-mi-api-y-"
+"las-credenciales-smtp"
+
+#: admin/partials/doppler-relay-settings.php:70
+msgid "Insert API Key"
+msgstr "Ingrese código"
+
+#: admin/partials/doppler-relay-settings.php:122
+msgid "Welcome to your Doppler Relay account"
+msgstr "Bienvenido a  tu cuenta Doppler Relay"
+
+#: admin/partials/doppler-relay-settings.php:123
+msgid ""
+"Here you can view your account status and configure the SMTP provider to "
+"send your emails."
+msgstr ""
+"Aquí podrás ver el estado de tu cuenta y configurar el proveedor de SMTP "
+"para enviar tus Emails."
+
+#: admin/partials/doppler-relay-settings.php:144
+msgid "Connection Date"
+msgstr "Fecha de conexión"
+
+#: admin/partials/doppler-relay-settings.php:189
+#: includes/class-doppler-smtp-manager.php:355
+msgid ""
+"You need at least one verified domain with DKIM, SPF and DMARC ready in "
+"Doppler Relay before configuring SMTP."
+msgstr ""
+"Necesitas al menos un dominio con DKIM, SPF y DMARC verificados en Doppler "
+"Relay antes de continuar con la configuración."
+
+#: admin/partials/doppler-relay-settings.php:201
+msgid "SMTP configuration"
+msgstr "Configuración SMTP"
+
+#: admin/partials/doppler-relay-settings.php:202
+msgid ""
+"Send your Emails through Doppler Relay's SMTP provider without needing your "
+"own email servers, and send large campaigns without ending up in spam."
+msgstr ""
+"Envía tus Emails a través del proveedor de SMTP de Doppler Relay sin "
+"necesidad de poseer servidores propios de correo electrónico y realiza "
+"grandes envíos sin caer en spam."
+
+#: admin/partials/doppler-relay-settings.php:209
+msgid "USER SMTP"
+msgstr "Nombre de Usuario"
+
+#: admin/partials/doppler-relay-settings.php:216
+msgid "Example"
+msgstr "EJ"
+
+#: admin/partials/doppler-relay-settings.php:225
+msgid "Server host"
+msgstr "Host del servidor"
+
+#: admin/partials/doppler-relay-settings.php:237
+msgid "Port"
+msgstr "Puerto"
+
+#: admin/partials/doppler-relay-settings.php:249
+msgid "Security"
+msgstr "Seguridad"
+
+#: admin/partials/doppler-relay-settings.php:263
+msgid "Sender email"
+msgstr "Email remitente"
+
+#: admin/partials/doppler-relay-settings.php:264
+msgid ""
+"Enter the sender name and email address you want to use to deliver your "
+"emails. Remember that it must belong to a verified Doppler Relay domain."
+msgstr ""
+"Ingresa el nombre y el Email del remitente bajo el cual deseas entregar tus "
+"correos electrónicos, recuerda que debe pertenecer a un dominio de Doppler "
+"Relay verificado."
+
+#: admin/partials/doppler-relay-settings.php:271
+msgid "From name"
+msgstr "Nombre del Remitente"
+
+#: admin/partials/doppler-relay-settings.php:286
+msgid "From email"
+msgstr "Email del remitente"
+
+#: admin/partials/doppler-relay-settings.php:295
+msgid "Example: notifications"
+msgstr "EJ: notificaciones"
+
+#: admin/partials/doppler-relay-settings.php:297
+msgid "Enter only the email alias, without @ or domain."
+msgstr "Ingresa solo el alias, sin @ ni dominio."
+
+#: admin/partials/doppler-relay-settings.php:306
+msgid "No verified domains available"
+msgstr "No hay dominios verificados"
+
+#: admin/partials/doppler-relay-settings.php:325
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: admin/partials/doppler-relay-settings.php:337
+msgid "Send test email"
+msgstr "Testeo de Email"
+
+#: admin/partials/doppler-relay-settings.php:338
+msgid ""
+"After setting up Relay SMTP, you can test proper email delivery from here by "
+"entering a test email address."
+msgstr ""
+"Luego de configurar Relay SMTP puedes probar desde aquí la correcta "
+"recepción de tus correos ingresando un Email de prueba."
+
+#: admin/partials/doppler-relay-settings.php:343
+msgid "Test email"
+msgstr "Email de prueba"
+
+#: admin/partials/doppler-relay-settings.php:354
+msgid "Send"
+msgstr "Enviar"
 
 #: admin/partials/forms-create.php:17 admin/partials/forms-edit.php:18
 msgid "Form basic information"
@@ -1190,7 +1418,7 @@ msgstr ""
 "obligatoriamente, un elemento anchor (&lt;a&gt; \"\n"
 "\"&lt;/a&gt;) con el atributo: href=[[[ConfirmationLink]]]"
 
-#: admin/partials/forms-create.php:352 admin/partials/forms-edit.php:395
+#: admin/partials/forms-create.php:353 admin/partials/forms-edit.php:396
 #: admin/partials/settings.php:148
 msgid "Save"
 msgstr "Guardar"
@@ -1421,6 +1649,78 @@ msgstr "Tus Formularios de Suscripción de Doppler"
 #: includes/class-doppler-form-widget.php:68
 msgid "Select the Form that you want to publish"
 msgstr "Selecciona el Formulario que deseas publicar"
+
+#: includes/class-doppler-smtp-manager.php:188
+msgid "Please enter your API Account Name and API Key / SMTP Password."
+msgstr "Por favor ingresa tú nombre de cuenta y API Key."
+
+#: includes/class-doppler-smtp-manager.php:329
+#: includes/class-doppler-smtp-manager.php:539
+msgid "Connect your Doppler Relay account before configuring SMTP."
+msgstr "Conecta tu cuenta de Doppler relay antes de configurar SMTP."
+
+#: includes/class-doppler-smtp-manager.php:370
+msgid "Please select a verified domain from Doppler Relay."
+msgstr "Por favor utiliza un dominio verificado en Doppler Relay."
+
+#: includes/class-doppler-smtp-manager.php:384
+msgid "Enter only the From email alias, without @ or domain."
+msgstr "Ingresa solo el alias, sin @ ni dominio."
+
+#: includes/class-doppler-smtp-manager.php:393
+#: includes/class-doppler-smtp-manager.php:543
+msgid "SMTP user is required."
+msgstr "Nombre de usuario es requerido."
+
+#: includes/class-doppler-smtp-manager.php:402
+msgid "From email alias is required."
+msgstr "El alias del email remitente es requerido."
+
+#: includes/class-doppler-smtp-manager.php:411
+#: includes/class-doppler-smtp-manager.php:547
+msgid "From name is required."
+msgstr "El nombre de remitente es requerido."
+
+#: includes/class-doppler-smtp-manager.php:420
+msgid "Please select a verified domain and enter a valid From email alias."
+msgstr "Por favor selecciona un dominio verificado e ingresa un alias valido."
+
+#: includes/class-doppler-smtp-manager.php:428
+msgid ""
+"SMTP settings were not saved. Complete all required fields and try again."
+msgstr ""
+"La configuración SMTP no se guardó. Completa todos los campos requeridos y "
+"vuelve a intentar."
+
+#: includes/class-doppler-smtp-manager.php:437
+msgid "SMTP settings saved successfully."
+msgstr "Configuración SMTP guardada correctamente."
+
+#: includes/class-doppler-smtp-manager.php:551
+msgid "A valid From email address is required."
+msgstr "Un email de remitente valido es requerido."
+
+#: includes/class-doppler-smtp-manager.php:696
+#: includes/class-doppler-smtp-manager.php:799
+msgid ""
+"Ouch! There was an error communicating with Doppler Relay. Please try again "
+"later."
+msgstr ""
+"¡Ouch! Detectamos un problema de conexión. Por favor inténtalo nuevamente en "
+"unos minutos."
+
+#: includes/class-doppler-smtp-manager.php:714
+msgid "Doppler Relay returned an invalid response. Please try again later."
+msgstr ""
+"¡Ouch! Detectamos un problema de conexión. Por favor inténtalo nuevamente en "
+"unos minutos."
+
+#: includes/class-doppler-smtp-manager.php:788
+msgid ""
+"Ouch! There's something wrong with your API Account Name or API Key. Please, "
+"try again."
+msgstr ""
+"¡Ouch! Hay un error en tu nombre de la cuenta o API Key. Vuelve a intentarlo."
 
 #: includes/helpers/Form_Helper.php:58 includes/helpers/Form_Helper.php:87
 #: includes/helpers/Form_Helper.php:110

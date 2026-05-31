@@ -22,5 +22,17 @@ $dplr_option_name = 'dplr_2_0_updated';
 delete_option($dplr_option_name);
 delete_site_option($dplr_option_name);
 
+$dplr_option_name = 'dplr_smtp_settings';
+delete_option($dplr_option_name);
+delete_site_option($dplr_option_name);
+
+$dplr_option_name = 'dplr_relay_connection';
+delete_option($dplr_option_name);
+delete_site_option($dplr_option_name);
+
+delete_transient('dplr_smtp_test_notice');
+delete_transient('dplr_smtp_page_notice');
+delete_transient('dplr_relay_domains_cache');
+
 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange
 $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}dplr_field_settings, {$wpdb->prefix}dplr_field, {$wpdb->prefix}dplr_form_settings, {$wpdb->prefix}dplr_form_events, {$wpdb->prefix}dplr_form" );

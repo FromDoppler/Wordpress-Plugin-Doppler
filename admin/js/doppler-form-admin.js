@@ -42,6 +42,38 @@
 		var colorSelector = $(".color-selector");
 		var default_page_size = 200;
 
+		$(document).on("click", ".dplr-message-dismiss", function (e) {
+			e.preventDefault();
+			var message = $(this).closest(".dp-wrap-message");
+			var dynamicListMessage = message.closest("#ListErrorMessage");
+
+			if (dynamicListMessage.length) {
+				dynamicListMessage.addClass("d-none");
+				message.find(".dp-content-message").html("");
+				return;
+			}
+
+			if (message.is("#dplr-signup-server-error")) {
+				message.addClass("d-none");
+				message.find("p").first().text("");
+				return;
+			}
+
+			if (message.is("#error-message")) {
+				message.addClass("d-none");
+				return;
+			}
+
+			message.remove();
+		});
+
+		$(".dplr-relay-loading-form").on("submit", function () {
+			$(this)
+				.find("button[type='submit'], button:not([type])")
+				.first()
+				.addClass("button--loading");
+		});
+
 		$("input[data-validation-email]").focusout(function () {
 			hideUserApiError();
 			validateEmail($(this));
@@ -768,7 +800,13 @@ function displayErrors(body) {
 	jQuery("#ListErrorMessage")
 		.removeClass("d-none")
 		.find(".dp-content-message")
-		.html("<p>" + generateErrorMsg(body) + "</p>");
+		.html(
+			"<p>" +
+				generateErrorMsg(body) +
+				'</p><a href="#" id="ListErrorMessageDismiss" class="dp-message-link dplr-message-dismiss">' +
+				object_string.GotIt +
+				"</a>"
+		);
 }
 
 function clearResponseMessages() {

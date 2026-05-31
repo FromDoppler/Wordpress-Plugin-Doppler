@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <div class="dp-rowflex d-none" id="ListErrorMessage">
                 <div class="dp-wrap-message dp-wrap-cancel m-b-12">
                     <span class="dp-message-icon"></span>
-                    <div class="dp-content-message">
+                    <div class="dp-content-message dp-content-full">
                     </div>
                 </div>
             </div>
