@@ -21,9 +21,14 @@ if ( ! current_user_can( 'manage_options' ) ) {
 						<h2><?php esc_html_e("Doppler Relay Account", "doppler-form" ); ?></h2>
 					</div>
 					<div class="col-sm-6">
-						<p><?php esc_html_e("Connect to your Doppler Relay account to send emails using SMTP for Wordpress.","doppler-form") ;?></p>
 						<p>
-							<?php esc_html_e( 'Don\'t have a Doppler Relay account yet?', 'doppler-form' ); ?>
+							<?php esc_html_e("Connect your account and start sending Transactional Emails with Doppler Relay.","doppler-form") ;?>
+							<a href=href="<?php esc_html_e('https://help.fromdoppler.com/en/doppler-relay-meet-our-email-transactional-service', 'doppler-form')?>" target="_blank" rel="noopener noreferrer">
+								<?php esc_html_e( 'Learn more here', 'doppler-form' ); ?>
+							</a>
+						</p>
+						<p>
+							<?php esc_html_e( 'No account yet?', 'doppler-form' ); ?>
 							<a href="<?php echo esc_url( $relay_signup_url ); ?>" target="_blank" rel="noopener noreferrer">
 								<?php esc_html_e( 'Sign up here', 'doppler-form' ); ?>
 							</a>
@@ -67,7 +72,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 							name="dplr_relay_api_key"
 							class="visible box-shado-0"
 							autocomplete="new-password"
-							placeholder="<?php esc_attr_e( 'Insert API Key', 'doppler-form' ); ?>"
+							placeholder="<?php esc_attr_e( 'Enter your API Key', 'doppler-form' ); ?>"
 							value="" />
 					</label>
 					<button class="dp-button button-big primary-green button-big m-t-24">
@@ -119,8 +124,8 @@ if ( ! current_user_can( 'manage_options' ) ) {
 						<header>
 							<div class="dp-rowflex space-between p-l-24">
 								<div class="col-sm-10 m-t-24">
-									<h2><?php esc_html_e( 'Welcome to your Doppler Relay account', 'doppler-form' ); ?></h2>
-									<p><?php esc_html_e( 'Here you can view your account status and configure the SMTP provider to send your emails.', 'doppler-form' ); ?></p>
+									<h2><?php esc_html_e( 'Welcome to your Doppler Relay Account', 'doppler-form' ); ?></h2>
+									<p><?php esc_html_e( 'Check your account status and set up your SMTP provider to start sending Emails.', 'doppler-form' ); ?></p>
 								</div>
 								<div class="col-sm-2 m-t-24">
 									<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" class="dplr-relay-loading-form">
@@ -137,7 +142,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 										<span> <?php echo esc_html($relay_connection['account_name'])?></span>
 									</span>
 									<span>
-										<strong> <?php esc_html_e("Status","doppler-form");?>:</strong>
+										<strong> <?php esc_html_e("State","doppler-form");?>:</strong>
 										<span> <?php esc_html_e("Active","doppler-form")?></span>
 									</span>
 									<span>
@@ -199,14 +204,20 @@ if ( ! current_user_can( 'manage_options' ) ) {
 							<header>
 								<div class="col-sm-9 m-t-24">
 									<h3><?php esc_html_e( 'SMTP configuration', 'doppler-form' ); ?></h3>
-									<p><?php esc_html_e( 'Send your Emails through Doppler Relay\'s SMTP provider without needing your own email servers, and send large campaigns without ending up in spam.', 'doppler-form' ); ?></p>
+									<p><?php esc_html_e( 'Send your Emails with Doppler Relay\'s SMTP, no own servers needed and no risk of landing in Spam.' , 'doppler-form' ); ?></p>
+									<p>
+										<?php esc_html_e( 'Get the required data by following the steps', 'doppler-form' ); ?>
+										<a href=href="<?php esc_html_e('https://help.dopplerrelay.com/en/where-can-i-find-my-api-key-and-smtp-credentials', 'doppler-form')?>" target="_blank" rel="noopener noreferrer">
+											<?php esc_html_e( 'Click here', 'doppler-form' ); ?>
+										</a>
+									</p>
 								</div>
 							</header>
 							<div class="col-sm-8">
 								<div class="dp-rowflex space-between">
 									<div class="col-sm-6 m-t-24">
 										<label for="dplr-smtp-user">
-											<?php esc_html_e( 'USER SMTP', 'doppler-form' ); ?>
+											<?php esc_html_e( 'Username', 'doppler-form' ); ?>
 											<input 
 												type="text"
 												id="dplr-smtp-user"
@@ -261,14 +272,19 @@ if ( ! current_user_can( 'manage_options' ) ) {
 							<header class="m-t-24">
 								<div class="col-sm-9">
 									<h3><?php esc_html_e( 'Sender email', 'doppler-form' ); ?></h3>
-									<p><?php esc_html_e( 'Enter the sender name and email address you want to use to deliver your emails. Remember that it must belong to a verified Doppler Relay domain.', 'doppler-form' ); ?></p>
+									<p>
+										<?php esc_html_e( 'Enter the name and Email of the sender you\'ll use to send your emails. The domain you enter must have DKIM, SPF and DMARC configured.', 'doppler-form' ); ?>
+										<a href=href="<?php esc_html_e('https://help.dopplerrelay.com/en/how-to-start-using-doppler-relay', 'doppler-form')?>" target="_blank" rel="noopener noreferrer">
+											<?php esc_html_e( 'Learn more', 'doppler-form' ); ?>
+										</a>
+									</p>
 								</div>
 							</header>
 							<div class="col-sm-8 m-t-24">
 								<div class="dp-rowflex space-between">
 									<div class="col-sm-5">
 										<label for="dplr-smtp-from-name" class="labelcontrol">
-											<?php esc_html_e( 'From name', 'doppler-form' ); ?>
+											<?php esc_html_e( 'Sender name', 'doppler-form' ); ?>
 											<input
 												type="text"
 												id="dplr-smtp-from-name"
@@ -283,7 +299,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 									</div>
 									<div class="col-sm-7">
 										<label for="dplr-smtp-from-local-part" class="labelcontrol">
-											<?php esc_html_e( 'From email', 'doppler-form' ); ?>
+											<?php esc_html_e( 'Sender\'s email address', 'doppler-form' ); ?>
 											<div class="dplr-from-email-inline">
 												<input
 													type="text"
@@ -334,8 +350,8 @@ if ( ! current_user_can( 'manage_options' ) ) {
 							
 							<header class="m-t-24">
 								<div class="col-sm-8">
-									<h3><?php esc_html_e( 'Send test email', 'doppler-form' ); ?></h3>
-									<p><?php esc_html_e( 'After setting up Relay SMTP, you can test proper email delivery from here by entering a test email address.', 'doppler-form' ); ?></p>
+									<h3><?php esc_html_e( 'Email Test', 'doppler-form' ); ?></h3>
+									<p><?php esc_html_e( 'Enter a test Email and verify your emails are being received correctly with your Relay SMTP configuration.', 'doppler-form' ); ?></p>
 								</div>
 							</header>
 							<div class="col-sm-8 dp-rowflex m-t-24 m-b-24">

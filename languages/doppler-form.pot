@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Doppler form Pot v1.0.0\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2026-05-24 23:35-0300\n"
+"POT-Creation-Date: 2026-06-13 19:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: Hernán Galván\n"
@@ -25,9 +25,9 @@ msgstr ""
 #: admin/doppler-admin.php:108 admin/doppler-admin.php:124
 #: admin/doppler-admin.php:147 admin/doppler-admin.php:222
 #: admin/partials/api-connection.php:670
-#: admin/partials/doppler-relay-settings.php:169
-#: admin/partials/doppler-relay-settings.php:180
-#: admin/partials/doppler-relay-settings.php:190
+#: admin/partials/doppler-relay-settings.php:174
+#: admin/partials/doppler-relay-settings.php:185
+#: admin/partials/doppler-relay-settings.php:195
 #: admin/partials/forms-create.php:348 admin/partials/forms-edit.php:392
 msgid "Got it"
 msgstr ""
@@ -467,7 +467,7 @@ msgid "Welcome!"
 msgstr ""
 
 #: admin/partials/api-connection.php:33
-#: admin/partials/doppler-relay-settings.php:130
+#: admin/partials/doppler-relay-settings.php:135
 msgid "Disconnect"
 msgstr ""
 
@@ -478,17 +478,16 @@ msgid ""
 msgstr ""
 
 #: admin/partials/api-connection.php:44
-#: admin/partials/doppler-relay-settings.php:136
+#: admin/partials/doppler-relay-settings.php:141
 msgid "Account"
 msgstr ""
 
 #: admin/partials/api-connection.php:48
-#: admin/partials/doppler-relay-settings.php:140
 msgid "Status"
 msgstr ""
 
 #: admin/partials/api-connection.php:49
-#: admin/partials/doppler-relay-settings.php:141
+#: admin/partials/doppler-relay-settings.php:146
 msgid "Active"
 msgstr ""
 
@@ -652,11 +651,12 @@ msgid "Sign up for free"
 msgstr ""
 
 #: admin/partials/api-connection.php:495
+#: admin/partials/doppler-relay-settings.php:220
 msgid "Username"
 msgstr ""
 
 #: admin/partials/api-connection.php:518
-#: admin/partials/doppler-relay-settings.php:57
+#: admin/partials/doppler-relay-settings.php:62
 msgid "How do you find your API Key? Press"
 msgstr ""
 
@@ -667,7 +667,7 @@ msgid ""
 msgstr ""
 
 #: admin/partials/api-connection.php:520 admin/partials/api-connection.php:553
-#: admin/partials/doppler-relay-settings.php:59
+#: admin/partials/doppler-relay-settings.php:64
 #: admin/partials/forms-create.php:51 admin/partials/forms-create.php:212
 #: admin/partials/forms-create.php:333 admin/partials/forms-edit.php:56
 #: admin/partials/forms-edit.php:215 admin/partials/forms-edit.php:340
@@ -676,7 +676,7 @@ msgid "HELP"
 msgstr ""
 
 #: admin/partials/api-connection.php:540
-#: admin/partials/doppler-relay-settings.php:74
+#: admin/partials/doppler-relay-settings.php:79
 msgid "Connect"
 msgstr ""
 
@@ -932,138 +932,165 @@ msgstr ""
 msgid "Doppler Relay Account"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:24
+#: admin/partials/doppler-relay-settings.php:25
 msgid ""
-"Connect to your Doppler Relay account to send emails using SMTP for "
-"Wordpress."
+"Connect your account and start sending Transactional Emails with Doppler "
+"Relay."
 msgstr ""
 
 #: admin/partials/doppler-relay-settings.php:26
-msgid "Don't have a Doppler Relay account yet?"
+msgid ""
+"https://help.fromdoppler.com/en/doppler-relay-meet-our-email-transactional-"
+"service"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:28
+#: admin/partials/doppler-relay-settings.php:27
+msgid "Learn more here"
+msgstr ""
+
+#: admin/partials/doppler-relay-settings.php:31
+msgid "No account yet?"
+msgstr ""
+
+#: admin/partials/doppler-relay-settings.php:33
 msgid "Sign up here"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:40
+#: admin/partials/doppler-relay-settings.php:45
 msgid "Account Name"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:46
+#: admin/partials/doppler-relay-settings.php:51
 msgid "Example: dopplerrelay"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:58
+#: admin/partials/doppler-relay-settings.php:63
+#: admin/partials/doppler-relay-settings.php:210
 msgid ""
 "https://help.dopplerrelay.com/en/where-can-i-find-my-api-key-and-smtp-"
 "credentials"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:70
-msgid "Insert API Key"
+#: admin/partials/doppler-relay-settings.php:75
+msgid "Enter your API Key"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:122
-msgid "Welcome to your Doppler Relay account"
+#: admin/partials/doppler-relay-settings.php:127
+msgid "Welcome to your Doppler Relay Account"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:123
+#: admin/partials/doppler-relay-settings.php:128
 msgid ""
-"Here you can view your account status and configure the SMTP provider to "
-"send your emails."
+"Check your account status and set up your SMTP provider to start sending "
+"Emails."
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:144
+#: admin/partials/doppler-relay-settings.php:145
+msgid "State"
+msgstr ""
+
+#: admin/partials/doppler-relay-settings.php:149
 msgid "Connection Date"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:189
+#: admin/partials/doppler-relay-settings.php:194
 #: includes/class-doppler-smtp-manager.php:355
 msgid ""
 "You need at least one verified domain with DKIM, SPF and DMARC ready in "
 "Doppler Relay before configuring SMTP."
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:201
+#: admin/partials/doppler-relay-settings.php:206
 msgid "SMTP configuration"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:202
+#: admin/partials/doppler-relay-settings.php:207
 msgid ""
-"Send your Emails through Doppler Relay's SMTP provider without needing your "
-"own email servers, and send large campaigns without ending up in spam."
+"Send your Emails with Doppler Relay's SMTP, no own servers needed and no "
+"risk of landing in Spam."
 msgstr ""
 
 #: admin/partials/doppler-relay-settings.php:209
-msgid "USER SMTP"
+msgid "Get the required data by following the steps"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:216
+#: admin/partials/doppler-relay-settings.php:211
+msgid "Click here"
+msgstr ""
+
+#: admin/partials/doppler-relay-settings.php:227
 msgid "Example"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:225
+#: admin/partials/doppler-relay-settings.php:236
 msgid "Server host"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:237
+#: admin/partials/doppler-relay-settings.php:248
 msgid "Port"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:249
+#: admin/partials/doppler-relay-settings.php:260
 msgid "Security"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:263
+#: admin/partials/doppler-relay-settings.php:274
 msgid "Sender email"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:264
+#: admin/partials/doppler-relay-settings.php:276
 msgid ""
-"Enter the sender name and email address you want to use to deliver your "
-"emails. Remember that it must belong to a verified Doppler Relay domain."
+"Enter the name and Email of the sender you'll use to send your emails. The "
+"domain you enter must have DKIM, SPF and DMARC configured."
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:271
-msgid "From name"
+#: admin/partials/doppler-relay-settings.php:277
+msgid "https://help.dopplerrelay.com/en/how-to-start-using-doppler-relay"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:286
-msgid "From email"
+#: admin/partials/doppler-relay-settings.php:278
+msgid "Learn more"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:295
+#: admin/partials/doppler-relay-settings.php:287
+msgid "Sender name"
+msgstr ""
+
+#: admin/partials/doppler-relay-settings.php:302
+msgid "Sender's email address"
+msgstr ""
+
+#: admin/partials/doppler-relay-settings.php:311
 msgid "Example: notifications"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:297
+#: admin/partials/doppler-relay-settings.php:313
 msgid "Enter only the email alias, without @ or domain."
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:306
+#: admin/partials/doppler-relay-settings.php:322
 msgid "No verified domains available"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:325
+#: admin/partials/doppler-relay-settings.php:341
 msgid "Save changes"
 msgstr ""
 
-#: admin/partials/doppler-relay-settings.php:337
-msgid "Send test email"
-msgstr ""
-
-#: admin/partials/doppler-relay-settings.php:338
-msgid ""
-"After setting up Relay SMTP, you can test proper email delivery from here by "
-"entering a test email address."
-msgstr ""
-
-#: admin/partials/doppler-relay-settings.php:343
-msgid "Test email"
+#: admin/partials/doppler-relay-settings.php:353
+msgid "Email Test"
 msgstr ""
 
 #: admin/partials/doppler-relay-settings.php:354
+msgid ""
+"Enter a test Email and verify your emails are being received correctly with "
+"your Relay SMTP configuration."
+msgstr ""
+
+#: admin/partials/doppler-relay-settings.php:359
+msgid "Test email"
+msgstr ""
+
+#: admin/partials/doppler-relay-settings.php:370
 msgid "Send"
 msgstr ""
 
