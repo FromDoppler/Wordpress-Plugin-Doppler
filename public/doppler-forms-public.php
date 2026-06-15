@@ -41,6 +41,13 @@ class DPLR_Doppler_Form_Public {
 	private $version;
 
 	/**
+	 * Doppler API service instance.
+	 *
+	 * @var Doppler_Service
+	 */
+	private $doppler_service;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
