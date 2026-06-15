@@ -248,15 +248,15 @@ var FieldModel;
 					(this.readOnly ? "disabled" : "") +
 					">";
 				html += "		</div>";
-				html += '		<div class="dplr_input_section horizontal">';
+				html += '		<div class="dplr_input_section horizontal awa-form">';
 				html +=
 					'<label for="fields[' +
 					field.name +
 					'][settings][dateFormat]">' +
 					ObjStr.DateFormat +
-					"</label>";
-				html +=
-					'<select name="fields[' + field.name + '][settings][dateFormat]">';
+					'<div class="dp-select dplr-dynamic-select"><span class="dropdown-arrow"></span><select name="fields[' +
+					field.name +
+					'][settings][dateFormat]">';
 				dateFormats.forEach((format) => {
 					html +=
 						'<option value="' +
@@ -267,7 +267,7 @@ var FieldModel;
 						format +
 						"</option>";
 				});
-				html += "</select>";
+				html += "</select></div></label>";
 				html += "		</div>";
 			}
 			if ($.inArray(field.type, ["boolean", "gender", "date"]) == -1) {
@@ -289,15 +289,13 @@ var FieldModel;
 				html += "		</div>";
 			}
 			if (field.type === "string") {
-				html += '		<div class="dplr_input_section horizontal">';
+				html += '		<div class="dplr_input_section horizontal awa-form">';
 				html +=
 					'			<label for="fields[' +
 					field.name +
 					'][settings][text_lines]">' +
 					ObjStr.TextType +
-					"</label>";
-				html +=
-					'				<select name="fields[' +
+					'<div class="dp-select dplr-dynamic-select"><span class="dropdown-arrow"></span><select name="fields[' +
 					field.name +
 					'][settings][text_lines]" ' +
 					(this.readOnly ? "disabled" : "") +
@@ -322,7 +320,7 @@ var FieldModel;
 						  ObjStr.optionsLine +
 						  "</option>"
 						: '				<option value="options">' + ObjStr.optionsLine + "</option>";
-				html += "			</select>";
+				html += "			</select></div></label>";
 				html += "		</div>";
 				html +=
 					'		<div class="dplr_input_section horizontal" id="optionsArea-' +
