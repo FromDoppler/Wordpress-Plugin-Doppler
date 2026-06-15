@@ -228,13 +228,14 @@ class Doppler_Service
       $resourceArg = $method[ 'parameters' ];
       
       foreach ($args as $name => $val) {
+        $value = null === $val ? '' : $val;
         
         isset($resourceArg[ $name ])? $parameter = $resourceArg[ $name ] : $parameter = ''; 
         
         if( $parameter && $parameter[ 'on_query_string' ] ){
-          $query[] = $name . "=" . $val ;
+          $query[] = $name . "=" . $value ;
         }else{
-          $url = str_replace(":".$name, $val, $url);
+          $url = str_replace(":".$name, (string) $value, $url);
         }
       
       }
