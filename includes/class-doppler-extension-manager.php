@@ -55,17 +55,20 @@ class Doppler_Extension_Manager {
         }
 
         $slug = sanitize_text_field(wp_unslash($_POST['extensionName']));
+        $extension_file = $this->get_extension_plugin_file( $slug );
         
         if(!$this->is_plugin_installed($slug)){
             include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
             wp_cache_flush();
             $upgrader = new Plugin_Upgrader();
-            $upgrader->install( $this->extensions[$slug]['zip_file'], array( 'clear_destination' => true ) );
+            $result = $upgrader->install( $this->extensions[$slug]['zip_file'], array( 'clear_destination' => true ) );
+            if ( is_wp_error( $result ) ) {
+                wp_send_json_error( [ 'message' => $result->get_error_message() ] );
+            }
         }
         
         if(!$this->is_active($slug)){
-            $extension_path = DOPPLER_PLUGINS_PATH .$slug.'\\'.$slug.'.php';
-            $result = activate_plugin( $extension_path );
+            $result = activate_plugin( $extension_file );
             if ( is_wp_error( $result ) ) {
                 wp_send_json_error( [ 'message' => $result->get_error_message() ] );
             }
@@ -75,10 +78,12 @@ class Doppler_Extension_Manager {
             include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
             wp_cache_flush();
             $upgrader = new Plugin_Upgrader();
-            $upgrader->upgrade($slug.'/'.$slug.'.php');
+            $result = $upgrader->upgrade( $extension_file );
+            if ( is_wp_error( $result ) ) {
+                wp_send_json_error( [ 'message' => $result->get_error_message() ] );
+            }
 
-            $extension_path = DOPPLER_PLUGINS_PATH .$slug.'\\'.$slug.'.php';
-            $result = activate_plugin( $extension_path );
+            $result = activate_plugin( $extension_file );
             if ( is_wp_error( $result ) ) {
                 wp_send_json_error( [ 'message' => $result->get_error_message() ] );
             }
@@ -161,12 +166,16 @@ class Doppler_Extension_Manager {
         $form_actions_registrar->register( new Doppler_Elementor_Integration($this->doppler_service) );
     }
 
-    private function check_admin_permissions() {
+	private function check_admin_permissions() {
 		if ( ! current_user_can('manage_options') ) {
 			wp_send_json_error(['message' => __('Unauthorized', 'doppler-form')]);
 			wp_die();
     	}
 	}
+
+    private function get_extension_plugin_file( $slug ) {
+        return trailingslashit( $slug ) . $slug . '.php';
+    }
 
     public function add_elementor_widget_categories( $elements_manager ) {
 
