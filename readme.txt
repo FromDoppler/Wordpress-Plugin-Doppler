@@ -5,7 +5,7 @@ Tags: Doppler, Email marketing, integration, form, automation
 Requires at least: 5.6
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 2.8.0
+Stable tag: 2.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,10 @@ En [este artículo](https://help.fromdoppler.com/es/api-interfaz-de-programacion
 8. Formulario de Suscripción.
 
 == Changelog ==
+= 2.9.0 =
+* Feat: Doppler Relay configuration section.
+* Update: Improve code to php 8+.
+
 = 2.8.0 =
 * Feat: Add Doppler account sign up.
 * Feat: Add Doppler forms as elementor's widget.
