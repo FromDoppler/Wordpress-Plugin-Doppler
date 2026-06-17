@@ -323,8 +323,7 @@ class DPLR_SMTP_Manager {
 		$sanitized['from_name']       = isset( $input['from_name'] ) ? sanitize_text_field( $input['from_name'] ) : '';
 
 		if ( ! $this->has_relay_connection() ) {
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_missing_relay_connection',
 				__( 'Connect your Doppler Relay account before configuring SMTP.', 'doppler-form' )
 			);
@@ -338,8 +337,7 @@ class DPLR_SMTP_Manager {
 
 		$domains_data = $this->get_relay_domains_data();
 		if ( is_wp_error( $domains_data ) ) {
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_domains_fetch_error',
 				$domains_data->get_error_message()
 			);
@@ -349,8 +347,7 @@ class DPLR_SMTP_Manager {
 
 		$verified_domains = $this->get_verified_domains( $domains_data );
 		if ( empty( $verified_domains ) ) {
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_no_verified_domains',
 				__( 'You need at least one verified domain with DKIM, SPF and DMARC ready in Doppler Relay before configuring SMTP.', 'doppler-form' )
 			);
@@ -364,8 +361,7 @@ class DPLR_SMTP_Manager {
 			$requested_domain = $this->get_selected_domain( $sanitized, $domains_data );
 			$has_errors       = true;
 
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_invalid_domain',
 				__( 'Please select a verified domain from Doppler Relay.', 'doppler-form' )
 			);
@@ -378,8 +374,7 @@ class DPLR_SMTP_Manager {
 			$has_errors         = true;
 			$invalid_from_alias = true;
 
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_invalid_from_alias',
 				__( 'Enter only the From email alias, without @ or domain.', 'doppler-form' )
 			);
@@ -387,8 +382,7 @@ class DPLR_SMTP_Manager {
 
 		if ( empty( $sanitized['smtp_user'] ) ) {
 			$has_errors = true;
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_missing_user',
 				__( 'SMTP user is required.', 'doppler-form' )
 			);
@@ -396,8 +390,7 @@ class DPLR_SMTP_Manager {
 
 		if ( empty( $sanitized['from_local_part'] ) ) {
 			$has_errors = true;
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_missing_from_alias',
 				__( 'From email alias is required.', 'doppler-form' )
 			);
@@ -405,8 +398,7 @@ class DPLR_SMTP_Manager {
 
 		if ( empty( $sanitized['from_name'] ) ) {
 			$has_errors = true;
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_missing_from_name',
 				__( 'From name is required.', 'doppler-form' )
 			);
@@ -414,16 +406,14 @@ class DPLR_SMTP_Manager {
 
 		if ( ! $invalid_from_alias && ( empty( $sanitized['from_email'] ) || ! is_email( $sanitized['from_email'] ) ) ) {
 			$has_errors = true;
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_invalid_from_email',
 				__( 'Please select a verified domain and enter a valid From email alias.', 'doppler-form' )
 			);
 		}
 
 		if ( $has_errors ) {
-			add_settings_error(
-				$this->option_name,
+			$this->add_settings_error_once(
 				'dplr_smtp_settings_not_saved',
 				__( 'SMTP settings were not saved. Complete all required fields and try again.', 'doppler-form' )
 			);
@@ -431,8 +421,7 @@ class DPLR_SMTP_Manager {
 			return $existing_settings;
 		}
 
-		add_settings_error(
-			$this->option_name,
+		$this->add_settings_error_once(
 			'dplr_smtp_settings_saved',
 			__( 'SMTP settings saved successfully.', 'doppler-form' ),
 			'updated'
@@ -456,6 +445,25 @@ class DPLR_SMTP_Manager {
 		}
 
 		return empty( $this->get_configuration_errors( $settings ) );
+	}
+
+	/**
+	 * Adds a settings error only once per code in the current request.
+	 *
+	 * @param string $code Error code.
+	 * @param string $message Notice text.
+	 * @param string $type Notice type.
+	 */
+	private function add_settings_error_once( $code, $message, $type = 'error' ) {
+		$existing_errors = get_settings_errors( $this->option_name );
+
+		foreach ( $existing_errors as $existing_error ) {
+			if ( isset( $existing_error['code'] ) && $existing_error['code'] === $code ) {
+				return;
+			}
+		}
+
+		add_settings_error( $this->option_name, $code, $message, $type );
 	}
 
 	/**
